@@ -1,0 +1,25 @@
+{
+  "name": "shrecknet-lite",
+  "version": "1.0.0",
+  "description": "Unofficial Vampire: The Masquerade V20/V5 interactive character sheet. Fan-made project using Tailwind CSS and vanilla JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overuseofrem/shrecknet-lite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/overuseofrem/shrecknet-lite/issues"
+  },
+  "homepage": "https://github.com/overuseofrem/shrecknet-lite#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
