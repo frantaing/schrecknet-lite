@@ -1,0 +1,13 @@
+/*
+ *  FILE: style.css
+ *  DESCRIPTION:
+ *  - Defines optional styles
+*/
+
+/* =================================================================
+       TAILWIND IMPORTS
+   ================================================================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

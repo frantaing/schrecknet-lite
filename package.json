@@ -4,7 +4,9 @@
   "description": "Unofficial Vampire: The Masquerade V20/V5 interactive character sheet. Fan-made project using Tailwind CSS and vanilla JavaScript.",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"tailwindcss -i ./src/css/style.css -o ./dist/style.css --watch\" \"live-server --port=3000 --open=src/index.html\"",
+    "build": "tailwindcss -i ./src/css/style.css -o ./dist/style.css --minify"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   "homepage": "https://github.com/overuseofrem/shrecknet-lite#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "live-server": "^1.2.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
   }
