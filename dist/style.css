@@ -570,21 +570,51 @@ video {
   display: none;
 }
 
+.flex{
+  display: flex;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
 .bg-background{
   --tw-bg-opacity: 1;
   background-color: rgb(13 13 13 / var(--tw-bg-opacity, 1));
 }
 
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.py-\[10rem\]{
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }
 
-.font-bold{
-  font-weight: 700;
+.py-\[20rem\]{
+  padding-top: 20rem;
+  padding-bottom: 20rem;
 }
 
-.text-white{
+.pt-\[10rem\]{
+  padding-top: 10rem;
+}
+
+.pt-\[20rem\]{
+  padding-top: 20rem;
+}
+
+.font-heading{
+  font-family: Gloock, serif;
+}
+
+.text-headingXL{
+  font-size: 8rem;
+  line-height: 9rem;
+}
+
+.text-textPrimary{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
