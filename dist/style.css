@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Gloock&display=swap');
+
 /*
  *  FILE: style.css
  *  DESCRIPTION:
@@ -5,10 +7,14 @@
 */
 
 /* =================================================================
-       TAILWIND IMPORTS
+        MPORTS
    ================================================================= */
 
-*, ::before, ::after {
+/* Google Fonts */
+
+/* Tailwind */
+
+*, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -62,7 +68,7 @@
   --tw-contain-style:  ;
 }
 
-::backdrop {
+::backdrop{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -564,26 +570,21 @@ video {
   display: none;
 }
 
-.bg-blue-500 {
+.bg-background{
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+  background-color: rgb(13 13 13 / var(--tw-bg-opacity, 1));
 }
 
-.text-4xl {
+.text-4xl{
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
 
-.font-bold {
+.font-bold{
   font-weight: 700;
 }
 
-.text-white {
+.text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
