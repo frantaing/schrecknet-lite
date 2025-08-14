@@ -29,9 +29,32 @@
   <link rel="stylesheet" <link href="/dist/style.css">
 </head>
 
-<body class="bg-background flex justify-center items-center py-[10rem]">
+<body class="bg-background min-h-screen flex justify-center items-center font-geist text-textPrimary">
+
   
-  <h1 class="font-heading text-textPrimary text-headingXL">Hello, Tailwind!</h1>
+  <!-- Main container -->
+  <div class="w-full max-w-4xl px-8 flex flex-col items-center space-y-16">
+
+    <!-- Hero / Title + Description -->
+    <div class="text-center space-y-4">
+      <h1 class="font-gloock text-headingXL">shrecknet-lite</h1>
+      <p class="text-body">
+        welcome to / --------------------- \ by 
+        <a href="https://github.com/frantan" class="text-accent underline">frantan</a>
+      </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex space-x-6">
+      <a href="v20.html" class="px-6 py-3 bg-accent text-textPrimary rounded-lg hover:bg-red-800 transition">
+        V20 Sheet
+      </a>
+      <a href="v5.html" class="px-6 py-3 bg-accent text-textPrimary rounded-lg hover:bg-red-800 transition">
+        V5 Sheet
+      </a>
+    </div>
+
+  </div>
 
   <!-- Javascript -->
   <script src="script.js"></script>
