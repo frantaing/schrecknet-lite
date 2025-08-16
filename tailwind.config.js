@@ -7,6 +7,7 @@ module.exports = {
         // Colors
         background: '#0D0D0D',
         foreground: '#161616',
+        accent: '#951313',
       },
       // Typography!
       // Font Family
@@ -32,6 +33,10 @@ module.exports = {
         headingL: ['4rem', { lineHeight: '4.5rem' }], // 64px → 72px
         headingM: ['1.6875rem', { lineHeight: '2rem' }], // 27px → 32px
       },
+      // Border Radius
+      borderRadius: {
+        round: '5px',
+      }
     },
   },
   plugins: [],
