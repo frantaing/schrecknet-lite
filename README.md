@@ -64,7 +64,7 @@ Currently in **early development**: figuring stuff out and building the UI layou
 
 #### styling (Tailwind)
 - [x] Configure Tailwind with custom fonts, colors, and spacing
-- [ ] Style home page
+- [x] Style home page
 - [ ] Style V20 sheet
 
 #### interactivity (JS)
