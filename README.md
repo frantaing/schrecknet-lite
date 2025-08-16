@@ -57,25 +57,73 @@ This is a **pure front-end project** for now, using **Tailwind CSS** and **vanil
 
 Currently in **early development**: figuring stuff out and building the UI layout.
 
-#### page structure (HTML)
-- [x] Set up home page
-- [ ] Build V20 sheet layout
-- [ ] Build V5 sheet placeholder
+### 📝 **To-Do List**
 
-#### styling (Tailwind)
-- [x] Configure Tailwind with custom fonts, colors, and spacing
-- [x] Style home page
-- [ ] Style V20 sheet
+#### **Home Page**
 
-#### interactivity (JS)
-- [ ] Implement dot click handling
-- [ ] Implement dropdown selections
-- [ ] Implement V20 freebie point calculation
+- [x] Set up the base HTML structure for the home page.
+- [x] Configure Tailwind with custom fonts, colors, and spacing.
+- [x] Style the home page layout using Tailwind CSS.
+- [ ] Add navigation links to the V20 and V5 sheets.
 
-#### deployment
-- [ ] Final code cleanup and commenting
-- [ ] Deploy the site to Github Pages
-- [ ] Add the live site link to the top of the README
+#### **V20 Character Sheet**
+
+#### **Structure & Layout**
+
+- [ ] Build the main HTML structure for the V20 sheet.
+- [ ] Implement mobile and desktop responsiveness for the entire V20 sheet layout.
+
+#### **Basic Sections**
+
+- [ ] Create the **header** section with fields for character name, concept, chronicle, etc.
+- [ ] Build the **attributes** section (Physical, Social, Mental) with interactive dots.
+- [ ] Lay out the **abilities** section (Talents, Skills, Knowledges) with interactive dots.
+- [ ] Design the **advantages** section, including:
+  - [ ] Disciplines
+  - [ ] Backgrounds
+  - [ ] Virtues
+- [ ] Create sections for **merits & flaws** and **humanity/paths**.
+- [ ] Set up the **health** and **willpower** tracks.
+
+#### **Styling (Tailwind)**
+
+- [ ] Style the overall V20 sheet layout.
+- [ ] Style the interactive dots to reflect different states (e.g., filled, empty).
+- [ ] Apply styling to all form inputs and dropdowns.
+
+#### **Interactivity (JavaScript)**
+
+- [ ] Implement click handling for the attribute dots.
+- [ ] Implement click handling for the ability dots.
+- [ ] Enable dropdown selections for disciplines and backgrounds.
+- [ ] Create basic V20 freebie point calculation logic.
+  - [ ] Attributes
+  - [ ] Abilities
+  - [ ] Advantages
+
+### **V5 Character Sheet**
+
+- [ ] Create a placeholder page for the V5 sheet.
+- [ ] Build the main HTML structure for the V5 sheet.
+- [ ] Style the V5 sheet layout.
+
+### **General & Deployment**
+
+- [ ] Perform a final code cleanup and add comments for clarity.
+- [ ] Deploy the site to GitHub Pages.
+- [ ] Update the README with the live site link.
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br>
 
