@@ -29,30 +29,33 @@
   <link rel="stylesheet" <link href="/dist/style.css">
 </head>
 
-<body class="bg-background min-h-screen font-geist text-textPrimary">
+<body class="bg-background min-h-screen flex justify-center font-geist text-textPrimary">
   
-  <div>
+  <!-- Main container -->
+  <div class="">
 
-    <div>
-      <h1>shrecknet-lite</h1>
-      <p>
+    <!-- Hero / Title + Description -->
+    <div class="">
+      <h1 class="">shrecknet-lite</h1>
+      <p class="">
         welcome to / ---------------------- \ by 
-        <a href="https://github.com/overuseofrem/schrecknet-lite">frantan</a>
+        <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent rounded-round hover:text-textPrimary hover:bg-accent transition duration-300">frantan</a>
       </p>
     </div>
   
-    <div>
-      <div>
-        <a href="v20.html">
-          create a V20 character sheet
+    <!-- Button container -->
+    <div class="">
+      <!-- Buttons -->
+      <div class="">
+        <a href="v20.html" class="group bg-foreground rounded-round hover:bg-accent transition">
+          create a <span class="text-accent group-hover:text-textPrimary transition">V20</span> character sheet
         </a>
-        <a href="v5.html">
-          create a V5 character sheet
+        <a href="v5.html" class="group bg-foreground rounded-round hover:bg-accent hover:text-textPrimary transition">
+          create a <span class="text-accent group-hover:text-textPrimary transition">V5</span> character sheet
         </a>
       </div>
-      <p>version 0.1.0</p>
-    </div>
-    
+      <p class="">version 0.1.0</p>
+  </div>
 
   </div>
 
@@ -60,5 +63,4 @@
   <script src="script.js"></script>
 
 </body>
-
 </html>
