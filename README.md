@@ -64,7 +64,7 @@ Currently in **early development**: figuring stuff out and building the UI layou
 - [x] Set up the base HTML structure for the home page.
 - [x] Configure Tailwind with custom fonts, colors, and spacing.
 - [x] Style the home page layout using Tailwind CSS.
-- [ ] Add navigation links to the V20 and V5 sheets.
+- [x] Add navigation links to the V20 and V5 sheets.
 
 #### **V20 Character Sheet**
 
