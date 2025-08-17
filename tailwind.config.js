@@ -21,10 +21,11 @@ module.exports = {
         textPrimary: '#FFFFFF',
         accent: '#951313',
       },
-      // Font Sizes
+      // Font Sizes 
       fontSize: {
+        // MOBILE
         // Geist Mono (body / headers)
-        body: ['1.6875rem', { lineHeight: '2rem' }], // 27px → 32px
+        body: ['1rem', { lineHeight: '1rem' }], // 27px → 32px
         header: ['1.1875rem', { lineHeight: '1.5rem' }], // 19px → 24px
         version: ['1rem', { lineHeight: '1.25rem' }], // 16px → 20px
 
@@ -32,6 +33,17 @@ module.exports = {
         headingXL: ['8rem', { lineHeight: '9rem' }],   // 128px → 144px
         headingL: ['4rem', { lineHeight: '4.5rem' }], // 64px → 72px
         headingM: ['1.6875rem', { lineHeight: '2rem' }], // 27px → 32px
+
+        // DESKTOP
+        // Geist Mono (body / headers)
+        deskBody: ['1.6875rem', { lineHeight: '2rem' }], // 27px → 32px
+        deskHeader: ['1.1875rem', { lineHeight: '1.5rem' }], // 19px → 24px
+        deskVersion: ['1rem', { lineHeight: '1.25rem' }], // 16px → 20px
+
+        // Gloock (headings)
+        deskHeadingXL: ['8rem', { lineHeight: '9rem' }],   // 128px → 144px
+        deskHeadingL: ['4rem', { lineHeight: '4.5rem' }], // 64px → 72px
+        deskHeadingM: ['1.6875rem', { lineHeight: '2rem' }], // 27px → 32px
       },
       // Border Radius
       borderRadius: {
