@@ -33,20 +33,26 @@
 
   
   <!-- Main container -->
-  <div class="w-full flex flex-col items-center gap-7">
+  <div class="w-full flex flex-col items-center gap-7 sm:gap-14 lg:gap-28">
 
     <!-- Hero / Title + Description -->
-    <div class="text-center space-y-1">
-      <h1 class="font-heading text-5xl">shrecknet-lite</h1>
+    <div class="text-center">
+      <h1 class="font-heading text-5xl sm:text-7xl lg:text-8xl lg:mb-2">shrecknet-lite</h1>
 
       <!-- Mobile Only -->
-      <p class=" text-textSecondary text-lg">
+      <p class=" text-textSecondary text-lg sm:hidden">
         by
+        <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent py-1 px-3 rounded-round hover:text-textPrimary hover:bg-accent transition duration-300">frantan</a>
+      </p>
+      
+      <!--  Tablets Only -->
+      <p class=" text-textSecondary text-base ml-2 hidden sm:block lg:hidden">
+        welcome to / ------------------- \ by 
         <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent py-1 px-3 rounded-round hover:text-textPrimary hover:bg-accent transition duration-300">frantan</a>
       </p>
 
       <!-- Desktop Only -->
-      <p class=" text-textSecondary text-body hidden">
+      <p class=" text-textSecondary text-xl ml-2 hidden lg:block">
         welcome to / ---------------------- \ by 
         <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent py-1 px-3 rounded-round hover:text-textPrimary hover:bg-accent transition duration-300">frantan</a>
       </p>
@@ -54,9 +60,9 @@
     </div>
   
     <!-- Button container -->
-    <div class="w-max flex flex-col justify-center items-center space-y-3">
+    <div class="w-max flex flex-col justify-center items-center gap-3 sm:gap-5">
       <!-- Buttons -->
-      <div class="flex flex-col text-center font-body text-textPrimary space-y-2">
+      <div class="flex flex-col text-center font-body text-textPrimary space-y-2 lg:text-lg">
         <a href="v20.html" class="group bg-foreground px-5 py-2 rounded-round hover:bg-accent transition">
           create a <span class="text-accent group-hover:text-textPrimary transition">V20</span> character sheet
         </a>
@@ -64,7 +70,7 @@
           create a <span class="text-accent group-hover:text-textPrimary transition">V5</span> character sheet
         </a>
       </div>
-      <p class="text-textSecondary font-body text-xs">version 0.1.0</p>
+      <p class="text-textSecondary font-body text-xs sm:text-sm">version 0.1.0</p>
     </div>
     
   </div>
