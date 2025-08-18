@@ -14,13 +14,13 @@
 # Contains:
 # - The character sheet for V20
 #   > Basics (Player, Chronicle, Name, Concept, Nature, Demeanor)
-    > Clan (Clan/Bloodline, Sire, Generation)
-    > Attributes (Physical, Social, Mental)
-    > Abilities (Talents, Skills, Knowledges)
-    > Disciplines
-    > Backgrounds
-    > Virtues & Humanity/Path & Willpower
-    > Merits & Flaws
+#   > Clan (Clan/Bloodline, Sire, Generation)
+#   > Attributes (Physical, Social, Mental)
+#   > Abilities (Talents, Skills, Knowledges)
+#   > Disciplines
+#   > Backgrounds
+#   > Virtues & Humanity/Path & Willpower
+#   > Merits & Flaws
 
 -->
 
@@ -38,99 +38,151 @@
   <link rel="stylesheet" <link href="/dist/style.css">
 </head>
 
-<body class="">
+<body class="bg-background min-h-screen flex justify-center items-center font-body text-textPrimary">
 
-    <!-- Main container -->
-    <div class="">
+  <!-- Main container -->
+  <div class="">
 
-      <!-- [Basics] & [Clan]  -->
-      <div class="">
+    <!-- [Basics + Clan] -->
+    <section class="">
 
+      <!-- Basics -->
+      <div>
+        <h2 class="">Basics</h2>
+        <div class="">
+          <!--
+          
+          Forms
+          - Textfield: Player, Chronicle, Name, Concept
+          - Dropdown: Nature, Demeanor 
+          
+          = 2 rows: Name/Player/Chronicle, Concept/Nature/Demeanor
 
-
+          -->
+        </div>
       </div>
+      <!-- Clan -->
+      <div>
+        <div class="">
+          <!--
+          
+          Forms
+          - Input text: Sire
+          - Dropdown: Clan, Generation
+          
+          = 1 row: Sire/Clan/Generation
 
-      <!-- [Attributes] -->
-      <div class="">
-
-
-
+          -->
+        </div>
       </div>
-
-      <!-- [Abilities] -->
-      <div class="">
-
-
-
-      </div>
-
-      <!-- 
       
-      #############################
-        SECTION CONTAINERS: 2 COLUMNS 
-      #############################
+    </section>
 
+    <!-- [Attributes] -->
+    <section>
+
+      <h2 class="">Attributes</h2>
+      <div class="">
+        <div>
+          <h3 class="">Physical</h3>
+          <!-- Strength, Dex, Stamina -->
+        </div>
+        <div>
+          <h3 class="">Social</h3>
+          <!-- Charisma, Manipulation, Appearance -->
+        </div>
+        <div>
+          <h3 class="">Mental</h3>
+          <!-- Perception, Intelligence, Wits -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- [Abilities] -->
+    <section>
+
+      <h2 class="">Abilities</h2>
+      <div class="">
+        <div>
+          <h3 class="">Talents</h3>
+          <!-- Alertness, Athletics, etc. -->
+        </div>
+        <div>
+          <h3 class="">Skills</h3>
+          <!-- Animal Ken, Crafts, etc. -->
+        </div>
+        <div>
+          <h3 class="">Knowledges</h3>
+          <!-- Academics, Computer, etc. -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- [Disciplines + Backgrounds] -->
+    <section class="">
+      <!--
+      
+      2 columns: Disciplines (right), Backgrounds (left)
+      
       -->
+      <div>
+        <h2 class="">Disciplines</h2>
+        <!-- 
+        
+        Powers / dots 
+        = filled in forms; dropdown for Caitiff
 
-      <!-- Section container (Disciplines + Backgrounds) -->
-      <div class="">
-
-        <!-- [Disciplines] -->
-        <div class="">
-
-
-
-        </div>
-        <!-- [Backgrounds] -->
-        <div class="">
-
-
-
-        </div>
+        -->
 
       </div>
-
-      <!-- Section container (Virtues + Humanity/Path/Willpower) -->
-      <div class="">
-
-        <!-- [Virtues] -->
-        <div class="">
-          
-          
-
-        </div>
-
-        <!-- [Humanity/Path & Willpower] -->
-        <div class="">
-
-
-          
-        </div>
-
+      <div>
+        <h2 class="">Backgrounds</h2>
+        <!-- 
+        
+        Resources, Allies, Contacts, etc. 
+        = Textfields
+        
+        -->
       </div>
 
+    </section>
 
-      <!-- Section container (Merits + Flaws) -->
-      <div class="">
-
-        <!-- [Merits] -->
-        <div class="">
-          
-          
-
-        </div>
-
-        <!-- [Flaws] -->
-        <div class="">
-
-
-          
-        </div>
-
+    <!-- [Virtues + Humanity/Path/Willpower] -->
+    <section class="">
+      <!--
+      
+      2 columns: Virtues (right), Humanity/Path/Willpower (left; stacked)
+      
+      -->
+      <div>
+        <h2 class="">Virtues</h2>
+        <!-- Conscience, Self-Control, Courage -->
       </div>
 
-    </div>
+      <!-- [Humanity/Path & Willpower] -->
+      
+      
+    </section>
 
+    <!-- [Merits + Flaws] -->
+    <section class="">
+
+      <!-- [Merits] -->
+      <div>
+        <h2 class="">Merits</h2>
+      </div>
+      <!-- [Flaws] -->
+      <div>
+        <h2 class="">Flaws</h2>
+      </div>
+
+    </section>
+
+  </div>
+
+  
   <!-- Javascript -->
   <script src="script.js"></script>
 
