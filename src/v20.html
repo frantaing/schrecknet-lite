@@ -38,17 +38,18 @@
   <link rel="stylesheet" <link href="/dist/style.css">
 </head>
 
-<body class="bg-background min-h-screen flex justify-center items-center font-body text-textPrimary">
+<body class="overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary">
 
   <!-- Header -->
-   <header class="">
+   <header class="bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5">
 
-    <div class="">
-      <h4 class="">schrecknet-lite</h4>
-      <p class="">/ <span class="">v20</span>character sheet</p>
+    <!-- Left header group -->
+    <div class="flex gap-3 items-center">
+      <h4 class="font-heading hover:underline hover: underline-offset-4"> <a href="index.html">schrecknet-lite</a></h4>
+      <p class="text-xs text-textSecondary">/ <span class="text-accent">v20</span> character sheet</p>
     </div>
-    <p class="">\ by 
-      <a href="" class="">frantan</a>
+    <p class="text-xs text-textSecondary">\ by
+      <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent hover:underline hover:underline-offset-4">frantan</a>
     </p>
 
    </header>
