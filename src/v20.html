@@ -55,24 +55,204 @@
    </header>
 
   <!-- Main container -->
-  <div class="">
+  <div class="text-center">
 
     <!-- [Basics + Clan] -->
     <section class="">
 
       <!-- Basics -->
       <div>
-        <h2 class="font-heading text-4xl">Basics</h2>
-        <div class="">
+        <h2 class="font-heading text-4xl mb-10">Basics</h2>
+        <div class="flex flex-col gap-3">
           <!--
           
           Forms
           - Textfield: Player, Chronicle, Name, Concept
           - Dropdown: Nature, Demeanor 
           
-          = 2 rows: Name/Player/Chronicle, Concept/Nature/Demeanor
+          = 2 rows: Player/Name/Chronicle, Concept/Nature/Demeanor
 
           -->
+
+          <!-- row 1 -->
+          <input type="text" name="playerName" placeholder="player" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <input type="text" name="characterName" placeholder="name" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <input type="text" name="chronicle" placeholder="chronicle" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+
+          <!-- row 2 -->
+          <input type="text" name="concept" placeholder="concept" class="">
+          <select name="nature" class="">
+            <option value="" disabled selected hidden>nature</option>
+            <option value="addict">addict</option>
+            <option value="adherent">adherent</option>
+            <option value="adjudicator">adjudicator</option>
+            <option value="advisor">advisor</option>
+            <option value="alpha">alpha</option>
+            <option value="analyst">analyst</option>
+            <option value="architect">architect</option>
+            <option value="artist">artist</option>
+            <option value="autocrat">autocrat</option>
+            <option value="autist">autist</option>
+            <option value="avant-garde">avant-garde</option>
+            <option value="barbarian">barbarian</option>
+            <option value="believer">believer</option>
+            <option value="beta">beta</option>
+            <option value="bon vivant">bon vivant</option>
+            <option value="bravo">bravo</option>
+            <option value="builder/maker">builder/maker</option>
+            <option value="bureaucrat">bureaucrat</option>
+            <option value="caregiver">caregiver</option>
+            <option value="cavalier">cavalier</option>
+            <option value="celebrant">celebrant</option>
+            <option value="child">child</option>
+            <option value="competitor">competitor</option>
+            <option value="confidant">confidant</option>
+            <option value="conformist">conformist</option>
+            <option value="conniver">conniver</option>
+            <option value="critic">critic</option>
+            <option value="crusader">crusader</option>
+            <option value="cub">cub</option>
+            <option value="curmudgeon">curmudgeon</option>
+            <option value="defender">defender</option>
+            <option value="demagogue">demagogue</option>
+            <option value="deviant">deviant</option>
+            <option value="director">director</option>
+            <option value="dreamer">dreamer</option>
+            <option value="eccentric">eccentric</option>
+            <option value="engine">engine</option>
+            <option value="evangelist">evangelist</option>
+            <option value="explorer">explorer</option>
+            <option value="fanatic">fanatic</option>
+            <option value="gallant">gallant</option>
+            <option value="healer">healer</option>
+            <option value="hedonist/reveler">hedonist/reveler</option>
+            <option value="honest-abe">honest-abe</option>
+            <option value="jester">jester</option>
+            <option value="jobsworth">jobsworth</option>
+            <option value="judge">judge</option>
+            <option value="loner/lone wolf">loner/lone wolf</option>
+            <option value="manipulator">manipulator</option>
+            <option value="martyr">martyr</option>
+            <option value="masochist">masochist</option>
+            <option value="meddler">meddler</option>
+            <option value="mediator">mediator</option>
+            <option value="monger">monger</option>
+            <option value="monster">monster</option>
+            <option value="negotiator">negotiator</option>
+            <option value="non-partisan">non-partisan</option>
+            <option value="omega">omega</option>
+            <option value="optimist">optimist</option>
+            <option value="paragon">paragon</option>
+            <option value="pedagogue">pedagogue</option>
+            <option value="penitent">penitent</option>
+            <option value="perfectionist">perfectionist</option>
+            <option value="plotter">plotter</option>
+            <option value="poltroon">poltroon</option>
+            <option value="praise-seeker">praise-seeker</option>
+            <option value="predator">predator</option>
+            <option value="provider">provider</option>
+            <option value="rebel">rebel</option>
+            <option value="reluctant garou">reluctant garou</option>
+            <option value="rogue">rogue</option>
+            <option value="show-off">show-off</option>
+            <option value="skeptic">skeptic</option>
+            <option value="soldier">soldier</option>
+            <option value="stoic">stoic</option>
+            <option value="survivor">survivor</option>
+            <option value="sycophant">sycophant</option>
+            <option value="teacher">teacher</option>
+            <option value="traditionalist">traditionalist</option>
+            <option value="thrill-seeker">thrill-seeker</option>
+            <option value="trickster">trickster</option>
+            <option value="vigilante">vigilante</option>
+            <option value="visionary">visionary</option>
+          </select>
+          <select name="demeanor" class="">
+            <option value="" disabled selected hidden>demeanor</option>
+            <option value="addict">addict</option>
+            <option value="adherent">adherent</option>
+            <option value="adjudicator">adjudicator</option>
+            <option value="advisor">advisor</option>
+            <option value="alpha">alpha</option>
+            <option value="analyst">analyst</option>
+            <option value="architect">architect</option>
+            <option value="artist">artist</option>
+            <option value="autocrat">autocrat</option>
+            <option value="autist">autist</option>
+            <option value="avant-garde">avant-garde</option>
+            <option value="barbarian">barbarian</option>
+            <option value="believer">believer</option>
+            <option value="beta">beta</option>
+            <option value="bon vivant">bon vivant</option>
+            <option value="bravo">bravo</option>
+            <option value="builder/maker">builder/maker</option>
+            <option value="bureaucrat">bureaucrat</option>
+            <option value="caregiver">caregiver</option>
+            <option value="cavalier">cavalier</option>
+            <option value="celebrant">celebrant</option>
+            <option value="child">child</option>
+            <option value="competitor">competitor</option>
+            <option value="confidant">confidant</option>
+            <option value="conformist">conformist</option>
+            <option value="conniver">conniver</option>
+            <option value="critic">critic</option>
+            <option value="crusader">crusader</option>
+            <option value="cub">cub</option>
+            <option value="curmudgeon">curmudgeon</option>
+            <option value="defender">defender</option>
+            <option value="demagogue">demagogue</option>
+            <option value="deviant">deviant</option>
+            <option value="director">director</option>
+            <option value="dreamer">dreamer</option>
+            <option value="eccentric">eccentric</option>
+            <option value="engine">engine</option>
+            <option value="evangelist">evangelist</option>
+            <option value="explorer">explorer</option>
+            <option value="fanatic">fanatic</option>
+            <option value="gallant">gallant</option>
+            <option value="healer">healer</option>
+            <option value="hedonist/reveler">hedonist/reveler</option>
+            <option value="honest-abe">honest-abe</option>
+            <option value="jester">jester</option>
+            <option value="jobsworth">jobsworth</option>
+            <option value="judge">judge</option>
+            <option value="loner/lone wolf">loner/lone wolf</option>
+            <option value="manipulator">manipulator</option>
+            <option value="martyr">martyr</option>
+            <option value="masochist">masochist</option>
+            <option value="meddler">meddler</option>
+            <option value="mediator">mediator</option>
+            <option value="monger">monger</option>
+            <option value="monster">monster</option>
+            <option value="negotiator">negotiator</option>
+            <option value="non-partisan">non-partisan</option>
+            <option value="omega">omega</option>
+            <option value="optimist">optimist</option>
+            <option value="paragon">paragon</option>
+            <option value="pedagogue">pedagogue</option>
+            <option value="penitent">penitent</option>
+            <option value="perfectionist">perfectionist</option>
+            <option value="plotter">plotter</option>
+            <option value="poltroon">poltroon</option>
+            <option value="praise-seeker">praise-seeker</option>
+            <option value="predator">predator</option>
+            <option value="provider">provider</option>
+            <option value="rebel">rebel</option>
+            <option value="reluctant garou">reluctant garou</option>
+            <option value="rogue">rogue</option>
+            <option value="show-off">show-off</option>
+            <option value="skeptic">skeptic</option>
+            <option value="soldier">soldier</option>
+            <option value="stoic">stoic</option>
+            <option value="survivor">survivor</option>
+            <option value="sycophant">sycophant</option>
+            <option value="teacher">teacher</option>
+            <option value="traditionalist">traditionalist</option>
+            <option value="thrill-seeker">thrill-seeker</option>
+            <option value="trickster">trickster</option>
+            <option value="vigilante">vigilante</option>
+            <option value="visionary">visionary</option>
+          </select>
         </div>
       </div>
       <!-- Clan -->
@@ -98,15 +278,15 @@
       <h2 class="font-heading text-4xl">Attributes</h2>
       <div class="">
         <div>
-          <h4 class="font-heading text-2xl">Physical</h3>
+          <h4 class="font-heading text-2xl">Physical</h4>
           <!-- Strength, Dex, Stamina -->
         </div>
         <div>
-          <h4 class="font-heading text-2xl">Social</h3>
+          <h4 class="font-heading text-2xl">Social</h4>
           <!-- Charisma, Manipulation, Appearance -->
         </div>
         <div>
-          <h4 class="font-heading text-2xl">Mental</h3>
+          <h4 class="font-heading text-2xl">Mental</h4>
           <!-- Perception, Intelligence, Wits -->
         </div>
       </div>
@@ -119,15 +299,15 @@
       <h2 class="font-heading text-4xl">Abilities</h2>
       <div class="">
         <div>
-          <h4 class="font-heading text-2xl">Talents</h3>
+          <h4 class="font-heading text-2xl">Talents</h4>
           <!-- Alertness, Athletics, etc. -->
         </div>
         <div>
-          <h4 class="font-heading text-2xl">Skills</h3>
+          <h4 class="font-heading text-2xl">Skills</h4>
           <!-- Animal Ken, Crafts, etc. -->
         </div>
         <div>
-          <h4 class="font-heading text-2xl">Knowledges</h3>
+          <h4 class="font-heading text-2xl">Knowledges</h4>
           <!-- Academics, Computer, etc. -->
         </div>
       </div>
@@ -142,7 +322,7 @@
       
       -->
       <div>
-        <h3 class="font-heading text-3xl">Disciplines</h2>
+        <h3 class="font-heading text-3xl">Disciplines</h3>
         <!-- 
         
         Powers / dots 
@@ -152,7 +332,7 @@
 
       </div>
       <div>
-        <h3 class="font-heading text-3xl">Backgrounds</h2>
+        <h3 class="font-heading text-3xl">Backgrounds</h3>
         <!-- 
         
         Resources, Allies, Contacts, etc. 
@@ -171,7 +351,7 @@
       
       -->
       <div>
-        <h3 class="font-heading text-3xl">Virtues</h2>
+        <h3 class="font-heading text-3xl">Virtues</h3>
         <!-- Conscience, Self-Control, Courage -->
       </div>
 
@@ -185,11 +365,11 @@
 
       <!-- [Merits] -->
       <div>
-        <h3 class="font-heading text-3xl">Merits</h2>
+        <h3 class="font-heading text-3xl">Merits</h3>
       </div>
       <!-- [Flaws] -->
       <div>
-        <h3 class="font-heading text-3xl">Flaws</h2>
+        <h3 class="font-heading text-3xl">Flaws</h3>
       </div>
 
     </section>
