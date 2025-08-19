@@ -22,6 +22,8 @@
 #   > Virtues & Humanity/Path & Willpower
 #   > Merits & Flaws
 
+# !! REMEMBER TO MAKE SHARED CLASSES FOR FORM-STUFF/LABELS/ETC !!
+
 -->
 
 <!DOCTYPE html>
@@ -63,7 +65,7 @@
       <!-- Basics -->
       <div>
         <h2 class="font-heading text-4xl mb-10">Basics</h2>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-5">
           <!--
           
           Forms
@@ -75,9 +77,15 @@
           -->
 
           <!-- row 1 -->
-          <input type="text" name="playerName" placeholder="player" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
-          <input type="text" name="characterName" placeholder="name" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
-          <input type="text" name="chronicle" placeholder="chronicle" class="bg-foreground text-textPrimary placeholder-textSecondary py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="flex flex-col text-xs text-start text-textSecondary">player
+            <input type="text" name="playerName" placeholder="player" class="bg-foreground text-base text-textPrimary placeholder-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          </label>
+          <label class="flex flex-col text-xs text-start text-textSecondary">name
+            <input type="text" name="characterName" placeholder="name" class="bg-foreground text-base text-textPrimary placeholder-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          </label>
+          <label class="flex flex-col text-xs text-start text-textSecondary">chronicle
+            <input type="text" name="chronicle" placeholder="chronicle" class="bg-foreground text-base text-textPrimary placeholder-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          </label>
 
           <!-- row 2 -->
           <input type="text" name="concept" placeholder="concept" class="">
