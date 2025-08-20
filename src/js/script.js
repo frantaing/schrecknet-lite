@@ -1,20 +1,16 @@
-// DROPDOWN: Nature/Demeanor
+// DROPDOWN: Nature/Demeanor json
+// # Links 'nature_demeanor.json' to the Nature/Demeanor dropdowns
+// # Also makes sure placeholder options are not overridden
 document.addEventListener('DOMContentLoaded', function() {
 
   const selectElements = document.querySelectorAll('select[name="nature"], select[name="demeanor"]');
 
   if (selectElements.length === 0) {
-    console.warn('No nature or demeanor select elements found on the page.');
     return;
   }
   
   const jsonPath = 'data/nature_demeanor.json';
 
-  /**
-   * A reusable function to populate any given <select> element with data.
-   * @param {HTMLSelectElement} selectElement The dropdown element to populate.
-   * @param {Array<Object>} data The array of data from the JSON file.
-   */
   function populateDropdown(selectElement, data) {
     data.forEach(item => {
       const option = document.createElement('option');
@@ -34,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       selectElements.forEach(dropdown => {
         populateDropdown(dropdown, data);
+        
+        dropdown.value = ""; 
       });
     })
     .catch(error => {
@@ -44,3 +42,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+// DROPDOWN: Text color
+// # Dynamically styles the <select> 'placeholder'
+function initializeSelectElementStyling() {
+  const allSelects = document.querySelectorAll('select');
+
+  const updateSelectColor = (selectElement) => {
+    if (selectElement.value === '') {
+      selectElement.classList.add('text-textSecondary');
+      selectElement.classList.remove('text-textPrimary');
+    } else {
+      selectElement.classList.add('text-textPrimary');
+      selectElement.classList.remove('text-textSecondary');
+    }
+  };
+
+  allSelects.forEach(select => {
+    updateSelectColor(select);
+
+    select.addEventListener('change', (event) => {
+      updateSelectColor(event.currentTarget);
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initializeSelectElementStyling);
