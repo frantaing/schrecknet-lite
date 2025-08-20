@@ -5,7 +5,7 @@
 */
 
 /* =================================================================
-        MPORTS
+        # IMPORTS
    ================================================================= */
 
 /* Google Fonts */
@@ -15,3 +15,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* ===============================================================
+        # SHARED CLASSES
+   ================================================================= */
+
+/* Body */
+.body {
+        @apply overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary;
+}
+
+/* Red links */
+.link {
+        @apply text-accent hover:underline hover:underline-offset-4;
+}
+
+/* Buttons */
+.btn {
+        @apply bg-foreground px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
+}
+
+/* Span text */
+.span {
+        @apply text-accent group-hover:text-textPrimary transition;
+}
