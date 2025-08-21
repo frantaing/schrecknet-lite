@@ -65,3 +65,18 @@
 .dropdown {
         @apply bg-foreground text-base py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
+
+/* Form heading for major sections (e.g. Basic, Attributes) */
+main h2 {
+        @apply font-heading text-4xl mb-7;
+}
+
+/* Form heading for subsections (e.g. Disciplines, Backgrounds) */
+main h3 {
+        @apply font-heading text-3xl;
+}
+
+/* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
+main h4 {
+        @apply font-heading text-2xl;
+}
