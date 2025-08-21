@@ -112,7 +112,7 @@ main h4 {
 
 /* Form dropdowns */
 .dropdown {
-        @apply bg-foreground text-base py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+        @apply bg-foreground text-base mt-1 py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
 /* Attribute wrapper for dot + label */
