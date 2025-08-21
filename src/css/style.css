@@ -21,6 +21,12 @@
         # SHARED CLASSES
    ================================================================= */
 
+/*
+#
+# GENERAL CLASSES
+#
+*/
+
 /* Body */
 .body {
         @apply overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary;
@@ -41,31 +47,6 @@
         @apply text-accent group-hover:text-textPrimary transition;
 }
 
-/* Header/topbar */
-.header {
-        @apply bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10;
-}
-
-/* Header text */
-.header p {
-        @apply text-xs text-textSecondary mt-1 sm:text-base sm:mt-2;
-}
-
-/* Form labels */
-.label {
-        @apply flex flex-col text-xs text-start text-textSecondary;
-}
-
-/* Form textfields */
-.textfield {
-        @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
-}
-
-/* Form dropdowns */
-.dropdown {
-        @apply bg-foreground text-base py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
-}
-
 /* Form heading for major sections (e.g. Basic, Attributes) */
 main h2 {
         @apply font-heading text-4xl mb-7;
@@ -82,18 +63,70 @@ main h4 {
 }
 
 
-.attribute {
-        @apply flex flex-col items-center gap-2;
+/*
+#
+# HEADER CLASSES
+#
+*/
+
+/* Header/topbar */
+.header {
+        @apply bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10;
 }
 
+/* Header text */
+.header p {
+        @apply text-xs text-textSecondary mt-1 sm:text-base sm:mt-2;
+}
+
+
+/* 
+#
+# FORM CLASSES
+#
+*/
+
+/*
+# FORM LABELS
+*/
+
+/* Form labels */
+.label {
+        @apply flex flex-col text-xs text-start text-textSecondary;
+}
+
+/* Attribute label */
 .attribute-label {
         @apply text-sm text-textPrimary;
 }
 
+
+/*
+# FORM ELEMENTS (INPUTS, TEXTFIELDS, DROPDOWNS, ETC)
+*/
+
+/* Form textfields */
+.textfield {
+        @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Form dropdowns */
+.dropdown {
+        @apply bg-foreground text-base py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Attribute wrapper for dot + label */
+.attribute {
+        @apply flex flex-col items-center gap-2;
+}
+
+/* Wrapper for dots */
 .dot-group {
         @apply flex justify-center gap-2;
 }
 
+/* The dot itself */
 .dot {
         @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent;
 }
+
