@@ -64,8 +64,17 @@
 
       <!-- Basics -->
       <div>
+        <!--
+        
+        Forms
+        - Input text: Player, Name, Chronicle, Concept
+        - Dropdown: Nature, Demeanor
+        
+        = 2 rows: Player/Name/Chronicle, Concept/Nature/Demeanor
+
+        -->
         <h2>Basics</h2>
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3">
 
           <!-- Player -->
           <label class="label">player
@@ -106,7 +115,7 @@
       </div>
 
       <!-- Clan -->
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3">
         <!--
         
         Forms
@@ -154,18 +163,117 @@
     <section>
 
       <h2>Attributes</h2>
-      <div class="">
+      <div class="grid gap-9">
         <div>
+          <!-- Physical -->
           <h4>Physical</h4>
-          <!-- Strength, Dex, Stamina -->
+          <!-- Strength, Dexterity, Stamina -->
+          <div class="grid gap-5 sm:grid-cols-3">
+            <div class="attribute">
+              <span class="attribute-label">Strength</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Dexerity</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Stamina</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
         </div>
         <div>
+          <!-- Social -->
           <h4>Social</h4>
           <!-- Charisma, Manipulation, Appearance -->
+           <div class="grid gap-5 sm:grid-cols-3">
+            <div class="attribute">
+              <span class="attribute-label">Charisma</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Manipulation</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Appearance</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
         </div>
         <div>
+          <!-- Mental -->
           <h4>Mental</h4>
           <!-- Perception, Intelligence, Wits -->
+           <div class="grid gap-5 sm:grid-cols-3">
+            <div class="attribute">
+              <span class="attribute-label">Perception</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Intelligence</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="attribute">
+              <span class="attribute-label">Wits</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

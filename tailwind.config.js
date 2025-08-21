@@ -8,6 +8,7 @@ module.exports = {
         background: '#0D0D0D',
         foreground: '#161616',
         accent: '#951313',
+        textSecondary: '#4E4E4E',
       },
       // Typography!
       // Font Family

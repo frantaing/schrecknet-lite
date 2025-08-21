@@ -73,10 +73,27 @@ main h2 {
 
 /* Form heading for subsections (e.g. Disciplines, Backgrounds) */
 main h3 {
-        @apply font-heading text-3xl;
+        @apply font-heading text-3xl mb-7;
 }
 
 /* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
 main h4 {
-        @apply font-heading text-2xl;
+        @apply font-heading text-2xl mb-5;
+}
+
+
+.attribute {
+        @apply flex flex-col items-center gap-2;
+}
+
+.attribute-label {
+        @apply text-sm text-textPrimary;
+}
+
+.dot-group {
+        @apply flex justify-center gap-2;
+}
+
+.dot {
+        @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent;
 }
