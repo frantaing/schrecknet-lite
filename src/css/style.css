@@ -40,3 +40,28 @@
 .span {
         @apply text-accent group-hover:text-textPrimary transition;
 }
+
+/* Header/topbar */
+.header {
+        @apply bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10;
+}
+
+/* Header text */
+.header p {
+        @apply text-xs text-textSecondary mt-1 sm:text-base sm:mt-2;
+}
+
+/* Form labels */
+.label {
+        @apply flex flex-col text-xs text-start text-textSecondary;
+}
+
+/* Form textfields */
+.textfield {
+        @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Form dropdowns */
+.dropdown {
+        @apply bg-foreground text-base py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}

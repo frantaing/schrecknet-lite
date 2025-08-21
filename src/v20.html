@@ -43,15 +43,15 @@
 <body class="body">
 
   <!-- Header -->
-   <header class="bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10">
+   <header class="header">
 
     <!-- Left header group -->
     <div class="flex gap-3 items-center">
       <h4 class="font-heading text-lg hover:underline hover: underline-offset-4 sm:text-2xl"> <a href="index.html">schrecknet-lite</a></h4>
-      <p class="text-xs text-textSecondary mt-1 sm:text-base sm:mt-2">/ <span class="text-accent">v20</span> character sheet</p>
+      <p>/ <span class="text-accent">v20</span> character sheet</p>
     </div>
-    <p class="text-xs text-textSecondary mt-1 sm:text-base sm:mt-2">\ by
-      <a href="https://github.com/overuseofrem/schrecknet-lite" class="text-accent hover:underline hover:underline-offset-4">frantan</a>
+    <p>\ by
+      <a href="https://github.com/overuseofrem/schrecknet-lite" class="link">frantan</a>
     </p>
 
    </header>
@@ -68,36 +68,36 @@
         <div class="flex flex-col gap-3">
 
           <!-- Player -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">player
-            <input type="text" name="playerName" placeholder="player" class="bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">player
+            <input type="text" name="playerName" placeholder="player" class="textfield">
           </label>
 
           <!-- Name -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">name
-            <input type="text" name="characterName" placeholder="name" class="bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">name
+            <input type="text" name="characterName" placeholder="name" class="textfield">
           </label>
 
           <!-- Chronicle -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">chronicle
-            <input type="text" name="chronicle" placeholder="chronicle" class="bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">chronicle
+            <input type="text" name="chronicle" placeholder="chronicle" class="textfield">
           </label>
 
           <!-- Concept -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">concept
-            <input type="text" name="concept" placeholder="concept" class="bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">concept
+            <input type="text" name="concept" placeholder="concept" class="textfield">
           </label>
 
           <!-- Nature -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">nature
-            <select name="nature" class="bg-foreground text-base text-textPrimary py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">nature
+            <select name="nature" class="dropdown text-textPrimary">
               <option value="" disabled selected hidden>nature</option>
               <!-- Options will be added here by JavaScript -->
             </select>
           </label>
 
           <!-- Demeanor -->
-          <label class="flex flex-col text-xs text-start text-textSecondary">demeanor
-            <select name="demeanor" class="bg-foreground text-base text-textPrimary py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+          <label class="label">demeanor
+            <select name="demeanor" class="dropdown text-textPrimary"> <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>demeanor</option>
             </select>
           </label>
@@ -116,20 +116,20 @@
         = 1 row: Sire/Clan/Generation
 
         -->
-        <label class="flex flex-col text-xs text-start text-textSecondary">sire
-          <input type="text" name="sire" placeholder="sire" class="bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+        <label class="label">sire
+          <input type="text" name="sire" placeholder="sire" class="textfield">
         </label>
 
         <!-- Clans/Bloodlines -->
-        <label class="flex flex-col text-xs text-start text-textSecondary">clan
-          <select name="clan" class="bg-foreground text-base text-textPrimary py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
+        <label class="label">clan
+          <select name="clan" class="dropdown text-textPrimary">
             <option value="" disabled selected hidden>clan</option>
             <!-- Clans and Bloodlines will be added here by the new script -->
           </select>
         </label>
 
         <!-- Generation -->
-        <label class="flex flex-col text-xs text-start text-textSecondary">generation
+        <label class="label">generation
           <select name="generation" class="bg-foreground text-base text-textPrimary placeholder-textSecondary py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02]">
             <option value="" disabled selected hidden>generation</option>
             <option value="4th">4th</option>
