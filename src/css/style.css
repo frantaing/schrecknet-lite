@@ -95,12 +95,6 @@ main h4 {
         @apply flex flex-col text-xs text-start text-textSecondary;
 }
 
-/* Attribute label */
-.attribute-label {
-        @apply text-sm;
-}
-
-
 /*
 # FORM ELEMENTS (INPUTS, TEXTFIELDS, DROPDOWNS, ETC)
 */
@@ -110,9 +104,9 @@ main h4 {
         @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
-/* Custom attribute */
+/* Custom attribute for [Abilities] */
 .attribute-custom {
-        @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+        @apply max-w-40 bg-foreground text-sm text-center text-textPrimary placeholder:text-textSecondary py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
 /* Form dropdowns */
@@ -122,7 +116,7 @@ main h4 {
 
 /* Attribute wrapper for dot + label */
 .attribute {
-        @apply flex flex-col items-center gap-2 text-textSecondary transition hover:text-textPrimary;
+        @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
 }
 
 /* Wrapper for dots */
