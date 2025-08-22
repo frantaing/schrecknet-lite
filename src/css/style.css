@@ -97,7 +97,7 @@ main h4 {
 
 /* Attribute label */
 .attribute-label {
-        @apply text-sm text-textPrimary;
+        @apply text-sm;
 }
 
 
@@ -107,6 +107,11 @@ main h4 {
 
 /* Form textfields */
 .textfield {
+        @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Custom attribute */
+.attribute-custom {
         @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
@@ -120,13 +125,16 @@ main h4 {
         @apply flex flex-col items-center gap-2;
 }
 
+.attribute span {
+        @apply text-textSecondary transition hover:text-textPrimary;
+}
+
 /* Wrapper for dots */
 .dot-group {
-        @apply flex justify-center gap-2;
+        @apply flex justify-center gap-3;
 }
 
 /* The dot itself */
 .dot {
-        @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent;
+        @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover: hover:scale-[1.12];
 }
-
