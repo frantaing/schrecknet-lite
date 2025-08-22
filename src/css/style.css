@@ -122,11 +122,7 @@ main h4 {
 
 /* Attribute wrapper for dot + label */
 .attribute {
-        @apply flex flex-col items-center gap-2;
-}
-
-.attribute span {
-        @apply text-textSecondary transition hover:text-textPrimary;
+        @apply flex flex-col items-center gap-2 text-textSecondary transition hover:text-textPrimary;
 }
 
 /* Wrapper for dots */
@@ -136,5 +132,5 @@ main h4 {
 
 /* The dot itself */
 .dot {
-        @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover: hover:scale-[1.12];
+        @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover:border-textPrimary hover:scale-[1.12];
 }
