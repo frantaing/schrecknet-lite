@@ -12,7 +12,7 @@
       },
       {
         "value": "followers_of_set",
-        "label": "followers of Set"
+        "label": "followers of set"
       },
       {
         "value": "gangrel",
@@ -82,11 +82,11 @@
       },
       {
         "value": "blood_brothers",
-        "label": "blood Brothers"
+        "label": "blood brothers"
       },
       {
         "value": "children_of_osiris",
-        "label": "children of Osiris"
+        "label": "children of osiris"
       },
       {
         "value": "city_gangrel",
@@ -94,7 +94,7 @@
       },
       {
         "value": "daughters_of_cacophony",
-        "label": "daughters of Cacophony"
+        "label": "daughters of cacophony"
       },
       {
         "value": "gargoyles",
@@ -102,7 +102,7 @@
       },
       {
         "value": "harbingers_of_skulls",
-        "label": "harbingers of Skulls"
+        "label": "harbingers of skulls"
       },
       {
         "value": "kiasyd",
@@ -134,7 +134,7 @@
       },
       {
         "value": "true_brujah",
-        "label": "true Brujah"
+        "label": "true brujah"
       }
     ]
   },
@@ -156,7 +156,7 @@
     "options": [
       {
         "value": "thin_blood",
-        "label": "thin-Blood"
+        "label": "thin-blood"
       }
     ]
   }
