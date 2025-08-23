@@ -105,7 +105,7 @@ main h4 {
 }
 
 /* Custom attribute for [Abilities] */
-.attribute-custom {
+.textfield-custom {
         @apply max-w-40 bg-foreground text-sm text-center text-textPrimary placeholder:text-textSecondary py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
@@ -114,8 +114,8 @@ main h4 {
         @apply bg-foreground text-base mt-1 py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
-/* Attribute wrapper for dot + label */
-.attribute {
+/* wrapper for dot + label (elements including dots) */
+.dots {
         @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
 }
 
@@ -133,7 +133,7 @@ main h4 {
 # FORM LAYOUT
 */
 
-/* Attributes from 1 column to 3 */
-.attribute-wrapper {
+/* Dot-wrapper (label w/ dot-group) from 1 column to 3 */
+.dots-wrapper {
         @apply grid gap-5 sm:grid-cols-3 lg:grid-cols-1;
 }
