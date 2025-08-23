@@ -4,55 +4,55 @@
     "options": [
       {
         "value": "assamite",
-        "label": "Assamite"
+        "label": "assamite"
       },
       {
         "value": "brujah",
-        "label": "Brujah"
+        "label": "brujah"
       },
       {
         "value": "followers_of_set",
-        "label": "Followers of Set"
+        "label": "followers of Set"
       },
       {
         "value": "gangrel",
-        "label": "Gangrel"
+        "label": "gangrel"
       },
       {
         "value": "giovanni",
-        "label": "Giovanni"
+        "label": "giovanni"
       },
       {
         "value": "lasombra",
-        "label": "Lasombra"
+        "label": "lasombra"
       },
       {
         "value": "malkavian",
-        "label": "Malkavian"
+        "label": "malkavian"
       },
       {
         "value": "nosferatu",
-        "label": "Nosferatu"
+        "label": "nosferatu"
       },
       {
         "value": "ravnos",
-        "label": "Ravnos"
+        "label": "ravnos"
       },
       {
         "value": "toreador",
-        "label": "Toreador"
+        "label": "toreador"
       },
       {
         "value": "tremere",
-        "label": "Tremere"
+        "label": "tremere"
       },
       {
         "value": "tzimisce",
-        "label": "Tzimisce"
+        "label": "tzimisce"
       },
       {
         "value": "ventrue",
-        "label": "Ventrue"
+        "label": "ventrue"
       }
     ]
   },
@@ -61,7 +61,7 @@
     "options": [
       {
         "value": "cappadocian",
-        "label": "Cappadocian"
+        "label": "cappadocian"
       }
     ]
   },
@@ -70,71 +70,71 @@
     "options": [
       {
         "value": "ahrimanes",
-        "label": "Ahrimanes"
+        "label": "ahrimanes"
       },
       {
         "value": "akunanse",
-        "label": "Akunanse"
+        "label": "akunanse"
       },
       {
         "value": "baali",
-        "label": "Baali"
+        "label": "baali"
       },
       {
         "value": "blood_brothers",
-        "label": "Blood Brothers"
+        "label": "blood Brothers"
       },
       {
         "value": "children_of_osiris",
-        "label": "Children of Osiris"
+        "label": "children of Osiris"
       },
       {
         "value": "city_gangrel",
-        "label": "City Gangrel"
+        "label": "city Gangrel"
       },
       {
         "value": "daughters_of_cacophony",
-        "label": "Daughters of Cacophony"
+        "label": "daughters of Cacophony"
       },
       {
         "value": "gargoyles",
-        "label": "Gargoyles"
+        "label": "gargoyles"
       },
       {
         "value": "harbingers_of_skulls",
-        "label": "Harbingers of Skulls"
+        "label": "harbingers of Skulls"
       },
       {
         "value": "kiasyd",
-        "label": "Kiasyd"
+        "label": "kiasyd"
       },
       {
         "value": "lamia",
-        "label": "Lamia"
+        "label": "lamia"
       },
       {
         "value": "lhiannan",
-        "label": "Lhiannan"
+        "label": "lhiannan"
       },
       {
         "value": "maeghar",
-        "label": "Maeghar"
+        "label": "maeghar"
       },
       {
         "value": "nagaraja",
-        "label": "Nagaraja"
+        "label": "nagaraja"
       },
       {
         "value": "salubri",
-        "label": "Salubri"
+        "label": "salubri"
       },
       {
         "value": "samedi",
-        "label": "Samedi"
+        "label": "samedi"
       },
       {
         "value": "true_brujah",
-        "label": "True Brujah"
+        "label": "true Brujah"
       }
     ]
   },
@@ -143,11 +143,11 @@
     "options": [
       {
         "value": "caitiff",
-        "label": "Caitiff"
+        "label": "caitiff"
       },
       {
         "value": "pander",
-        "label": "Pander"
+        "label": "pander"
       }
     ]
   },
@@ -156,7 +156,7 @@
     "options": [
       {
         "value": "thin_blood",
-        "label": "Thin-Blood"
+        "label": "thin-Blood"
       }
     ]
   }
