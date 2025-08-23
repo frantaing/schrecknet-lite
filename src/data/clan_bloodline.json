@@ -2,35 +2,162 @@
   {
     "groupLabel": "The Thirteen Clans",
     "options": [
-      { "value": "assamite", "label": "Assamite" },
-      { "value": "brujah", "label": "Brujah" },
-      { "value": "followers_of_set", "label": "Followers of Set" },
-      { "value": "gangrel", "label": "Gangrel" },
-      { "value": "giovanni", "label": "Giovanni" },
-      { "value": "lasombra", "label": "Lasombra" },
-      { "value": "malkavian", "label": "Malkavian" },
-      { "value": "nosferatu", "label": "Nosferatu" },
-      { "value": "ravnos", "label": "Ravnos" },
-      { "value": "toreador", "label": "Toreador" },
-      { "value": "tremere", "label": "Tremere" },
-      { "value": "tzimisce", "label": "Tzimisce" },
-      { "value": "ventrue", "label": "Ventrue" }
+      {
+        "value": "assamite",
+        "label": "Assamite"
+      },
+      {
+        "value": "brujah",
+        "label": "Brujah"
+      },
+      {
+        "value": "followers_of_set",
+        "label": "Followers of Set"
+      },
+      {
+        "value": "gangrel",
+        "label": "Gangrel"
+      },
+      {
+        "value": "giovanni",
+        "label": "Giovanni"
+      },
+      {
+        "value": "lasombra",
+        "label": "Lasombra"
+      },
+      {
+        "value": "malkavian",
+        "label": "Malkavian"
+      },
+      {
+        "value": "nosferatu",
+        "label": "Nosferatu"
+      },
+      {
+        "value": "ravnos",
+        "label": "Ravnos"
+      },
+      {
+        "value": "toreador",
+        "label": "Toreador"
+      },
+      {
+        "value": "tremere",
+        "label": "Tremere"
+      },
+      {
+        "value": "tzimisce",
+        "label": "Tzimisce"
+      },
+      {
+        "value": "ventrue",
+        "label": "Ventrue"
+      }
+    ]
+  },
+  {
+    "groupLabel": "Fallen & Progenitor Clans",
+    "options": [
+      {
+        "value": "cappadocian",
+        "label": "Cappadocian"
+      }
     ]
   },
   {
     "groupLabel": "Bloodlines",
     "options": [
-      { "value": "ahrimanes", "label": "Ahrimanes" },
-      { "value": "blood_brothers", "label": "Blood Brothers" },
-      { "value": "daughters_of_cacophony", "label": "Daughters of Cacophony" },
-      { "value": "gargoyles", "label": "Gargoyles" },
-      { "value": "harbingers_of_skulls", "label": "Harbingers of Skulls" },
-      { "value": "kiasyd", "label": "Kiasyd" },
-      { "value": "lamia", "label": "Lamia" },
-      { "value": "nagaraja", "label": "Nagaraja" },
-      { "value": "salubri", "label": "Salubri" },
-      { "value": "samedi", "label": "Samedi" },
-      { "value": "true_brujah", "label": "True Brujah" }
+      {
+        "value": "ahrimanes",
+        "label": "Ahrimanes"
+      },
+      {
+        "value": "akunanse",
+        "label": "Akunanse"
+      },
+      {
+        "value": "baali",
+        "label": "Baali"
+      },
+      {
+        "value": "blood_brothers",
+        "label": "Blood Brothers"
+      },
+      {
+        "value": "children_of_osiris",
+        "label": "Children of Osiris"
+      },
+      {
+        "value": "city_gangrel",
+        "label": "City Gangrel"
+      },
+      {
+        "value": "daughters_of_cacophony",
+        "label": "Daughters of Cacophony"
+      },
+      {
+        "value": "gargoyles",
+        "label": "Gargoyles"
+      },
+      {
+        "value": "harbingers_of_skulls",
+        "label": "Harbingers of Skulls"
+      },
+      {
+        "value": "kiasyd",
+        "label": "Kiasyd"
+      },
+      {
+        "value": "lamia",
+        "label": "Lamia"
+      },
+      {
+        "value": "lhiannan",
+        "label": "Lhiannan"
+      },
+      {
+        "value": "maeghar",
+        "label": "Maeghar"
+      },
+      {
+        "value": "nagaraja",
+        "label": "Nagaraja"
+      },
+      {
+        "value": "salubri",
+        "label": "Salubri"
+      },
+      {
+        "value": "samedi",
+        "label": "Samedi"
+      },
+      {
+        "value": "true_brujah",
+        "label": "True Brujah"
+      }
+    ]
+  },
+  {
+    "groupLabel": "The Clanless",
+    "options": [
+      {
+        "value": "caitiff",
+        "label": "Caitiff"
+      },
+      {
+        "value": "pander",
+        "label": "Pander"
+      }
+    ]
+  },
+  {
+    "groupLabel": "Special Types",
+    "options": [
+      {
+        "value": "thin_blood",
+        "label": "Thin-Blood"
+      }
     ]
   }
 ]
