@@ -128,3 +128,12 @@ main h4 {
 .dot {
         @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover:border-accent hover:scale-[1.12];
 }
+
+/*
+# FORM LAYOUT
+*/
+
+/* Attributes from 1 column to 3 */
+.attribute-wrapper {
+        @apply grid gap-5 sm:grid-cols-3 lg:grid-cols-1;
+}
