@@ -135,5 +135,5 @@ main h4 {
 
 /* Dot-wrapper (label w/ dot-group) from 1 column to 3 */
 .dots-wrapper {
-        @apply grid gap-5 sm:grid-cols-3 lg:grid-cols-1;
+        @apply grid gap-5 sm:grid-cols-1;
 }
