@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   
-  const jsonPath = 'data/nature_demeanor.json';
+  const jsonPath = 'data/V20/nature_demeanor.json';
 
   function populateDropdown(selectElement, data) {
     data.forEach(item => {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  const jsonPath = 'data/clan_bloodline.json';
+  const jsonPath = 'data/V20/clan_bloodline.json';
 
   fetch(jsonPath)
     .then(response => {
@@ -85,6 +85,94 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error fetching clan data:', error);
       clanSelect.innerHTML = '<option value="">Error loading clans</option>';
     });
+});
+
+// DROPDOWN: Disciplines json
+// # Links 'disciplines.json' to the Discipline dropdowns
+// # Also makes sure placeholder options are not overridden
+document.addEventListener('DOMContentLoaded', function() {
+
+  const selectElements = document.querySelectorAll('select[name="discipline"]');
+
+  if (selectElements.length === 0) {
+    return;
+  }
+  
+  const jsonPath = 'data/V20/disciplines.json';
+
+  function populateDropdown(selectElement, data) {
+    data.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.value;
+      selectElement.appendChild(option);
+    });
+  }
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      selectElements.forEach(dropdown => {
+        populateDropdown(dropdown, data);
+        
+        dropdown.value = ""; 
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or parsing data:', error);
+      selectElements.forEach(dropdown => {
+        dropdown.innerHTML = '<option value="">Error loading data</option>';
+      });
+    });
+
+});
+
+// DROPDOWN: Backgrounds json
+// # Links 'backgrounds.json' to the Backgrounds dropdowns
+// # Also makes sure placeholder options are not overridden
+document.addEventListener('DOMContentLoaded', function() {
+
+  const selectElements = document.querySelectorAll('select[name="background"]');
+
+  if (selectElements.length === 0) {
+    return;
+  }
+  
+  const jsonPath = 'data/V20/backgrounds.json';
+
+  function populateDropdown(selectElement, data) {
+    data.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.value;
+      selectElement.appendChild(option);
+    });
+  }
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      selectElements.forEach(dropdown => {
+        populateDropdown(dropdown, data);
+        
+        dropdown.value = ""; 
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or parsing data:', error);
+      selectElements.forEach(dropdown => {
+        dropdown.innerHTML = '<option value="">Error loading data</option>';
+      });
+    });
+
 });
 
 // DROPDOWN: Text color

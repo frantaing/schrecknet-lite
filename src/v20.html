@@ -662,7 +662,25 @@
           <!-- Discipline dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="discipline" class="dropdown text-textPrimary w-full">
+              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
+              <!-- Discipline options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
                 <!-- Discipline options will be added here -->
               </select>
               <div class="dot-group">
@@ -676,21 +694,9 @@
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="discipline" class="dropdown text-textPrimary w-full">
-                <!-- Discipline options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="discipline" class="dropdown text-textPrimary w-full">
+              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
                 <!-- Discipline options will be added here -->
               </select>
               <div class="dot-group">
@@ -726,7 +732,9 @@
           <!-- Backgrounds dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown text-textPrimary w-full">
+              <select name="background" class="dropdown-custom text-textPrimary">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>background</option>
                 <!-- Backgrounds options will be added here -->
               </select>
               <div class="dot-group">
@@ -740,7 +748,9 @@
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown text-textPrimary w-full">
+              <select name="background" class="dropdown-custom text-textPrimary">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>background</option>
                 <!-- Backgrounds options will be added here -->
               </select>
               <div class="dot-group">
@@ -754,7 +764,9 @@
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown text-textPrimary w-full">
+              <select name="background" class="dropdown-custom text-textPrimary">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>discipline</option>
                 <!-- Background options will be added here -->
               </select>
               <div class="dot-group">
@@ -781,7 +793,7 @@
     </section>
 
     <!-- [Virtues + Humanity/Path/Willpower] -->
-    <section class="">
+    <section class="flex flex-col justify-center gap-9 sm:grid sm:grid-cols-2">
       <!--
       
       2 columns: Virtues (right), Humanity/Path/Willpower (left; stacked)
@@ -826,7 +838,36 @@
 
       <!-- [Humanity/Path & Willpower] -->
       <div>
-        
+
+        <div>
+          <h3>humanity & path</h3>
+        <div class="flex flex-col gap-3">
+
+          <!-- Path dropdown -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="background" class="dropdown-custom text-textPrimary w-full">
+                <!-- Backgrounds options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <div>
+          <h3>willpower</h3>
+
+
+        </div>
+
       </div>
 
     </section>
