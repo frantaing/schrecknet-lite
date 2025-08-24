@@ -116,7 +116,7 @@ main h4 {
 
 /* Custom dropdown for [Disciplines]/[Backgrounds]/[Path] */
 .dropdown-custom {
-        @apply bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+        @apply w-2/3 bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
 /* wrapper for dot + label (elements including dots) */

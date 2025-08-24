@@ -1,13 +1,13 @@
 [
-    { "id": "allies", "name": "allies" },
-    { "id": "arsenal", "name": "arsenal" },
-    { "id": "contacts", "name": "contacts" },
-    { "id": "fame", "name": "fame" },
-    { "id": "generation", "name": "generation" },
-    { "id": "herd", "name": "herd" },
-    { "id": "influence", "name": "influence" },
-    { "id": "mentor", "name": "mentor" },
-    { "id": "resources", "name": "resources" },
-    { "id": "retainers", "name": "retainers" },
-    { "id": "status", "name": "status" }
+    { "value": "allies", "label": "allies" },
+    { "value": "arsenal", "label": "arsenal" },
+    { "value": "contacts", "label": "contacts" },
+    { "value": "fame", "label": "fame" },
+    { "value": "generation", "label": "generation" },
+    { "value": "herd", "label": "herd" },
+    { "value": "influence", "label": "influence" },
+    { "value": "mentor", "label": "mentor" },
+    { "value": "resources", "label": "resources" },
+    { "value": "retainers", "label": "retainers" },
+    { "value": "status", "label": "status" }
 ]
