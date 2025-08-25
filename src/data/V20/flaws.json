@@ -376,7 +376,7 @@
   },
   {
     "groupLabel": "Social Flaws",
-    "items": [
+    "options": [
       {
         "value": "blood_hunted",
         "label": "Blood Hunted",

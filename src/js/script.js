@@ -33,8 +33,8 @@ function populateFlatDropdown(selectName, jsonPath) {
 document.addEventListener('DOMContentLoaded', function() {
   populateFlatDropdown('discipline', 'data/V20/disciplines.json');
   populateFlatDropdown('background', 'data/V20/backgrounds.json');
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor_list.json');
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor_list.json');
+  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
 });
 
 // DROPDOWN: Clan/Bloodlines json
@@ -78,6 +78,82 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
       console.error('Error fetching clan data:', error);
       clanSelect.innerHTML = '<option value="">Error loading clans</option>';
+    });
+});
+
+// DROPDOWN: Merits json
+// # Links 'merits.json' to the Merit dropdown
+// # Shows cost and stores it in a data attribute
+document.addEventListener('DOMContentLoaded', function () {
+  const meritsSelect = document.querySelector('select[name="merit"]');
+  if (!meritsSelect) return;
+
+  const jsonPath = 'data/V20/merits.json';
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(group => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.groupLabel;
+
+        group.options.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value; // for form submission
+          option.textContent = `${item.label} (${item.cost})`; // display includes cost
+          option.setAttribute('data-cost', item.cost); // for calculations later
+          optgroup.appendChild(option);
+        });
+
+        meritsSelect.appendChild(optgroup);
+      });
+
+      meritsSelect.value = ""; // reset to placeholder
+    })
+    .catch(error => {
+      console.error('Error fetching merits data:', error);
+      meritsSelect.innerHTML = '<option value="">Error loading merits</option>';
+    });
+});
+
+// DROPDOWN: Flaws json
+// # Links 'flaws.json' to the Flaw dropdown
+// # Shows cost and stores it in a data attribute
+document.addEventListener('DOMContentLoaded', function () {
+  const meritsSelect = document.querySelector('select[name="flaw"]');
+  if (!meritsSelect) return;
+
+  const jsonPath = 'data/V20/flaws.json';
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(group => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.groupLabel;
+
+        group.options.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value; // for form submission
+          option.textContent = `${item.label} (${item.cost})`; // display includes cost
+          option.setAttribute('data-cost', item.cost); // for calculations later
+          optgroup.appendChild(option);
+        });
+
+        meritsSelect.appendChild(optgroup);
+      });
+
+      meritsSelect.value = ""; // reset to placeholder
+    })
+    .catch(error => {
+      console.error('Error fetching flaws data:', error);
+      meritsSelect.innerHTML = '<option value="">Error loading flaws</option>';
     });
 });
 
