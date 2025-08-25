@@ -1,0 +1,742 @@
+[
+  {
+    "groupLabel": "Physical Flaws",
+    "items": [
+      {
+        "value": "allergy",
+        "label": "Allergy",
+        "cost": 1
+      },
+      {
+        "value": "anosmia",
+        "label": "Anosmia",
+        "cost": 2
+      },
+      {
+        "value": "bad_sight",
+        "label": "Bad Sight",
+        "cost": 1
+      },
+      {
+        "value": "blind",
+        "label": "Blind",
+        "cost": 6
+      },
+      {
+        "value": "blunt_fangs",
+        "label": "Blunt Fangs",
+        "cost": 1
+      },
+      {
+        "value": "child",
+        "label": "Child",
+        "cost": 3
+      },
+      {
+        "value": "color_blindness",
+        "label": "Color Blindness",
+        "cost": 1
+      },
+      {
+        "value": "consumption",
+        "label": "Consumption",
+        "cost": 5
+      },
+      {
+        "value": "contagious",
+        "label": "Contagious",
+        "cost": 5
+      },
+      {
+        "value": "deaf",
+        "label": "Deaf",
+        "cost": 4
+      },
+      {
+        "value": "deep_sleeper",
+        "label": "Deep Sleeper",
+        "cost": 1
+      },
+      {
+        "value": "deformity",
+        "label": "Deformity",
+        "cost": 3
+      },
+      {
+        "value": "disease_carrier",
+        "label": "Disease Carrier",
+        "cost": 3
+      },
+      {
+        "value": "disfigured",
+        "label": "Disfigured",
+        "cost": 2
+      },
+      {
+        "value": "dulled_bite",
+        "label": "Dulled Bite",
+        "cost": 2
+      },
+      {
+        "value": "fangless",
+        "label": "Fangless",
+        "cost": 2
+      },
+      {
+        "value": "flesh_of_the_corpse",
+        "label": "Flesh of the Corpse",
+        "cost": 5
+      },
+      {
+        "value": "hard_of_hearing",
+        "label": "Hard of Hearing",
+        "cost": 1
+      },
+      {
+        "value": "incoherent",
+        "label": "Incoherent",
+        "cost": 5
+      },
+      {
+        "value": "infectious_bite",
+        "label": "Infectious Bite",
+        "cost": 2
+      },
+      {
+        "value": "lame",
+        "label": "Lame",
+        "cost": 3
+      },
+      {
+        "value": "monstrous",
+        "label": "Monstrous",
+        "cost": 3
+      },
+      {
+        "value": "odd_eye",
+        "label": "Odd Eye",
+        "cost": 1
+      },
+      {
+        "value": "one_arm",
+        "label": "One Arm",
+        "cost": 3
+      },
+      {
+        "value": "one_eye",
+        "label": "One Eye",
+        "cost": 3
+      },
+      {
+        "value": "open_wound",
+        "label": "Open Wound",
+        "cost": 2
+      },
+      {
+        "value": "paraplegic",
+        "label": "Paraplegic",
+        "cost": 6
+      },
+      {
+        "value": "parasitic_infestation",
+        "label": "Parasitic Infestation",
+        "cost": 2
+      },
+      {
+        "value": "permanent_fangs",
+        "label": "Permanent Fangs",
+        "cost": 3
+      },
+      {
+        "value": "permanent_wound",
+        "label": "Permanent Wound",
+        "cost": 3
+      },
+      {
+        "value": "putrescent",
+        "label": "Putrescent",
+        "cost": 4
+      },
+      {
+        "value": "scarface",
+        "label": "Scarface",
+        "cost": 2
+      },
+      {
+        "value": "short",
+        "label": "Short",
+        "cost": 1
+      },
+      {
+        "value": "speech_impediment",
+        "label": "Speech Impediment",
+        "cost": 1
+      },
+      {
+        "value": "stench",
+        "label": "Stench",
+        "cost": 1
+      },
+      {
+        "value": "twitch",
+        "label": "Twitch",
+        "cost": 1
+      },
+      {
+        "value": "visible_eye",
+        "label": "Visible Eye",
+        "cost": 5
+      },
+      {
+        "value": "withered_leg",
+        "label": "Withered Leg",
+        "cost": 2
+      }
+    ]
+  },
+  {
+    "groupLabel": "Mental Flaws",
+    "items": [
+      {
+        "value": "absent_minded",
+        "label": "Absent Minded",
+        "cost": 3
+      },
+      {
+        "value": "amnesia",
+        "label": "Amnesia",
+        "cost": 2
+      },
+      {
+        "value": "anachronism",
+        "label": "Anachronism",
+        "cost": 2
+      },
+      {
+        "value": "compulsion",
+        "label": "Compulsion",
+        "cost": 1
+      },
+      {
+        "value": "confusion",
+        "label": "Confusion",
+        "cost": 2
+      },
+      {
+        "value": "deathsight",
+        "label": "Deathsight",
+        "cost": 2
+      },
+      {
+        "value": "driving_goal",
+        "label": "Driving Goal",
+        "cost": 3
+      },
+      {
+        "value": "flashbacks",
+        "label": "Flashbacks",
+        "cost": 6
+      },
+      {
+        "value": "guilt_wracked",
+        "label": "Guilt Wracked",
+        "cost": 4
+      },
+      {
+        "value": "hatred",
+        "label": "Hatred",
+        "cost": 3
+      },
+      {
+        "value": "illiterate",
+        "label": "Illiterate",
+        "cost": 1
+      },
+      {
+        "value": "incomplete_understanding",
+        "label": "Incomplete Understanding",
+        "cost": 1
+      },
+      {
+        "value": "inept",
+        "label": "Inept",
+        "cost": 5
+      },
+      {
+        "value": "intolerance",
+        "label": "Intolerance",
+        "cost": 1
+      },
+      {
+        "value": "low_self_image",
+        "label": "Low self Image",
+        "cost": 2
+      },
+      {
+        "value": "necrophile",
+        "label": "Necrophile",
+        "cost": 3
+      },
+      {
+        "value": "nightmares",
+        "label": "Nightmares",
+        "cost": 1
+      },
+      {
+        "value": "overconfident",
+        "label": "Overconfident",
+        "cost": 1
+      },
+      {
+        "value": "pelagic_condition",
+        "label": "Pelagic Condition",
+        "cost": 2
+      },
+      {
+        "value": "phobia",
+        "label": "Phobia",
+        "cost": 1
+      },
+      {
+        "value": "poseidon_s_call",
+        "label": "Poseidon's Call",
+        "cost": 1
+      },
+      {
+        "value": "prey_exclusion",
+        "label": "Prey Exclusion",
+        "cost": 1
+      },
+      {
+        "value": "privacy_obsession",
+        "label": "Privacy Obsession",
+        "cost": 3
+      },
+      {
+        "value": "short_fuse",
+        "label": "Short Fuse",
+        "cost": 2
+      },
+      {
+        "value": "shy",
+        "label": "Shy",
+        "cost": 1
+      },
+      {
+        "value": "soft_hearted",
+        "label": "Soft Hearted",
+        "cost": 1
+      },
+      {
+        "value": "stubborn",
+        "label": "Stubborn",
+        "cost": 1
+      },
+      {
+        "value": "superstitious",
+        "label": "Superstitious",
+        "cost": 2
+      },
+      {
+        "value": "territorial",
+        "label": "Territorial",
+        "cost": 2
+      },
+      {
+        "value": "thirst_for_innocence",
+        "label": "Thirst for Innocence",
+        "cost": 2
+      },
+      {
+        "value": "twisted_upbringing",
+        "label": "Twisted Upbringing",
+        "cost": 1
+      },
+      {
+        "value": "uncontrollable",
+        "label": "Uncontrollable",
+        "cost": 5
+      },
+      {
+        "value": "vengeful",
+        "label": "Vengeful",
+        "cost": 2
+      },
+      {
+        "value": "victim_of_the_masquerade",
+        "label": "Victim of the Masquerade",
+        "cost": 2
+      },
+      {
+        "value": "weak_willed",
+        "label": "Weak Willed",
+        "cost": 2
+      }
+    ]
+  },
+  {
+    "groupLabel": "Social Flaws",
+    "items": [
+      {
+        "value": "blood_hunted",
+        "label": "Blood Hunted",
+        "cost": 4
+      },
+      {
+        "value": "botched_presentation",
+        "label": "Botched Presentation",
+        "cost": 1
+      },
+      {
+        "value": "catspaw",
+        "label": "Catspaw",
+        "cost": 2
+      },
+      {
+        "value": "clan_enemy",
+        "label": "Clan Enemy",
+        "cost": 2
+      },
+      {
+        "value": "dark_secret",
+        "label": "Dark Secret",
+        "cost": 1
+      },
+      {
+        "value": "diabolic_sire",
+        "label": "Diabolic Sire",
+        "cost": 2
+      },
+      {
+        "value": "disgrace",
+        "label": "Disgrace",
+        "cost": 3
+      },
+      {
+        "value": "double_betrayer",
+        "label": "Double Betrayer",
+        "cost": 4
+      },
+      {
+        "value": "enemy",
+        "label": "Enemy",
+        "cost": 1
+      },
+      {
+        "value": "enemy_brood",
+        "label": "Enemy Brood",
+        "cost": 3
+      },
+      {
+        "value": "enemy_of_office",
+        "label": "Enemy of Office",
+        "cost": 4
+      },
+      {
+        "value": "escaped_target",
+        "label": "Escaped Target",
+        "cost": 2
+      },
+      {
+        "value": "expendable",
+        "label": "Expendable",
+        "cost": 1
+      },
+      {
+        "value": "failure",
+        "label": "Failure",
+        "cost": 2
+      },
+      {
+        "value": "former_prince",
+        "label": "Former Prince",
+        "cost": 3
+      },
+      {
+        "value": "hunted",
+        "label": "Hunted",
+        "cost": 4
+      },
+      {
+        "value": "hunted_like_a_dog",
+        "label": "Hunted Like a Dog",
+        "cost": 3
+      },
+      {
+        "value": "infamous_autarkis",
+        "label": "Infamous Autarkis",
+        "cost": 1
+      },
+      {
+        "value": "infamous_sire",
+        "label": "Infamous Sire",
+        "cost": 1
+      },
+      {
+        "value": "insane_sire",
+        "label": "Insane Sire",
+        "cost": 1
+      },
+      {
+        "value": "laughingstock",
+        "label": "Laughingstock",
+        "cost": 5
+      },
+      {
+        "value": "loathsome_regnant",
+        "label": "Loathsome Regnant",
+        "cost": 4
+      },
+      {
+        "value": "masquerade_breaker",
+        "label": "Masquerade Breaker",
+        "cost": 2
+      },
+      {
+        "value": "mistaken_identity",
+        "label": "Mistaken Identity",
+        "cost": 1
+      },
+      {
+        "value": "narc",
+        "label": "Narc",
+        "cost": 3
+      },
+      {
+        "value": "new_arrival",
+        "label": "New Arrival",
+        "cost": 1
+      },
+      {
+        "value": "new_kid",
+        "label": "New Kid",
+        "cost": 1
+      },
+      {
+        "value": "notoriety",
+        "label": "Notoriety",
+        "cost": 3
+      },
+      {
+        "value": "obvious_predator",
+        "label": "Obvious Predator",
+        "cost": 2
+      },
+      {
+        "value": "old_flame",
+        "label": "Old Flame",
+        "cost": 2
+      },
+      {
+        "value": "overextended",
+        "label": "Overextended",
+        "cost": 4
+      },
+      {
+        "value": "recruitment_target",
+        "label": "Recruitment Target",
+        "cost": 1
+      },
+      {
+        "value": "red_listed",
+        "label": "Red Listed",
+        "cost": 7
+      },
+      {
+        "value": "rival_sire",
+        "label": "Rival Sire",
+        "cost": 2
+      },
+      {
+        "value": "sire_s_resentment",
+        "label": "Sire's Resentment",
+        "cost": 1
+      },
+      {
+        "value": "sleeping_with_the_enemy",
+        "label": "Sleeping with the Enemy",
+        "cost": 3
+      },
+      {
+        "value": "stereotype",
+        "label": "Stereotype",
+        "cost": 2
+      },
+      {
+        "value": "sympathizer",
+        "label": "Sympathizer",
+        "cost": 1
+      },
+      {
+        "value": "traitor",
+        "label": "Traitor",
+        "cost": 4
+      },
+      {
+        "value": "unconvinced",
+        "label": "Unconvinced",
+        "cost": 1
+      },
+      {
+        "value": "uppity",
+        "label": "Uppity",
+        "cost": 2
+      },
+      {
+        "value": "ward",
+        "label": "Ward",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Supernatural Flaws",
+    "items": [
+      {
+        "value": "14th_generation",
+        "label": "14th Generation",
+        "cost": 2
+      },
+      {
+        "value": "ancestral_soil_dependence",
+        "label": "Ancestral Soil Dependence",
+        "cost": 2
+      },
+      {
+        "value": "beacon_of_the_unholy",
+        "label": "Beacon of the Unholy",
+        "cost": 2
+      },
+      {
+        "value": "bound",
+        "label": "Bound",
+        "cost": 2
+      },
+      {
+        "value": "bound_to_the_council",
+        "label": "Bound to the Council",
+        "cost": 3
+      },
+      {
+        "value": "cannot_cross_running_water",
+        "label": "Cannot Cross Running Water",
+        "cost": 3
+      },
+      {
+        "value": "cast_no_reflection",
+        "label": "Cast no Reflection",
+        "cost": 1
+      },
+      {
+        "value": "clan_weakness",
+        "label": "Clan Weakness",
+        "cost": 2
+      },
+      {
+        "value": "cold_breeze",
+        "label": "Cold Breeze",
+        "cost": 3
+      },
+      {
+        "value": "cursed",
+        "label": "Cursed",
+        "cost": 1
+      },
+      {
+        "value": "dark_fate",
+        "label": "Dark Fate",
+        "cost": 5
+      },
+      {
+        "value": "death_s_reflection",
+        "label": "Death's Reflection",
+        "cost": 3
+      },
+      {
+        "value": "glowing_eyes",
+        "label": "Glowing Eyes",
+        "cost": 3
+      },
+      {
+        "value": "haunted",
+        "label": "Haunted",
+        "cost": 3
+      },
+      {
+        "value": "infertile_blood",
+        "label": "Infertile Blood",
+        "cost": 5
+      },
+      {
+        "value": "light_sensitive",
+        "label": "Light Sensitive",
+        "cost": 5
+      },
+      {
+        "value": "lord_of_the_flies",
+        "label": "Lord of the Flies",
+        "cost": 2
+      },
+      {
+        "value": "magic_susceptibility",
+        "label": "Magic Susceptibility",
+        "cost": 2
+      },
+      {
+        "value": "repelled_by_crosses",
+        "label": "Repelled by Crosses",
+        "cost": 3
+      },
+      {
+        "value": "repulsed_by_garlic",
+        "label": "Repulsed by Garlic",
+        "cost": 1
+      },
+      {
+        "value": "selective_digestion",
+        "label": "Selective Digestion",
+        "cost": 2
+      },
+      {
+        "value": "slow_healing",
+        "label": "Slow Healing",
+        "cost": 3
+      },
+      {
+        "value": "smell_of_the_grave",
+        "label": "Smell of the Grave",
+        "cost": 1
+      },
+      {
+        "value": "taint_of_corruption",
+        "label": "Taint of Corruption",
+        "cost": 1
+      },
+      {
+        "value": "thaumaturgically_inept",
+        "label": "Thaumaturgically Inept",
+        "cost": 5
+      },
+      {
+        "value": "thin_blood",
+        "label": "Thin Blood",
+        "cost": 4
+      },
+      {
+        "value": "touch_of_frost",
+        "label": "Touch of frost",
+        "cost": 1
+      },
+      {
+        "value": "unblooded",
+        "label": "Unblooded",
+        "cost": 5
+      },
+      {
+        "value": "uncontrollable_night_sight",
+        "label": "Uncontrollable Night Sight",
+        "cost": 2
+      }
+    ]
+  }
+]
