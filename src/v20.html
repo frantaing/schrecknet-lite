@@ -58,7 +58,7 @@
   </header>
 
   <!-- Main container -->
-  <main class="flex flex-col gap-20 text-center pt-32">
+  <main class="flex flex-col gap-20 text-center py-32">
 
     <!-- [Basics + Clan] -->
     <section class="flex flex-col gap-9">
@@ -896,15 +896,51 @@
     </section>
 
     <!-- [Merits + Flaws] -->
-    <section class="">
+    <section class="flex flex-col justify-center gap-9">
 
       <!-- [Merits] -->
       <div>
         <h3>merits</h3>
+        <div class="flex flex-col items-center gap-3">
+
+          <!-- Merit dropdown(s) -->
+          <select name="merit" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>merit</option>
+              <!-- Merit options will be added here -->
+          </select>
+
+          <!-- Button to add merit -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">merit</span>
+            </a>
+          </div>
+
+        </div>
       </div>
       <!-- [Flaws] -->
       <div>
         <h3>flaws</h3>
+
+        <div class="flex flex-col items-center gap-3">
+
+          <!-- Merit dropdown(s) -->
+          <select name="flaw" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>flaw</option>
+              <!-- Flaw options will be added here -->
+          </select>
+
+          <!-- Button to add flaw -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">flaw</span>
+            </a>
+          </div>
+
+        </div>
+
       </div>
 
     </section>
