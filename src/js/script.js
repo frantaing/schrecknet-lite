@@ -1,46 +1,40 @@
-// DROPDOWN: Nature/Demeanor json
-// # Links 'nature_demeanor.json' to the Nature/Demeanor dropdowns
-// # Also makes sure placeholder options are not overridden
-document.addEventListener('DOMContentLoaded', function () {
-
-  const selectElements = document.querySelectorAll('select[name="nature"], select[name="demeanor"]');
-
-  if (selectElements.length === 0) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/nature_demeanor.json';
-
-  function populateDropdown(selectElement, data) {
-    data.forEach(item => {
-      const option = document.createElement('option');
-      option.value = item.value;
-      option.textContent = item.label.charAt(0).toUpperCase() + item.label.slice(1);
-      selectElement.appendChild(option);
-    });
-  }
+// DROPDOWN: Generic Flat dropdowns
+// # Links 'nature_demeanor.json', 'disciplines.json' and 'backgrounds.json' to their dropdowns
+// # Also makes sure placeholder options are not overriden
+function populateFlatDropdown(selectName, jsonPath) {
+  const selects = document.querySelectorAll(`select[name="${selectName}"]`);
+  if (!selects.length) return;
 
   fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
+    .then(res => res.ok ? res.json() : Promise.reject(`HTTP error ${res.status}`))
     .then(data => {
-      selectElements.forEach(dropdown => {
-        populateDropdown(dropdown, data);
+      selects.forEach(select => {
+        data.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value;
+          option.textContent = item.label;
 
-        dropdown.value = "";
+          // Optional metadata
+          if (item.cost) option.dataset.cost = item.cost;
+          if (item.dots) option.dataset.dots = item.dots;
+
+          select.appendChild(option);
+        });
+        select.value = ""; // keep placeholder
       });
     })
-    .catch(error => {
-      console.error('Error fetching or parsing data:', error);
-      selectElements.forEach(dropdown => {
-        dropdown.innerHTML = '<option value="">Error loading data</option>';
+    .catch(err => {
+      console.error(err);
+      selects.forEach(select => {
+        select.innerHTML = '<option value="">Error loading options</option>';
       });
     });
-
+}
+document.addEventListener('DOMContentLoaded', function() {
+  populateFlatDropdown('discipline', 'data/V20/disciplines.json');
+  populateFlatDropdown('background', 'data/V20/backgrounds.json');
+  populateFlatDropdown('nature', 'data/V20/nature_demeanor_list.json');
+  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor_list.json');
 });
 
 // DROPDOWN: Clan/Bloodlines json
@@ -85,98 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error fetching clan data:', error);
       clanSelect.innerHTML = '<option value="">Error loading clans</option>';
     });
-});
-
-// DROPDOWN: Disciplines json
-// # Links 'disciplines.json' to the Discipline dropdowns
-// # Also makes sure placeholder options are not overridden
-document.addEventListener('DOMContentLoaded', function () {
-
-  const selectElements = document.querySelectorAll('select[name="discipline"]');
-
-  if (selectElements.length === 0) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/disciplines.json';
-
-  function populateDropdown(selectElement, data) {
-    data.forEach(item => {
-      const option = document.createElement('option');
-      option.value = item.value;
-      option.textContent = item.label;
-
-      selectElement.appendChild(option);
-    });
-  }
-
-  fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      selectElements.forEach(dropdown => {
-        populateDropdown(dropdown, data);
-
-        dropdown.value = "";
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching or parsing data:', error);
-      selectElements.forEach(dropdown => {
-        dropdown.innerHTML = '<option value="">Error loading data</option>';
-      });
-    });
-
-});
-
-// DROPDOWN: Backgrounds json
-// # Links 'backgrounds.json' to the Backgrounds dropdowns
-// # Also makes sure placeholder options are not overridden
-document.addEventListener('DOMContentLoaded', function () {
-
-  const selectElements = document.querySelectorAll('select[name="background"]');
-
-  if (selectElements.length === 0) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/backgrounds.json';
-
-  function populateDropdown(selectElement, data) {
-    data.forEach(item => {
-      const option = document.createElement('option');
-      option.value = item.value;
-      option.textContent = item.label;
-
-      selectElement.appendChild(option);
-    });
-  }
-
-  fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      selectElements.forEach(dropdown => {
-        populateDropdown(dropdown, data);
-
-        dropdown.value = "";
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching or parsing data:', error);
-      selectElements.forEach(dropdown => {
-        dropdown.innerHTML = '<option value="">Error loading data</option>';
-      });
-    });
-
 });
 
 // DROPDOWN: Text color

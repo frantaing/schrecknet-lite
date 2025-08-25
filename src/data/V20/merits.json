@@ -1,7 +1,7 @@
 [
   {
     "groupLabel": "Physical Merits",
-    "items": [
+    "options": [
       {
         "value": "acute_hearing",
         "label": "Acute Hearing",
@@ -116,7 +116,7 @@
   },
   {
     "groupLabel": "Mental Merits",
-    "items": [
+    "options": [
       {
         "value": "berzerker",
         "label": "Berzerker",
@@ -261,7 +261,7 @@
   },
   {
     "groupLabel": "Social Merits",
-    "items": [
+    "options": [
       {
         "value": "alternate_identity",
         "label": "Alternate Identity",
@@ -461,7 +461,7 @@
   },
   {
     "groupLabel": "Supernatural Merits",
-    "items": [
+    "options": [
       {
         "value": "additional_discipline",
         "label": "Additional Discipline",
