@@ -79,16 +79,16 @@ Currently in **early development**: figuring stuff out and building the UI layou
 - [x] Create the **basics** section with fields for character name, concept, chronicle, etc.
 - [x] Build the **attributes** section (Physical, Social, Mental) with interactive dots.
 - [x] Lay out the **abilities** section (Talents, Skills, Knowledges) with interactive dots.
-- [ ] Design the **advantages** section, including:
-  - [ ] Disciplines
-  - [ ] Backgrounds
-  - [ ] Virtues
-- [ ] Create sections for **merits & flaws** and **humanity/paths**.
-- [ ] Set up the **health** and **willpower** tracks.
+- [x] Design the **advantages** section, including:
+  - [x] Disciplines
+  - [x] Backgrounds
+  - [x] Virtues
+- [x] Create sections for **merits & flaws**
+- [x] Set up the **humanity/path** and **willpower** tracks.
 
 ##### **Styling (Tailwind)**
 
-- [ ] Style the overall V20 sheet layout.
+- [x] Style the overall V20 sheet layout.
 - [x] Style the interactive dots to reflect different states (e.g., filled, empty).
 - [x] Apply styling to all form inputs and dropdowns.
 
