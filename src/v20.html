@@ -947,9 +947,26 @@
 
     </div>
 
+  </main>
 
-    <!-- Javascript -->
-    <script src="js/script.js"></script>
+  <!-- Freebie Points and Panel -->
+  <div id="freebie" class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <button id="freebiePointsButton" class="bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+      <span class="hidden sm:inline">Freebies:</span> 
+      <span id="freebiePointsCount">7</span>
+    </button>
+
+    
+    <!-- Freebie Panel on click -->
+    <div id="freebiePointsPanel" class="hidden">
+      <h4 class="">Freebie Points</h4>
+      <ul id="freebiePointsList"></ul>
+      <p class="">Remaining: <span id="freebiePointsRemaining">7</span></p>
+    </div>
+  </div>
+
+  <!-- Javascript -->
+  <script src="js/script.js"></script>
 
 </body>
 

@@ -89,8 +89,8 @@ Currently in **early development**: figuring stuff out and building the UI layou
 ##### **Styling (Tailwind)**
 
 - [ ] Style the overall V20 sheet layout.
-- [ ] Style the interactive dots to reflect different states (e.g., filled, empty).
-- [ ] Apply styling to all form inputs and dropdowns.
+- [x] Style the interactive dots to reflect different states (e.g., filled, empty).
+- [x] Apply styling to all form inputs and dropdowns.
 
 ##### **Interactivity (JavaScript)**
 
