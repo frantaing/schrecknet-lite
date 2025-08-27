@@ -96,7 +96,7 @@ Currently in **early development**: figuring stuff out and building the UI layou
 
 - [ ] Implement click handling for the attribute dots.
 - [ ] Implement click handling for the ability dots.
-- [ ] Enable dropdown selections for disciplines and backgrounds.
+- [x] Enable dropdown selections for disciplines and backgrounds.
 - [ ] Create basic V20 freebie point calculation logic.
   - [ ] Attributes
   - [ ] Abilities
