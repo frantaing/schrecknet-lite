@@ -81,6 +81,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// DROPDOWN: Paths json
+// # Links 'paths.json' to the Clan dropdown
+// # Also makes sure placeholder options are not overridden
+document.addEventListener('DOMContentLoaded', function () {
+  const clanSelect = document.querySelector('select[name="paths"]');
+
+  if (!clanSelect) {
+    return;
+  }
+
+  const jsonPath = 'data/V20/paths.json';
+
+  fetch(jsonPath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      data.forEach(group => {
+        const optgroup = document.createElement('optgroup');
+
+        optgroup.label = group.groupLabel;
+
+        group.options.forEach(item => {
+          const option = document.createElement('option');
+          option.value = item.value;
+          option.textContent = item.label;
+
+          optgroup.appendChild(option);
+        });
+
+        clanSelect.appendChild(optgroup);
+      });
+
+      clanSelect.value = "";
+    })
+    .catch(error => {
+      console.error('Error fetching clan data:', error);
+      clanSelect.innerHTML = '<option value="">Error loading clans</option>';
+    });
+});
+
 // DROPDOWN: Merits json
 // # Links 'merits.json' to the Merit dropdown
 // # Shows cost and stores it in a data attribute
