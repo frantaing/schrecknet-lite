@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/overuseofrem/shrecknet-lite.git"
+    "url": "git+https://github.com/overuseofrem/schrecknet-lite.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/overuseofrem/shrecknet-lite/issues"
+    "url": "https://github.com/overuseofrem/schrecknet-lite/issues"
   },
-  "homepage": "https://github.com/overuseofrem/shrecknet-lite#readme",
+  "homepage": "https://github.com/overuseofrem/schrecknet-lite#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.2.0",
