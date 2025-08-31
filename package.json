@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"tailwindcss -i ./src/css/style.css -o ./dist/style.css --watch\" \"live-server --port=3000 --open=src/index.html\"",
+    "dev": "concurrently \"tailwindcss -i ./src/css/style.css -o ./dist/style.css --watch\" \"live-server --port=3000 --open=index.html\"",
     "build": "tailwindcss -i ./src/css/style.css -o ./dist/style.css --minify"
   },
   "repository": {
