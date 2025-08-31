@@ -37,18 +37,13 @@ jobs:
     - name: Build Tailwind CSS
       run: npm run build
       
-    - name: Create dist directory in src and copy built CSS
-      run: |
-        mkdir -p src/dist
-        cp dist/style.css src/dist/style.css
-      
     - name: Setup Pages
       uses: actions/configure-pages@v4
       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: './src'
+        path: '.'
         
     - name: Deploy to GitHub Pages
       id: deployment
