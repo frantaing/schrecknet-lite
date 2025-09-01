@@ -1,5 +1,3 @@
-import '../css/app.css';
-
 // DROPDOWN: Generic Flat dropdowns
 // # Links 'nature_demeanor.json', 'disciplines.json' and 'backgrounds.json' to their dropdowns
 // # Also makes sure placeholder options are not overriden
@@ -32,7 +30,7 @@ function populateFlatDropdown(selectName, jsonPath) {
       });
     });
 }
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   populateFlatDropdown('discipline', 'data/V20/disciplines.json');
   populateFlatDropdown('background', 'data/V20/backgrounds.json');
   populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');

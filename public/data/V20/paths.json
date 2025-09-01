@@ -1,0 +1,125 @@
+[
+    {
+        "groupLabel": "Known Paths",
+        "options": [
+            {
+                "value": "path-of-the-beast",
+                "label": "path of the beast"
+            },
+            {
+                "value": "path-of-harmony",
+                "label": "path of harmony"
+            },
+            {
+                "value": "path-of-evil-revelations",
+                "label": "path of evil revelations"
+            },
+            {
+                "value": "path-of-self-focus",
+                "label": "path of self-focus"
+            },
+            {
+                "value": "path-of-the-scorched-heart",
+                "label": "path of the scorched heart"
+            },
+            {
+                "value": "path-of-entelechy",
+                "label": "path of entelechy"
+            },
+            {
+                "value": "sharia-el-sama",
+                "label": "sharia el-sama"
+            },
+            {
+                "value": "hierarchy-of-wyrm-taint",
+                "label": "hierarchy of wyrm taint"
+            },
+            {
+                "value": "path-of-asakku",
+                "label": "path of asakku"
+            }
+        ]
+    },
+    {
+        "groupLabel": "Sabbat-Specific Paths",
+        "options": [
+            {
+                "value": "path-of-death-and-the-soul",
+                "label": "path of death and the soul"
+            },
+            {
+                "value": "path-of-honorable-accord",
+                "label": "path of honorable accord"
+            },
+            {
+                "value": "path-of-the-feral-heart",
+                "label": "path of the feral heart"
+            },
+            {
+                "value": "path-of-orion",
+                "label": "path of orion"
+            },
+            {
+                "value": "path-of-power-and-the-inner-voice",
+                "label": "path of power and the inner voice"
+            },
+            {
+                "value": "path-of-lilith",
+                "label": "path of lilith"
+            },
+            {
+                "value": "path-of-caine",
+                "label": "path of caine"
+            },
+            {
+                "value": "path-of-cathari",
+                "label": "path of cathari"
+            },
+            {
+                "value": "path-of-redemption",
+                "label": "path of redemption"
+            },
+            {
+                "value": "path-of-nocturnal-redemption",
+                "label": "path of nocturnal redemption"
+            },
+            {
+                "value": "path-of-the-sun",
+                "label": "path of the sun"
+            }
+        ]
+    },
+    {
+        "groupLabel": "Clan-Specific Paths",
+        "options": [
+            {
+                "value": "path-of-night",
+                "label": "path of night (lasombra)"
+            },
+            {
+                "value": "path-of-metamorphosis",
+                "label": "path of metamorphosis (tzimisce)"
+            },
+            {
+                "value": "path-of-bones",
+                "label": "path of bones (cappadocians)"
+            },
+            {
+                "value": "path-of-typhon",
+                "label": "path of typhon (followers of set)"
+            },
+            {
+                "value": "path-of-paradox",
+                "label": "path of paradox (ravnos)"
+            },
+            {
+                "value": "path-of-blood",
+                "label": "path of blood (assamites)"
+            },
+            {
+                "value": "path-of-the-hive",
+                "label": "path of the hive (baali)"
+            }
+        ]
+    }
+]

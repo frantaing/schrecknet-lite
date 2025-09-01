@@ -1,0 +1,13 @@
+[
+    { "value": "allies", "label": "allies" },
+    { "value": "arsenal", "label": "arsenal" },
+    { "value": "contacts", "label": "contacts" },
+    { "value": "fame", "label": "fame" },
+    { "value": "generation", "label": "generation" },
+    { "value": "herd", "label": "herd" },
+    { "value": "influence", "label": "influence" },
+    { "value": "mentor", "label": "mentor" },
+    { "value": "resources", "label": "resources" },
+    { "value": "retainers", "label": "retainers" },
+    { "value": "status", "label": "status" }
+]

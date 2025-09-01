@@ -1,0 +1,642 @@
+[
+  {
+    "groupLabel": "Physical Merits",
+    "options": [
+      {
+        "value": "acute_hearing",
+        "label": "Acute Hearing",
+        "cost": 1
+      },
+      {
+        "value": "acute_senses",
+        "label": "Acute Senses",
+        "cost": 1
+      },
+      {
+        "value": "ambidexterity",
+        "label": "Ambidexterity",
+        "cost": 1
+      },
+      {
+        "value": "baby_face",
+        "label": "Baby-face",
+        "cost": 2
+      },
+      {
+        "value": "blush_of_health",
+        "label": "Blush of Health",
+        "cost": 2
+      },
+      {
+        "value": "cat_like_balance",
+        "label": "Cat-like Balance",
+        "cost": 1
+      },
+      {
+        "value": "crack_driver",
+        "label": "Crack Driver",
+        "cost": 1
+      },
+      {
+        "value": "double_jointed",
+        "label": "Double Jointed",
+        "cost": 1
+      },
+      {
+        "value": "eat_food",
+        "label": "Eat Food",
+        "cost": 1
+      },
+      {
+        "value": "gaping_maw",
+        "label": "Gaping Maw",
+        "cost": 2
+      },
+      {
+        "value": "huge_size",
+        "label": "Huge Size",
+        "cost": 4
+      },
+      {
+        "value": "light_sleeper",
+        "label": "Light Sleeper",
+        "cost": 2
+      },
+      {
+        "value": "long_fingers",
+        "label": "Long Fingers",
+        "cost": 1
+      },
+      {
+        "value": "misplaced_heart",
+        "label": "Misplaced Heart",
+        "cost": 2
+      },
+      {
+        "value": "oversized_fangs",
+        "label": "Oversized fangs",
+        "cost": 1
+      },
+      {
+        "value": "pain_tolerance",
+        "label": "Pain Tolerance",
+        "cost": 2
+      },
+      {
+        "value": "patagia",
+        "label": "Patagia",
+        "cost": 4
+      },
+      {
+        "value": "piscine",
+        "label": "Piscine",
+        "cost": 1
+      },
+      {
+        "value": "projectile_vomiting",
+        "label": "Projectile Vomiting",
+        "cost": 2
+      },
+      {
+        "value": "rugged_bad_looks",
+        "label": "Rugged Bad Looks",
+        "cost": 5
+      },
+      {
+        "value": "slimy",
+        "label": "Slimy",
+        "cost": 1
+      },
+      {
+        "value": "thick_hide",
+        "label": "Thick Hide",
+        "cost": 2
+      }
+    ]
+  },
+  {
+    "groupLabel": "Mental Merits",
+    "options": [
+      {
+        "value": "berzerker",
+        "label": "Berzerker",
+        "cost": 2
+      },
+      {
+        "value": "calm_heart",
+        "label": "Calm Heart",
+        "cost": 3
+      },
+      {
+        "value": "code_of_honor",
+        "label": "Code of Honor",
+        "cost": 1
+      },
+      {
+        "value": "coldly_logical",
+        "label": "Coldly Logical",
+        "cost": 1
+      },
+      {
+        "value": "common_sense",
+        "label": "Common sense",
+        "cost": 1
+      },
+      {
+        "value": "compassionate",
+        "label": "Compassionate",
+        "cost": 4
+      },
+      {
+        "value": "computer_aptitude",
+        "label": "Computer Aptitude",
+        "cost": 2
+      },
+      {
+        "value": "concentration",
+        "label": "Concentration",
+        "cost": 1
+      },
+      {
+        "value": "daredevil",
+        "label": "Daredevil",
+        "cost": 3
+      },
+      {
+        "value": "dracon_s_temperament",
+        "label": "Dracon's Temperament",
+        "cost": 3
+      },
+      {
+        "value": "dual_nature",
+        "label": "Dual Nature",
+        "cost": 2
+      },
+      {
+        "value": "eidetic_memory",
+        "label": "Eidetic Memory",
+        "cost": 2
+      },
+      {
+        "value": "fast_lerner",
+        "label": "Fast Lerner",
+        "cost": 3
+      },
+      {
+        "value": "higher_purpose",
+        "label": "Higher Purpose",
+        "cost": 1
+      },
+      {
+        "value": "iron_will",
+        "label": "Iron Will",
+        "cost": 3
+      },
+      {
+        "value": "jack_of_all_trades",
+        "label": "Jack of All Trades",
+        "cost": 5
+      },
+      {
+        "value": "lightning_calculator",
+        "label": "Lightning Calculator",
+        "cost": 1
+      },
+      {
+        "value": "mechanical_aptitude",
+        "label": "Mechanical Aptitude",
+        "cost": 1
+      },
+      {
+        "value": "natural_linguist",
+        "label": "Natural Linguist",
+        "cost": 2
+      },
+      {
+        "value": "occult_library",
+        "label": "Occult Library",
+        "cost": 2
+      },
+      {
+        "value": "open_road",
+        "label": "Open Road",
+        "cost": 2
+      },
+      {
+        "value": "pelagic_harmony",
+        "label": "Pelagic Harmony",
+        "cost": 3
+      },
+      {
+        "value": "sabbat_survivor",
+        "label": "Sabbat Survivor",
+        "cost": 1
+      },
+      {
+        "value": "scholar_of_enemies",
+        "label": "Scholar of Enemies",
+        "cost": 2
+      },
+      {
+        "value": "time_sense",
+        "label": "Time Sense",
+        "cost": 1
+      },
+      {
+        "value": "true_love",
+        "label": "True Love",
+        "cost": 1
+      },
+      {
+        "value": "warrens",
+        "label": "Warrens",
+        "cost": 3
+      },
+      {
+        "value": "weather_sense",
+        "label": "Weather Sense",
+        "cost": 1
+      }
+    ]
+  },
+  {
+    "groupLabel": "Social Merits",
+    "options": [
+      {
+        "value": "alternate_identity",
+        "label": "Alternate Identity",
+        "cost": 3
+      },
+      {
+        "value": "boon",
+        "label": "Boon",
+        "cost": 1
+      },
+      {
+        "value": "bruiser",
+        "label": "Bruiser",
+        "cost": 1
+      },
+      {
+        "value": "bullyboy",
+        "label": "Bullyboy",
+        "cost": 2
+      },
+      {
+        "value": "church_ties",
+        "label": "Church Ties",
+        "cost": 3
+      },
+      {
+        "value": "clan_friendship",
+        "label": "Clan Friendship",
+        "cost": 4
+      },
+      {
+        "value": "corporation_ceo",
+        "label": "Corporation CEO",
+        "cost": 5
+      },
+      {
+        "value": "domain",
+        "label": "Domain",
+        "cost": 1
+      },
+      {
+        "value": "dynamic_personality",
+        "label": "Dynamic personality",
+        "cost": 5
+      },
+      {
+        "value": "elysium_regular",
+        "label": "Elysium Regular",
+        "cost": 1
+      },
+      {
+        "value": "former_ghoul",
+        "label": "Former Ghoul",
+        "cost": 1
+      },
+      {
+        "value": "friend_of_the_underground",
+        "label": "Friend of the Underground",
+        "cost": 3
+      },
+      {
+        "value": "friendly_face",
+        "label": "Friendly Face",
+        "cost": 1
+      },
+      {
+        "value": "harmless",
+        "label": "Harmless",
+        "cost": 1
+      },
+      {
+        "value": "harpy",
+        "label": "Harpy",
+        "cost": 5
+      },
+      {
+        "value": "holder_of_office",
+        "label": "Holder of office",
+        "cost": 2
+      },
+      {
+        "value": "judicial_ties",
+        "label": "Judicial Ties",
+        "cost": 2
+      },
+      {
+        "value": "mansion",
+        "label": "Mansion",
+        "cost": 2
+      },
+      {
+        "value": "marijava_contact",
+        "label": "Marijava Contact",
+        "cost": 1
+      },
+      {
+        "value": "mole",
+        "label": "Mole",
+        "cost": 3
+      },
+      {
+        "value": "night_club",
+        "label": "Night Club",
+        "cost": 2
+      },
+      {
+        "value": "old_pal",
+        "label": "Old Pal",
+        "cost": 2
+      },
+      {
+        "value": "pawn",
+        "label": "Pawn",
+        "cost": 3
+      },
+      {
+        "value": "pitiable",
+        "label": "Pitiable",
+        "cost": 1
+      },
+      {
+        "value": "police_ties",
+        "label": "Police Ties",
+        "cost": 3
+      },
+      {
+        "value": "political_ties",
+        "label": "Political Ties",
+        "cost": 3
+      },
+      {
+        "value": "prestigious_sire",
+        "label": "Prestigious Sire",
+        "cost": 1
+      },
+      {
+        "value": "primogen",
+        "label": "Primogen",
+        "cost": 7
+      },
+      {
+        "value": "primogen_friendship",
+        "label": "Primogen Friendship",
+        "cost": 4
+      },
+      {
+        "value": "protected",
+        "label": "Protected",
+        "cost": 2
+      },
+      {
+        "value": "protege",
+        "label": "Protege",
+        "cost": 1
+      },
+      {
+        "value": "rep",
+        "label": "Rep",
+        "cost": 1
+      },
+      {
+        "value": "reputation",
+        "label": "Reputation",
+        "cost": 1
+      },
+      {
+        "value": "rising_star",
+        "label": "Rising Star",
+        "cost": 3
+      },
+      {
+        "value": "sheriff_s_friend",
+        "label": "Sheriff's Friend",
+        "cost": 2
+      },
+      {
+        "value": "special_gift",
+        "label": "Special Gift",
+        "cost": 1
+      },
+      {
+        "value": "unconquered_ally",
+        "label": "Unconquered Ally",
+        "cost": 2
+      },
+      {
+        "value": "useful_knowledge",
+        "label": "Useful Knowledge",
+        "cost": 1
+      },
+      {
+        "value": "werewolf_companion",
+        "label": "Werewolf Companion",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Supernatural Merits",
+    "options": [
+      {
+        "value": "additional_discipline",
+        "label": "Additional Discipline",
+        "cost": 5
+      },
+      {
+        "value": "attuned_taste",
+        "label": "Attuned Taste",
+        "cost": 2
+      },
+      {
+        "value": "blooding_by_the_code",
+        "label": "Blooding by the code",
+        "cost": 7
+      },
+      {
+        "value": "broken_bond",
+        "label": "Broken Bond",
+        "cost": 4
+      },
+      {
+        "value": "charmed_existence",
+        "label": "Charmed Existence",
+        "cost": 5
+      },
+      {
+        "value": "controllable_night_sight",
+        "label": "Controllable Night Sight",
+        "cost": 2
+      },
+      {
+        "value": "danger_sense",
+        "label": "Danger Sense",
+        "cost": 2
+      },
+      {
+        "value": "deceptive_aura",
+        "label": "Deceptive Aura",
+        "cost": 1
+      },
+      {
+        "value": "destiny",
+        "label": "Destiny",
+        "cost": 4
+      },
+      {
+        "value": "efficient_digestion",
+        "label": "Efficient Digestion",
+        "cost": 3
+      },
+      {
+        "value": "enchanting_voice",
+        "label": "Enchanting Voice",
+        "cost": 2
+      },
+      {
+        "value": "faerie_affinity",
+        "label": "Faerie Affinity",
+        "cost": 2
+      },
+      {
+        "value": "false_reflection",
+        "label": "False Reflection",
+        "cost": 3
+      },
+      {
+        "value": "foul_blood",
+        "label": "Foul Blood",
+        "cost": 3
+      },
+      {
+        "value": "gift_of_proteus",
+        "label": "Gift of Proteus",
+        "cost": 1
+      },
+      {
+        "value": "guardian_angel",
+        "label": "Guardian Angel",
+        "cost": 6
+      },
+      {
+        "value": "haven_affinity",
+        "label": "Haven Affinity",
+        "cost": 3
+      },
+      {
+        "value": "healing_touch",
+        "label": "Healing Touch",
+        "cost": 1
+      },
+      {
+        "value": "hidden_diablerie",
+        "label": "Hidden Diablerie",
+        "cost": 3
+      },
+      {
+        "value": "inoffensive_to_animals",
+        "label": "Inoffensive to Animals",
+        "cost": 1
+      },
+      {
+        "value": "lizard_limbs",
+        "label": "Lizard Limbs",
+        "cost": 1
+      },
+      {
+        "value": "lucky",
+        "label": "Lucky",
+        "cost": 3
+      },
+      {
+        "value": "magic_resistant",
+        "label": "Magic Resistant",
+        "cost": 2
+      },
+      {
+        "value": "medium",
+        "label": "Medium",
+        "cost": 2
+      },
+      {
+        "value": "nine_lives",
+        "label": "Nine Lives",
+        "cost": 6
+      },
+      {
+        "value": "oracular_ability",
+        "label": "Oracular Ability",
+        "cost": 3
+      },
+      {
+        "value": "pale_aura",
+        "label": "Pale Aura",
+        "cost": 1
+      },
+      {
+        "value": "reptile_buddy",
+        "label": "Reptile Buddy",
+        "cost": 3
+      },
+      {
+        "value": "ruse_of_wolf_s_clothing",
+        "label": "Ruse of Wolf's Clothing",
+        "cost": 2
+      },
+      {
+        "value": "scent_of_the_other",
+        "label": "Scent of the Other",
+        "cost": 1
+      },
+      {
+        "value": "sight_beyond_sight",
+        "label": "Sight Beyond Sight",
+        "cost": 5
+      },
+      {
+        "value": "sleep_unseen",
+        "label": "Sleep unseen",
+        "cost": 2
+      },
+      {
+        "value": "spirit_mentor",
+        "label": "Spirit Mentor",
+        "cost": 3
+      },
+      {
+        "value": "true_faith",
+        "label": "True Faith",
+        "cost": 7
+      },
+      {
+        "value": "unbondable",
+        "label": "Unbondable",
+        "cost": 3
+      }
+    ]
+  }
+]

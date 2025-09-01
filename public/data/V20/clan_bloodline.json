@@ -1,0 +1,163 @@
+[
+  {
+    "groupLabel": "The Thirteen Clans",
+    "options": [
+      {
+        "value": "assamite",
+        "label": "assamite"
+      },
+      {
+        "value": "brujah",
+        "label": "brujah"
+      },
+      {
+        "value": "followers_of_set",
+        "label": "followers of set"
+      },
+      {
+        "value": "gangrel",
+        "label": "gangrel"
+      },
+      {
+        "value": "giovanni",
+        "label": "giovanni"
+      },
+      {
+        "value": "lasombra",
+        "label": "lasombra"
+      },
+      {
+        "value": "malkavian",
+        "label": "malkavian"
+      },
+      {
+        "value": "nosferatu",
+        "label": "nosferatu"
+      },
+      {
+        "value": "ravnos",
+        "label": "ravnos"
+      },
+      {
+        "value": "toreador",
+        "label": "toreador"
+      },
+      {
+        "value": "tremere",
+        "label": "tremere"
+      },
+      {
+        "value": "tzimisce",
+        "label": "tzimisce"
+      },
+      {
+        "value": "ventrue",
+        "label": "ventrue"
+      }
+    ]
+  },
+  {
+    "groupLabel": "Fallen & Progenitor Clans",
+    "options": [
+      {
+        "value": "cappadocian",
+        "label": "cappadocian"
+      }
+    ]
+  },
+  {
+    "groupLabel": "Bloodlines",
+    "options": [
+      {
+        "value": "ahrimanes",
+        "label": "ahrimanes"
+      },
+      {
+        "value": "akunanse",
+        "label": "akunanse"
+      },
+      {
+        "value": "baali",
+        "label": "baali"
+      },
+      {
+        "value": "blood_brothers",
+        "label": "blood brothers"
+      },
+      {
+        "value": "children_of_osiris",
+        "label": "children of osiris"
+      },
+      {
+        "value": "city_gangrel",
+        "label": "city Gangrel"
+      },
+      {
+        "value": "daughters_of_cacophony",
+        "label": "daughters of cacophony"
+      },
+      {
+        "value": "gargoyles",
+        "label": "gargoyles"
+      },
+      {
+        "value": "harbingers_of_skulls",
+        "label": "harbingers of skulls"
+      },
+      {
+        "value": "kiasyd",
+        "label": "kiasyd"
+      },
+      {
+        "value": "lamia",
+        "label": "lamia"
+      },
+      {
+        "value": "lhiannan",
+        "label": "lhiannan"
+      },
+      {
+        "value": "maeghar",
+        "label": "maeghar"
+      },
+      {
+        "value": "nagaraja",
+        "label": "nagaraja"
+      },
+      {
+        "value": "salubri",
+        "label": "salubri"
+      },
+      {
+        "value": "samedi",
+        "label": "samedi"
+      },
+      {
+        "value": "true_brujah",
+        "label": "true brujah"
+      }
+    ]
+  },
+  {
+    "groupLabel": "The Clanless",
+    "options": [
+      {
+        "value": "caitiff",
+        "label": "caitiff"
+      },
+      {
+        "value": "pander",
+        "label": "pander"
+      }
+    ]
+  },
+  {
+    "groupLabel": "Special Types",
+    "options": [
+      {
+        "value": "thin_blood",
+        "label": "thin-blood"
+      }
+    ]
+  }
+]
