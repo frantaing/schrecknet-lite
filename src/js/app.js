@@ -33,10 +33,10 @@ function populateFlatDropdown(selectName, jsonPath) {
     });
 }
 document.addEventListener('DOMContentLoaded', function () {
-  populateFlatDropdown('discipline', 'data/V20/disciplines.json');
-  populateFlatDropdown('background', 'data/V20/backgrounds.json');
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('discipline', '/data/V20/disciplines.json');
+  populateFlatDropdown('background', '/data/V20/backgrounds.json');
+  populateFlatDropdown('nature', '/data/V20/nature_demeanor.json');
+  populateFlatDropdown('demeanor', '/data/V20/nature_demeanor.json');
 });
 
 // DROPDOWN: Clan/Bloodlines json
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  const jsonPath = 'data/V20/paths.json';
+  const jsonPath = '/data/V20/paths.json';
 
   fetch(jsonPath)
     .then(response => {
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const meritsSelect = document.querySelector('select[name="merit"]');
   if (!meritsSelect) return;
 
-  const jsonPath = 'data/V20/merits.json';
+  const jsonPath = '/data/V20/merits.json';
 
   fetch(jsonPath)
     .then(response => {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const meritsSelect = document.querySelector('select[name="flaw"]');
   if (!meritsSelect) return;
 
-  const jsonPath = 'data/V20/flaws.json';
+  const jsonPath = '/data/V20/flaws.json';
 
   fetch(jsonPath)
     .then(response => {
