@@ -1,24 +1,23 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import { fileURLToPath } from 'url';
+// vite.config.js
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-  root: 'src',
-  plugins: [], // No Tailwind plugin needed - Tailwind will be processed via PostCSS
-  css: {
-    postcss: './postcss.config.js', // Make sure PostCSS config is found
-  },
+
+  base: '/schrecknet-lite/', 
+
+  // DO NOT set the 'root' option here. 
+  // The default is the project root, which is now correct.
+
   build: {
-    outDir: '../dist',
-    emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src', 'index.html'),
-        v5: resolve(__dirname, 'src', 'v5.html'),
-        v20: resolve(__dirname, 'src', 'v20.html'),
+        // These paths are relative to the project root
+        main: resolve(__dirname, 'index.html'),
+        v20: resolve(__dirname, 'v20.html'),
+        v5: resolve(__dirname, 'v5.html'),
       },
     },
   },
-});
+})
