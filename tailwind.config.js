@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './src/**/*.{html,js,jsx,ts,tsx}',
-    './src/**/*.css', // Also include CSS files in case you reference classes there
+    "./index.html",      // Scans the main index.html file in the root
+    "./v20.html",        // Scans the v20.html file in the root
+    "./src/**/*.{js,css}", // Scans your JS and CSS files inside src
   ],
   theme: {
     extend: {
