@@ -1,0 +1,141 @@
+/**
+ * FILE: app.css
+ * DESCRIPTION:
+ * - Defines optional styles
+ */
+
+/* =================================================================
+ # IMPORTS
+ ================================================================= */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Gloock&display=swap');
+
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================================================
+ # SHARED CLASSES
+ ================================================================= */
+
+/**
+ #
+ # GENERAL CLASSES
+ #
+ */
+
+/* Body */
+.body {
+  @apply overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary;
+}
+
+/* Red links */
+.link {
+  @apply text-accent hover:underline hover:underline-offset-4;
+}
+
+/* Buttons */
+.btn {
+  @apply bg-foreground px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
+}
+
+/* Span text */
+.span {
+  @apply text-accent group-hover:text-textPrimary transition;
+}
+
+/* Form heading for major sections (e.g. Basic, Attributes) */
+main h2 {
+  @apply font-heading text-4xl mb-7;
+}
+
+/* Form heading for subsections (e.g. Disciplines, Backgrounds) */
+main h3 {
+  @apply font-heading text-3xl mb-7;
+}
+
+/* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
+main h4 {
+  @apply font-heading text-2xl mb-5;
+}
+
+/**
+ #
+ # HEADER CLASSES
+ #
+ */
+
+/* Header/topbar */
+.header {
+  @apply bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10;
+}
+
+/* Header text */
+.header p {
+  @apply text-xs text-textSecondary mt-1 sm:text-base sm:mt-2;
+}
+
+/**
+ #
+ # FORM CLASSES
+ #
+ */
+
+/**
+ # FORM LABELS
+ */
+
+/* Form labels */
+.label {
+  @apply flex flex-col text-xs text-start text-textSecondary;
+}
+
+/**
+ # FORM ELEMENTS (INPUTS, TEXTFIELDS, DROPDOWNS, ETC)
+ */
+
+/* Form textfields */
+.textfield {
+  @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Custom attribute for [Abilities] */
+.textfield-custom {
+  @apply max-w-40 bg-foreground text-sm text-center text-textPrimary placeholder:text-textSecondary py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Form dropdowns */
+.dropdown {
+  @apply bg-foreground text-base mt-1 py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* Custom dropdown for [Disciplines]/[Backgrounds]/[Path] */
+.dropdown-custom {
+  @apply w-2/3 bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+}
+
+/* wrapper for dot + label (elements including dots) */
+.dots {
+  @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
+}
+
+/* Wrapper for dots */
+.dot-group {
+  @apply flex justify-center gap-3;
+}
+
+/* The dot itself */
+.dot {
+  @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover:border-accent hover:scale-[1.12];
+}
+
+/**
+ # FORM LAYOUT
+ */
+
+/* Dot-wrapper (label w/ dot-group) from 1 column to 3 */
+.dots-wrapper {
+  @apply grid gap-5 sm:grid-cols-1;
+}
