@@ -7,7 +7,10 @@ function populateFlatDropdown(selectName, jsonPath) {
   const selects = document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
 
-  fetch(jsonPath)
+  // VITE FIX: Construct the full, correct path for the deployed environment.
+  const fullPath = `${import.meta.env.BASE_URL}${jsonPath}`;
+
+  fetch(fullPath)
     .then(res => res.ok ? res.json() : Promise.reject(`HTTP error ${res.status}`))
     .then(data => {
       selects.forEach(select => {
@@ -44,12 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // # Also makes sure placeholder options are not overridden
 document.addEventListener('DOMContentLoaded', function () {
   const clanSelect = document.querySelector('select[name="clan"]');
+  if (!clanSelect) return;
 
-  if (!clanSelect) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/clan_bloodline.json';
+  // VITE FIX: Construct the full, correct path.
+  const jsonPath = `${import.meta.env.BASE_URL}data/V20/clan_bloodline.json`;
 
   fetch(jsonPath)
     .then(response => {
@@ -61,20 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => {
       data.forEach(group => {
         const optgroup = document.createElement('optgroup');
-
         optgroup.label = group.groupLabel;
-
         group.options.forEach(item => {
           const option = document.createElement('option');
           option.value = item.value;
           option.textContent = item.label;
-
           optgroup.appendChild(option);
         });
-
         clanSelect.appendChild(optgroup);
       });
-
       clanSelect.value = "";
     })
     .catch(error => {
@@ -88,12 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // # Also makes sure placeholder options are not overridden
 document.addEventListener('DOMContentLoaded', function () {
   const clanSelect = document.querySelector('select[name="paths"]');
+  if (!clanSelect) return;
 
-  if (!clanSelect) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/paths.json';
+  // VITE FIX: Construct the full, correct path.
+  const jsonPath = `${import.meta.env.BASE_URL}data/V20/paths.json`;
 
   fetch(jsonPath)
     .then(response => {
@@ -105,20 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => {
       data.forEach(group => {
         const optgroup = document.createElement('optgroup');
-
         optgroup.label = group.groupLabel;
-
         group.options.forEach(item => {
           const option = document.createElement('option');
           option.value = item.value;
           option.textContent = item.label;
-
           optgroup.appendChild(option);
         });
-
         clanSelect.appendChild(optgroup);
       });
-
       clanSelect.value = "";
     })
     .catch(error => {
@@ -134,7 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const meritsSelect = document.querySelector('select[name="merit"]');
   if (!meritsSelect) return;
 
-  const jsonPath = 'data/V20/merits.json';
+  // VITE FIX: Construct the full, correct path.
+  const jsonPath = `${import.meta.env.BASE_URL}data/V20/merits.json`;
 
   fetch(jsonPath)
     .then(response => {
@@ -145,19 +135,16 @@ document.addEventListener('DOMContentLoaded', function () {
       data.forEach(group => {
         const optgroup = document.createElement('optgroup');
         optgroup.label = group.groupLabel;
-
         group.options.forEach(item => {
           const option = document.createElement('option');
-          option.value = item.value; // for form submission
-          option.textContent = `${item.label} (${item.cost})`; // display includes cost
-          option.setAttribute('data-cost', item.cost); // for calculations later
+          option.value = item.value;
+          option.textContent = `${item.label} (${item.cost})`;
+          option.setAttribute('data-cost', item.cost);
           optgroup.appendChild(option);
         });
-
         meritsSelect.appendChild(optgroup);
       });
-
-      meritsSelect.value = ""; // reset to placeholder
+      meritsSelect.value = "";
     })
     .catch(error => {
       console.error('Error fetching merits data:', error);
@@ -172,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const meritsSelect = document.querySelector('select[name="flaw"]');
   if (!meritsSelect) return;
 
-  const jsonPath = 'data/V20/flaws.json';
+  // VITE FIX: Construct the full, correct path.
+  const jsonPath = `${import.meta.env.BASE_URL}data/V20/flaws.json`;
 
   fetch(jsonPath)
     .then(response => {
@@ -183,19 +171,16 @@ document.addEventListener('DOMContentLoaded', function () {
       data.forEach(group => {
         const optgroup = document.createElement('optgroup');
         optgroup.label = group.groupLabel;
-
         group.options.forEach(item => {
           const option = document.createElement('option');
-          option.value = item.value; // for form submission
-          option.textContent = `${item.label} (${item.cost})`; // display includes cost
-          option.setAttribute('data-cost', item.cost); // for calculations later
+          option.value = item.value;
+          option.textContent = `${item.label} (${item.cost})`;
+          option.setAttribute('data-cost', item.cost);
           optgroup.appendChild(option);
         });
-
         meritsSelect.appendChild(optgroup);
       });
-
-      meritsSelect.value = ""; // reset to placeholder
+      meritsSelect.value = "";
     })
     .catch(error => {
       console.error('Error fetching flaws data:', error);
@@ -207,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // # Dynamically styles the <select> 'placeholder'
 function initializeSelectElementStyling() {
   const allSelects = document.querySelectorAll('select');
-
   const updateSelectColor = (selectElement) => {
     if (selectElement.value === '') {
       selectElement.classList.add('text-textSecondary');
@@ -217,10 +201,8 @@ function initializeSelectElementStyling() {
       selectElement.classList.remove('text-textSecondary');
     }
   };
-
   allSelects.forEach(select => {
     updateSelectColor(select);
-
     select.addEventListener('change', (event) => {
       updateSelectColor(event.currentTarget);
     });
