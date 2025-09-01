@@ -2,17 +2,12 @@
   "name": "schrecknet-lite",
   "version": "1.0.0",
   "description": "Unofficial Vampire: The Masquerade V20/V5 interactive character sheet. Fan-made project using Tailwind CSS and vanilla JavaScript.",
+  "type": "module",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:css": "tailwindcss -i ./src/css/style.css -o ./public/dist/style.css --watch",
-    "watch:html": "nodemon --watch src -e html --exec \"npm run copy:assets\"",
-    "copy:assets": "copyfiles -u 1 \"src/**/*.{html,js,json}\" public && copyfiles index.html public",
-    "serve": "live-server public/",
-    "dev": "npm run build && concurrently \"npm run serve\" \"npm run watch:css\" \"npm run watch:html\"",
-    "clean": "rm -rf public",
-    "build:css": "tailwindcss -i ./src/css/style.css -o ./public/dist/style.css --minify",
-    "build": "npm run clean && npm run build:css && npm run copy:assets"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -27,11 +22,8 @@
   "homepage": "https://github.com/overuseofrem/schrecknet-lite#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "concurrently": "^9.2.0",
-    "copyfiles": "^2.4.1",
-    "live-server": "^1.2.0",
-    "nodemon": "^3.1.10",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "vite": "^7.1.3"
   }
 }

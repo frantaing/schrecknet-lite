@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    "./src/**/*.{html,css,js}",
-    "*.{html,css,js}"
+    './src/**/*.{html,js,jsx,ts,tsx}',
+    './src/**/*.css', // Also include CSS files in case you reference classes there
   ],
   theme: {
     extend: {
@@ -14,18 +14,14 @@ module.exports = {
         textPrimary: '#FFFFFF',
         textSecondary: '#4E4E4E',
       },
-      // Typography!
+      // Typography
       // Font Family
       fontFamily: {
-        heading: ['Gloock', 'serif'],   // All Headings
-        body: ['Geist Mono', 'monospace'], // Body Text
+        heading: ['Gloock', 'serif'],
+        body: ['Geist Mono', 'monospace'],
       },
-      // Font Colors
-      textColor: {
-        textSecondary: '#4E4E4E',
-        textPrimary: '#FFFFFF',
-        accent: '#951313',
-      },
+      // Font Colors - These should be in colors, not textColor
+      // textColor is deprecated in favor of colors
       // Border Radius
       borderRadius: {
         round: '5px',
@@ -33,4 +29,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
