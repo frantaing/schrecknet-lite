@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",      // Scans the main index.html file in the root
     "./v20.html",        // Scans the v20.html file in the root
+    "./v5.html",        // Scans the v20.html file in the root
     "./src/**/*.{js,css}", // Scans your JS and CSS files inside src
   ],
   theme: {
