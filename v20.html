@@ -176,10 +176,20 @@ V20 Character sheet
     <section>
 
       <h2>attributes</h2>
-      <div class="grid gap-9 sm:grid-cols-3">
+      <div class="grid gap-16 sm:grid-cols-3">
         <div>
           <!-- Physical -->
-          <h4>physical</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">physical <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
+
           <!-- Strength, Dexterity, Stamina -->
           <div class="dots-wrapper">
             <div class="dots">
@@ -216,7 +226,16 @@ V20 Character sheet
         </div>
         <div>
           <!-- Social -->
-          <h4>social</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">social <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
           <!-- Charisma, Manipulation, Appearance -->
           <div class="dots-wrapper">
             <div class="dots">
@@ -253,7 +272,16 @@ V20 Character sheet
         </div>
         <div>
           <!-- Mental -->
-          <h4>mental</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">mental <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
           <!-- Perception, Intelligence, Wits -->
           <div class="dots-wrapper">
             <div class="dots">
@@ -296,10 +324,19 @@ V20 Character sheet
     <section>
 
       <h2>abilities</h2>
-      <div class="grid gap-9 sm:grid-cols-3">
+      <div class="grid gap-16 sm:grid-cols-3">
         <div>
           <!-- Talents -->
-          <h4>talents</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">talents <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
           <!-- Alertness, Athletics, etc. -->
           <div class="dots-wrapper">
             <div class="dots">
@@ -417,7 +454,16 @@ V20 Character sheet
         </div>
         <div>
           <!-- Skills -->
-          <h4>skills</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">skills <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
           <!-- Animal Ken, Crafts, etc. -->
           <div class="dots-wrapper">
             <div class="dots">
@@ -534,7 +580,16 @@ V20 Character sheet
         </div>
         <div>
           <!-- Knowledges -->
-          <h4>knowledges</h4>
+          <div class="mb-7">
+            <h4 class="mb-3">knowledges <span></span></h4>
+            <select name="priority" class="dropdown-custom text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden></option>
+              <option value="">primary</option>
+              <option value="">secondary</option>
+              <option value="">tertiary</option>
+            </select> 
+          </div>
           <!-- Academics, Computer, etc. -->
            <div class="dots-wrapper">
             <div class="dots">
@@ -654,7 +709,7 @@ V20 Character sheet
     </section>
 
     <!-- [Disciplines + Backgrounds] -->
-    <section class="flex flex-col justify-center gap-9 sm:grid sm:grid-cols-2">
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
       <!--
       
       2 columns: Disciplines (right), Backgrounds (left)
@@ -804,7 +859,7 @@ V20 Character sheet
     </section>
 
     <!-- [Virtues + Humanity/Path/Willpower] -->
-    <section class="flex flex-col justify-center gap-9 sm:grid sm:grid-cols-2">
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
       <!--
       
       2 columns: Virtues (right), Humanity/Path/Willpower (left; stacked)
@@ -857,7 +912,7 @@ V20 Character sheet
           <!-- Path dropdown -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="paths" class="dropdown-custom text-textPrimary">
+              <select name="paths" class="dropdown-custom text-textPrimary mb-2">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>path</option>
                 <!-- Path options will be added here -->
@@ -907,7 +962,7 @@ V20 Character sheet
     </section>
 
     <!-- [Merits + Flaws] -->
-    <section class="flex flex-col justify-center gap-9 gap-9 sm:grid sm:grid-cols-2">
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
 
       <!-- [Merits] -->
       <div>

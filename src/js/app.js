@@ -227,3 +227,5 @@ function initializeSelectElementStyling() {
   });
 }
 document.addEventListener('DOMContentLoaded', initializeSelectElementStyling);
+
+// DROPDOWN: Priority, jut placeholder
