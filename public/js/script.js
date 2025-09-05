@@ -1,138 +1,47 @@
-// DROPDOWN: Generic Flat dropdowns
-// # Links 'nature_demeanor.json', 'disciplines.json' and 'backgrounds.json' to their dropdowns
-// # Also makes sure placeholder options are not overriden
+/**
+ * =================================================================
+ * SchreckNet Lite - V20 Character Sheet Logic
+ * =================================================================
+ */
+
+// UTILITY: Populates dropdowns that have a simple, flat list of options.
+// For: Nature, Demeanor, Disciplines, Backgrounds.
 function populateFlatDropdown(selectName, jsonPath) {
   const selects = document.querySelectorAll(`select[name="${selectName}"]`);
-  if (!selects.length) return;
+  if (!selects.length) return; // Exit if no select elements found
 
   fetch(jsonPath)
-    .then(res => res.ok ? res.json() : Promise.reject(`HTTP error ${res.status}`))
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
     .then(data => {
       selects.forEach(select => {
+        // Create and append an option for each item in the JSON data
         data.forEach(item => {
           const option = document.createElement('option');
           option.value = item.value;
           option.textContent = item.label;
-
-          // Optional metadata
-          if (item.cost) option.dataset.cost = item.cost;
-          if (item.dots) option.dataset.dots = item.dots;
-
           select.appendChild(option);
         });
-        select.value = ""; // keep placeholder
+        // Reset to the placeholder after populating
+        select.value = "";
       });
     })
-    .catch(err => {
-      console.error(err);
+    .catch(error => {
+      console.error(`Error fetching data for [${selectName}] from ${jsonPath}:`, error);
       selects.forEach(select => {
-        select.innerHTML = '<option value="">Error loading options</option>';
+        select.innerHTML = '<option value="">Error loading</option>';
       });
     });
 }
-document.addEventListener('DOMContentLoaded', function() {
-  populateFlatDropdown('discipline', 'data/V20/disciplines.json');
-  populateFlatDropdown('background', 'data/V20/backgrounds.json');
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
-});
 
-// DROPDOWN: Clan/Bloodlines json
-// # Links 'clan_bloodline.json' to the Clan dropdown
-// # Also makes sure placeholder options are not overridden
-document.addEventListener('DOMContentLoaded', function () {
-  const clanSelect = document.querySelector('select[name="clan"]');
-
-  if (!clanSelect) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/clan_bloodline.json';
-
-  fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(group => {
-        const optgroup = document.createElement('optgroup');
-
-        optgroup.label = group.groupLabel;
-
-        group.options.forEach(item => {
-          const option = document.createElement('option');
-          option.value = item.value;
-          option.textContent = item.label;
-
-          optgroup.appendChild(option);
-        });
-
-        clanSelect.appendChild(optgroup);
-      });
-
-      clanSelect.value = "";
-    })
-    .catch(error => {
-      console.error('Error fetching clan data:', error);
-      clanSelect.innerHTML = '<option value="">Error loading clans</option>';
-    });
-});
-
-// DROPDOWN: Paths json
-// # Links 'paths.json' to the Clan dropdown
-// # Also makes sure placeholder options are not overridden
-document.addEventListener('DOMContentLoaded', function () {
-  const clanSelect = document.querySelector('select[name="paths"]');
-
-  if (!clanSelect) {
-    return;
-  }
-
-  const jsonPath = 'data/V20/paths.json';
-
-  fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(group => {
-        const optgroup = document.createElement('optgroup');
-
-        optgroup.label = group.groupLabel;
-
-        group.options.forEach(item => {
-          const option = document.createElement('option');
-          option.value = item.value;
-          option.textContent = item.label;
-
-          optgroup.appendChild(option);
-        });
-
-        clanSelect.appendChild(optgroup);
-      });
-
-      clanSelect.value = "";
-    })
-    .catch(error => {
-      console.error('Error fetching clan data:', error);
-      clanSelect.innerHTML = '<option value="">Error loading clans</option>';
-    });
-});
-
-// DROPDOWN: Merits json
-// # Links 'merits.json' to the Merit dropdown
-// # Shows cost and stores it in a data attribute
-document.addEventListener('DOMContentLoaded', function () {
-  const meritsSelect = document.querySelector('select[name="merit"]');
-  if (!meritsSelect) return;
-
-  const jsonPath = 'data/V20/merits.json';
+// UTILITY: Populates dropdowns that have options grouped by <optgroup>.
+// For: Clans, Paths, Merits, Flaws.
+// The `optionFormatter`: customize how each <option> is created. = Merits & Flaws.
+function populateGroupedDropdown(selectName, jsonPath, optionFormatter) {
+  const select = document.querySelector(`select[name="${selectName}"]`);
+  if (!select) return; // Exit if the select element isn't found
 
   fetch(jsonPath)
     .then(response => {
@@ -140,73 +49,44 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(data => {
+      // Loop through each group in the JSON (e.g., "Clans", "Bloodlines")
       data.forEach(group => {
         const optgroup = document.createElement('optgroup');
         optgroup.label = group.groupLabel;
 
+        // Loop through the options within that group
         group.options.forEach(item => {
           const option = document.createElement('option');
-          option.value = item.value; // for form submission
-          option.textContent = `${item.label} (${item.cost})`; // display includes cost
-          option.setAttribute('data-cost', item.cost); // for calculations later
+          option.value = item.value;
+
+          // If a custom formatter function is provided, use it.
+          // Otherwise, use the default behavior.
+          if (optionFormatter && typeof optionFormatter === 'function') {
+            optionFormatter(option, item);
+          } else {
+            option.textContent = item.label; // Default formatting
+          }
+
           optgroup.appendChild(option);
         });
 
-        meritsSelect.appendChild(optgroup);
+        select.appendChild(optgroup);
       });
-
-      meritsSelect.value = ""; // reset to placeholder
+      // Reset to the placeholder after populating
+      select.value = "";
     })
     .catch(error => {
-      console.error('Error fetching merits data:', error);
-      meritsSelect.innerHTML = '<option value="">Error loading merits</option>';
+      console.error(`Error fetching data for [${selectName}] from ${jsonPath}:`, error);
+      select.innerHTML = '<option value="">Error loading</option>';
     });
-});
+}
 
-// DROPDOWN: Flaws json
-// # Links 'flaws.json' to the Flaw dropdown
-// # Shows cost and stores it in a data attribute
-document.addEventListener('DOMContentLoaded', function () {
-  const meritsSelect = document.querySelector('select[name="flaw"]');
-  if (!meritsSelect) return;
-
-  const jsonPath = 'data/V20/flaws.json';
-
-  fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(group => {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = group.groupLabel;
-
-        group.options.forEach(item => {
-          const option = document.createElement('option');
-          option.value = item.value; // for form submission
-          option.textContent = `${item.label} (${item.cost})`; // display includes cost
-          option.setAttribute('data-cost', item.cost); // for calculations later
-          optgroup.appendChild(option);
-        });
-
-        meritsSelect.appendChild(optgroup);
-      });
-
-      meritsSelect.value = ""; // reset to placeholder
-    })
-    .catch(error => {
-      console.error('Error fetching flaws data:', error);
-      meritsSelect.innerHTML = '<option value="">Error loading flaws</option>';
-    });
-});
-
-// DROPDOWN: Text color
-// # Dynamically styles the <select> 'placeholder'
+// UTILITY: Dynamically styles <select> elements to show a placeholder color.
 function initializeSelectElementStyling() {
   const allSelects = document.querySelectorAll('select');
 
   const updateSelectColor = (selectElement) => {
+    // Tailwind Classes
     if (selectElement.value === '') {
       selectElement.classList.add('text-textSecondary');
       selectElement.classList.remove('text-textPrimary');
@@ -217,11 +97,43 @@ function initializeSelectElementStyling() {
   };
 
   allSelects.forEach(select => {
+    // Set initial color on page load
     updateSelectColor(select);
-
+    // Add event listener to update color on change
     select.addEventListener('change', (event) => {
       updateSelectColor(event.currentTarget);
     });
   });
 }
-document.addEventListener('DOMContentLoaded', initializeSelectElementStyling);
+
+// --- Main Application Setup ---
+// This single event listener is the entry point for all initialization code.
+document.addEventListener('DOMContentLoaded', () => {
+
+  // A custom formatter function specifically for Merits and Flaws.
+  // It adds the cost to the text and stores it in a data attribute.
+  const meritFlawFormatter = (optionElement, itemData) => {
+    optionElement.textContent = `${itemData.label} (${itemData.cost})`;
+    optionElement.dataset.cost = itemData.cost; // for calculations later
+  };
+
+  // --- Populate All Dropdowns ---
+  // Flat Dropdowns
+  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('discipline', 'data/V20/disciplines.json');
+  populateFlatDropdown('background', 'data/V20/backgrounds.json');
+
+  // Grouped Dropdowns
+  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json');
+  populateGroupedDropdown('paths', 'data/V20/paths.json');
+  populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter);
+  populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter);
+
+  // --- Initialize UI Behavior ---
+  initializeSelectElementStyling();
+
+  // Add dot-handling initialization here later!
+  // e.g., initializeDotInteractivity();
+
+});
