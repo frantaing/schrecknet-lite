@@ -4,7 +4,7 @@ Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 👉 [Github Pages link](https://overuseofrem.github.io/schrecknet-lite/)
-> 🥞 *WIP! So far, finished styling the V20 sheet. I will be working on the interactivity next...*
+> 🥞 *WIP! Deployment is paused! This live site is outdated!*
 
 <br>
 
@@ -139,7 +139,7 @@ Currently in **early development**: building out the UI and laying the groundwor
 
 #### **V5 Character Sheet**
 
--   [ ] Create a placeholder page for the V5 sheet.
+-   [x] Create a placeholder page for the V5 sheet.
 -   [ ] Build the main HTML structure for the V5 sheet.
 -   [ ] Style the V5 sheet layout.
 
