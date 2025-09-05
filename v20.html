@@ -181,12 +181,11 @@ V20 Character sheet
           <!-- Physical -->
           <div class="mb-7">
             <h4 class="mb-3">physical <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <select name="attribute-priority" class="dropdown-custom">
+                <option value="" disabled selected hidden></option>
+                <option value="primary">primary</option>
+                <option value="secondary">secondary</option>
+                <option value="tertiary">tertiary</option>
             </select> 
           </div>
 
@@ -228,12 +227,11 @@ V20 Character sheet
           <!-- Social -->
           <div class="mb-7">
             <h4 class="mb-3">social <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
+            <select name="attribute-priority" class="dropdown-custom">
               <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
             </select> 
           </div>
           <!-- Charisma, Manipulation, Appearance -->
@@ -274,12 +272,11 @@ V20 Character sheet
           <!-- Mental -->
           <div class="mb-7">
             <h4 class="mb-3">mental <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
+            <select name="attribute-priority" class="dropdown-custom">
               <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
             </select> 
           </div>
           <!-- Perception, Intelligence, Wits -->
@@ -329,12 +326,11 @@ V20 Character sheet
           <!-- Talents -->
           <div class="mb-7">
             <h4 class="mb-3">talents <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
+            <select name="ability-priority" class="dropdown-custom">
               <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
             </select> 
           </div>
           <!-- Alertness, Athletics, etc. -->
@@ -456,12 +452,11 @@ V20 Character sheet
           <!-- Skills -->
           <div class="mb-7">
             <h4 class="mb-3">skills <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
+            <select name="ability-priority" class="dropdown-custom">
               <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
             </select> 
           </div>
           <!-- Animal Ken, Crafts, etc. -->
@@ -582,12 +577,11 @@ V20 Character sheet
           <!-- Knowledges -->
           <div class="mb-7">
             <h4 class="mb-3">knowledges <span></span></h4>
-            <select name="priority" class="dropdown-custom text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
+            <select name="ability-priority" class="dropdown-custom">
               <option value="" disabled selected hidden></option>
-              <option value="">primary</option>
-              <option value="">secondary</option>
-              <option value="">tertiary</option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
             </select> 
           </div>
           <!-- Academics, Computer, etc. -->
@@ -716,7 +710,7 @@ V20 Character sheet
       
       -->
       <div>
-        <h3>disciplines</h3>
+        <h3>disciplines <span>3</span></h3>
         <!-- 
         
         Powers / dots 
@@ -728,7 +722,7 @@ V20 Character sheet
           <!-- Discipline dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <select name="discipline" class="dropdown-custom">
               <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>discipline</option>
               <!-- Discipline options will be added here -->
@@ -744,7 +738,7 @@ V20 Character sheet
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <select name="discipline" class="dropdown-custom">
               <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>discipline</option>
                 <!-- Discipline options will be added here -->
@@ -760,7 +754,7 @@ V20 Character sheet
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="discipline" class="dropdown-custom text-textPrimary">
+              <select name="discipline" class="dropdown-custom">
               <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>discipline</option>
                 <!-- Discipline options will be added here -->
@@ -786,7 +780,7 @@ V20 Character sheet
       </div>
 
       <div>
-        <h3>backgrounds</h3>
+        <h3>backgrounds <span>5</span></h3>
         <!-- 
         
         Resources, Allies, Contacts, etc. 
@@ -798,7 +792,7 @@ V20 Character sheet
           <!-- Backgrounds dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown-custom text-textPrimary">
+              <select name="background" class="dropdown-custom">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>background</option>
                 <!-- Backgrounds options will be added here -->
@@ -814,7 +808,7 @@ V20 Character sheet
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown-custom text-textPrimary">
+              <select name="background" class="dropdown-custom">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>background</option>
                 <!-- Backgrounds options will be added here -->
@@ -830,7 +824,7 @@ V20 Character sheet
           </div>
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="background" class="dropdown-custom text-textPrimary">
+              <select name="background" class="dropdown-custom">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>background</option>
                 <!-- Background options will be added here -->
@@ -866,7 +860,7 @@ V20 Character sheet
       
       -->
       <div>
-        <h3>virtues</h3>
+        <h3>virtues <span>7</span></h3>
         <!-- Conscience, Self-Control, Courage -->
         <div class="dots-wrapper">
             <div class="dots">
@@ -912,7 +906,7 @@ V20 Character sheet
           <!-- Path dropdown -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="paths" class="dropdown-custom text-textPrimary mb-2">
+              <select name="paths" class="dropdown-custom mb-2">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>path</option>
                 <!-- Path options will be added here -->
@@ -970,7 +964,7 @@ V20 Character sheet
         <div class="flex flex-col items-center gap-3">
 
           <!-- Merit dropdown(s) -->
-          <select name="merit" class="dropdown-custom text-textPrimary">
+          <select name="merit" class="dropdown-custom">
               <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>merit</option>
               <!-- Merit options will be added here -->
@@ -992,7 +986,7 @@ V20 Character sheet
         <div class="flex flex-col items-center gap-3">
 
           <!-- Merit dropdown(s) -->
-          <select name="flaw" class="dropdown-custom text-textPrimary">
+          <select name="flaw" class="dropdown-custom">
               <!-- Do not include [text-textPrimary in shared class!] -->
               <option value="" disabled selected hidden>flaw</option>
               <!-- Flaw options will be added here -->
