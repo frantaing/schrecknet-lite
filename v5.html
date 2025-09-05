@@ -1,11 +1,21 @@
 <!--
 
 ================================================
-V5 Character sheet
+V20 Character sheet
 ================================================
 
 # Contains:
-# - The placeholder character sheet for V5
+# - The character sheet for V20
+#   > Basics (Player, Chronicle, Name, Concept, Nature, Demeanor)
+#   > Clan (Clan/Bloodline, Sire, Generation)
+#   > dotss (Physical, Social, Mental)
+#   > Abilities (Talents, Skills, Knowledges)
+#   > Disciplines
+#   > Backgrounds
+#   > Virtues & Humanity/Path & Willpower
+#   > Merits & Flaws
+
+# !! REMEMBER TO MAKE SHARED CLASSES FOR FORM-STUFF/LABELS/ETC !!
 
 -->
 
@@ -16,7 +26,7 @@ V5 Character sheet
   <!-- Meta tags for character set and viewport -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SchreckNet Lite - V5 Character Sheet</title>
+  <title>SchreckNet Lite - V20 Character Sheet</title>
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -60,6 +70,942 @@ V5 Character sheet
 
   <!-- Main container -->
   <main class="flex flex-col gap-20 text-center py-32">
+
+    <!-- [Basics + Clan] -->
+    <section class="flex flex-col gap-9">
+
+      <!-- Basics -->
+      <div>
+        <!--
+        
+        Forms
+        - Input text: Player, Name, Chronicle, Concept
+        - Dropdown: Nature, Demeanor
+        
+        = 2 rows: Player/Name/Chronicle, Concept/Nature/Demeanor
+
+        -->
+        <h2>basics</h2>
+        <div class="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3">
+
+          <!-- Player -->
+          <label class="label">player
+            <input type="text" name="playerName" placeholder="player" class="textfield">
+          </label>
+
+          <!-- Name -->
+          <label class="label">name
+            <input type="text" name="characterName" placeholder="name" class="textfield">
+          </label>
+
+          <!-- Chronicle -->
+          <label class="label">chronicle
+            <input type="text" name="chronicle" placeholder="chronicle" class="textfield">
+          </label>
+
+          <!-- Concept -->
+          <label class="label">concept
+            <input type="text" name="concept" placeholder="concept" class="textfield">
+          </label>
+
+          <!-- Nature -->
+          <label class="label">nature
+            <select name="nature" class="dropdown text-textPrimary">
+              <option value="" disabled selected hidden>nature</option>
+              <!-- Options will be added here by JavaScript -->
+            </select>
+          </label>
+
+          <!-- Demeanor -->
+          <label class="label">demeanor
+            <select name="demeanor" class="dropdown text-textPrimary">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>demeanor</option>
+            </select>
+          </label>
+
+        </div>
+      </div>
+
+      <!-- Clan -->
+      <div class="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-3">
+        <!--
+        
+        Forms
+        - Input text: Sire
+        - Dropdown: Clan, Generation
+        
+        = 1 row: Sire/Clan/Generation
+
+        -->
+        <label class="label">sire
+          <input type="text" name="sire" placeholder="sire" class="textfield">
+        </label>
+
+        <!-- Clans/Bloodlines -->
+        <label class="label">clan
+          <select name="clan" class="dropdown text-textPrimary">
+            <option value="" disabled selected hidden>clan</option>
+            <!-- Clans and Bloodlines will be added here by the new script -->
+          </select>
+        </label>
+
+        <!-- Generation -->
+        <label class="label">generation
+          <select name="generation" class="dropdown">
+            <option value="" disabled selected hidden>generation</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+            <option value="11th">11th</option>
+            <option value="12th">12th</option>
+            <option value="13th">13th</option>
+            <option value="14th">14th</option>
+            <option value="15th">15th</option>
+          </select>
+        </label>
+      </div>
+
+    </section>
+
+    <!-- [Attributes] -->
+    <section>
+
+      <h2>attributes</h2>
+      <div class="grid gap-16 sm:grid-cols-3">
+        <div>
+          <!-- Physical -->
+          <div class="mb-7">
+            <h4 class="mb-3">physical <span></span></h4>
+              <select name="attribute-priority" class="dropdown-custom">
+                <option value="" disabled selected hidden></option>
+                <option value="primary">primary</option>
+                <option value="secondary">secondary</option>
+                <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+
+          <!-- Strength, Dexterity, Stamina -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <span>strength</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>dexerity</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>stamina</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- Social -->
+          <div class="mb-7">
+            <h4 class="mb-3">social <span></span></h4>
+            <select name="attribute-priority" class="dropdown-custom">
+              <option value="" disabled selected hidden></option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+          <!-- Charisma, Manipulation, Appearance -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <span>charisma</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>manipulation</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>appearance</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- Mental -->
+          <div class="mb-7">
+            <h4 class="mb-3">mental <span></span></h4>
+            <select name="attribute-priority" class="dropdown-custom">
+              <option value="" disabled selected hidden></option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+          <!-- Perception, Intelligence, Wits -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <span>perception</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>intelligence</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>wits</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- [Abilities] -->
+    <section>
+
+      <h2>abilities</h2>
+      <div class="grid gap-16 sm:grid-cols-3">
+        <div>
+          <!-- Talents -->
+          <div class="mb-7">
+            <h4 class="mb-3">talents <span></span></h4>
+            <select name="ability-priority" class="dropdown-custom">
+              <option value="" disabled selected hidden></option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+          <!-- Alertness, Athletics, etc. -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <span>alertness</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>athletics</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>awareness</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>brawl</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>empathy</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>expression</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>intimidation</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>leadership</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>streetwise</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>subterfuge</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <input type="text" name="custom_talent" placeholder="custom talent" class="textfield-custom">
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div>
+          <!-- Skills -->
+          <div class="mb-7">
+            <h4 class="mb-3">skills <span></span></h4>
+            <select name="ability-priority" class="dropdown-custom">
+              <option value="" disabled selected hidden></option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+          <!-- Animal Ken, Crafts, etc. -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <span>animal ken</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>crafts</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>drive</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>etiquette</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>firearms</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>larceny</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>melee</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>performance</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>stealth</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>survival</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <input type="text" name="custom_skill" placeholder="custom skill" class="textfield-custom">
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- Knowledges -->
+          <div class="mb-7">
+            <h4 class="mb-3">knowledges <span></span></h4>
+            <select name="ability-priority" class="dropdown-custom">
+              <option value="" disabled selected hidden></option>
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="tertiary">tertiary</option>
+            </select> 
+          </div>
+          <!-- Academics, Computer, etc. -->
+           <div class="dots-wrapper">
+            <div class="dots">
+              <span>academics</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>computer</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>finance</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>investigation</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>law</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>medicine</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>occult</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>politics</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>science</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>technology</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <input type="text" name="custom_knowledge" placeholder="custom knowledge" class="textfield-custom">
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- [Disciplines + Backgrounds] -->
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+      <!--
+      
+      2 columns: Disciplines (right), Backgrounds (left)
+      
+      -->
+      <div>
+        <h3>disciplines <span>3</span></h3>
+        <!-- 
+        
+        Powers / dots 
+        = filled in forms; dropdown for Caitiff
+
+        -->
+        <div class="flex flex-col gap-3">
+
+          <!-- Discipline dropdowns -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="discipline" class="dropdown-custom">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
+              <!-- Discipline options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="discipline" class="dropdown-custom">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
+                <!-- Discipline options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="discipline" class="dropdown-custom">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>discipline</option>
+                <!-- Discipline options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button to add discipline -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">discipline</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <h3>backgrounds <span>5</span></h3>
+        <!-- 
+        
+        Resources, Allies, Contacts, etc. 
+        = Textfields
+        
+        -->
+        <div class="flex flex-col gap-3">
+
+          <!-- Backgrounds dropdowns -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="background" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>background</option>
+                <!-- Backgrounds options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="background" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>background</option>
+                <!-- Backgrounds options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="background" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>background</option>
+                <!-- Background options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button to add background -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">background</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- [Virtues + Humanity/Path/Willpower] -->
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+      <!--
+      
+      2 columns: Virtues (right), Humanity/Path/Willpower (left; stacked)
+      
+      -->
+      <div>
+        <h3>virtues <span>7</span></h3>
+        <!-- Conscience, Self-Control, Courage -->
+        <div class="dots-wrapper">
+            <div class="dots">
+              <span>conscience/conviction</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>self-control/instinct</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div class="dots">
+              <span>courage</span>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- [Humanity/Path & Willpower] -->
+      <div class="flex flex-col gap-9">
+
+        <div>
+          <h3>humanity & path</h3>
+        <div class="flex flex-col gap-3">
+
+          <!-- Path dropdown -->
+          <div class="dots-wrapper">
+            <div class="dots">
+              <select name="paths" class="dropdown-custom mb-2">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>path</option>
+                <!-- Path options will be added here -->
+              </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+        <div>
+          <h3>willpower</h3>
+          
+          <div class="dots-wrapper">
+            <div class="dots">
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- [Merits + Flaws] -->
+    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+
+      <!-- [Merits] -->
+      <div>
+        <h3>merits</h3>
+        <div class="flex flex-col items-center gap-3">
+
+          <!-- Merit dropdown(s) -->
+          <select name="merit" class="dropdown-custom">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>merit</option>
+              <!-- Merit options will be added here -->
+          </select>
+
+          <!-- Button to add merit -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">merit</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- [Flaws] -->
+      <div>
+        <h3>flaws</h3>
+
+        <div class="flex flex-col items-center gap-3">
+
+          <!-- Merit dropdown(s) -->
+          <select name="flaw" class="dropdown-custom">
+              <!-- Do not include [text-textPrimary in shared class!] -->
+              <option value="" disabled selected hidden>flaw</option>
+              <!-- Flaw options will be added here -->
+          </select>
+
+          <!-- Button to add flaw -->
+          <div>
+            <a href="" class="btn group text-xs">
+              add new <span class="span">flaw</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    </div>
 
   </main>
 
