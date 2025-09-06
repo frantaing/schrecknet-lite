@@ -155,60 +155,64 @@ function initializeAttributeLogic() {
    * Now includes checks to prevent spending points if a priority isn't selected
    * or if no points are remaining.
    */
+/**
+   * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
+   * Now calculates the specific COST of a click and checks if there are enough points.
+   */
   const handleDotClick = (event) => {
     const clickedDot = event.target;
-    // Only proceed if a dot was actually clicked
-    if (!clickedDot.matches('.dot')) return;
+    if (!clickedDot.matches('.dot')) return; // Exit if not a dot
 
     const section = clickedDot.closest('.grid.gap-16 > div');
     const dropdown = section.querySelector('select[name="attribute-priority"]');
     const priority = dropdown.value;
-    
-    // --- NEW: Guard Clause #1 ---
-    // Prevent any interaction if a priority hasn't been chosen for this category.
-    if (!priority) {
-      console.warn("Cannot assign dots: Please select a priority (Primary, Secondary, Tertiary) for this attribute group first.");
-      // Optional: Can add indicator? like flashing the dropdown border.
-      return; 
-    }
-    
-    // --- NEW: Guard Clause #2 ---
-    // Check if the user is trying to SPEND a point when none are left.
-    // (It's always okay to UN-fill a dot, as that gives a point back).
-    const isTryingToSpend = !clickedDot.classList.contains('filled');
-    if (isTryingToSpend) {
-      const allocatedPoints = priorityPoints[priority] || 0;
-      const basePoints = 3;
-      const filledDots = section.querySelectorAll('.dot.filled').length;
-      const spentPoints = filledDots - basePoints;
-      const remainingPoints = allocatedPoints - spentPoints;
 
-      if (remainingPoints <= 0) {
-        console.warn("Cannot assign dot: No points left to spend in this category.");
-        return; // Exit the function, preventing the dot from being filled.
-      }
+    // --- Guard Clause #1: Priority Check (Unchanged) ---
+    if (!priority) {
+      console.warn("Cannot assign dots: Please select a priority first.");
+      return;
     }
-    
-    // --- Original Logic (no changes below this line) ---
+
     const dotGroup = clickedDot.closest('.dot-group');
     const allDotsInGroup = Array.from(dotGroup.querySelectorAll('.dot'));
     const clickedIndex = allDotsInGroup.indexOf(clickedDot);
 
-    // Determine the new "score" for this attribute row.
-    const isLastFilledDot = clickedDot.classList.contains('filled') && (allDotsInGroup[clickedIndex + 1] === undefined || !allDotsInGroup[clickedIndex + 1].classList.contains('filled'));
-    const newScore = isLastFilledDot ? clickedIndex : clickedIndex + 1;
+    // --- NEW: Smarter Guard Clause #2: Cost Calculation ---
+    // This check only applies if we are trying to FILL dots (a spending action).
+    const isTryingToSpend = !clickedDot.classList.contains('filled');
+    if (isTryingToSpend) {
+      // 1. Calculate the cost of THIS specific click.
+      const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
+      const newScore = clickedIndex + 1;
+      const cost = newScore - currentScore;
 
-    // Update the visuals for all dots in this group based on the new score
+      // 2. Calculate how many points are remaining in the ENTIRE category.
+      const allocatedPoints = priorityPoints[priority] || 0;
+      const basePoints = 3; // Total freebie dots for the category
+      const filledDotsInCategory = section.querySelectorAll('.dot.filled').length;
+      const spentPoints = filledDotsInCategory - basePoints;
+      const remainingPoints = allocatedPoints - spentPoints;
+
+      // 3. The crucial check: Do we have enough points to cover the cost?
+      if (cost > remainingPoints) {
+        console.warn(`Action denied: This costs ${cost} points, but you only have ${remainingPoints} left.`);
+        return; // Exit the function, preventing the spend.
+      }
+    }
+
+    // --- Original Logic (proceeds if guards are passed) ---
+    const isLastFilledDot = clickedDot.classList.contains('filled') && (allDotsInGroup[clickedIndex + 1] === undefined || !allDotsInGroup[clickedIndex + 1].classList.contains('filled'));
+    const newScoreToSet = isLastFilledDot ? clickedIndex : clickedIndex + 1;
+
     allDotsInGroup.forEach((dot, index) => {
       // The first dot (index 0) is the freebie point and cannot be unfilled.
-      if (index < newScore || index === 0) {
+      if (index < newScoreToSet || index === 0) {
         dot.classList.add('filled');
       } else {
         dot.classList.remove('filled');
       }
     });
-    
-    // After changing dots, update the main counters
+
     updateCounters();
   };
 
