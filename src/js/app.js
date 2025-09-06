@@ -150,18 +150,51 @@ function initializeAttributeLogic() {
   /**
    * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
    */
+  /**
+   * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
+   * Now includes checks to prevent spending points if a priority isn't selected
+   * or if no points are remaining.
+   */
   const handleDotClick = (event) => {
     const clickedDot = event.target;
     // Only proceed if a dot was actually clicked
     if (!clickedDot.matches('.dot')) return;
 
+    const section = clickedDot.closest('.grid.gap-16 > div');
+    const dropdown = section.querySelector('select[name="attribute-priority"]');
+    const priority = dropdown.value;
+    
+    // --- NEW: Guard Clause #1 ---
+    // Prevent any interaction if a priority hasn't been chosen for this category.
+    if (!priority) {
+      console.warn("Cannot assign dots: Please select a priority (Primary, Secondary, Tertiary) for this attribute group first.");
+      // Optional: Can add indicator? like flashing the dropdown border.
+      return; 
+    }
+    
+    // --- NEW: Guard Clause #2 ---
+    // Check if the user is trying to SPEND a point when none are left.
+    // (It's always okay to UN-fill a dot, as that gives a point back).
+    const isTryingToSpend = !clickedDot.classList.contains('filled');
+    if (isTryingToSpend) {
+      const allocatedPoints = priorityPoints[priority] || 0;
+      const basePoints = 3;
+      const filledDots = section.querySelectorAll('.dot.filled').length;
+      const spentPoints = filledDots - basePoints;
+      const remainingPoints = allocatedPoints - spentPoints;
+
+      if (remainingPoints <= 0) {
+        console.warn("Cannot assign dot: No points left to spend in this category.");
+        return; // Exit the function, preventing the dot from being filled.
+      }
+    }
+    
+    // --- Original Logic (no changes below this line) ---
     const dotGroup = clickedDot.closest('.dot-group');
     const allDotsInGroup = Array.from(dotGroup.querySelectorAll('.dot'));
     const clickedIndex = allDotsInGroup.indexOf(clickedDot);
 
     // Determine the new "score" for this attribute row.
-    // If clicking the currently last filled dot, unfill it (score decreases by 1).
-    // Otherwise, the new score is the index of the clicked dot + 1.
     const isLastFilledDot = clickedDot.classList.contains('filled') && (allDotsInGroup[clickedIndex + 1] === undefined || !allDotsInGroup[clickedIndex + 1].classList.contains('filled'));
     const newScore = isLastFilledDot ? clickedIndex : clickedIndex + 1;
 
