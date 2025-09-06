@@ -149,14 +149,6 @@ function initializeAttributeLogic() {
 
   /**
    * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
-   */
-  /**
-   * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
-   * Now includes checks to prevent spending points if a priority isn't selected
-   * or if no points are remaining.
-   */
-/**
-   * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
    * Now calculates the specific COST of a click and checks if there are enough points.
    */
   const handleDotClick = (event) => {
@@ -178,7 +170,7 @@ function initializeAttributeLogic() {
     const clickedIndex = allDotsInGroup.indexOf(clickedDot);
 
     // --- NEW: Smarter Guard Clause #2: Cost Calculation ---
-    // This check only applies if we are trying to FILL dots (a spending action).
+    // This check only applies if we're trying to FILL dots (a spending action).
     const isTryingToSpend = !clickedDot.classList.contains('filled');
     if (isTryingToSpend) {
       // 1. Calculate the cost of THIS specific click.
@@ -217,24 +209,56 @@ function initializeAttributeLogic() {
   };
 
   /**
-   * Manages the priority dropdowns to ensure a priority can only be selected once.
+   * Resets all dots in a given attribute section to their default state
+   * (only the first "freebie" dot remains filled).
    */
-  const handlePriorityChange = () => {
-    const selectedValues = Array.from(priorityDropdowns)
-                                .map(select => select.value)
-                                .filter(value => value !== '');
-
-    priorityDropdowns.forEach(select => {
-      Array.from(select.options).forEach(option => {
-        if (option.value !== '' && selectedValues.includes(option.value) && select.value !== option.value) {
-          option.disabled = true;
+  const resetDotsForSection = (sectionElement) => {
+    const dotGroups = sectionElement.querySelectorAll('.dot-group');
+    dotGroups.forEach(group => {
+      const allDots = group.querySelectorAll('.dot');
+      allDots.forEach((dot, index) => {
+        // The first dot (index 0) is the base point and should remain filled.
+        if (index === 0) {
+          dot.classList.add('filled');
         } else {
-          option.disabled = false;
+          // All other dots are reset.
+          dot.classList.remove('filled');
         }
       });
     });
-    
-    // After changing priorities, update the main counters
+  };
+
+  /**
+   * Manages priority dropdowns. If a selected priority is already in use by
+   * another dropdown, it "steals" the priority, resetting the other dropdown.
+   */
+  const handlePriorityChange = (event) => {
+    const changedSelect = event.target;
+    const newValue = changedSelect.value;
+
+    // If the user selected the empty option, we don't need to do anything else.
+    if (!newValue) {
+      updateCounters();
+      return;
+    }
+
+    // Find if another dropdown is already using the selected priority.
+    priorityDropdowns.forEach(select => {
+      // Only care about OTHER dropdowns that have the SAME value.
+      if (select !== changedSelect && select.value === newValue) {
+        // Reset this one
+        console.log(`Priority "${newValue}" was taken from "${select.closest('.grid.gap-16 > div').querySelector('h4').textContent}". Resetting it.`);
+        
+        // Reset its value to the placeholder
+        select.value = ""; 
+
+        // Get its parent section and reset all the dots within it
+        const sectionToReset = select.closest('.grid.gap-16 > div');
+        resetDotsForSection(sectionToReset);
+      }
+    });
+
+    // Finally, update all counters to reflect the changes.
     updateCounters();
   };
 
