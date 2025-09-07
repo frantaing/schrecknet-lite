@@ -69,7 +69,7 @@ V20 Character sheet
   </header>
 
   <!-- Main container -->
-  <main class="flex flex-col gap-20 text-center py-32">
+  <main class="flex flex-col gap-20 text-center py-32 sm:mx-4">
 
     <!-- [Basics + Clan] -->
     <section class="flex flex-col gap-9">
@@ -769,6 +769,27 @@ V20 Character sheet
             </div>
           </div>
 
+          <!-- New Disciplines here! -->
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div>
+                <select name="discipline" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>discipline</option>
+                  <!-- Discipline options will be added here -->
+                </select>
+                <button class="btn-minus">-</button>
+              </div>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
           <!-- Button to add discipline -->
           <div>
             <a href="" class="btn group text-xs">
@@ -829,6 +850,28 @@ V20 Character sheet
                 <option value="" disabled selected hidden>background</option>
                 <!-- Background options will be added here -->
               </select>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Backgrounds here! -->
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div>
+                <select name="background" class="dropdown-custom">
+                  <!-- Do not include [text-textPrimary in shared class!] -->
+                  <option value="" disabled selected hidden>background</option>
+                  <!-- Background options will be added here -->
+                </select>
+                <button class="btn-minus">-</button>          
+              </div>
+
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -964,11 +1007,24 @@ V20 Character sheet
         <div class="flex flex-col items-center gap-3">
 
           <!-- Merit dropdown(s) -->
-          <select name="merit" class="dropdown-custom">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>merit</option>
-              <!-- Merit options will be added here -->
-          </select>
+          <div>
+            <select name="merit" class="dropdown-custom sm:w-3/4">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>merit</option>
+                <!-- Merit options will be added here -->
+            </select>
+            <button class="btn-minus">-</button>
+          </div>
+
+          <!-- New Merits here! -->
+          <div>
+            <select name="merit" class="dropdown-custom sm:w/4">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>flaw</option>
+                <!-- Flaw options will be added here -->
+            </select>
+            <button class="btn-minus">-</button>
+          </div>
 
           <!-- Button to add merit -->
           <div>
@@ -986,11 +1042,26 @@ V20 Character sheet
         <div class="flex flex-col items-center gap-3">
 
           <!-- Merit dropdown(s) -->
-          <select name="flaw" class="dropdown-custom">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>flaw</option>
-              <!-- Flaw options will be added here -->
-          </select>
+            <div>
+            <select name="flaw" class="dropdown-custom sm:w-3/4">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>flaw</option>
+                <!-- Flaw options will be added here -->
+            </select>
+            <button class="btn-minus">-</button>         
+          </div>
+
+          
+          <!-- New flaws here! -->
+          <div>
+            <select name="flaw" class="dropdown-custom sm:w/4">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>flaw</option>
+                <!-- Flaw options will be added here -->
+            </select>
+            <button class="btn-minus">-</button>
+          </div>
+
 
           <!-- Button to add flaw -->
           <div>

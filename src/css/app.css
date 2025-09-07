@@ -36,7 +36,7 @@
   @apply text-accent hover:underline hover:underline-offset-4;
 }
 
-/* Buttons */
+/* Buttons (general) */
 .btn {
   @apply bg-foreground px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
 }
@@ -121,6 +121,10 @@ main h4 {
   @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
 }
 
+.dots-custom {
+  @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary hover:text-textSecondary;
+}
+
 /* Wrapper for dots */
 .dot-group {
   @apply flex justify-center gap-3;
@@ -134,6 +138,11 @@ main h4 {
 /* FIlled-in dot */
 .dot.filled {
   @apply border-textPrimary bg-textPrimary;
+}
+
+/* 'Remove' button for Disciplins/Backgrounds/Mertis/Flaws */
+.btn-minus {
+  @apply bg-foreground py-1 px-2 rounded-round hover:text-textPrimary hover:bg-accent transition transform hover:scale-[1.02];
 }
 
 /**
