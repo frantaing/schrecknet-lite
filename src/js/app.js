@@ -107,183 +107,123 @@ function initializeSelectElementStyling() {
 }
 
 // LOGIC: Dot-Attributes
-function initializeAttributeLogic() {
-  const attributeSections = document.querySelectorAll('.grid.gap-16 > div');
-  const priorityDropdowns = document.querySelectorAll('select[name="attribute-priority"]');
+/**
+ * =================================================================
+ * REUSABLE DOT INTERACTIVITY LOGIC
+ * =================================================================
+ * This function can initialize any section that uses dots and priorities
+ * (e.g., Attributes, Abilities).
+ *
+ * @param {string} sectionId - The ID of the main <section> element.
+ * @param {string} prioritySelectName - The 'name' attribute of the priority dropdowns.
+ * @param {object} priorityPointsConfig - An object mapping priorities to point values.
+ * @param {number} baseDotsPerItem - The number of "free" dots each item starts with (e.g., 1 for Attributes, 0 for Abilities).
+ */
+function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPointsConfig, baseDotsPerItem) {
+  const mainSection = document.getElementById(sectionId);
+  if (!mainSection) return; // Exit if the section doesn't exist on the page
 
-  const priorityPoints = {
-    primary: 7,
-    secondary: 5,
-    tertiary: 3,
-  };
+  const categorySections = mainSection.querySelectorAll('.grid > div');
+  const priorityDropdowns = mainSection.querySelectorAll(`select[name="${prioritySelectName}"]`);
 
-  /**
-   * Updates the displayed point counters for all three attribute categories.
-   */
-  const updateCounters = () => {
-    attributeSections.forEach(section => {
-      const dropdown = section.querySelector('select[name="attribute-priority"]');
-      const counterSpan = section.querySelector('h4 span');
-      
-      const priority = dropdown.value;
-      const allocatedPoints = priorityPoints[priority] || 0;
-
-      // Each of the 3 attributes starts with 1 free dot.
-      const basePoints = 3; 
-      const filledDots = section.querySelectorAll('.dot.filled').length;
-      const spentPoints = filledDots - basePoints;
-      
-      const remainingPoints = allocatedPoints - spentPoints;
-
-      // Update the UI
-      counterSpan.textContent = `(${remainingPoints}/${allocatedPoints})`;
-
-      // Optional: Add styling for when points are overspent
-      if (remainingPoints < 0) {
-        counterSpan.classList.add('text-accent');
-      } else {
-        counterSpan.classList.remove('text-accent');
-      }
-    });
-  };
-
-  /**
-   * Handles a click on any dot. Fills/unfills dots in a "waterfall" manner.
-   * Now calculates the specific COST of a click and checks if there are enough points.
-   */
-  const handleDotClick = (event) => {
-    const clickedDot = event.target;
-    if (!clickedDot.matches('.dot')) return; // Exit if not a dot
-
-    const section = clickedDot.closest('.grid.gap-16 > div');
-    const dropdown = section.querySelector('select[name="attribute-priority"]');
-    const priority = dropdown.value;
-
-    // --- Guard Clause #1: Priority Check (Unchanged) ---
-    if (!priority) {
-      console.warn("Cannot assign dots: Please select a priority first.");
-      return;
-    }
-
-    const dotGroup = clickedDot.closest('.dot-group');
-    const allDotsInGroup = Array.from(dotGroup.querySelectorAll('.dot'));
-    const clickedIndex = allDotsInGroup.indexOf(clickedDot);
-
-    // --- NEW: Smarter Guard Clause #2: Cost Calculation ---
-    // This check only applies if we're trying to FILL dots (a spending action).
-    const isTryingToSpend = !clickedDot.classList.contains('filled');
-    if (isTryingToSpend) {
-      // 1. Calculate the cost of THIS specific click.
-      const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
-      const newScore = clickedIndex + 1;
-      const cost = newScore - currentScore;
-
-      // 2. Calculate how many points are remaining in the ENTIRE category.
-      const allocatedPoints = priorityPoints[priority] || 0;
-      const basePoints = 3; // Total freebie dots for the category
-      const filledDotsInCategory = section.querySelectorAll('.dot.filled').length;
-      const spentPoints = filledDotsInCategory - basePoints;
-      const remainingPoints = allocatedPoints - spentPoints;
-
-      // 3. The crucial check: Do we have enough points to cover the cost?
-      if (cost > remainingPoints) {
-        console.warn(`Action denied: This costs ${cost} points, but you only have ${remainingPoints} left.`);
-        return; // Exit the function, preventing the spend.
-      }
-    }
-
-    // --- Original Logic (proceeds if guards are passed) ---
-    const isLastFilledDot = clickedDot.classList.contains('filled') && (allDotsInGroup[clickedIndex + 1] === undefined || !allDotsInGroup[clickedIndex + 1].classList.contains('filled'));
-    const newScoreToSet = isLastFilledDot ? clickedIndex : clickedIndex + 1;
-
-    allDotsInGroup.forEach((dot, index) => {
-      // The first dot (index 0) is the freebie point and cannot be unfilled.
-      if (index < newScoreToSet || index === 0) {
-        dot.classList.add('filled');
-      } else {
-        dot.classList.remove('filled');
-      }
-    });
-
-    updateCounters();
-  };
-
-  /**
-   * Resets all dots in a given attribute section to their default state
-   * (only the first "freebie" dot remains filled).
-   */
-  const resetDotsForSection = (sectionElement) => {
-    const dotGroups = sectionElement.querySelectorAll('.dot-group');
+  const resetDotsForSection = (categoryElement) => {
+    const dotGroups = categoryElement.querySelectorAll('.dot-group');
     dotGroups.forEach(group => {
-      const allDots = group.querySelectorAll('.dot');
-      allDots.forEach((dot, index) => {
-        // The first dot (index 0) is the base point and should remain filled.
-        if (index === 0) {
+      group.querySelectorAll('.dot').forEach((dot, index) => {
+        // Use the baseDotsPerItem parameter to determine the default state
+        if (index < baseDotsPerItem) {
           dot.classList.add('filled');
         } else {
-          // All other dots are reset.
           dot.classList.remove('filled');
         }
       });
     });
   };
 
-  /**
-   * Manages priority dropdowns. If a selected priority is already in use by
-   * another dropdown, it "steals" the priority, resetting the other dropdown.
-   */
+  const updateCounters = () => {
+    categorySections.forEach(category => {
+      const dropdown = category.querySelector(`select[name="${prioritySelectName}"]`);
+      const counterSpan = category.querySelector('h4 span');
+      const priority = dropdown.value;
+      const allocatedPoints = priorityPointsConfig[priority] || 0;
+      
+      const totalBasePoints = category.querySelectorAll('.dot-group').length * baseDotsPerItem;
+      const filledDots = category.querySelectorAll('.dot.filled').length;
+      const spentPoints = filledDots - totalBasePoints;
+      const remainingPoints = allocatedPoints - spentPoints;
+
+      counterSpan.textContent = `(${remainingPoints}/${allocatedPoints})`;
+      counterSpan.classList.toggle('text-accent', remainingPoints < 0);
+    });
+  };
+  
   const handlePriorityChange = (event) => {
     const changedSelect = event.target;
     const newValue = changedSelect.value;
-
-    // If the user selected the empty option, we don't need to do anything else.
     if (!newValue) {
       updateCounters();
       return;
     }
-
-    // Find if another dropdown is already using the selected priority.
     priorityDropdowns.forEach(select => {
-      // Only care about OTHER dropdowns that have the SAME value.
       if (select !== changedSelect && select.value === newValue) {
-        // Reset this one
-        console.log(`Priority "${newValue}" was taken from "${select.closest('.grid.gap-16 > div').querySelector('h4').textContent}". Resetting it.`);
-        
-        // Reset its value to the placeholder
-        select.value = ""; 
-
-        // Get its parent section and reset all the dots within it
-        const sectionToReset = select.closest('.grid.gap-16 > div');
+        select.value = "";
+        const sectionToReset = select.closest('.grid > div');
         resetDotsForSection(sectionToReset);
       }
     });
-
-    // Finally, update all counters to reflect the changes.
     updateCounters();
   };
 
-  // --- INITIALIZATION ---
-  
-  // 1. Set up initial dot states and add click listeners
-  attributeSections.forEach(section => {
-    const dotGroups = section.querySelectorAll('.dot-group');
-    dotGroups.forEach(group => {
-      const firstDot = group.querySelector('.dot');
-      // Hard-code the first dot as filled by default
-      if (firstDot) {
-        firstDot.classList.add('filled');
+  const handleDotClick = (event) => {
+    const clickedDot = event.target;
+    if (!clickedDot.matches('.dot')) return;
+
+    const category = clickedDot.closest('.grid > div');
+    const dropdown = category.querySelector(`select[name="${prioritySelectName}"]`);
+    const priority = dropdown.value;
+
+    if (!priority) {
+      console.warn("Cannot assign dots: Please select a priority first.");
+      return;
+    }
+    
+    const dotGroup = clickedDot.closest('.dot-group');
+    if (isTryingToSpend(clickedDot)) {
+      const cost = calculateClickCost(dotGroup, clickedDot);
+      const remainingPoints = calculateRemainingPoints(category, priority);
+      if (cost > remainingPoints) {
+        console.warn(`Action denied: Costs ${cost}, but only ${remainingPoints} left.`);
+        return;
       }
-    });
-    // Use event delegation for efficiency
-    section.addEventListener('click', handleDotClick);
-  });
+    }
+    
+    updateDotsInGroup(dotGroup, clickedDot);
+    updateCounters();
+  };
+
+  // Helper sub-functions for handleDotClick
+  const isTryingToSpend = (dot) => !dot.classList.contains('filled');
+  const calculateClickCost = (group, dot) => (Array.from(group.children).indexOf(dot) + 1) - group.querySelectorAll('.filled').length;
+  const calculateRemainingPoints = (category, priority) => {
+    const allocated = priorityPointsConfig[priority] || 0;
+    const totalBase = category.querySelectorAll('.dot-group').length * baseDotsPerItem;
+    const filled = category.querySelectorAll('.dot.filled').length;
+    return allocated - (filled - totalBase);
+  };
+  const updateDotsInGroup = (group, dot) => {
+    const dots = Array.from(group.children);
+    const clickIndex = dots.indexOf(dot);
+    const isLastFilled = dot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
+    const newScore = isLastFilled ? clickIndex : clickIndex + 1;
+    dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
+  };
   
-  // 2. Add change listeners to dropdowns
-  priorityDropdowns.forEach(select => {
-    select.addEventListener('change', handlePriorityChange);
+  // --- INITIALIZATION ---
+  categorySections.forEach(category => {
+    resetDotsForSection(category); // Set initial state
+    category.addEventListener('click', handleDotClick);
   });
-  
-  // 3. Perform an initial counter update on page load
+  priorityDropdowns.forEach(select => select.addEventListener('change', handlePriorityChange));
   updateCounters();
 }
 
@@ -313,10 +253,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Initialize UI Behavior ---
   initializeSelectElementStyling();
-
-  // Add dot-handling initialization here later!
   
-  // Dot Interactivity
-  initializeAttributeLogic(); // Attributes
+  // --- Initialize Dot-Based Sections ---
+
+  // Configuration for Attributes
+  initializeDotCategoryLogic(
+    'attributes-section',
+    'attribute-priority',
+    { primary: 7, secondary: 5, tertiary: 3 },
+    1 // Attributes start with 1 free dot
+  );
+
+  // Configuration for Abilities
+  initializeDotCategoryLogic(
+    'abilities-section',
+    'ability-priority',
+    { primary: 13, secondary: 9, tertiary: 5 },
+    0 // Abilities start with 0 free dots
+  );
 
 });
