@@ -119,7 +119,7 @@ function initializeSelectElementStyling() {
  * @param {object} priorityPointsConfig - An object mapping priorities to point values.
  * @param {number} baseDotsPerItem - The number of "free" dots each item starts with (e.g., 1 for Attributes, 0 for Abilities).
  */
-function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPointsConfig, baseDotsPerItem) {
+function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPointsConfig, baseDotsPerItem, maxDotsPerItem) {
   const mainSection = document.getElementById(sectionId);
   if (!mainSection) return; // Exit if the section doesn't exist on the page
 
@@ -176,19 +176,34 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 
   const handleDotClick = (event) => {
     const clickedDot = event.target;
-    if (!clickedDot.matches('.dot')) return;
+    if (!clickedDot.matches('.dot')) return; // Exit if not a dot
 
     const category = clickedDot.closest('.grid > div');
     const dropdown = category.querySelector(`select[name="${prioritySelectName}"]`);
     const priority = dropdown.value;
+    const dotGroup = clickedDot.closest('.dot-group');
 
+    // Guard Clause #1: Priority Check
     if (!priority) {
       console.warn("Cannot assign dots: Please select a priority first.");
       return;
     }
-    
-    const dotGroup = clickedDot.closest('.dot-group');
+
     if (isTryingToSpend(clickedDot)) {
+      // --- NEW GUARD CLAUSE #2: MAX DOTS PER ITEM RULE ---
+      const dotsInGroup = Array.from(dotGroup.children);
+      const clickedDotIndex = dotsInGroup.indexOf(clickedDot);
+      const newScore = clickedDotIndex + 1; // The score the user is trying to set
+
+      // The maxDotsPerItem parameter is a number. If it's provided and the new
+      // score exceeds it, we deny the action and exit the function.
+      if (maxDotsPerItem && newScore > maxDotsPerItem) {
+        console.warn(`Action denied: Abilities cannot be raised above ${maxDotsPerItem} during character creation.`);
+        return; // STOP
+      }
+      // --- END NEW GUARD CLAUSE ---
+
+      // Guard Clause #3: Do we have enough points for the cost?
       const cost = calculateClickCost(dotGroup, clickedDot);
       const remainingPoints = calculateRemainingPoints(category, priority);
       if (cost > remainingPoints) {
@@ -197,6 +212,7 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
       }
     }
     
+    // If all guards are passed, proceed with the update
     updateDotsInGroup(dotGroup, clickedDot);
     updateCounters();
   };
@@ -261,7 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'attributes-section',
     'attribute-priority',
     { primary: 7, secondary: 5, tertiary: 3 },
-    1 // Attributes start with 1 free dot
+    1, // Attributes start with 1 free dot
+    5 // Attributes can be raised up to 5 (max)
   );
 
   // Configuration for Abilities
@@ -269,7 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'abilities-section',
     'ability-priority',
     { primary: 13, secondary: 9, tertiary: 5 },
-    0 // Abilities start with 0 free dots
+    0, // Abilities start with 0 free dots
+    3 // V20: Abilities can only be raised up to 3 with initial points
   );
 
 });
