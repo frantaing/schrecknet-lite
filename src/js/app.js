@@ -248,17 +248,28 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   const handlePriorityChange = (event) => {
     const changedSelect = event.target;
     const newValue = changedSelect.value;
-    if (!newValue) {
-      updateCounters();
-      return;
+    const currentCategorySection = changedSelect.closest('.grid > div');
+
+    // 1. ALWAYS reset the dots for the category whose priority was just changed.
+    // This cleans the slate before any other logic runs.
+    resetDotsForSection(currentCategorySection);
+
+    // 2. If a new priority was selected (i.e., not the empty placeholder),
+    // check if we need to "steal" it from another category.
+    if (newValue) {
+      priorityDropdowns.forEach(select => {
+        // Find another dropdown that was using the same priority
+        if (select !== changedSelect && select.value === newValue) {
+          // Reset its value to the placeholder
+          select.value = ""; 
+          // And reset its dots as well
+          const sectionToReset = select.closest('.grid > div');
+          resetDotsForSection(sectionToReset);
+        }
+      });
     }
-    priorityDropdowns.forEach(select => {
-      if (select !== changedSelect && select.value === newValue) {
-        select.value = "";
-        const sectionToReset = select.closest('.grid > div');
-        resetDotsForSection(sectionToReset);
-      }
-    });
+
+    // 3. Finally, update all counters to reflect the new state.
     updateCounters();
   };
 
