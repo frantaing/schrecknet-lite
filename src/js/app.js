@@ -5,80 +5,58 @@
  */
 
 // UTILITY: Populates dropdowns that have a simple, flat list of options.
-// For: Nature, Demeanor, Disciplines, Backgrounds.
+// NOW FIXED: Populates ALL dropdowns with the given name.
 function populateFlatDropdown(selectName, jsonPath) {
   const selects = document.querySelectorAll(`select[name="${selectName}"]`);
-  if (!selects.length) return; // Exit if no select elements found
+  if (!selects.length) return;
 
   fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
+      // Create the options string once
+      const optionsHTML = data.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
+      
+      // Apply to all found select elements
       selects.forEach(select => {
-        // Create and append an option for each item in the JSON data
-        data.forEach(item => {
-          const option = document.createElement('option');
-          option.value = item.value;
-          option.textContent = item.label;
-          select.appendChild(option);
-        });
-        // Reset to the placeholder after populating
+        select.insertAdjacentHTML('beforeend', optionsHTML);
         select.value = "";
       });
     })
-    .catch(error => {
-      console.error(`Error fetching data for [${selectName}] from ${jsonPath}:`, error);
-      selects.forEach(select => {
-        select.innerHTML = '<option value="">Error loading</option>';
-      });
-    });
+    .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
 // UTILITY: Populates dropdowns that have options grouped by <optgroup>.
-// For: Clans, Paths, Merits, Flaws.
-// The `optionFormatter`: customize how each <option> is created. = Merits & Flaws.
+// NOW FIXED: Populates ALL dropdowns with the given name.
 function populateGroupedDropdown(selectName, jsonPath, optionFormatter) {
-  const select = document.querySelector(`select[name="${selectName}"]`);
-  if (!select) return; // Exit if the select element isn't found
+  const selects = document.querySelectorAll(`select[name="${selectName}"]`);
+  if (!selects.length) return;
 
   fetch(jsonPath)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-      // Loop through each group in the JSON (e.g., "Clans", "Bloodlines")
-      data.forEach(group => {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = group.groupLabel;
-
-        // Loop through the options within that group
-        group.options.forEach(item => {
-          const option = document.createElement('option');
-          option.value = item.value;
-
-          // If a custom formatter function is provided, use it.
-          // Otherwise, use the default behavior.
-          if (optionFormatter && typeof optionFormatter === 'function') {
-            optionFormatter(option, item);
+      // Build the full HTML string for all optgroups and options once
+      const groupsHTML = data.map(group => {
+        const optionsHTML = group.options.map(item => {
+          // Create a temporary option to use the formatter
+          const tempOption = document.createElement('option');
+          tempOption.value = item.value;
+          if (optionFormatter) {
+            optionFormatter(tempOption, item);
           } else {
-            option.textContent = item.label; // Default formatting
+            tempOption.textContent = item.label;
           }
-
-          optgroup.appendChild(option);
-        });
-
-        select.appendChild(optgroup);
+          return tempOption.outerHTML;
+        }).join('');
+        return `<optgroup label="${group.groupLabel}">${optionsHTML}</optgroup>`;
+      }).join('');
+      
+      // Apply to all found select elements
+      selects.forEach(select => {
+        select.insertAdjacentHTML('beforeend', groupsHTML);
+        select.value = "";
       });
-      // Reset to the placeholder after populating
-      select.value = "";
     })
-    .catch(error => {
-      console.error(`Error fetching data for [${selectName}] from ${jsonPath}:`, error);
-      select.innerHTML = '<option value="">Error loading</option>';
-    });
+    .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
 // UTILITY: Dynamically styles <select> elements to show a placeholder color.
