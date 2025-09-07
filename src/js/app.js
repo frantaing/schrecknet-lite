@@ -121,7 +121,7 @@ function initializeDynamicRows(config) {
     // Set the class from the config
     newRow.className = config.rowWrapperClass;
     newRow.innerHTML = config.templateHTML;
-    rowContainer.appendChild(newRow);
+    rowContainer.insertBefore(newRow, addButton.parentElement); // Insert row BEFORE/ABOVE add-button
 
     if (config.postAddCallback) {
       config.postAddCallback(newRow);
