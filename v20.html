@@ -703,12 +703,15 @@ V20 Character sheet
     </section>
 
     <!-- [Disciplines + Backgrounds] -->
-    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+    <section id="disciplines-backgrounds-section" class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
       <!--
       
       2 columns: Disciplines (right), Backgrounds (left)
       
       -->
+
+      <!-- === BACKGROUNDS === -->
+
       <div>
         <h3>disciplines <span>3</span></h3>
         <!-- 
@@ -717,9 +720,9 @@ V20 Character sheet
         = filled in forms; dropdown for Caitiff
 
         -->
-        <div class="flex flex-col gap-3">
+        <div id="disciplines-container" class="flex flex-col gap-3">
 
-          <!-- Discipline dropdowns -->
+          <!-- Initial non-removalable Discipline dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
               <select name="discipline" class="dropdown-custom">
@@ -769,36 +772,19 @@ V20 Character sheet
             </div>
           </div>
 
-          <!-- New Disciplines here! -->
-          <div class="dots-wrapper">
-            <div class="dots-custom">
-              <div>
-                <select name="discipline" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>discipline</option>
-                  <!-- Discipline options will be added here -->
-                </select>
-                <button class="btn-minus">-</button>
-              </div>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
+          <!-- New, dynamically added disciplines will appear here -->
 
           <!-- Button to add discipline -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-discipline-btn" class="btn group text-xs">
               add new <span class="span">discipline</span>
-            </a>
+            </button>
           </div>
 
         </div>
       </div>
+
+      <!-- === BACKGROUNDS === -->
 
       <div>
         <h3>backgrounds <span>5</span></h3>
@@ -808,9 +794,9 @@ V20 Character sheet
         = Textfields
         
         -->
-        <div class="flex flex-col gap-3">
+        <div id="backgrounds-container" class="flex flex-col gap-3">
 
-          <!-- Backgrounds dropdowns -->
+          <!-- Initial non-removalable Backgrounds dropdowns -->
           <div class="dots-wrapper">
             <div class="dots">
               <select name="background" class="dropdown-custom">
@@ -860,33 +846,13 @@ V20 Character sheet
             </div>
           </div>
 
-          <!-- New Backgrounds here! -->
-          <div class="dots-wrapper">
-            <div class="dots-custom">
-              <div>
-                <select name="background" class="dropdown-custom">
-                  <!-- Do not include [text-textPrimary in shared class!] -->
-                  <option value="" disabled selected hidden>background</option>
-                  <!-- Background options will be added here -->
-                </select>
-                <button class="btn-minus">-</button>          
-              </div>
-
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
+          <!-- New, dynamically added backgrounds will appear here -->
 
           <!-- Button to add background -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-background-btn" class="btn group text-xs">
               add new <span class="span">background</span>
-            </a>
+            </button>
           </div>
 
         </div>
@@ -999,15 +965,15 @@ V20 Character sheet
     </section>
 
     <!-- [Merits + Flaws] -->
-    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+    <section id="merits-flaws-section" class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
 
       <!-- [Merits] -->
       <div>
         <h3>merits</h3>
-        <div class="flex flex-col items-center gap-3">
+        <div id="merits-container" class="flex flex-col items-center gap-3">
 
           <!-- Merit dropdown(s) -->
-          <div>
+          <div id="merit-flaw-wrapper">
             <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>merit</option>
@@ -1017,7 +983,7 @@ V20 Character sheet
           </div>
 
           <!-- New Merits here! -->
-          <div>
+          <div id="merit-flaw-wrapper">
             <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>merit</option>
@@ -1028,9 +994,9 @@ V20 Character sheet
 
           <!-- Button to add merit -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-merit-btn" class="btn group text-xs">
               add new <span class="span">merit</span>
-            </a>
+            </button>
           </div>
 
         </div>
@@ -1039,10 +1005,10 @@ V20 Character sheet
       <div>
         <h3>flaws</h3>
 
-        <div class="flex flex-col items-center gap-3">
+        <div id="flaws-container" class="flex flex-col items-center gap-3">
 
-          <!-- Merit dropdown(s) -->
-            <div>
+          <!-- Flaw dropdown(s) -->
+          <div class="merit-flaw-wrapper">
             <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>flaw</option>
@@ -1051,23 +1017,13 @@ V20 Character sheet
             <button class="btn-minus">-</button>         
           </div>
 
-          
           <!-- New flaws here! -->
-          <div>
-            <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>flaw</option>
-                <!-- Flaw options will be added here -->
-            </select>
-            <button class="btn-minus">-</button>
-          </div>
-
 
           <!-- Button to add flaw -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-flaw-btn" class="btn group text-xs">
               add new <span class="span">flaw</span>
-            </a>
+            </button>
           </div>
 
         </div>

@@ -84,6 +84,51 @@ function initializeSelectElementStyling() {
   });
 }
 
+// UTILITY: DYNAMIC DROPDOWN ROWS
+/**
+ * =================================================================
+ * DYNAMIC ROW MANAGEMENT UTILITY
+ * =================================================================
+ * Initializes a section to allow adding and removing of templated rows.
+ *
+ * @param {object} config - The configuration object for the section.
+ * @param {string} config.sectionId - The ID of the parent section.
+ * @param {string} config.addButtonSelector - The selector for the "add new" button.
+ * @param {string} config.rowContainerSelector - The selector for the container to add rows to.
+ * @param {string} config.templateHTML - The inner HTML of a single row to be added.
+ * @param {function} [config.postAddCallback] - An optional function to run after a row is added.
+ */
+function initializeDynamicRows(config) {
+  const section = document.getElementById(config.sectionId);
+  if (!section) return;
+
+  const addButton = section.querySelector(config.addButtonSelector);
+  const rowContainer = section.querySelector(config.rowContainerSelector);
+
+  if (!addButton || !rowContainer) return;
+
+  rowContainer.addEventListener('click', (event) => {
+    if (event.target.matches('.btn-minus')) {
+      // Find the closest parent wrapper to remove
+      // The wrapper class is now explicitly defined in the config
+      event.target.closest(config.rowWrapperSelector).remove();
+    }
+  });
+
+  addButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const newRow = document.createElement('div');
+    // Set the class from the config
+    newRow.className = config.rowWrapperClass;
+    newRow.innerHTML = config.templateHTML;
+    rowContainer.appendChild(newRow);
+
+    if (config.postAddCallback) {
+      config.postAddCallback(newRow);
+    }
+  });
+}
+
 // LOGIC: Clan/Discipline Linking
 /**
  * =================================================================
@@ -324,50 +369,118 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 // This single event listener is the entry point for all initialization code.
 document.addEventListener('DOMContentLoaded', () => {
 
-  // A custom formatter function specifically for Merits and Flaws.
-  // It adds the cost to the text and stores it in a data attribute.
+  // --- Initialize UI Behavior ---
+  initializeSelectElementStyling();
+
+  // --- Initialize Dot-Based Sections ---
+  initializeDotCategoryLogic(/* ... a ... */);
+  initializeDotCategoryLogic(/* ... b ... */);
+
+  // --- Initialize Linked & Dynamic Dropdowns ---
+  initializeClanDisciplineLogic();
+
+  // --- Initialize Dynamic Add/Remove Rows ---
+
+  // A custom formatter for Merits and Flaws
   const meritFlawFormatter = (optionElement, itemData) => {
     optionElement.textContent = `${itemData.label} (${itemData.cost})`;
-    optionElement.dataset.cost = itemData.cost; // for calculations later
+    optionElement.dataset.cost = itemData.cost;
   };
 
-  // --- Populate All Dropdowns ---
-  // Flat Dropdowns
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
+  // 1. Define the HTML templates for new rows
+  const disciplineTemplate = `
+    <div class="dots-custom">
+      <div>
+        <select name="discipline" class="dropdown-custom"></select>
+        <button class="btn-minus">-</button>
+      </div>
+      <div class="dot-group">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>`;
+
+  const backgroundTemplate = `
+    <div class="dots-custom">
+      <div>
+        <select name="background" class="dropdown-custom"></select>
+        <button class="btn-minus">-</button>
+      </div>
+      <div class="dot-group">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>`;
+  
+  const meritTemplate = `
+    <select name="merit" class="dropdown-custom sm:w-3/4"></select>
+    <button class="btn-minus">-</button>`;
+
+  const flawTemplate = `
+    <select name="flaw" class="dropdown-custom sm:w-3/4"></select>
+    <button class="btn-minus">-</button>`;
+
+  // 2. Define a generic callback to populate and style new dropdowns
+  const setupNewDropdown = (newRow, selectName, jsonPath, isGrouped, formatter) => {
+    const newSelect = newRow.querySelector(`select[name="${selectName}"]`);
+    if (newSelect) {
+      if (isGrouped) {
+        populateGroupedDropdown(selectName, jsonPath, formatter); // This will only populate the new one
+      } else {
+        populateFlatDropdown(selectName, jsonPath);
+      }
+      initializeSelectElementStyling(); // Re-apply styling to the new select
+    }
+  };
+
+  // 3. Define configurations for each section
+  const dynamicRowConfigs = [
+    {
+      sectionId: 'disciplines-backgrounds-section',
+      addButtonSelector: '#add-discipline-btn',
+      rowContainerSelector: '#disciplines-container',
+      rowWrapperClass: 'dots-wrapper',          // Explicit class for the wrapper
+      rowWrapperSelector: '.dots-wrapper',      // Explicit selector for removal
+      templateHTML: disciplineTemplate,
+      postAddCallback: (newRow) => setupNewDropdown(newRow, 'discipline', 'data/V20/disciplines.json', false, null)
+    },
+    {
+      sectionId: 'disciplines-backgrounds-section',
+      addButtonSelector: '#add-background-btn',
+      rowContainerSelector: '#backgrounds-container',
+      rowWrapperClass: 'dots-wrapper',
+      rowWrapperSelector: '.dots-wrapper',
+      templateHTML: backgroundTemplate,
+      postAddCallback: (newRow) => setupNewDropdown(newRow, 'background', 'data/V20/backgrounds.json', false, null)
+    },
+    {
+      sectionId: 'merits-flaws-section',
+      addButtonSelector: '#add-merit-btn',
+      rowContainerSelector: '#merits-container',
+      rowWrapperClass: 'merit-flaw-wrapper',
+      rowWrapperSelector: '.merit-flaw-wrapper',
+      templateHTML: meritTemplate,
+      postAddCallback: (newRow) => setupNewDropdown(newRow, 'merit', 'data/V20/merits.json', true, meritFlawFormatter)
+    },
+    {
+      sectionId: 'merits-flaws-section',
+      addButtonSelector: '#add-flaw-btn',
+      rowContainerSelector: '#flaws-container',
+      rowWrapperClass: 'merit-flaw-wrapper',
+      rowWrapperSelector: '.merit-flaw-wrapper',
+      templateHTML: flawTemplate,
+      postAddCallback: (newRow) => setupNewDropdown(newRow, 'flaw', 'data/V20/flaws.json', true, meritFlawFormatter)
+    }
+  ];
+
+  // 4. Initialize all of them!
+  dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+
+  // 5. Populate the initial, hard-coded dropdowns
   populateFlatDropdown('discipline', 'data/V20/disciplines.json');
   populateFlatDropdown('background', 'data/V20/backgrounds.json');
-
-  // Grouped Dropdowns
   populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json');
   populateGroupedDropdown('paths', 'data/V20/paths.json');
   populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter);
   populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter);
-
-  // --- Initialize UI Behavior ---
-  initializeSelectElementStyling();
-
-  // --- Initialize Clan/Discipline Linking
-  initializeClanDisciplineLogic();
-  
-  // --- Initialize Dot-Based Sections ---
-
-  // Configuration for Attributes
-  initializeDotCategoryLogic(
-    'attributes-section',
-    'attribute-priority',
-    { primary: 7, secondary: 5, tertiary: 3 },
-    1, // Attributes start with 1 free dot
-    5 // Attributes can be raised up to 5 (max)
-  );
-
-  // Configuration for Abilities
-  initializeDotCategoryLogic(
-    'abilities-section',
-    'ability-priority',
-    { primary: 13, secondary: 9, tertiary: 5 },
-    0, // Abilities start with 0 free dots
-    3 // V20: Abilities can only be raised up to 3 with initial points
-  );
-
+  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
 });
