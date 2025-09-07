@@ -106,6 +106,94 @@ function initializeSelectElementStyling() {
   });
 }
 
+// LOGIC: Clan/Discipline Linking
+/**
+ * =================================================================
+ * CLAN AND DISCIPLINE LOGIC
+ * =================================================================
+ * Links the Clan dropdown to the three Discipline dropdowns, automatically
+ * populating them with the selected clan's in-clan disciplines.
+ */
+function initializeClanDisciplineLogic() {
+  const clanSelect = document.querySelector('select[name="clan"]');
+  const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
+
+  // Exit if the necessary dropdowns aren't on the page.
+  if (!clanSelect || !disciplineSelects.length) return;
+
+  // We will fetch the data once and store it here for quick access.
+  let clanDisciplinesMap = {};
+  let allDisciplinesList = [];
+
+  // Use Promise.all to fetch both data files at the same time for efficiency.
+  Promise.all([
+    fetch('data/V20/clan_bloodline_disciplines.json').then(res => res.json()),
+    fetch('data/V20/disciplines.json').then(res => res.json())
+  ])
+  .then(([clanDisciplineData, allDisciplinesData]) => {
+    // The clan data is an array with one big object, so we grab the first element.
+    clanDisciplinesMap = clanDisciplineData[0];
+    allDisciplinesList = allDisciplinesData;
+
+    // Now that the data is loaded, we can attach our event listener.
+    clanSelect.addEventListener('change', handleClanChange);
+    console.log("Clan and Discipline data loaded and ready.");
+  })
+  .catch(error => {
+    console.error("Failed to load clan/discipline data:", error);
+  });
+
+
+  // This is the function that runs every time the user changes the clan.
+  function handleClanChange() {
+    const selectedClan = clanSelect.value;
+    // Look up the disciplines for the selected clan. If not found, use an empty array.
+    const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
+
+    // Loop through each of the three discipline dropdowns.
+    disciplineSelects.forEach((select, index) => {
+      // 1. Clear all existing options except for the first placeholder.
+      while (select.options.length > 1) {
+        select.remove(1);
+      }
+
+      // 2. Repopulate the dropdown with the full list of all disciplines.
+      allDisciplinesList.forEach(discipline => {
+        const option = document.createElement('option');
+        option.value = discipline.value;
+        option.textContent = discipline.label;
+        select.appendChild(option);
+      });
+
+      // 3. Set the dropdown's value to the specific in-clan discipline.
+      const clanDiscipline = disciplinesForClan[index]; // Get the 1st, 2nd, or 3rd discipline
+      if (clanDiscipline) {
+        select.value = clanDiscipline;
+      } else {
+        // If the clan has fewer than 3 disciplines (e.g., Caitiff), reset to placeholder.
+        select.value = "";
+      }
+
+      // 4. Trigger a color update on the select element (reuses your existing utility).
+      // We wrap this in a helper function to ensure it exists before we call it.
+      if (typeof updateSelectColor === 'function') {
+        updateSelectColor(select);
+      }
+    });
+  }
+  
+  // A simple helper function to reuse your existing select styling logic
+  function updateSelectColor(selectElement) {
+    if (selectElement.value === '') {
+      selectElement.classList.add('text-textSecondary');
+      selectElement.classList.remove('text-textPrimary');
+    } else {
+      selectElement.classList.add('text-textPrimary');
+      selectElement.classList.remove('text-textSecondary');
+    }
+  }
+}
+
 // LOGIC: Dot-Attributes
 /**
  * =================================================================
@@ -269,6 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Initialize UI Behavior ---
   initializeSelectElementStyling();
+
+  // --- Initialize Clan/Discipline Linking
+  initializeClanDisciplineLogic();
   
   // --- Initialize Dot-Based Sections ---
 
