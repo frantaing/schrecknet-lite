@@ -129,13 +129,13 @@ Currently in **early development**: building out the UI and laying the groundwor
 
 ##### **Interactivity (JavaScript)**
 
--   [ ] Implement click handling for the attribute dots.
--   [ ] Implement click handling for the ability dots.
+-   [x] Implement click handling for the attribute dots.
+-   [x] Implement click handling for the ability dots.
 -   [x] Enable dropdown selections for disciplines and backgrounds.
 -   [ ] Create basic V20 freebie point calculation logic.
     -   [ ] Attributes
     -   [ ] Abilities
-    -   [ ] Advantages
+    -   [ ] Merits/Flaws
 
 #### **V5 Character Sheet**
 
