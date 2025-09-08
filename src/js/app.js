@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- TEMPLATES FOR DYNAMIC ROWS ---
   const disciplineTemplate = `
     <div class="dots-custom">
-      <div>
+      <div class="relative flex items-center justify-center group ml-2 gap-2">
         <select name="discipline" class="dropdown-custom"><option value="" disabled selected hidden>discipline</option></select>
         <button class="btn-minus">-</button>
       </div>
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   const backgroundTemplate = `
     <div class="dots-custom">
-      <div>
+      <div class="relative flex items-center justify-center group ml-2 gap-2">
         <select name="background" class="dropdown-custom"><option value="" disabled selected hidden>background</option></select>
         <button class="btn-minus">-</button>
       </div>
@@ -374,16 +374,16 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   `;
   const meritTemplate = `
-    <div class="merit-flaw-wrapper">
-      <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
+    <div class="merit-flaw-wrapper relative flex items-center justify-center group gap-2">
+      <select name="merit" class="dropdown-custom">
         <option value="" disabled selected hidden>merit</option>
       </select>
       <button class="btn-minus">-</button>
     </div>
   `;
   const flawTemplate = `
-    <div class="merit-flaw-wrapper">
-      <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
+    <div class="merit-flaw-wrapper relative flex items-center justify-center group gap-2">
+      <select name="flaw" class="dropdown-custom">
           <option value="" disabled selected hidden>flaw</option>
       </select>
       <button class="btn-minus">-</button>         
