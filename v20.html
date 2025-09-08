@@ -703,12 +703,15 @@ V20 Character sheet
     </section>
 
     <!-- [Disciplines + Backgrounds] -->
-    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+    <section id="disciplines-backgrounds-section" class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
       <!--
       
       2 columns: Disciplines (right), Backgrounds (left)
       
       -->
+
+      <!-- === BACKGROUNDS === -->
+
       <div>
         <h3>disciplines <span>3</span></h3>
         <!-- 
@@ -717,68 +720,53 @@ V20 Character sheet
         = filled in forms; dropdown for Caitiff
 
         -->
-        <div class="flex flex-col gap-3">
+        <div id="disciplines-container" class="flex flex-col gap-3">
 
-          <!-- Discipline dropdowns -->
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="discipline" class="dropdown-custom">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>discipline</option>
-              <!-- Discipline options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="discipline" class="dropdown-custom">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>discipline</option>
-                <!-- Discipline options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="discipline" class="dropdown-custom">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>discipline</option>
-                <!-- Discipline options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- New Disciplines here! -->
+          <!-- Initial non-removalable Discipline dropdowns -->
           <div class="dots-wrapper">
             <div class="dots-custom">
-              <div>
+              <div class="relative flex items-center justify-center group gap-2">
                 <select name="discipline" class="dropdown-custom">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>discipline</option>
                   <!-- Discipline options will be added here -->
                 </select>
-                <button class="btn-minus">-</button>
+              </div>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div class="relative flex items-center justify-center group gap-2">
+                <select name="discipline" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>discipline</option>
+                  <!-- Discipline options will be added here -->
+                </select>
+              </div>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div class="relative flex items-center justify-center group gap-2">
+                <select name="discipline" class="dropdown-custom">
+                <!-- Do not include [text-textPrimary in shared class!] -->
+                <option value="" disabled selected hidden>discipline</option>
+                  <!-- Discipline options will be added here -->
+                </select>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -790,15 +778,19 @@ V20 Character sheet
             </div>
           </div>
 
+          <!-- New, dynamically added disciplines will appear here -->
+
           <!-- Button to add discipline -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-discipline-btn" class="btn group text-xs">
               add new <span class="span">discipline</span>
-            </a>
+            </button>
           </div>
 
         </div>
       </div>
+
+      <!-- === BACKGROUNDS === -->
 
       <div>
         <h3>backgrounds <span>5</span></h3>
@@ -808,70 +800,54 @@ V20 Character sheet
         = Textfields
         
         -->
-        <div class="flex flex-col gap-3">
+        <div id="backgrounds-container" class="flex flex-col gap-3">
 
-          <!-- Backgrounds dropdowns -->
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="background" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>background</option>
-                <!-- Backgrounds options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="background" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>background</option>
-                <!-- Backgrounds options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-          <div class="dots-wrapper">
-            <div class="dots">
-              <select name="background" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>background</option>
-                <!-- Background options will be added here -->
-              </select>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- New Backgrounds here! -->
+          <!-- Initial non-removalable Backgrounds dropdowns -->
           <div class="dots-wrapper">
             <div class="dots-custom">
-              <div>
+              <div class="relative flex items-center justify-center group gap-2">
                 <select name="background" class="dropdown-custom">
                   <!-- Do not include [text-textPrimary in shared class!] -->
                   <option value="" disabled selected hidden>background</option>
-                  <!-- Background options will be added here -->
+                  <!-- Backgrounds options will be added here -->
                 </select>
-                <button class="btn-minus">-</button>          
               </div>
-
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div class="relative flex items-center justify-center group gap-2">
+                <select name="background" class="dropdown-custom">
+                  <!-- Do not include [text-textPrimary in shared class!] -->
+                  <option value="" disabled selected hidden>background</option>
+                  <!-- Backgrounds options will be added here -->
+                </select>
+              </div>
+              <div class="dot-group">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+          <div class="dots-wrapper">
+            <div class="dots-custom">
+              <div class="relative flex items-center justify-center group gap-2">
+                <select name="background" class="dropdown-custom">
+                  <!-- Do not include [text-textPrimary in shared class!] -->
+                  <option value="" disabled selected hidden>background</option>
+                  <!-- Backgrounds options will be added here -->
+                </select>
+              </div>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -882,11 +858,13 @@ V20 Character sheet
             </div>
           </div>
 
+          <!-- New, dynamically added backgrounds will appear here -->
+
           <!-- Button to add background -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-background-btn" class="btn group text-xs">
               add new <span class="span">background</span>
-            </a>
+            </button>
           </div>
 
         </div>
@@ -999,75 +977,52 @@ V20 Character sheet
     </section>
 
     <!-- [Merits + Flaws] -->
-    <section class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
+    <section id="merits-flaws-section" class="flex flex-col justify-center gap-16 sm:grid sm:grid-cols-2">
 
       <!-- [Merits] -->
       <div>
         <h3>merits</h3>
-        <div class="flex flex-col items-center gap-3">
+        <div id="merits-container" class="flex flex-col items-center gap-3">
 
-          <!-- Merit dropdown(s) -->
-          <div>
-            <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>merit</option>
-                <!-- Merit options will be added here -->
+          <!-- CHANGE "id" to "class" HERE -->
+          <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
+            <select name="merit" class="dropdown-custom">
+              <option value="" disabled selected hidden>merit</option>
             </select>
             <button class="btn-minus">-</button>
           </div>
 
-          <!-- New Merits here! -->
-          <div>
-            <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>merit</option>
-                <!-- Flaw options will be added here -->
-            </select>
-            <button class="btn-minus">-</button>
-          </div>
+          <!-- ... other initial rows ... -->
 
-          <!-- Button to add merit -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-merit-btn" class="btn group text-xs">
               add new <span class="span">merit</span>
-            </a>
+            </button>
           </div>
-
         </div>
       </div>
+
       <!-- [Flaws] -->
       <div>
         <h3>flaws</h3>
 
-        <div class="flex flex-col items-center gap-3">
+        <div id="flaws-container" class="flex flex-col items-center gap-3">
 
-          <!-- Merit dropdown(s) -->
-            <div>
-            <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
+          <!-- Flaw dropdown(s) -->
+          <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
+            <select name="flaw" class="dropdown-custom">
                 <option value="" disabled selected hidden>flaw</option>
-                <!-- Flaw options will be added here -->
             </select>
             <button class="btn-minus">-</button>         
           </div>
 
-          
           <!-- New flaws here! -->
-          <div>
-            <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>flaw</option>
-                <!-- Flaw options will be added here -->
-            </select>
-            <button class="btn-minus">-</button>
-          </div>
-
 
           <!-- Button to add flaw -->
           <div>
-            <a href="" class="btn group text-xs">
+            <button id="add-flaw-btn" class="btn group text-xs">
               add new <span class="span">flaw</span>
-            </a>
+            </button>
           </div>
 
         </div>

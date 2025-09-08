@@ -140,11 +140,6 @@ main h4 {
   @apply border-textPrimary bg-textPrimary;
 }
 
-/* 'Remove' button for Disciplins/Backgrounds/Mertis/Flaws */
-.btn-minus {
-  @apply bg-foreground py-1 px-2 rounded-round hover:text-textPrimary hover:bg-accent transition transform hover:scale-[1.02];
-}
-
 /**
  # FORM LAYOUT
  */
@@ -152,4 +147,21 @@ main h4 {
 /* Dot-wrapper (label w/ dot-group) from 1 column to 3 */
 .dots-wrapper {
   @apply grid gap-5 sm:grid-cols-1;
+}
+
+
+/* ===============================================================
+ # DYNAMIC ROW STYLES (Add/Remove Buttons)
+ ================================================================= */
+
+/* The remove button ('-') for all dynamic rows.*/
+.btn-minus {
+  @apply flex-shrink-0 
+         bg-foreground text-textSecondary text-lg font-bold rounded-round
+         cursor-pointer
+         w-8 opacity-0 scale-50 px-2.5 /* Always reserve the width and padding */
+         overflow-hidden 
+         group-hover:opacity-100 group-hover:scale-100 /* Only animate opacity and scale */
+         hover:!bg-accent hover:!text-textPrimary 
+         transition-all duration-300 ease-in-out;
 }
