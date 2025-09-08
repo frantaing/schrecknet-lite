@@ -97,24 +97,28 @@ function initializeDynamicRows(config) {
 
   const addButton = section.querySelector(config.addButtonSelector);
   const rowContainer = section.querySelector(config.rowContainerSelector);
-
   if (!addButton || !rowContainer) return;
 
   rowContainer.addEventListener('click', (event) => {
     if (event.target.matches('.btn-minus')) {
-      // Find the closest parent wrapper to remove
-      // The wrapper class is now explicitly defined in the config
+      // The selector for what to remove is passed in the config.
       event.target.closest(config.rowWrapperSelector).remove();
     }
   });
 
   addButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const newRow = document.createElement('div');
-    // Set the class from the config
-    newRow.className = config.rowWrapperClass;
-    newRow.innerHTML = config.templateHTML;
-    rowContainer.insertBefore(newRow, addButton.parentElement); // Insert row BEFORE/ABOVE add-button
+    
+    // THE FIX: Create a simple, temporary container.
+    const tempContainer = document.createElement('div');
+    // Put the ENTIRE template HTML inside it.
+    tempContainer.innerHTML = config.templateHTML;
+    
+    // Get the actual row element from the container.
+    const newRow = tempContainer.firstElementChild;
+
+    // Now, insert the fully-formed row into the DOM.
+    rowContainer.insertBefore(newRow, addButton.parentElement);
 
     if (config.postAddCallback) {
       config.postAddCallback(newRow);
@@ -152,15 +156,15 @@ function initializeClanDisciplineLogic() {
   .catch(error => console.error("Failed to load clan/discipline data:", error));
 
   function handleClanChange() {
-    // THIS IS THE FIX: We now find ALL discipline dropdowns every time the clan changes.
+    // Find ALL discipline dropdowns every time the clan changes.
     const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
     const selectedClan = clanSelect.value;
     const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
 
     disciplineSelects.forEach((select, index) => {
-      // We only auto-populate the FIRST THREE dropdowns with in-clan disciplines.
+      // Only auto-populate the FIRST THREE dropdowns with in-clan disciplines.
       if (index < 3) {
-        // Clear and repopulate the dropdown (this part is unchanged)
+        // Clear and repopulate the dropdown
         const placeholder = select.querySelector('option[disabled]');
         select.innerHTML = '';
         if (placeholder) select.appendChild(placeholder);
@@ -184,7 +188,7 @@ function initializeClanDisciplineLogic() {
     });
   }
   
-  // A simple helper function to reuse your existing select styling logic
+  // updateSelectColor helper, just in case
   function updateSelectColor(selectElement) {
     if (selectElement.value === '') {
       selectElement.classList.add('text-textSecondary');
@@ -449,14 +453,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- INITIALIZE ALL PAGE FEATURES (The Correct Order) ---
 
   // 1. Populate all the dropdowns that exist when the page first loads.
-  populateFlatDropdown('discipline', 'data/V20/disciplines.json');
-  populateFlatDropdown('background', 'data/V20/backgrounds.json');
-  populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter);
-  populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter);
-  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json');
-  populateGroupedDropdown('paths', 'data/V20/paths.json');
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
+  populateFlatDropdown('discipline', 'data/V20/disciplines.json'); // CORRECT
+  populateFlatDropdown('background', 'data/V20/backgrounds.json'); // CORRECT
+  populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter); // CORRECT
+  populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter); // CORRECT
+  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json', null); // CORRECT
+  populateGroupedDropdown('paths', 'data/V20/paths.json', null); // CORRECT
+  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json'); // CORRECT
+  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json'); // CORRECT
   
   // 2. Initialize all the dynamic and interactive logic.
   initializeSelectElementStyling();
