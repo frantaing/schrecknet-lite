@@ -107,7 +107,7 @@ Currently in **early development**: building out the UI and laying the groundwor
 
 -   [x] Build the header with the page name and website title.
 -   [x] Build the main HTML structure for the V20 sheet.
--   [ ] Implement mobile and desktop responsiveness for the entire V20 sheet layout.
+-   [x] Implement mobile and desktop responsiveness for the entire V20 sheet layout.
 
 ##### **Basic Sections**
 
