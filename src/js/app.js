@@ -109,17 +109,18 @@ function initializeDynamicRows(config) {
   addButton.addEventListener('click', (event) => {
     event.preventDefault();
     
-    // THE FIX: Create a simple, temporary container.
-    const tempContainer = document.createElement('div');
-    // Put the ENTIRE template HTML inside it.
-    tempContainer.innerHTML = config.templateHTML;
-    
-    // Get the actual row element from the container.
-    const newRow = tempContainer.firstElementChild;
+    // 1. Create the main wrapper element using the class from the config.
+    //    This ensures we ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
+    const newRow = document.createElement('div');
+    newRow.className = config.rowWrapperClass;
 
-    // Now, insert the fully-formed row into the DOM.
+    // 2. Set the inner HTML of this wrapper to be the template.
+    newRow.innerHTML = config.templateHTML;
+    
+    // 3. Insert the fully-formed, correctly wrapped row into the DOM.
     rowContainer.insertBefore(newRow, addButton.parentElement);
 
+    // 4. Run the callback if it exists.
     if (config.postAddCallback) {
       config.postAddCallback(newRow);
     }
