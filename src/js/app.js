@@ -4,67 +4,64 @@
  * =================================================================
  */
 
-// UTILITY: Populates dropdowns that have a simple, flat list of options.
-// NOW FIXED: Populates ALL dropdowns with the given name.
-function populateFlatDropdown(selectName, jsonPath) {
-  const selects = document.querySelectorAll(`select[name="${selectName}"]`);
+// UTILITY: Populates one or all dropdowns with a given name.
+function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
+  const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
 
   fetch(jsonPath)
     .then(response => response.json())
     .then(data => {
-      // Create the options string once
       const optionsHTML = data.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
-      
-      // Apply to all found select elements
       selects.forEach(select => {
+        // Clear old options before adding new ones (but keep placeholder)
+        const placeholder = select.querySelector('option[disabled]');
+        select.innerHTML = '';
+        if (placeholder) select.appendChild(placeholder);
+        
         select.insertAdjacentHTML('beforeend', optionsHTML);
-        select.value = "";
+        if (!targetSelect) select.value = ""; // Only reset initial dropdowns on page load
       });
     })
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
-// UTILITY: Populates dropdowns that have options grouped by <optgroup>.
-// NOW FIXED: Populates ALL dropdowns with the given name.
-function populateGroupedDropdown(selectName, jsonPath, optionFormatter) {
-  const selects = document.querySelectorAll(`select[name="${selectName}"]`);
+// UTILITY: Populates one or all grouped dropdowns with a given name.
+function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSelect = null) {
+  const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
 
   fetch(jsonPath)
     .then(response => response.json())
     .then(data => {
-      // Build the full HTML string for all optgroups and options once
       const groupsHTML = data.map(group => {
         const optionsHTML = group.options.map(item => {
-          // Create a temporary option to use the formatter
           const tempOption = document.createElement('option');
           tempOption.value = item.value;
-          if (optionFormatter) {
-            optionFormatter(tempOption, item);
-          } else {
-            tempOption.textContent = item.label;
-          }
+          if (optionFormatter) optionFormatter(tempOption, item);
+          else tempOption.textContent = item.label;
           return tempOption.outerHTML;
         }).join('');
         return `<optgroup label="${group.groupLabel}">${optionsHTML}</optgroup>`;
       }).join('');
-      
-      // Apply to all found select elements
+
       selects.forEach(select => {
+        const placeholder = select.querySelector('option[disabled]');
+        select.innerHTML = '';
+        if (placeholder) select.appendChild(placeholder);
+
         select.insertAdjacentHTML('beforeend', groupsHTML);
-        select.value = "";
+        if (!targetSelect) select.value = "";
       });
     })
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
-// UTILITY: Dynamically styles <select> elements to show a placeholder color.
-function initializeSelectElementStyling() {
-  const allSelects = document.querySelectorAll('select');
-
+// UTILITY: Can style ALL selects, OR a single specific one.
+function initializeSelectElementStyling(targetElement = null) {
+  const allSelects = targetElement ? [targetElement] : document.querySelectorAll('select');
+  
   const updateSelectColor = (selectElement) => {
-    // Tailwind Classes
     if (selectElement.value === '') {
       selectElement.classList.add('text-textSecondary');
       selectElement.classList.remove('text-textPrimary');
@@ -75,12 +72,8 @@ function initializeSelectElementStyling() {
   };
 
   allSelects.forEach(select => {
-    // Set initial color on page load
     updateSelectColor(select);
-    // Add event listener to update color on change
-    select.addEventListener('change', (event) => {
-      updateSelectColor(event.currentTarget);
-    });
+    select.addEventListener('change', (event) => updateSelectColor(event.currentTarget));
   });
 }
 
@@ -369,76 +362,66 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 // This single event listener is the entry point for all initialization code.
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Initialize UI Behavior ---
-  initializeSelectElementStyling();
-
-  // --- Initialize Dot-Based Sections ---
-  initializeDotCategoryLogic(/* ... a ... */);
-  initializeDotCategoryLogic(/* ... b ... */);
-
-  // --- Initialize Linked & Dynamic Dropdowns ---
-  initializeClanDisciplineLogic();
-
-  // --- Initialize Dynamic Add/Remove Rows ---
-
-  // A custom formatter for Merits and Flaws
+  // --- MERIT/FLAW FORMATTER ---
   const meritFlawFormatter = (optionElement, itemData) => {
     optionElement.textContent = `${itemData.label} (${itemData.cost})`;
     optionElement.dataset.cost = itemData.cost;
   };
 
-  // 1. Define the HTML templates for new rows
+  // --- TEMPLATES FOR DYNAMIC ROWS ---
   const disciplineTemplate = `
     <div class="dots-custom">
       <div>
-        <select name="discipline" class="dropdown-custom"></select>
+        <select name="discipline" class="dropdown-custom"><option value="" disabled selected hidden>discipline</option></select>
         <button class="btn-minus">-</button>
       </div>
-      <div class="dot-group">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
-    </div>`;
-
+      <div class="dot-group"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+  `;
   const backgroundTemplate = `
     <div class="dots-custom">
       <div>
-        <select name="background" class="dropdown-custom"></select>
+        <select name="background" class="dropdown-custom"><option value="" disabled selected hidden>background</option></select>
         <button class="btn-minus">-</button>
       </div>
-      <div class="dot-group">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
-    </div>`;
-  
+      <div class="dot-group"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+  `;
   const meritTemplate = `
-    <select name="merit" class="dropdown-custom sm:w-3/4"></select>
-    <button class="btn-minus">-</button>`;
-
+    <div class="merit-flaw-wrapper">
+      <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
+        <option value="" disabled selected hidden>merit</option>
+      </select>
+      <button class="btn-minus">-</button>
+    </div>
+  `;
   const flawTemplate = `
-    <select name="flaw" class="dropdown-custom sm:w-3/4"></select>
-    <button class="btn-minus">-</button>`;
+    <div class="merit-flaw-wrapper">
+      <select name="flaw" class="dropdown-custom sm:w-3/4 lg:w-max">
+          <option value="" disabled selected hidden>flaw</option>
+      </select>
+      <button class="btn-minus">-</button>         
+    </div>
+  `;
 
-  // 2. Define a generic callback to populate and style new dropdowns
+  // --- CALLBACK FOR NEWLY ADDED DROPDOWNS ---
   const setupNewDropdown = (newRow, selectName, jsonPath, isGrouped, formatter) => {
     const newSelect = newRow.querySelector(`select[name="${selectName}"]`);
     if (newSelect) {
-      if (isGrouped) {
-        populateGroupedDropdown(selectName, jsonPath, formatter); // This will only populate the new one
-      } else {
-        populateFlatDropdown(selectName, jsonPath);
-      }
-      initializeSelectElementStyling(); // Re-apply styling to the new select
+      const populateFunc = isGrouped ? populateGroupedDropdown : populateFlatDropdown;
+      populateFunc(selectName, jsonPath, formatter, newSelect); // Pass the specific new select element
+      initializeSelectElementStyling(newSelect); // ONLY style the new select element
     }
   };
 
-  // 3. Define configurations for each section
+  // --- CONFIGURATIONS ---
   const dynamicRowConfigs = [
     {
       sectionId: 'disciplines-backgrounds-section',
       addButtonSelector: '#add-discipline-btn',
       rowContainerSelector: '#disciplines-container',
-      rowWrapperClass: 'dots-wrapper',          // Explicit class for the wrapper
-      rowWrapperSelector: '.dots-wrapper',      // Explicit selector for removal
+      rowWrapperClass: 'dots-wrapper',
+      rowWrapperSelector: '.dots-wrapper',
       templateHTML: disciplineTemplate,
       postAddCallback: (newRow) => setupNewDropdown(newRow, 'discipline', 'data/V20/disciplines.json', false, null)
     },
@@ -471,16 +454,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // 4. Initialize all of them!
-  dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+  // --- INITIALIZE ALL PAGE FEATURES (The Correct Order) ---
 
-  // 5. Populate the initial, hard-coded dropdowns
+  // 1. Populate all the dropdowns that exist when the page first loads.
   populateFlatDropdown('discipline', 'data/V20/disciplines.json');
   populateFlatDropdown('background', 'data/V20/backgrounds.json');
-  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json');
-  populateGroupedDropdown('paths', 'data/V20/paths.json');
   populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter);
   populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter);
+  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json');
+  populateGroupedDropdown('paths', 'data/V20/paths.json');
   populateFlatDropdown('nature', 'data/V20/nature_demeanor.json');
   populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json');
+  
+  // 2. Initialize all the dynamic and interactive logic.
+  initializeSelectElementStyling();
+  initializeClanDisciplineLogic();
+  dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+  
+  // 3. Initialize Dot logic (which depends on the UI being in place).
+  initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
+  initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
 });

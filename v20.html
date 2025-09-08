@@ -972,27 +972,24 @@ V20 Character sheet
         <h3>merits</h3>
         <div id="merits-container" class="flex flex-col items-center gap-3">
 
-          <!-- Merit dropdown(s) -->
+          <!-- CHANGE "id" to "class" HERE -->
           <div class="merit-flaw-wrapper">
             <select name="merit" class="dropdown-custom sm:w-3/4 lg:w-max">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>merit</option>
-                <!-- Merit options will be added here -->
+              <option value="" disabled selected hidden>merit</option>
             </select>
             <button class="btn-minus">-</button>
           </div>
 
-          <!-- New Merits here! -->
+          <!-- ... other initial rows ... -->
 
-          <!-- Button to add merit -->
           <div>
             <button id="add-merit-btn" class="btn group text-xs">
               add new <span class="span">merit</span>
             </button>
           </div>
-
         </div>
       </div>
+
       <!-- [Flaws] -->
       <div>
         <h3>flaws</h3>
