@@ -157,32 +157,42 @@ function initializeClanDisciplineLogic() {
   .catch(error => console.error("Failed to load clan/discipline data:", error));
 
   function handleClanChange() {
-    // Find ALL discipline dropdowns every time the clan changes.
+    // --- NEW: CLEANUP STEP ---
+    // Before doing anything else, remove all dynamically added discipline rows.
+    const disciplinesContainer = document.getElementById('disciplines-container');
+    if (disciplinesContainer) {
+      const allDisciplineRows = disciplinesContainer.querySelectorAll('.dots-wrapper');
+      allDisciplineRows.forEach(row => {
+        // A dynamically added row is one that has a remove button.
+        if (row.querySelector('.btn-minus')) {
+          row.remove();
+        }
+      });
+    }
+    // --- END OF CLEANUP ---
+
+    // Find ALL discipline dropdowns that remain after the cleanup.
     const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
     const selectedClan = clanSelect.value;
     const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
 
     disciplineSelects.forEach((select, index) => {
-      // Only auto-populate the FIRST THREE dropdowns with in-clan disciplines.
-      if (index < 3) {
-        // Clear and repopulate the dropdown
-        const placeholder = select.querySelector('option[disabled]');
-        select.innerHTML = '';
-        if (placeholder) select.appendChild(placeholder);
-        
-        allDisciplinesList.forEach(discipline => {
-          const option = document.createElement('option');
-          option.value = discipline.value;
-          option.textContent = discipline.label;
-          select.appendChild(option);
-        });
-
-        // Set the value
-        const clanDiscipline = disciplinesForClan[index];
-        select.value = clanDiscipline || "";
-      }
+      // The rest of this logic remains the same. It will now only affect
+      // the three permanent, in-clan discipline dropdowns.
+      const placeholder = select.querySelector('option[disabled]');
+      select.innerHTML = '';
+      if (placeholder) select.appendChild(placeholder);
       
-      // Update the color styling for the dropdown
+      allDisciplinesList.forEach(discipline => {
+        const option = document.createElement('option');
+        option.value = discipline.value;
+        option.textContent = discipline.label;
+        select.appendChild(option);
+      });
+
+      const clanDiscipline = disciplinesForClan[index];
+      select.value = clanDiscipline || "";
+      
       if (typeof updateSelectColor === 'function') {
         updateSelectColor(select);
       }
