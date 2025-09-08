@@ -113,7 +113,7 @@ main h4 {
 
 /* Custom dropdown for [Disciplines]/[Backgrounds]/[Path] */
 .dropdown-custom {
-  @apply w-auto bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
+  @apply bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
 
 /* wrapper for dot + label (elements including dots) */
@@ -149,33 +149,6 @@ main h4 {
   @apply grid gap-5 sm:grid-cols-1;
 }
 
-/* =============================================================== */
-
-/* ===============================================================
- # DYNAMIC ROW HOVER EFFECT
- ================================================================= */
-
-/* 
-  By default, hide the remove button completely.
-  - Use opacity for a smooth fade transition.
-  - `pointer-events-none` ensures the invisible button can't be clicked.
-*/
-.btn-minus {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 150ms ease-in-out;
-}
-
-/*
-  When hoveirng over the PARENT WRAPPER of a row
-  (either for Merits/Flaws or for Disciplines/Backgrounds),
-  find the .btn-minus inside it and make it visible again.
-*/
-.merit-flaw-wrapper:hover .btn-minus,
-.dots-custom:hover .btn-minus {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* ===============================================================
  # DYNAMIC ROW STYLES (Add/Remove Buttons)
@@ -183,12 +156,12 @@ main h4 {
 
 /* The remove button ('-') for all dynamic rows.*/
 .btn-minus {
-  @apply flex-shrink-0 /* Prevents the button from shrinking weirdly */
-         bg-foreground text-lg font-bold rounded-round
+  @apply flex-shrink-0 
+         bg-foreground text-textSecondary text-lg font-bold rounded-round
          cursor-pointer
-         w-0 opacity-0 scale-50 p-0 /* STARTS hidden: zero width, invisible, scaled down, no padding */
-         overflow-hidden /* CRUCIAL: Hides the "-" text when width is 0 */
-         group-hover:w-8 group-hover:opacity-100 group-hover:scale-100 group-hover:px-2.5 /* ON HOVER: grows to width, becomes visible, scales up, adds padding */
-         hover:!bg-accent hover:!text-textPrimary /* Explicit hover style for the button itself */
-         transition-all duration-300 ease-in-out; /* Animate everything smoothly */
+         w-8 opacity-0 scale-50 px-2.5 /* Always reserve the width and padding */
+         overflow-hidden 
+         group-hover:opacity-100 group-hover:scale-100 /* Only animate opacity and scale */
+         hover:!bg-accent hover:!text-textPrimary 
+         transition-all duration-300 ease-in-out;
 }
