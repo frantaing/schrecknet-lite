@@ -880,7 +880,7 @@ V20 Character sheet
       2 columns: Virtues (right), Humanity/Path/Willpower (left; stacked)
       
       -->
-      <div>
+      <div id="virtues-section">
         <h3>virtues <span>7</span></h3>
         <!-- Conscience, Self-Control, Courage -->
         <div class="dots-wrapper">
@@ -920,7 +920,7 @@ V20 Character sheet
       <!-- [Humanity/Path & Willpower] -->
       <div class="flex flex-col gap-9">
 
-        <div>
+        <div id="humanity-section">
           <h3>humanity & path</h3>
         <div class="flex flex-col gap-3">
 
@@ -930,6 +930,7 @@ V20 Character sheet
               <select name="paths" class="dropdown-custom mb-2">
                 <!-- Do not include [text-textPrimary in shared class!] -->
                 <option value="" disabled selected hidden>path</option>
+                <option value="humanity">humanity</option>
                 <!-- Path options will be added here -->
               </select>
               <div class="dot-group">
@@ -950,7 +951,7 @@ V20 Character sheet
 
         </div>
 
-        <div>
+        <div id="willpower-section">
           <h3>willpower</h3>
           
           <div class="dots-wrapper">

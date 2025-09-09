@@ -299,7 +299,6 @@ function initializeClanDisciplineLogic() {
  * UPGRADED: SIMPLE DOT & POINT POOL LOGIC (Disciplines, Backgrounds, etc.)
  * =================================================================
  * Handles dot-filling and manages a simple point pool for a given section.
- * NOW WITH MUTATION OBSERVER TO DETECT ROW REMOVALS.
  *
  * @param {string} sectionId - The ID of the specific section div to manage.
  * @param {string} selectName - The 'name' attribute of the dropdowns in this section.
@@ -311,30 +310,57 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   if (!mainSection) return;
 
   const counterSpan = mainSection.querySelector('h3 span');
-  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3'); // The container that holds the rows
+  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3');
 
-  // --- COUNTER UPDATE LOGIC ---
+  // --- COUNTER UPDATE LOGIC (NOW WITH EXTERNAL UPDATES) ---
   const updateCounter = () => {
-    const filledDots = mainSection.querySelectorAll('.dot.filled').length;
-    const spentPoints = filledDots - (mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem);
+    const allDotGroups = mainSection.querySelectorAll('.dot-group');
+    let filledDots = 0;
+    allDotGroups.forEach(group => {
+      filledDots += group.querySelectorAll('.dot.filled').length;
+    });
+
+    const totalBasePoints = allDotGroups.length * baseDotsPerItem;
+    const spentPoints = filledDots - totalBasePoints;
     const remainingPoints = pointPool - spentPoints;
     
     if (counterSpan) {
       counterSpan.textContent = remainingPoints;
       counterSpan.classList.toggle('text-accent', remainingPoints < 0);
     }
+    
+  // --- INTER-SECTION COMMUNICATION ---
+    // If this is the Virtues section, update Humanity and Willpower.
+    if (sectionId === 'virtues-section') {
+      const conscienceScore = allDotGroups[0]?.querySelectorAll('.dot.filled').length || 0;
+      const selfControlScore = allDotGroups[1]?.querySelectorAll('.dot.filled').length || 0;
+      const courageScore = allDotGroups[2]?.querySelectorAll('.dot.filled').length || 0;
+
+      const humanityTracker = document.getElementById('humanity-section');
+      const willpowerTracker = document.getElementById('willpower-section');
+
+      // **THE FIX**: We now call `setScore` unconditionally. This ensures that when a
+      // Virtue dot is UNFILLED, the tracker's score will also DECREASE correctly.
+      if (humanityTracker?.setScore) {
+        humanityTracker.setScore(conscienceScore + selfControlScore);
+      }
+      if (willpowerTracker?.setScore) {
+        willpowerTracker.setScore(courageScore);
+      }
+    }
+
     return remainingPoints;
   };
 
-  // --- DOT CLICK HANDLER (with cost calculation) ---
+  // --- DOT CLICK HANDLER (No changes needed here) ---
   const handleDotClick = (event) => {
+    // ... (this function remains the same as the previous version)
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
     const dotGroup = clickedDot.closest('.dot-group');
-    const wrapper = clickedDot.closest('.dots-wrapper'); // The parent row
+    const wrapper = clickedDot.closest('.dots-wrapper');
 
-    // GUARD 1: Dropdown must have a value.
     if (wrapper) {
       const select = wrapper.querySelector(`select[name="${selectName}"]`);
       if (select && !select.value) {
@@ -343,7 +369,6 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
       }
     }
     
-    // GUARD 2: Cannot spend more points than available.
     if (!clickedDot.classList.contains('filled')) {
       const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
       const newScore = Array.from(dotGroup.children).indexOf(clickedDot) + 1;
@@ -359,17 +384,29 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
     updateCounter();
   };
   
-  // Helper to update a single dot group
+  // --- HELPER TO UPDATE DOTS (with "unfillable" logic) ---
+  // Replace the old updateDotsInGroup helper with this one.
   const updateDotsInGroup = (group, clickedDot) => {
     const dots = Array.from(group.children);
     const clickIndex = dots.indexOf(clickedDot);
-    const isLastFilled = clickedDot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
-    const newScore = isLastFilled ? clickIndex : clickIndex + 1;
+    
+    // Check if the user is trying to unfill a base dot.
+    // This happens if they click on the last filled dot AND that dot is within the base allocation.
+    const isLastFilledDot = clickedDot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
+    if (isLastFilledDot && clickIndex < baseDotsPerItem) {
+      console.log("Cannot unfill a base dot.");
+      return; // STOP, do not allow the unfill action.
+    }
+
+    const newScore = isLastFilledDot ? clickIndex : clickIndex + 1;
+    
+    // The toggle logic now correctly respects the base dots.
     dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
   };
 
-  // --- DROPDOWN CHANGE HANDLER ---
+  // --- DROPDOWN CHANGE HANDLER (No changes needed here) ---
   const handleDropdownChange = (event) => {
+    // ... (this function remains the same as the previous version)
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
       const wrapper = changedSelect.closest('.dots-wrapper');
@@ -389,29 +426,58 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   mainSection.addEventListener('click', handleDotClick);
   mainSection.addEventListener('change', handleDropdownChange);
   
-  // --- NEW: OBSERVER FOR ROW REMOVAL ---
-  // This watches for changes inside the row container.
+  // ... (MutationObserver code remains the same) ...
   if (rowContainer) {
     const observer = new MutationObserver((mutationsList) => {
-      // Loop through all the mutations that just happened.
       for (const mutation of mutationsList) {
-        // Only care about mutations where nodes were REMOVED.
         if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
-          // A row was removed! Recalculate the points.
-          console.log('A row was removed. Updating points.');
           updateCounter();
-          // Found it!, no need to check other mutations.
           break; 
         }
       }
     });
-
-    // Tell the observer to watch the container and notify of child changes.
     observer.observe(rowContainer, { childList: true });
   }
-  // --- END OF NEW CODE ---
+
+  // --- FIX: ADD INITIAL DOT SETUP LOOP ---
+  // This loop runs once on page load to set the default state.
+  mainSection.querySelectorAll('.dot-group').forEach(group => {
+    Array.from(group.children).forEach((dot, index) => {
+      dot.classList.toggle('filled', index < baseDotsPerItem);
+    });
+  });
+  // --- END OF FIX ---
 
   updateCounter(); // Initial counter setup on page load
+}
+
+// LOGIC: Dot-tracking (Humanity, WIllpower)
+/**
+ * =================================================================
+ * PURELY VISUAL TRACKER DOT LOGIC (Humanity, Willpower)
+ * =================================================================
+ * A "display-only" function that renders a score. It has NO user interaction.
+ *
+ * @param {string} sectionId - The ID of the section to manage.
+ */
+function initializeTrackerDots(sectionId) {
+  const mainSection = document.getElementById(sectionId);
+  if (!mainSection) return;
+
+  const dotGroup = mainSection.querySelector('.dot-group');
+  if (!dotGroup) return;
+
+  // This is now the ONLY way to change the dots in this section.
+  const setScore = (newScore) => {
+    Array.from(dotGroup.children).forEach((dot, index) => {
+      dot.classList.toggle('filled', index < newScore);
+    });
+  };
+
+  // User interaction is removed. No more handleDotClick or addEventListener.
+
+  // Expose the setScore function so other functions can call it.
+  mainSection.setScore = setScore;
 }
 
 // LOGIC: Dynamic point dot-handling
@@ -683,6 +749,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 2. Wait for all dropdowns to be populated, then initialize everything else
   Promise.all(populationPromises.filter(p => p !== undefined)).then(() => {
+
+    // Initialize dot trackers
+    initializeTrackerDots('humanity-section');
+    initializeTrackerDots('willpower-section');
+
+
     // Initialize all the dynamic and interactive logic.
     initializeSelectElementStyling();
     initializeClanDisciplineLogic();
@@ -695,22 +767,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize fixed dot logic
     initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
     initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+    initializeSimpleDotLogic('virtues-section', '', 7, 1); // No selectName needed, 7 points, 1 base dot
 
     // Initialize duplicate Management (after everything is populated)
-    manageDuplicateSelections('discipline');
-    manageDuplicateSelections('background');
-    manageDuplicateSelections('merit');
-    manageDuplicateSelections('flaw');
-  }).catch(error => {
-    console.error('Error loading dropdown data:', error);
-    // Initialize everything anyway in case some data loaded
-    initializeSelectElementStyling();
-    initializeClanDisciplineLogic();
-    dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
-    initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
-    initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
-    initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
-    initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
     manageDuplicateSelections('discipline');
     manageDuplicateSelections('background');
     manageDuplicateSelections('merit');
