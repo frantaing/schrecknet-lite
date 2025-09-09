@@ -4,34 +4,34 @@
  * =================================================================
  */
 
-// UTILITY: Populates one or all dropdowns with a given name.
+// UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
 function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
   const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
 
-  fetch(jsonPath)
+  return fetch(jsonPath)
     .then(response => response.json())
     .then(data => {
       const optionsHTML = data.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
       selects.forEach(select => {
-        // Clear old options before adding new ones (but keep placeholder)
-        const placeholder = select.querySelector('option[disabled]');
-        select.innerHTML = '';
-        if (placeholder) select.appendChild(placeholder);
+        // --- FIX: Only remove old data options, not the placeholder ---
+        Array.from(select.options).forEach(option => {
+          if (!option.disabled) option.remove(); // Only remove non-disabled options
+        });
         
         select.insertAdjacentHTML('beforeend', optionsHTML);
-        if (!targetSelect) select.value = ""; // Only reset initial dropdowns on page load
+        if (!targetSelect) select.value = "";
       });
     })
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
-// UTILITY: Populates one or all grouped dropdowns with a given name.
+// UTILITY: Can populate ALL grouped dropdowns of a name, OR a single specific one.
 function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSelect = null) {
   const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
 
-  fetch(jsonPath)
+  return fetch(jsonPath)
     .then(response => response.json())
     .then(data => {
       const groupsHTML = data.map(group => {
@@ -46,15 +46,100 @@ function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSe
       }).join('');
 
       selects.forEach(select => {
-        const placeholder = select.querySelector('option[disabled]');
-        select.innerHTML = '';
-        if (placeholder) select.appendChild(placeholder);
+        // --- FIX: Only remove old data, not the placeholder ---
+        select.querySelectorAll('optgroup').forEach(group => group.remove());
 
         select.insertAdjacentHTML('beforeend', groupsHTML);
         if (!targetSelect) select.value = "";
       });
     })
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
+}
+
+// UTILITY: Disable Duplicate option selection
+/**
+ * =================================================================
+ * DYNAMIC DUPLICATE OPTION MANAGEMENT UTILITY
+ * =================================================================
+ * For a given group of dropdowns (by name), this function prevents the user
+ * from selecting the same option in multiple dropdowns. NOW WORKS WITH DYNAMIC ROWS.
+ *
+ * @param {string} selectName - The 'name' attribute of the dropdowns to manage.
+ */
+function manageDuplicateSelections(selectName) {
+  // This function is now the single source of truth for updating the dropdowns.
+  const updateDisabledOptions = () => {
+    // 1. ALWAYS get the most up-to-date list of dropdowns from the DOM.
+    const allSelectsInGroup = document.querySelectorAll(`select[name="${selectName}"]`);
+    if (!allSelectsInGroup.length) return;
+
+    // 2. Find all values that are currently selected.
+    const selectedValues = Array.from(allSelectsInGroup)
+                                .map(s => s.value)
+                                .filter(v => v !== "");
+
+    // 3. Loop through each dropdown in the (current) group.
+    allSelectsInGroup.forEach(select => {
+      Array.from(select.options).forEach(option => {
+        if (option.value === "" || option.value === select.value) {
+          option.disabled = false;
+          option.style.color = '';
+          return;
+        }
+        option.disabled = selectedValues.includes(option.value);
+        option.style.color = option.disabled ? '#666' : '';
+      });
+    });
+  };
+
+  // Listen for changes on any dropdown within the document
+  document.body.addEventListener('change', (event) => {
+    if (event.target.matches(`select[name="${selectName}"]`)) {
+      // A relevant dropdown was changed, so update the whole group.
+      updateDisabledOptions();
+    }
+  });
+
+  // Listen for DOM mutations (additions/removals)
+  const observer = new MutationObserver((mutations) => {
+    let shouldUpdate = false;
+    mutations.forEach(mutation => {
+      if (mutation.type === 'childList') {
+        // Check if any added or removed nodes contain our select elements
+        const checkNodes = (nodes) => {
+          for (let node of nodes) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              if (node.querySelector && node.querySelector(`select[name="${selectName}"]`)) {
+                return true;
+              }
+            }
+          }
+          return false;
+        };
+        
+        if (checkNodes(mutation.addedNodes) || checkNodes(mutation.removedNodes)) {
+          shouldUpdate = true;
+        }
+      }
+    });
+    
+    if (shouldUpdate) {
+      // Small delay to ensure DOM is fully updated
+      setTimeout(updateDisabledOptions, 10);
+    }
+  });
+
+  // Watch the entire document for changes
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  // Run it once on page load to set the initial state.
+  updateDisabledOptions();
+  
+  // Return the update function so it can be called manually if needed
+  return updateDisabledOptions;
 }
 
 // UTILITY: Can style ALL selects, OR a single specific one.
@@ -110,7 +195,7 @@ function initializeDynamicRows(config) {
     event.preventDefault();
     
     // 1. Create the main wrapper element using the class from the config.
-    //    This ensures we ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
+    //    This ensures there is ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
     const newRow = document.createElement('div');
     newRow.className = config.rowWrapperClass;
 
@@ -137,8 +222,7 @@ function initializeDynamicRows(config) {
  */
 function initializeClanDisciplineLogic() {
   const clanSelect = document.querySelector('select[name="clan"]');
-  // NOTE: We no longer select the discipline dropdowns here.
-
+  
   if (!clanSelect) return;
 
   let clanDisciplinesMap = {};
@@ -157,54 +241,47 @@ function initializeClanDisciplineLogic() {
   .catch(error => console.error("Failed to load clan/discipline data:", error));
 
   function handleClanChange() {
-    // --- DOT, ROW, AND COUNTER CLEANUP STEP ---
+    // --- DOT & ROW CLEANUP STEP (This part is good, we keep it) ---
     const disciplinesContainer = document.getElementById('disciplines-container');
     if (disciplinesContainer) {
-      // 1. Remove all dynamically added discipline rows.
       disciplinesContainer.querySelectorAll('.dots-wrapper').forEach(row => {
         if (row.querySelector('.btn-minus')) row.remove();
       });
-      
-      // 2. Reset dots in the remaining (permanent) rows.
       disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled'));
-      
-      // --- NEW: RESET THE COUNTER ---
-      // Find the counter in the disciplines section and reset it to its initial value.
       const disciplineCounter = document.querySelector('#disciplines-section h3 span');
       if (disciplineCounter) {
-        disciplineCounter.textContent = '3'; // Initial point pool for Disciplines
+        disciplineCounter.textContent = '3';
         disciplineCounter.classList.remove('text-accent');
       }
-      // --- END OF NEW CODE ---
     }
 
+    // --- NEW, NON-DESTRUCTIVE LOGIC ---
     const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
     const selectedClan = clanSelect.value;
     const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
 
+    // 1. Simply set the values of the initial dropdowns. Do NOT rebuild them.
     disciplineSelects.forEach((select, index) => {
-      // The rest of the logic for populating dropdowns stays the same...
-      const placeholder = select.querySelector('option[disabled]');
-      select.innerHTML = '';
-      if (placeholder) select.appendChild(placeholder);
-      
-      allDisciplinesList.forEach(discipline => {
-        const option = document.createElement('option');
-        option.value = discipline.value;
-        option.textContent = discipline.label;
-        select.appendChild(option);
-      });
-
-      const clanDiscipline = disciplinesForClan[index];
-      select.value = clanDiscipline || "";
-      
-      if (typeof updateSelectColor === 'function') {
+      // We only want to auto-set the initial, permanent dropdowns.
+      // A simple way to check is if they DON'T have a remove button next to them.
+      const parentWrapper = select.closest('.dots-wrapper');
+      if (parentWrapper && !parentWrapper.querySelector('.btn-minus')) {
+        select.value = disciplinesForClan[index] || "";
+        
+        // Manually trigger a color update since we changed the value programmatically.
         updateSelectColor(select);
       }
     });
+
+    // 2. CRITICAL: After changing values, manually trigger our duplicate manager to re-evaluate the page.
+    // We dispatch a 'change' event on one of the discipline selects to trigger the duplicate manager
+    const firstDisciplineSelect = document.querySelector('select[name="discipline"]');
+    if (firstDisciplineSelect) {
+      firstDisciplineSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }
   }
   
-  // updateSelectColor helper, just in case
+  // updateSelectColor helper
   function updateSelectColor(selectElement) {
     if (selectElement.value === '') {
       selectElement.classList.add('text-textSecondary');
@@ -222,43 +299,42 @@ function initializeClanDisciplineLogic() {
  * UPGRADED: SIMPLE DOT & POINT POOL LOGIC (Disciplines, Backgrounds, etc.)
  * =================================================================
  * Handles dot-filling and manages a simple point pool for a given section.
+ * NOW WITH MUTATION OBSERVER TO DETECT ROW REMOVALS.
  *
- * @param {string} columnId - The ID of the specific column div to manage.
+ * @param {string} sectionId - The ID of the specific section div to manage.
  * @param {string} selectName - The 'name' attribute of the dropdowns in this section.
  * @param {number} pointPool - The total number of points available for this section.
  * @param {number} baseDotsPerItem - The number of "free" dots each item starts with.
  */
-function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerItem) {
-  const columnElement = document.getElementById(columnId);
-  if (!columnElement) return;
+function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerItem) {
+  const mainSection = document.getElementById(sectionId);
+  if (!mainSection) return;
 
-  const counterSpan = columnElement.querySelector('h3 span');
+  const counterSpan = mainSection.querySelector('h3 span');
+  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3'); // The container that holds the rows
 
   // --- COUNTER UPDATE LOGIC ---
   const updateCounter = () => {
-    const filledDots = columnElement.querySelectorAll('.dot.filled').length;
-    // For simple logic, every filled dot costs one point from the pool.
-    const spentPoints = filledDots;
+    const filledDots = mainSection.querySelectorAll('.dot.filled').length;
+    const spentPoints = filledDots - (mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem);
     const remainingPoints = pointPool - spentPoints;
     
-    // Update the counter text
     if (counterSpan) {
       counterSpan.textContent = remainingPoints;
-      // Add styling for when points are overspent (though the guards should prevent this)
       counterSpan.classList.toggle('text-accent', remainingPoints < 0);
     }
-    return remainingPoints; // Return this value for use in guard clauses
+    return remainingPoints;
   };
 
-  // --- DOT CLICK HANDLER (with guard clauses) ---
+  // --- DOT CLICK HANDLER (with cost calculation) ---
   const handleDotClick = (event) => {
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
     const dotGroup = clickedDot.closest('.dot-group');
-    const wrapper = clickedDot.closest('.dots-custom');
+    const wrapper = clickedDot.closest('.dots-wrapper'); // The parent row
 
-    // GUARD 1: Check if the associated dropdown has a value.
+    // GUARD 1: Dropdown must have a value.
     if (wrapper) {
       const select = wrapper.querySelector(`select[name="${selectName}"]`);
       if (select && !select.value) {
@@ -267,25 +343,18 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
       }
     }
     
-    // GUARD 2 (UPGRADED): Check if trying to spend MORE points than are available.
-    const isTryingToSpend = !clickedDot.classList.contains('filled');
-    if (isTryingToSpend) {
-      // 1. Calculate the cost of THIS specific click.
+    // GUARD 2: Cannot spend more points than available.
+    if (!clickedDot.classList.contains('filled')) {
       const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
       const newScore = Array.from(dotGroup.children).indexOf(clickedDot) + 1;
       const cost = newScore - currentScore;
-
-      // 2. Get the current number of remaining points.
       const remainingPoints = updateCounter();
-
-      // 3. The crucial check: Do we have enough points to cover the cost?
       if (cost > remainingPoints) {
-        console.warn(`Action denied: This costs ${cost} points, but you only have ${remainingPoints} left.`);
-        return; // Exit the function, preventing the spend.
+        console.warn(`Action denied: Costs ${cost}, but only ${remainingPoints} left.`);
+        return;
       }
     }
 
-    // If guards are passed, update the dots and then the counter.
     updateDotsInGroup(dotGroup, clickedDot);
     updateCounter();
   };
@@ -299,19 +368,17 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
     dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
   };
 
-  // --- DROPDOWN CHANGE HANDLER (now updates counter) ---
+  // --- DROPDOWN CHANGE HANDLER ---
   const handleDropdownChange = (event) => {
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
-      const wrapper = changedSelect.closest('.dots-custom');
+      const wrapper = changedSelect.closest('.dots-wrapper');
       if (wrapper) {
         const dotGroup = wrapper.querySelector('.dot-group');
         if (dotGroup) {
-          // Reset all dots in this group to the base state
           Array.from(dotGroup.children).forEach((dot, index) => {
             dot.classList.toggle('filled', index < baseDotsPerItem);
           });
-          // After resetting dots, update the main counter to regain the points.
           updateCounter();
         }
       }
@@ -319,8 +386,31 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
   };
 
   // --- INITIALIZATION ---
-  columnElement.addEventListener('click', handleDotClick);
-  columnElement.addEventListener('change', handleDropdownChange);
+  mainSection.addEventListener('click', handleDotClick);
+  mainSection.addEventListener('change', handleDropdownChange);
+  
+  // --- NEW: OBSERVER FOR ROW REMOVAL ---
+  // This watches for changes inside the row container.
+  if (rowContainer) {
+    const observer = new MutationObserver((mutationsList) => {
+      // Loop through all the mutations that just happened.
+      for (const mutation of mutationsList) {
+        // Only care about mutations where nodes were REMOVED.
+        if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
+          // A row was removed! Recalculate the points.
+          console.log('A row was removed. Updating points.');
+          updateCounter();
+          // Found it!, no need to check other mutations.
+          break; 
+        }
+      }
+    });
+
+    // Tell the observer to watch the container and notify of child changes.
+    observer.observe(rowContainer, { childList: true });
+  }
+  // --- END OF NEW CODE ---
+
   updateCounter(); // Initial counter setup on page load
 }
 
@@ -385,7 +475,7 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
     resetDotsForSection(currentCategorySection);
 
     // 2. If a new priority was selected (i.e., not the empty placeholder),
-    // check if we need to "steal" it from another category.
+    // check if need to "steal" it from another category.
     if (newValue) {
       priorityDropdowns.forEach(select => {
         // Find another dropdown that was using the same priority
@@ -425,14 +515,14 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
       const newScore = clickedDotIndex + 1; // The score the user is trying to set
 
       // The maxDotsPerItem parameter is a number. If it's provided and the new
-      // score exceeds it, we deny the action and exit the function.
+      // score exceeds it, deny the action and exit the function.
       if (maxDotsPerItem && newScore > maxDotsPerItem) {
         console.warn(`Action denied: Abilities cannot be raised above ${maxDotsPerItem} during character creation.`);
         return; // STOP
       }
       // --- END NEW GUARD CLAUSE ---
 
-      // Guard Clause #3: Do we have enough points for the cost?
+      // Guard Clause #3: Does user have enough points for the cost?
       const cost = calculateClickCost(dotGroup, clickedDot);
       const remainingPoints = calculateRemainingPoints(category, priority);
       if (cost > remainingPoints) {
@@ -522,19 +612,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const setupNewDropdown = (newRow, selectName, jsonPath, isGrouped, formatter) => {
     const newSelect = newRow.querySelector(`select[name="${selectName}"]`);
     if (newSelect) {
-      // The logic is now explicit for each case to avoid argument mismatch
-      if (isGrouped) {
-        // This call has 4 arguments, which is correct for populateGroupedDropdown
-        populateGroupedDropdown(selectName, jsonPath, formatter, newSelect);
+      const populationPromise = isGrouped 
+        ? populateGroupedDropdown(selectName, jsonPath, formatter, newSelect)
+        : populateFlatDropdown(selectName, jsonPath, newSelect);
+      
+      // Wait for population to complete, then initialize styling
+      if (populationPromise) {
+        populationPromise.then(() => {
+          initializeSelectElementStyling(newSelect);
+        });
       } else {
-        // This call has 3 arguments, which is correct for populateFlatDropdown
-        populateFlatDropdown(selectName, jsonPath, newSelect);
+        initializeSelectElementStyling(newSelect);
       }
-      initializeSelectElementStyling(newSelect); // ONLY style the new select element
     }
   };
 
-  // --- CONFIGURATIONS ---
+  // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
   const dynamicRowConfigs = [
     {
       sectionId: 'disciplines-backgrounds-section',
@@ -577,25 +670,50 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- INITIALIZE ALL PAGE FEATURES (The Correct Order) ---
 
   // 1. Populate all the dropdowns that exist when the page first loads.
-  populateFlatDropdown('discipline', 'data/V20/disciplines.json'); // CORRECT
-  populateFlatDropdown('background', 'data/V20/backgrounds.json'); // CORRECT
-  populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter); // CORRECT
-  populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter); // CORRECT
-  populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json', null); // CORRECT
-  populateGroupedDropdown('paths', 'data/V20/paths.json', null); // CORRECT
-  populateFlatDropdown('nature', 'data/V20/nature_demeanor.json'); // CORRECT
-  populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json'); // CORRECT
+  const populationPromises = [
+    populateFlatDropdown('discipline', 'data/V20/disciplines.json'),
+    populateFlatDropdown('background', 'data/V20/backgrounds.json'),
+    populateGroupedDropdown('merit', 'data/V20/merits.json', meritFlawFormatter),
+    populateGroupedDropdown('flaw', 'data/V20/flaws.json', meritFlawFormatter),
+    populateGroupedDropdown('clan', 'data/V20/clan_bloodline.json', null),
+    populateGroupedDropdown('paths', 'data/V20/paths.json', null),
+    populateFlatDropdown('nature', 'data/V20/nature_demeanor.json'),
+    populateFlatDropdown('demeanor', 'data/V20/nature_demeanor.json')
+  ];
   
-  // 2. Initialize all the dynamic and interactive logic.
-  initializeSelectElementStyling();
-  initializeClanDisciplineLogic();
-  dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
-  
-  // 3. Initialize dyamic dot logic
-  initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
-  initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
+  // 2. Wait for all dropdowns to be populated, then initialize everything else
+  Promise.all(populationPromises.filter(p => p !== undefined)).then(() => {
+    // Initialize all the dynamic and interactive logic.
+    initializeSelectElementStyling();
+    initializeClanDisciplineLogic();
+    dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+    
+    // Initialize dynamic dot logic
+    initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
+    initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
 
-  // 4. Initialize fixed dot logic
-  initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
-  initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+    // Initialize fixed dot logic
+    initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
+    initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+
+    // Initialize duplicate Management (after everything is populated)
+    manageDuplicateSelections('discipline');
+    manageDuplicateSelections('background');
+    manageDuplicateSelections('merit');
+    manageDuplicateSelections('flaw');
+  }).catch(error => {
+    console.error('Error loading dropdown data:', error);
+    // Initialize everything anyway in case some data loaded
+    initializeSelectElementStyling();
+    initializeClanDisciplineLogic();
+    dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+    initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
+    initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
+    initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
+    initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+    manageDuplicateSelections('discipline');
+    manageDuplicateSelections('background');
+    manageDuplicateSelections('merit');
+    manageDuplicateSelections('flaw');
+  });
 });
