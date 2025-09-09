@@ -157,28 +157,33 @@ function initializeClanDisciplineLogic() {
   .catch(error => console.error("Failed to load clan/discipline data:", error));
 
   function handleClanChange() {
-    // --- NEW: CLEANUP STEP ---
-    // Before doing anything else, remove all dynamically added discipline rows.
+    // --- DOT, ROW, AND COUNTER CLEANUP STEP ---
     const disciplinesContainer = document.getElementById('disciplines-container');
     if (disciplinesContainer) {
-      const allDisciplineRows = disciplinesContainer.querySelectorAll('.dots-wrapper');
-      allDisciplineRows.forEach(row => {
-        // A dynamically added row is one that has a remove button.
-        if (row.querySelector('.btn-minus')) {
-          row.remove();
-        }
+      // 1. Remove all dynamically added discipline rows.
+      disciplinesContainer.querySelectorAll('.dots-wrapper').forEach(row => {
+        if (row.querySelector('.btn-minus')) row.remove();
       });
+      
+      // 2. Reset dots in the remaining (permanent) rows.
+      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled'));
+      
+      // --- NEW: RESET THE COUNTER ---
+      // Find the counter in the disciplines section and reset it to its initial value.
+      const disciplineCounter = document.querySelector('#disciplines-section h3 span');
+      if (disciplineCounter) {
+        disciplineCounter.textContent = '3'; // Initial point pool for Disciplines
+        disciplineCounter.classList.remove('text-accent');
+      }
+      // --- END OF NEW CODE ---
     }
-    // --- END OF CLEANUP ---
 
-    // Find ALL discipline dropdowns that remain after the cleanup.
     const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
     const selectedClan = clanSelect.value;
     const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
 
     disciplineSelects.forEach((select, index) => {
-      // The rest of this logic remains the same. It will now only affect
-      // the three permanent, in-clan discipline dropdowns.
+      // The rest of the logic for populating dropdowns stays the same...
       const placeholder = select.querySelector('option[disabled]');
       select.innerHTML = '';
       if (placeholder) select.appendChild(placeholder);
@@ -211,7 +216,115 @@ function initializeClanDisciplineLogic() {
   }
 }
 
-// LOGIC: Dot-Attributes
+// LOGIC: Fixed point dot-handling
+/**
+ * =================================================================
+ * UPGRADED: SIMPLE DOT & POINT POOL LOGIC (Disciplines, Backgrounds, etc.)
+ * =================================================================
+ * Handles dot-filling and manages a simple point pool for a given section.
+ *
+ * @param {string} columnId - The ID of the specific column div to manage.
+ * @param {string} selectName - The 'name' attribute of the dropdowns in this section.
+ * @param {number} pointPool - The total number of points available for this section.
+ * @param {number} baseDotsPerItem - The number of "free" dots each item starts with.
+ */
+function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerItem) {
+  const columnElement = document.getElementById(columnId);
+  if (!columnElement) return;
+
+  const counterSpan = columnElement.querySelector('h3 span');
+
+  // --- COUNTER UPDATE LOGIC ---
+  const updateCounter = () => {
+    const filledDots = columnElement.querySelectorAll('.dot.filled').length;
+    // For simple logic, every filled dot costs one point from the pool.
+    const spentPoints = filledDots;
+    const remainingPoints = pointPool - spentPoints;
+    
+    // Update the counter text
+    if (counterSpan) {
+      counterSpan.textContent = remainingPoints;
+      // Add styling for when points are overspent (though the guards should prevent this)
+      counterSpan.classList.toggle('text-accent', remainingPoints < 0);
+    }
+    return remainingPoints; // Return this value for use in guard clauses
+  };
+
+  // --- DOT CLICK HANDLER (with guard clauses) ---
+  const handleDotClick = (event) => {
+    const clickedDot = event.target;
+    if (!clickedDot.matches('.dot')) return;
+
+    const dotGroup = clickedDot.closest('.dot-group');
+    const wrapper = clickedDot.closest('.dots-custom');
+
+    // GUARD 1: Check if the associated dropdown has a value.
+    if (wrapper) {
+      const select = wrapper.querySelector(`select[name="${selectName}"]`);
+      if (select && !select.value) {
+        console.warn("Action denied: Please select an item before assigning dots.");
+        return;
+      }
+    }
+    
+    // GUARD 2 (UPGRADED): Check if trying to spend MORE points than are available.
+    const isTryingToSpend = !clickedDot.classList.contains('filled');
+    if (isTryingToSpend) {
+      // 1. Calculate the cost of THIS specific click.
+      const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
+      const newScore = Array.from(dotGroup.children).indexOf(clickedDot) + 1;
+      const cost = newScore - currentScore;
+
+      // 2. Get the current number of remaining points.
+      const remainingPoints = updateCounter();
+
+      // 3. The crucial check: Do we have enough points to cover the cost?
+      if (cost > remainingPoints) {
+        console.warn(`Action denied: This costs ${cost} points, but you only have ${remainingPoints} left.`);
+        return; // Exit the function, preventing the spend.
+      }
+    }
+
+    // If guards are passed, update the dots and then the counter.
+    updateDotsInGroup(dotGroup, clickedDot);
+    updateCounter();
+  };
+  
+  // Helper to update a single dot group
+  const updateDotsInGroup = (group, clickedDot) => {
+    const dots = Array.from(group.children);
+    const clickIndex = dots.indexOf(clickedDot);
+    const isLastFilled = clickedDot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
+    const newScore = isLastFilled ? clickIndex : clickIndex + 1;
+    dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
+  };
+
+  // --- DROPDOWN CHANGE HANDLER (now updates counter) ---
+  const handleDropdownChange = (event) => {
+    const changedSelect = event.target;
+    if (changedSelect.matches(`select[name="${selectName}"]`)) {
+      const wrapper = changedSelect.closest('.dots-custom');
+      if (wrapper) {
+        const dotGroup = wrapper.querySelector('.dot-group');
+        if (dotGroup) {
+          // Reset all dots in this group to the base state
+          Array.from(dotGroup.children).forEach((dot, index) => {
+            dot.classList.toggle('filled', index < baseDotsPerItem);
+          });
+          // After resetting dots, update the main counter to regain the points.
+          updateCounter();
+        }
+      }
+    }
+  };
+
+  // --- INITIALIZATION ---
+  columnElement.addEventListener('click', handleDotClick);
+  columnElement.addEventListener('change', handleDropdownChange);
+  updateCounter(); // Initial counter setup on page load
+}
+
+// LOGIC: Dynamic point dot-handling
 /**
  * =================================================================
  * REUSABLE DOT INTERACTIVITY LOGIC
@@ -478,7 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeClanDisciplineLogic();
   dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
   
-  // 3. Initialize Dot logic (which depends on the UI being in place).
+  // 3. Initialize dyamic dot logic
   initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
   initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
+
+  // 4. Initialize fixed dot logic
+  initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
+  initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
 });
