@@ -299,7 +299,6 @@ function initializeClanDisciplineLogic() {
  * UPGRADED: SIMPLE DOT & POINT POOL LOGIC (Disciplines, Backgrounds, etc.)
  * =================================================================
  * Handles dot-filling and manages a simple point pool for a given section.
- * NOW WITH MUTATION OBSERVER TO DETECT ROW REMOVALS.
  *
  * @param {string} sectionId - The ID of the specific section div to manage.
  * @param {string} selectName - The 'name' attribute of the dropdowns in this section.
@@ -311,17 +310,13 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   if (!mainSection) return;
 
   const counterSpan = mainSection.querySelector('h3 span');
-  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3'); // The container that holds the rows
+  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3');
 
-  // --- COUNTER UPDATE LOGIC ---
+  // --- COUNTER UPDATE LOGIC (Corrected in previous step) ---
   const updateCounter = () => {
-    // 1. Count all filled dots in the section.
     const filledDots = mainSection.querySelectorAll('.dot.filled').length;
-    // 2. Calculate the total number of "free" base dots.
     const totalBasePoints = mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem;
-    // 3. The points spent are the filled dots MINUS the free ones.
     const spentPoints = filledDots - totalBasePoints;
-    
     const remainingPoints = pointPool - spentPoints;
     
     if (counterSpan) {
@@ -331,15 +326,15 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
     return remainingPoints;
   };
 
-  // --- DOT CLICK HANDLER (with cost calculation) ---
+  // --- DOT CLICK HANDLER (No changes needed here) ---
   const handleDotClick = (event) => {
+    // ... (this function remains the same as the previous version)
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
     const dotGroup = clickedDot.closest('.dot-group');
-    const wrapper = clickedDot.closest('.dots-wrapper'); // The parent row
+    const wrapper = clickedDot.closest('.dots-wrapper');
 
-    // GUARD 1: Dropdown must have a value.
     if (wrapper) {
       const select = wrapper.querySelector(`select[name="${selectName}"]`);
       if (select && !select.value) {
@@ -348,7 +343,6 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
       }
     }
     
-    // GUARD 2: Cannot spend more points than available.
     if (!clickedDot.classList.contains('filled')) {
       const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
       const newScore = Array.from(dotGroup.children).indexOf(clickedDot) + 1;
@@ -364,17 +358,29 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
     updateCounter();
   };
   
-  // Helper to update a single dot group
+  // --- HELPER TO UPDATE DOTS (with "unfillable" logic) ---
+  // Replace the old updateDotsInGroup helper with this one.
   const updateDotsInGroup = (group, clickedDot) => {
     const dots = Array.from(group.children);
     const clickIndex = dots.indexOf(clickedDot);
-    const isLastFilled = clickedDot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
-    const newScore = isLastFilled ? clickIndex : clickIndex + 1;
+    
+    // Check if the user is trying to unfill a base dot.
+    // This happens if they click on the last filled dot AND that dot is within the base allocation.
+    const isLastFilledDot = clickedDot.classList.contains('filled') && !dots[clickIndex + 1]?.classList.contains('filled');
+    if (isLastFilledDot && clickIndex < baseDotsPerItem) {
+      console.log("Cannot unfill a base dot.");
+      return; // STOP, do not allow the unfill action.
+    }
+
+    const newScore = isLastFilledDot ? clickIndex : clickIndex + 1;
+    
+    // The toggle logic now correctly respects the base dots.
     dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
   };
 
-  // --- DROPDOWN CHANGE HANDLER ---
+  // --- DROPDOWN CHANGE HANDLER (No changes needed here) ---
   const handleDropdownChange = (event) => {
+    // ... (this function remains the same as the previous version)
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
       const wrapper = changedSelect.closest('.dots-wrapper');
@@ -394,30 +400,33 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   mainSection.addEventListener('click', handleDotClick);
   mainSection.addEventListener('change', handleDropdownChange);
   
-  // --- NEW: OBSERVER FOR ROW REMOVAL ---
-  // This watches for changes inside the row container.
+  // ... (MutationObserver code remains the same) ...
   if (rowContainer) {
     const observer = new MutationObserver((mutationsList) => {
-      // Loop through all the mutations that just happened.
       for (const mutation of mutationsList) {
-        // Only care about mutations where nodes were REMOVED.
         if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
-          // A row was removed! Recalculate the points.
-          console.log('A row was removed. Updating points.');
           updateCounter();
-          // Found it!, no need to check other mutations.
           break; 
         }
       }
     });
-
-    // Tell the observer to watch the container and notify of child changes.
     observer.observe(rowContainer, { childList: true });
   }
-  // --- END OF NEW CODE ---
+
+  // --- FIX: ADD INITIAL DOT SETUP LOOP ---
+  // This loop runs once on page load to set the default state.
+  mainSection.querySelectorAll('.dot-group').forEach(group => {
+    Array.from(group.children).forEach((dot, index) => {
+      dot.classList.toggle('filled', index < baseDotsPerItem);
+    });
+  });
+  // --- END OF FIX ---
 
   updateCounter(); // Initial counter setup on page load
 }
+
+// LOGIC: Dot-tracking (Humanity, WIllpower)
+
 
 // LOGIC: Dynamic point dot-handling
 /**
