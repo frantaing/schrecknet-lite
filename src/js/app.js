@@ -4,7 +4,7 @@
  * =================================================================
  */
 
-// UTILITY: Populates one or all dropdowns with a given name.
+// UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
 function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
   const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
@@ -14,19 +14,19 @@ function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
     .then(data => {
       const optionsHTML = data.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
       selects.forEach(select => {
-        // Clear old options before adding new ones (but keep placeholder)
-        const placeholder = select.querySelector('option[disabled]');
-        select.innerHTML = '';
-        if (placeholder) select.appendChild(placeholder);
+        // --- FIX: Only remove old data options, not the placeholder ---
+        Array.from(select.options).forEach(option => {
+          if (!option.disabled) option.remove(); // Only remove non-disabled options
+        });
         
         select.insertAdjacentHTML('beforeend', optionsHTML);
-        if (!targetSelect) select.value = ""; // Only reset initial dropdowns on page load
+        if (!targetSelect) select.value = "";
       });
     })
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
-// UTILITY: Populates one or all grouped dropdowns with a given name.
+// UTILITY: Can populate ALL grouped dropdowns of a name, OR a single specific one.
 function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSelect = null) {
   const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
   if (!selects.length) return;
@@ -46,9 +46,8 @@ function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSe
       }).join('');
 
       selects.forEach(select => {
-        const placeholder = select.querySelector('option[disabled]');
-        select.innerHTML = '';
-        if (placeholder) select.appendChild(placeholder);
+        // --- FIX: Only remove old data, not the placeholder ---
+        select.querySelectorAll('optgroup').forEach(group => group.remove());
 
         select.insertAdjacentHTML('beforeend', groupsHTML);
         if (!targetSelect) select.value = "";
@@ -63,52 +62,56 @@ function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSe
  * DYNAMIC DUPLICATE OPTION MANAGEMENT UTILITY
  * =================================================================
  * For a given group of dropdowns (by name), this function prevents the user
- * from selecting the same option in multiple dropdowns.
+ * from selecting the same option in multiple dropdowns. NOW WORKS WITH DYNAMIC ROWS.
  *
  * @param {string} selectName - The 'name' attribute of the dropdowns to manage.
  */
 function manageDuplicateSelections(selectName) {
-  // Find all dropdowns in this group that currently exist on the page.
-  const allSelectsInGroup = document.querySelectorAll(`select[name="${selectName}"]`);
-  if (!allSelectsInGroup.length) return;
-
+  // This function is now the single source of truth for updating the dropdowns.
   const updateDisabledOptions = () => {
-    // 1. Find all values that are currently selected (and are not the placeholder).
+    // 1. ALWAYS get the most up-to-date list of dropdowns from the DOM.
+    const allSelectsInGroup = document.querySelectorAll(`select[name="${selectName}"]`);
+    if (!allSelectsInGroup.length) return;
+
+    // 2. Find all values that are currently selected.
     const selectedValues = Array.from(allSelectsInGroup)
                                 .map(s => s.value)
                                 .filter(v => v !== "");
 
-    // 2. Loop through each dropdown in the group.
+    // 3. Loop through each dropdown in the (current) group.
     allSelectsInGroup.forEach(select => {
-      // 3. Loop through each option within that dropdown.
       Array.from(select.options).forEach(option => {
-        // We don't want to disable placeholders or the currently selected option of THIS dropdown.
         if (option.value === "" || option.value === select.value) {
           option.disabled = false;
-          return; // Continue to the next option
+          return;
         }
-
-        // Disable the option if its value is found in our list of selected values.
         option.disabled = selectedValues.includes(option.value);
       });
     });
   };
 
-  // Listen for changes on any dropdown within the section that matches the name.
-  // We use event delegation on the document body for simplicity.
+  // Listen for changes on any dropdown within the section.
   document.body.addEventListener('change', (event) => {
     if (event.target.matches(`select[name="${selectName}"]`)) {
+      // A relevant dropdown was changed, so update the whole group.
       updateDisabledOptions();
     }
   });
 
-  // Also, whenever a row is added or removed, re-evaluate the disabled options.
-  // Listen for clicks on add/remove buttons.
+  // Listen for clicks that might add or remove a dropdown.
   document.body.addEventListener('click', (event) => {
-    // A bit broad, but effective: if any add/remove button is clicked, re-check duplicates.
-    if (event.target.matches('.btn-minus, [id^="add-"]')) {
-      // Use a small timeout to ensure the DOM has updated rechecking.
-      setTimeout(updateDisabledOptions, 50);
+    // This now targets the specific containers for more precise updates.
+    const meritsContainer = event.target.closest('#merits-container');
+    const flawsContainer = event.target.closest('#flaws-container');
+    const disciplinesContainer = event.target.closest('#disciplines-container');
+    const backgroundsContainer = event.target.closest('#backgrounds-container');
+
+    if (meritsContainer || flawsContainer || disciplinesContainer || backgroundsContainer) {
+      if (event.target.matches('.btn-minus, [id^="add-"]')) {
+        // A row was added or removed. Wait a moment for the DOM to update,
+        // then re-run the check on the entire group.
+        setTimeout(updateDisabledOptions, 50);
+      }
     }
   });
 
