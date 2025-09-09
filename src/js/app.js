@@ -312,10 +312,15 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   const counterSpan = mainSection.querySelector('h3 span');
   const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3');
 
-  // --- COUNTER UPDATE LOGIC (Corrected in previous step) ---
+  // --- COUNTER UPDATE LOGIC (NOW WITH EXTERNAL UPDATES) ---
   const updateCounter = () => {
-    const filledDots = mainSection.querySelectorAll('.dot.filled').length;
-    const totalBasePoints = mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem;
+    const allDotGroups = mainSection.querySelectorAll('.dot-group');
+    let filledDots = 0;
+    allDotGroups.forEach(group => {
+      filledDots += group.querySelectorAll('.dot.filled').length;
+    });
+
+    const totalBasePoints = allDotGroups.length * baseDotsPerItem;
     const spentPoints = filledDots - totalBasePoints;
     const remainingPoints = pointPool - spentPoints;
     
@@ -323,6 +328,27 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
       counterSpan.textContent = remainingPoints;
       counterSpan.classList.toggle('text-accent', remainingPoints < 0);
     }
+    
+  // --- INTER-SECTION COMMUNICATION ---
+    // If this is the Virtues section, update Humanity and Willpower.
+    if (sectionId === 'virtues-section') {
+      const conscienceScore = allDotGroups[0]?.querySelectorAll('.dot.filled').length || 0;
+      const selfControlScore = allDotGroups[1]?.querySelectorAll('.dot.filled').length || 0;
+      const courageScore = allDotGroups[2]?.querySelectorAll('.dot.filled').length || 0;
+
+      const humanityTracker = document.getElementById('humanity-section');
+      const willpowerTracker = document.getElementById('willpower-section');
+
+      // **THE FIX**: We now call `setScore` unconditionally. This ensures that when a
+      // Virtue dot is UNFILLED, the tracker's score will also DECREASE correctly.
+      if (humanityTracker?.setScore) {
+        humanityTracker.setScore(conscienceScore + selfControlScore);
+      }
+      if (willpowerTracker?.setScore) {
+        willpowerTracker.setScore(courageScore);
+      }
+    }
+
     return remainingPoints;
   };
 
@@ -426,7 +452,33 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 }
 
 // LOGIC: Dot-tracking (Humanity, WIllpower)
+/**
+ * =================================================================
+ * PURELY VISUAL TRACKER DOT LOGIC (Humanity, Willpower)
+ * =================================================================
+ * A "display-only" function that renders a score. It has NO user interaction.
+ *
+ * @param {string} sectionId - The ID of the section to manage.
+ */
+function initializeTrackerDots(sectionId) {
+  const mainSection = document.getElementById(sectionId);
+  if (!mainSection) return;
 
+  const dotGroup = mainSection.querySelector('.dot-group');
+  if (!dotGroup) return;
+
+  // This is now the ONLY way to change the dots in this section.
+  const setScore = (newScore) => {
+    Array.from(dotGroup.children).forEach((dot, index) => {
+      dot.classList.toggle('filled', index < newScore);
+    });
+  };
+
+  // User interaction is removed. No more handleDotClick or addEventListener.
+
+  // Expose the setScore function so other functions can call it.
+  mainSection.setScore = setScore;
+}
 
 // LOGIC: Dynamic point dot-handling
 /**
@@ -697,6 +749,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 2. Wait for all dropdowns to be populated, then initialize everything else
   Promise.all(populationPromises.filter(p => p !== undefined)).then(() => {
+
+    // Initialize dot trackers
+    initializeTrackerDots('humanity-section');
+    initializeTrackerDots('willpower-section');
+
+
     // Initialize all the dynamic and interactive logic.
     initializeSelectElementStyling();
     initializeClanDisciplineLogic();
