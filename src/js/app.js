@@ -57,6 +57,65 @@ function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSe
     .catch(error => console.error(`Error populating [${selectName}]:`, error));
 }
 
+// UTILITY: Disable Duplicate option selection
+/**
+ * =================================================================
+ * DYNAMIC DUPLICATE OPTION MANAGEMENT UTILITY
+ * =================================================================
+ * For a given group of dropdowns (by name), this function prevents the user
+ * from selecting the same option in multiple dropdowns.
+ *
+ * @param {string} selectName - The 'name' attribute of the dropdowns to manage.
+ */
+function manageDuplicateSelections(selectName) {
+  // Find all dropdowns in this group that currently exist on the page.
+  const allSelectsInGroup = document.querySelectorAll(`select[name="${selectName}"]`);
+  if (!allSelectsInGroup.length) return;
+
+  const updateDisabledOptions = () => {
+    // 1. Find all values that are currently selected (and are not the placeholder).
+    const selectedValues = Array.from(allSelectsInGroup)
+                                .map(s => s.value)
+                                .filter(v => v !== "");
+
+    // 2. Loop through each dropdown in the group.
+    allSelectsInGroup.forEach(select => {
+      // 3. Loop through each option within that dropdown.
+      Array.from(select.options).forEach(option => {
+        // We don't want to disable placeholders or the currently selected option of THIS dropdown.
+        if (option.value === "" || option.value === select.value) {
+          option.disabled = false;
+          return; // Continue to the next option
+        }
+
+        // Disable the option if its value is found in our list of selected values.
+        option.disabled = selectedValues.includes(option.value);
+      });
+    });
+  };
+
+  // Listen for changes on any dropdown within the section that matches the name.
+  // We use event delegation on the document body for simplicity.
+  document.body.addEventListener('change', (event) => {
+    if (event.target.matches(`select[name="${selectName}"]`)) {
+      updateDisabledOptions();
+    }
+  });
+
+  // Also, whenever a row is added or removed, re-evaluate the disabled options.
+  // Listen for clicks on add/remove buttons.
+  document.body.addEventListener('click', (event) => {
+    // A bit broad, but effective: if any add/remove button is clicked, re-check duplicates.
+    if (event.target.matches('.btn-minus, [id^="add-"]')) {
+      // Use a small timeout to ensure the DOM has updated rechecking.
+      setTimeout(updateDisabledOptions, 50);
+    }
+  });
+
+  // Run it once on page load to set the initial state.
+  updateDisabledOptions();
+}
+
 // UTILITY: Can style ALL selects, OR a single specific one.
 function initializeSelectElementStyling(targetElement = null) {
   const allSelects = targetElement ? [targetElement] : document.querySelectorAll('select');
@@ -547,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // --- CONFIGURATIONS ---
+  // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
   const dynamicRowConfigs = [
     {
       sectionId: 'disciplines-backgrounds-section',
@@ -611,4 +670,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Initialize fixed dot logic
   initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
   initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+
+  // 5. Initialize duplicate Management
+  manageDuplicateSelections('discipline');
+  manageDuplicateSelections('background');
+  manageDuplicateSelections('merit');
+  manageDuplicateSelections('flaw');
 });
