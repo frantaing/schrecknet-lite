@@ -110,7 +110,7 @@ function initializeDynamicRows(config) {
     event.preventDefault();
     
     // 1. Create the main wrapper element using the class from the config.
-    //    This ensures we ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
+    //    This ensures there is ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
     const newRow = document.createElement('div');
     newRow.className = config.rowWrapperClass;
 
@@ -137,7 +137,7 @@ function initializeDynamicRows(config) {
  */
 function initializeClanDisciplineLogic() {
   const clanSelect = document.querySelector('select[name="clan"]');
-  // NOTE: We no longer select the discipline dropdowns here.
+  // NOTE: No longer select the discipline dropdowns here.
 
   if (!clanSelect) return;
 
@@ -222,43 +222,42 @@ function initializeClanDisciplineLogic() {
  * UPGRADED: SIMPLE DOT & POINT POOL LOGIC (Disciplines, Backgrounds, etc.)
  * =================================================================
  * Handles dot-filling and manages a simple point pool for a given section.
+ * NOW WITH MUTATION OBSERVER TO DETECT ROW REMOVALS.
  *
- * @param {string} columnId - The ID of the specific column div to manage.
+ * @param {string} sectionId - The ID of the specific section div to manage.
  * @param {string} selectName - The 'name' attribute of the dropdowns in this section.
  * @param {number} pointPool - The total number of points available for this section.
  * @param {number} baseDotsPerItem - The number of "free" dots each item starts with.
  */
-function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerItem) {
-  const columnElement = document.getElementById(columnId);
-  if (!columnElement) return;
+function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerItem) {
+  const mainSection = document.getElementById(sectionId);
+  if (!mainSection) return;
 
-  const counterSpan = columnElement.querySelector('h3 span');
+  const counterSpan = mainSection.querySelector('h3 span');
+  const rowContainer = mainSection.querySelector('.flex.flex-col.gap-3'); // The container that holds the rows
 
   // --- COUNTER UPDATE LOGIC ---
   const updateCounter = () => {
-    const filledDots = columnElement.querySelectorAll('.dot.filled').length;
-    // For simple logic, every filled dot costs one point from the pool.
-    const spentPoints = filledDots;
+    const filledDots = mainSection.querySelectorAll('.dot.filled').length;
+    const spentPoints = filledDots - (mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem);
     const remainingPoints = pointPool - spentPoints;
     
-    // Update the counter text
     if (counterSpan) {
       counterSpan.textContent = remainingPoints;
-      // Add styling for when points are overspent (though the guards should prevent this)
       counterSpan.classList.toggle('text-accent', remainingPoints < 0);
     }
-    return remainingPoints; // Return this value for use in guard clauses
+    return remainingPoints;
   };
 
-  // --- DOT CLICK HANDLER (with guard clauses) ---
+  // --- DOT CLICK HANDLER (with cost calculation) ---
   const handleDotClick = (event) => {
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
     const dotGroup = clickedDot.closest('.dot-group');
-    const wrapper = clickedDot.closest('.dots-custom');
+    const wrapper = clickedDot.closest('.dots-wrapper'); // The parent row
 
-    // GUARD 1: Check if the associated dropdown has a value.
+    // GUARD 1: Dropdown must have a value.
     if (wrapper) {
       const select = wrapper.querySelector(`select[name="${selectName}"]`);
       if (select && !select.value) {
@@ -267,25 +266,18 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
       }
     }
     
-    // GUARD 2 (UPGRADED): Check if trying to spend MORE points than are available.
-    const isTryingToSpend = !clickedDot.classList.contains('filled');
-    if (isTryingToSpend) {
-      // 1. Calculate the cost of THIS specific click.
+    // GUARD 2: Cannot spend more points than available.
+    if (!clickedDot.classList.contains('filled')) {
       const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
       const newScore = Array.from(dotGroup.children).indexOf(clickedDot) + 1;
       const cost = newScore - currentScore;
-
-      // 2. Get the current number of remaining points.
       const remainingPoints = updateCounter();
-
-      // 3. The crucial check: Do we have enough points to cover the cost?
       if (cost > remainingPoints) {
-        console.warn(`Action denied: This costs ${cost} points, but you only have ${remainingPoints} left.`);
-        return; // Exit the function, preventing the spend.
+        console.warn(`Action denied: Costs ${cost}, but only ${remainingPoints} left.`);
+        return;
       }
     }
 
-    // If guards are passed, update the dots and then the counter.
     updateDotsInGroup(dotGroup, clickedDot);
     updateCounter();
   };
@@ -299,19 +291,17 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
     dots.forEach((d, i) => d.classList.toggle('filled', i < newScore || i < baseDotsPerItem));
   };
 
-  // --- DROPDOWN CHANGE HANDLER (now updates counter) ---
+  // --- DROPDOWN CHANGE HANDLER ---
   const handleDropdownChange = (event) => {
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
-      const wrapper = changedSelect.closest('.dots-custom');
+      const wrapper = changedSelect.closest('.dots-wrapper');
       if (wrapper) {
         const dotGroup = wrapper.querySelector('.dot-group');
         if (dotGroup) {
-          // Reset all dots in this group to the base state
           Array.from(dotGroup.children).forEach((dot, index) => {
             dot.classList.toggle('filled', index < baseDotsPerItem);
           });
-          // After resetting dots, update the main counter to regain the points.
           updateCounter();
         }
       }
@@ -319,8 +309,31 @@ function initializeSimpleDotLogic(columnId, selectName, pointPool, baseDotsPerIt
   };
 
   // --- INITIALIZATION ---
-  columnElement.addEventListener('click', handleDotClick);
-  columnElement.addEventListener('change', handleDropdownChange);
+  mainSection.addEventListener('click', handleDotClick);
+  mainSection.addEventListener('change', handleDropdownChange);
+  
+  // --- NEW: OBSERVER FOR ROW REMOVAL ---
+  // This watches for changes inside the row container.
+  if (rowContainer) {
+    const observer = new MutationObserver((mutationsList) => {
+      // Loop through all the mutations that just happened.
+      for (const mutation of mutationsList) {
+        // Only care about mutations where nodes were REMOVED.
+        if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
+          // A row was removed! Recalculate the points.
+          console.log('A row was removed. Updating points.');
+          updateCounter();
+          // Found it!, no need to check other mutations.
+          break; 
+        }
+      }
+    });
+
+    // Tell the observer to watch the container and notify of child changes.
+    observer.observe(rowContainer, { childList: true });
+  }
+  // --- END OF NEW CODE ---
+
   updateCounter(); // Initial counter setup on page load
 }
 
@@ -385,7 +398,7 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
     resetDotsForSection(currentCategorySection);
 
     // 2. If a new priority was selected (i.e., not the empty placeholder),
-    // check if we need to "steal" it from another category.
+    // check if need to "steal" it from another category.
     if (newValue) {
       priorityDropdowns.forEach(select => {
         // Find another dropdown that was using the same priority
@@ -425,14 +438,14 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
       const newScore = clickedDotIndex + 1; // The score the user is trying to set
 
       // The maxDotsPerItem parameter is a number. If it's provided and the new
-      // score exceeds it, we deny the action and exit the function.
+      // score exceeds it, deny the action and exit the function.
       if (maxDotsPerItem && newScore > maxDotsPerItem) {
         console.warn(`Action denied: Abilities cannot be raised above ${maxDotsPerItem} during character creation.`);
         return; // STOP
       }
       // --- END NEW GUARD CLAUSE ---
 
-      // Guard Clause #3: Do we have enough points for the cost?
+      // Guard Clause #3: Does user have enough points for the cost?
       const cost = calculateClickCost(dotGroup, clickedDot);
       const remainingPoints = calculateRemainingPoints(category, priority);
       if (cost > remainingPoints) {
