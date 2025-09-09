@@ -315,8 +315,13 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 
   // --- COUNTER UPDATE LOGIC ---
   const updateCounter = () => {
+    // 1. Count all filled dots in the section.
     const filledDots = mainSection.querySelectorAll('.dot.filled').length;
-    const spentPoints = filledDots - (mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem);
+    // 2. Calculate the total number of "free" base dots.
+    const totalBasePoints = mainSection.querySelectorAll('.dot-group').length * baseDotsPerItem;
+    // 3. The points spent are the filled dots MINUS the free ones.
+    const spentPoints = filledDots - totalBasePoints;
+    
     const remainingPoints = pointPool - spentPoints;
     
     if (counterSpan) {
@@ -695,22 +700,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize fixed dot logic
     initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
     initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
+    initializeSimpleDotLogic('virtues-section', '', 7, 1); // No selectName needed, 7 points, 1 base dot
 
     // Initialize duplicate Management (after everything is populated)
-    manageDuplicateSelections('discipline');
-    manageDuplicateSelections('background');
-    manageDuplicateSelections('merit');
-    manageDuplicateSelections('flaw');
-  }).catch(error => {
-    console.error('Error loading dropdown data:', error);
-    // Initialize everything anyway in case some data loaded
-    initializeSelectElementStyling();
-    initializeClanDisciplineLogic();
-    dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
-    initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
-    initializeDotCategoryLogic('abilities-section', 'ability-priority', { primary: 13, secondary: 9, tertiary: 5 }, 0, 3);
-    initializeSimpleDotLogic('disciplines-section', 'discipline', 3, 0);
-    initializeSimpleDotLogic('backgrounds-section', 'background', 5, 0);
     manageDuplicateSelections('discipline');
     manageDuplicateSelections('background');
     manageDuplicateSelections('merit');
