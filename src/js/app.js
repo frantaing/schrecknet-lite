@@ -77,17 +77,42 @@ function initializeFreebieMode() {
   freebieResetButton.addEventListener('click', () => { /* ... reset logic ... */ });
 }
 function initializeFreebieListeners(state, onUpdateCallback) {
-  const costs = { 'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 'backgrounds-section': 1, 'virtues-section': 2, 'humanity-section': 1, 'willpower-section': 1 };
+  const costs = { 
+    'attributes-section': 5, 
+    'abilities-section': 2, 
+    'disciplines-section': 7, 
+    'backgrounds-section': 1, 
+    'virtues-section': 2, 
+    'humanity-section': 1, 
+    'willpower-section': 1 
+  };
 
   // --- DOT CLICK LISTENER ---
   document.body.addEventListener('click', (event) => {
     if (!state.isFreebieModeActive || !event.target.matches('.dot')) return;
 
     const dot = event.target;
-    const section = dot.closest('section[id], div[id]'); // Works for both <section> and <div> IDs
-    if (!section || !costs[section.id]) return;
+    let sectionId = null;
+    
+    // Special handling for disciplines and backgrounds which are divs inside a section
+    if (dot.closest('#disciplines-section')) {
+      sectionId = 'disciplines-section';
+    } else if (dot.closest('#backgrounds-section')) {
+      sectionId = 'backgrounds-section';  
+    } else {
+      // For other sections, find the section[id]
+      const section = dot.closest('section[id]');
+      if (section) {
+        sectionId = section.id;
+      }
+    }
+    
+    if (!sectionId || !costs[sectionId]) {
+      console.log('No valid section found for dot click:', sectionId);
+      return;
+    }
 
-    const cost = costs[section.id];
+    const cost = costs[sectionId];
     const dotGroup = dot.closest('.dot-group');
     const allDots = Array.from(dotGroup.children);
     const clickIndex = allDots.indexOf(dot);
@@ -116,7 +141,7 @@ function initializeFreebieListeners(state, onUpdateCallback) {
       }
     }
     
-    onUpdateCallback(); // Tell the brain to recalculate everything
+    onUpdateCallback();
   });
 
   // --- MERIT/FLAW CHANGE LISTENER ---
@@ -563,6 +588,9 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   
   if (rowContainer) {
     const observer = new MutationObserver((mutationsList) => {
+
+      if (document.body.classList.contains('freebie-mode-active')) return;
+
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
           updateCounter();
@@ -837,9 +865,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
+// --- CONFIGURATIONS FOR DYNAMIC ROWS ---
   const dynamicRowConfigs = [
     {
-      sectionId: 'disciplines-backgrounds-section',
+      sectionId: 'disciplines-backgrounds-section',  // Back to original
       addButtonSelector: '#add-discipline-btn',
       rowContainerSelector: '#disciplines-container',
       rowWrapperClass: 'dots-wrapper',
@@ -848,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postAddCallback: (newRow) => setupNewDropdown(newRow, 'discipline', 'data/V20/disciplines.json', false, null)
     },
     {
-      sectionId: 'disciplines-backgrounds-section',
+      sectionId: 'disciplines-backgrounds-section',  // Back to original
       addButtonSelector: '#add-background-btn',
       rowContainerSelector: '#backgrounds-container',
       rowWrapperClass: 'dots-wrapper',
