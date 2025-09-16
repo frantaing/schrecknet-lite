@@ -1,8 +1,164 @@
 /**
  * =================================================================
- * SchreckNet Lite - V20 Character Sheet Logic
+ * SchreckNet Lite - V20 Character Sheet Logic (Enhanced with Freebie Dots)
  * =================================================================
  */
+
+// =================================================================
+//  CENTRAL FREEBIE MODE CONTROLLER & LOGIC
+// =================================================================
+function initializeFreebieMode() {
+  const state = { isFreebieModeActive: false, freebiePoints: 15 };
+
+  const freebieToggleButton = document.getElementById('freebiePointsButton');
+  const freebieCounterDisplay = document.getElementById('freebiePointCounter');
+  const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
+  const freebieResetButton = document.getElementById('freebiePointReset');
+  const body = document.body;
+
+  // This is the single "brain" function.
+  const updateAllCalculations = () => {
+    if (!state.isFreebieModeActive) return;
+
+    // 1. Calculate points from Merits & Flaws
+    let meritCost = 0, flawGain = 0;
+    document.querySelectorAll('select[name="merit"]').forEach(s => {
+      const opt = s.options[s.selectedIndex];
+      if (s.value && opt.dataset.cost) meritCost += parseInt(opt.dataset.cost);
+    });
+    document.querySelectorAll('select[name="flaw"]').forEach(s => {
+      const opt = s.options[s.selectedIndex];
+      if (s.value && opt.dataset.cost) flawGain += parseInt(opt.dataset.cost);
+    });
+    const effectiveFlawGain = Math.min(flawGain, 7);
+
+    // 2. Calculate points from Dots
+    let dotCost = 0;
+    const costs = { 'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 'backgrounds-section': 1, 'virtues-section': 2, 'humanity-section': 1, 'willpower-section': 1 };
+    Object.keys(costs).forEach(id => {
+      const section = document.getElementById(id);
+      if (section) dotCost += section.querySelectorAll('.dot.filled-freebie').length * costs[id];
+    });
+
+    // 3. Update state, UI, and Merit dropdowns
+    state.freebiePoints = 15 - meritCost - dotCost + effectiveFlawGain;
+    if (freebiePointsSpan) freebiePointsSpan.textContent = state.freebiePoints;
+    updateMeritOptions(state.freebiePoints);
+  };
+
+  const updateMeritOptions = (remainingPoints) => {
+    document.querySelectorAll('select[name="merit"]').forEach(select => {
+      Array.from(select.options).forEach(option => {
+        if (!option.value || option.value === select.value) {
+          option.disabled = false; return;
+        }
+        option.disabled = parseInt(option.dataset.cost) > remainingPoints;
+      });
+    });
+  };
+
+  const enterFreebieMode = () => {
+    state.isFreebieModeActive = true;
+    console.log("Freebie Mode Activated.");
+    freebieToggleButton.classList.add('hidden');
+    freebieCounterDisplay.classList.remove('hidden');
+    body.classList.add('freebie-mode-active');
+    
+    initializeFreebieListeners(state, updateAllCalculations);
+    updateAllCalculations();
+  };
+  
+  freebieToggleButton.addEventListener('click', () => {
+    if (!state.isFreebieModeActive && confirm("Are you sure? This will lock your sheet.")) {
+      enterFreebieMode();
+    }
+  });
+
+  freebieResetButton.addEventListener('click', () => { /* ... reset logic ... */ });
+}
+function initializeFreebieListeners(state, onUpdateCallback) {
+  const costs = { 
+    'attributes-section': 5, 
+    'abilities-section': 2, 
+    'disciplines-section': 7, 
+    'backgrounds-section': 1, 
+    'virtues-section': 2, 
+    'humanity-section': 1, 
+    'willpower-section': 1 
+  };
+
+  // --- DOT CLICK LISTENER ---
+  document.body.addEventListener('click', (event) => {
+    if (!state.isFreebieModeActive || !event.target.matches('.dot')) return;
+
+    const dot = event.target;
+    let sectionId = null;
+    
+    // Special handling for disciplines and backgrounds which are divs inside a section
+    if (dot.closest('#disciplines-section')) {
+      sectionId = 'disciplines-section';
+    } else if (dot.closest('#backgrounds-section')) {
+      sectionId = 'backgrounds-section';  
+    } else {
+      // For other sections, find the section[id]
+      const section = dot.closest('section[id]');
+      if (section) {
+        sectionId = section.id;
+      }
+    }
+    
+    if (!sectionId || !costs[sectionId]) {
+      console.log('No valid section found for dot click:', sectionId);
+      return;
+    }
+
+    const cost = costs[sectionId];
+    const dotGroup = dot.closest('.dot-group');
+    const allDots = Array.from(dotGroup.children);
+    const clickIndex = allDots.indexOf(dot);
+    
+    const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
+    const isTryingToSpend = clickIndex >= currentScore;
+
+    if (isTryingToSpend) {
+      const dotsToAdd = (clickIndex + 1) - currentScore;
+      const totalCost = dotsToAdd * cost;
+      if (totalCost > state.freebiePoints) {
+        console.warn(`Action denied: Costs ${totalCost}, but you only have ${state.freebiePoints} left.`);
+        return;
+      }
+      for (let i = currentScore; i <= clickIndex; i++) {
+        allDots[i].classList.add('filled', 'filled-freebie');
+      }
+    } else { // Refunding points
+      const isLastFilled = !allDots[clickIndex + 1]?.classList.contains('filled');
+      const refundIndex = isLastFilled ? clickIndex : clickIndex + 1;
+      
+      for (let i = currentScore - 1; i >= refundIndex; i--) {
+        if (allDots[i].classList.contains('filled-freebie')) {
+          allDots[i].classList.remove('filled', 'filled-freebie');
+        }
+      }
+    }
+    
+    onUpdateCallback();
+  });
+
+  // --- MERIT/FLAW CHANGE LISTENER ---
+  const meritsFlawsSection = document.getElementById('merits-flaws-section');
+  if (meritsFlawsSection) {
+    meritsFlawsSection.addEventListener('change', (event) => {
+      if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
+        onUpdateCallback();
+      }
+    });
+    meritsFlawsSection.addEventListener('click', (event) => {
+      if (event.target.matches('.btn-minus, [id^="add-"]')) {
+        setTimeout(onUpdateCallback, 50);
+      }
+    });
+  }
+}
 
 // UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
 function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
@@ -247,7 +403,7 @@ function initializeClanDisciplineLogic() {
       disciplinesContainer.querySelectorAll('.dots-wrapper').forEach(row => {
         if (row.querySelector('.btn-minus')) row.remove();
       });
-      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled'));
+      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled', 'filled-freebie'));
       const disciplineCounter = document.querySelector('#disciplines-section h3 span');
       if (disciplineCounter) {
         disciplineCounter.textContent = '3';
@@ -354,7 +510,9 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 
   // --- DOT CLICK HANDLER (No changes needed here) ---
   const handleDotClick = (event) => {
-    // ... (this function remains the same as the previous version)
+    // Skip if in freebie mode - freebie logic will handle it
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
@@ -406,7 +564,9 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 
   // --- DROPDOWN CHANGE HANDLER (No changes needed here) ---
   const handleDropdownChange = (event) => {
-    // ... (this function remains the same as the previous version)
+    // Skip if in freebie mode
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
       const wrapper = changedSelect.closest('.dots-wrapper');
@@ -426,9 +586,11 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   mainSection.addEventListener('click', handleDotClick);
   mainSection.addEventListener('change', handleDropdownChange);
   
-  // ... (MutationObserver code remains the same) ...
   if (rowContainer) {
     const observer = new MutationObserver((mutationsList) => {
+
+      if (document.body.classList.contains('freebie-mode-active')) return;
+
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
           updateCounter();
@@ -532,6 +694,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   };
   
   const handlePriorityChange = (event) => {
+    // Skip if in freebie mode
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const changedSelect = event.target;
     const newValue = changedSelect.value;
     const currentCategorySection = changedSelect.closest('.grid > div');
@@ -560,6 +725,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   };
 
   const handleDotClick = (event) => {
+    // Skip if in freebie mode - freebie logic will handle it
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return; // Exit if not a dot
 
@@ -632,6 +800,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 // This single event listener is the entry point for all initialization code.
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- FREEBIE MODE SETUP ---
+  initializeFreebieMode();
+
   // --- MERIT/FLAW FORMATTER ---
   const meritFlawFormatter = (optionElement, itemData) => {
     optionElement.textContent = `${itemData.label} (${itemData.cost})`;
@@ -694,9 +865,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
+// --- CONFIGURATIONS FOR DYNAMIC ROWS ---
   const dynamicRowConfigs = [
     {
-      sectionId: 'disciplines-backgrounds-section',
+      sectionId: 'disciplines-backgrounds-section',  // Back to original
       addButtonSelector: '#add-discipline-btn',
       rowContainerSelector: '#disciplines-container',
       rowWrapperClass: 'dots-wrapper',
@@ -705,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postAddCallback: (newRow) => setupNewDropdown(newRow, 'discipline', 'data/V20/disciplines.json', false, null)
     },
     {
-      sectionId: 'disciplines-backgrounds-section',
+      sectionId: 'disciplines-backgrounds-section',  // Back to original
       addButtonSelector: '#add-background-btn',
       rowContainerSelector: '#backgrounds-container',
       rowWrapperClass: 'dots-wrapper',
@@ -753,7 +925,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize dot trackers
     initializeTrackerDots('humanity-section');
     initializeTrackerDots('willpower-section');
-
 
     // Initialize all the dynamic and interactive logic.
     initializeSelectElementStyling();
