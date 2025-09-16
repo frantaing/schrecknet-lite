@@ -81,9 +81,10 @@ function initializeFreebieMode() {
 // LOGIC: Freebie point logic (from merits/flaws)
 /**
  * =================================================================
- * MERIT & FLAW POINT LOGIC
+ * UPGRADED: MERIT & FLAW POINT LOGIC
  * =================================================================
  * Manages the freebie point pool based on selected Merits and Flaws.
+ * NOW dynamically enables/disables Merit options based on available points.
  *
  * @param {object} state - The global state object containing freebiePoints.
  * @param {function} onUpdate - The callback function to update the UI counter.
@@ -92,21 +93,52 @@ function initializeMeritFlawLogic(state, onUpdate) {
   const meritsFlawsSection = document.getElementById('merits-flaws-section');
   if (!meritsFlawsSection) return;
 
-  const calculatePoints = () => {
+  /**
+   * This is the new "brain" of the function. It's responsible for
+   * enabling/disabling merit options based on the current point total.
+   */
+  const updateMeritOptions = () => {
+    const allMeritSelects = document.querySelectorAll('select[name="merit"]');
+    const remainingPoints = state.freebiePoints;
+
+    allMeritSelects.forEach(select => {
+      const currentlySelectedOption = select.options[select.selectedIndex];
+      
+      Array.from(select.options).forEach(option => {
+        // Always enable the placeholder and the currently selected option.
+        if (!option.value || option.value === select.value) {
+          option.disabled = false;
+          return; // Skip to the next option
+        }
+        
+        const cost = parseInt(option.dataset.cost, 10);
+        
+        // If the cost of this option is greater than our remaining points, disable it.
+        if (cost > remainingPoints) {
+          option.disabled = true;
+        } else {
+          option.disabled = false;
+        }
+      });
+    });
+  };
+
+  /**
+   * Calculates the total point change from all Merits and Flaws
+   * and updates the global state.
+   */
+  const calculatePointsAndUpdate = () => {
     let meritCost = 0;
     let flawGain = 0;
 
-    // Find all selected MERIT options
     const selectedMerits = document.querySelectorAll('select[name="merit"]');
     selectedMerits.forEach(select => {
       const selectedOption = select.options[select.selectedIndex];
-      // Check if it's a real selection and has a cost in its dataset
       if (select.value && selectedOption.dataset.cost) {
         meritCost += parseInt(selectedOption.dataset.cost, 10);
       }
     });
 
-    // Find all selected FLAW options
     const selectedFlaws = document.querySelectorAll('select[name="flaw"]');
     selectedFlaws.forEach(select => {
       const selectedOption = select.options[select.selectedIndex];
@@ -114,35 +146,35 @@ function initializeMeritFlawLogic(state, onUpdate) {
         flawGain += parseInt(selectedOption.dataset.cost, 10);
       }
     });
-
-    // V20 RULE: You can gain a maximum of 7 points from Flaws.
+    
     const effectiveFlawGain = Math.min(flawGain, 7);
-
-    // The base is always 15. Then we apply the changes.
     state.freebiePoints = 15 - meritCost + effectiveFlawGain;
     
-    // Call the provided update function to sync the UI.
+    // After updating the points, tell the UI to sync.
     onUpdate();
+    
+    // AND THEN, update the enabled/disabled state of the merit options.
+    updateMeritOptions();
   };
 
-  // Use event delegation on the section to listen for changes.
-  // This will work for both initial and dynamically added dropdowns.
+  // --- EVENT LISTENERS ---
+  
+  // Use event delegation on the section to listen for any change.
   meritsFlawsSection.addEventListener('change', (event) => {
     if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
-      calculatePoints();
+      calculatePointsAndUpdate();
     }
   });
   
-  // Also listen for clicks that might remove a row.
+  // Also listen for clicks that might add or remove a row.
   meritsFlawsSection.addEventListener('click', (event) => {
-    if (event.target.matches('.btn-minus')) {
-      // Use a timeout to ensure the element is removed from the DOM before recalculating.
-      setTimeout(calculatePoints, 50);
+    if (event.target.matches('.btn-minus, [id^="add-"]')) {
+      setTimeout(calculatePointsAndUpdate, 50);
     }
   });
 
-  // Run once on initialization in case of any pre-selected values (unlikely but good practice).
-  calculatePoints();
+  // Run once on initialization to set the initial state.
+  calculatePointsAndUpdate();
 }
 
 // UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
