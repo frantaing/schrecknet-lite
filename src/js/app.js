@@ -57,14 +57,25 @@ function initializeFreebieMode() {
   // (Existing event listeners for the toggle and reset buttons remain unchanged)
   freebieToggleButton.addEventListener('click', () => {
     if (!state.isFreebieModeActive) {
-      const confirmation = confirm(/* ... */);
+      const confirmation = confirm(
+        "Are you sure you want to enter Freebie Point Mode?\n\nThis will lock most of your character sheet and cannot be undone."
+      );
       if (confirmation) {
         enterFreebieMode();
       }
     }
   });
   
-  freebieResetButton.addEventListener('click', () => { /* ... */ });
+  freebieResetButton.addEventListener('click', () => {
+    // --- THE FIX: Check the 'state' object here! ---
+    if (state.isFreebieModeActive) {
+      const confirmation = confirm("Are you sure you want to reset all spent freebie points?");
+      if (confirmation) {
+        // We will add the reset logic here in a future phase.
+        console.log("Resetting freebie points...");
+      }
+    }
+  });
 }
 
 // LOGIC: Freebie point logic (from merits/flaws)

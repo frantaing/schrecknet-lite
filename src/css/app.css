@@ -190,6 +190,13 @@ main h4 {
   opacity: 1;
 }
 
+/* --- NEW RULE TO FIX THE BUTTONS --- */
+/* Specifically re-enable the 'add' buttons INSIDE the now-active merits/flaws section */
+.freebie-mode-active #merits-flaws-section [id^="add-"] {
+  pointer-events: auto; /* Let the mouse click it */
+  opacity: 1; /* Make it fully visible */
+}
+
 /* 2. Lock everything else that should not be interactive (UPGRADED) */
 .freebie-mode-active #basics-section,
 .freebie-mode-active #attributes-section select,
