@@ -100,8 +100,8 @@ function initializeFreebieListeners(state, onUpdateCallback) {
     } else if (dot.closest('#backgrounds-section')) {
       sectionId = 'backgrounds-section';  
     } else {
-      // For other sections, find the section[id]
-      const section = dot.closest('section[id]');
+      // For other sections, find the section[id] or div[id]
+      const section = dot.closest('section[id]') || dot.closest('div[id]');
       if (section) {
         sectionId = section.id;
       }
@@ -110,6 +110,26 @@ function initializeFreebieListeners(state, onUpdateCallback) {
     if (!sectionId || !costs[sectionId]) {
       console.log('No valid section found for dot click:', sectionId);
       return;
+    }
+
+    // VALIDATION: Check if dropdown/textfield is filled for disciplines, backgrounds, and abilities
+    if (sectionId === 'disciplines-section' || sectionId === 'backgrounds-section' || sectionId === 'abilities-section') {
+      const wrapper = dot.closest('.dots-wrapper');
+      if (wrapper) {
+        // Check for dropdown selection
+        const select = wrapper.querySelector('select');
+        if (select && !select.value) {
+          console.warn("Action denied: Please select an option before assigning dots.");
+          return;
+        }
+        
+        // Check for custom textfield (abilities section)
+        const customInput = wrapper.querySelector('input[type="text"]');
+        if (customInput && !customInput.value.trim()) {
+          console.warn("Action denied: Please enter a custom ability before assigning dots.");
+          return;
+        }
+      }
     }
 
     const cost = costs[sectionId];
@@ -865,7 +885,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
-// --- CONFIGURATIONS FOR DYNAMIC ROWS ---
   const dynamicRowConfigs = [
     {
       sectionId: 'disciplines-backgrounds-section',  // Back to original
