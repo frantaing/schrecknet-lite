@@ -57,6 +57,40 @@ function initializeFreebieMode() {
     });
   };
 
+  const resetFreebieState = () => {
+    console.log("Resetting all freebie point allocations...");
+
+    // 1. Remove all dots that were filled with freebie points.
+    // This is safe because base dots from character creation do not have this class.
+    document.querySelectorAll('.dot.filled-freebie').forEach(dot => {
+      dot.classList.remove('filled', 'filled-freebie');
+    });
+
+    // 2. Reset all Merit and Flaw dropdowns to their placeholder.
+    document.querySelectorAll('select[name="merit"], select[name="flaw"]').forEach(select => {
+      select.value = "";
+      // Manually trigger a color update for the now-empty selects.
+      if (typeof updateSelectColor === 'function') { // Check if the helper exists
+          updateSelectColor(select);
+      }
+    });
+
+    // 3. Remove any dynamically added rows from Backgrounds.
+    // Since Disciplines are locked, we only need to worry about these.
+    const backgroundsContainer = document.getElementById('backgrounds-container');
+    if (backgroundsContainer) {
+      backgroundsContainer.querySelectorAll('.dots-wrapper').forEach(row => {
+        // A dynamically added row is one that has a remove button.
+        if (row.querySelector('.btn-minus')) {
+          row.remove();
+        }
+      });
+    }
+    
+    // The master update function will be called after this,
+    // which will handle recalculating points back to 15.
+  };
+
   const enterFreebieMode = () => {
     state.isFreebieModeActive = true;
     console.log("Freebie Mode Activated.");
@@ -74,7 +108,17 @@ function initializeFreebieMode() {
     }
   });
 
-  freebieResetButton.addEventListener('click', () => { /* ... reset logic ... */ });
+  freebieResetButton.addEventListener('click', () => {
+    if (state.isFreebieModeActive) {
+      const confirmation = confirm("Are you sure you want to reset all spent freebie points? This cannot be undone.");
+      if (confirmation) {
+        // 1. Call our new reset function to clean the DOM.
+        resetFreebieState();
+        // 2. Call the master update function to recalculate the state and update the UI.
+        updateAllCalculations();
+      }
+    }
+  });
 }
 function initializeFreebieListeners(state, onUpdateCallback) {
   const costs = { 
