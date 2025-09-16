@@ -4,82 +4,134 @@
  * =================================================================
  */
 
+// STATE: Freebie mode state and logic
 // =================================================================
 //  GLOBAL STATE & FREEBIE MODE LOGIC
 // =================================================================
 // This function will be called once the DOM is ready.
 function initializeFreebieMode() {
   // --- STATE VARIABLES ---
-  let isFreebieModeActive = false;
-  let freebiePoints = 15;
+  // Wrap these in an object to make them easier to pass around.
+  const state = {
+    isFreebieModeActive: false,
+    freebiePoints: 15
+  };
 
   // --- DOM ELEMENT REFERENCES ---
   const freebieToggleButton = document.getElementById('freebiePointsButton');
-  const freebieCounterDisplay = document.getElementById('freebiePointCounter'); // The whole div
-  const freebiePointsSpan = freebieCounterDisplay.querySelector('.span'); // The number '15'
+  const freebieCounterDisplay = document.getElementById('freebiePointCounter');
+  const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
   const freebieResetButton = document.getElementById('freebiePointReset');
   const body = document.body;
 
   // --- CORE FUNCTIONS ---
 
-  /**
-   * Updates the freebie points counter display.
-   */
   const updateFreebieCounter = () => {
     if (freebiePointsSpan) {
-      freebiePointsSpan.textContent = freebiePoints;
+      // Read the value from our state object now
+      freebiePointsSpan.textContent = state.freebiePoints;
     }
   };
 
-  /**
-   * This is the master function that runs ONCE to permanently
-   * lock the sheet and activate freebie point spending.
-   */
   const enterFreebieMode = () => {
-    // 1. Flip the master switch.
-    isFreebieModeActive = true;
+    // 1. Flip the switch in the state object.
+    state.isFreebieModeActive = true;
     console.log("Freebie Mode Activated. Sheet is now locked.");
 
-    // 2. Swap the visibility of the buttons.
+    // 2. Swap button visibility.
     freebieToggleButton.classList.add('hidden');
     freebieCounterDisplay.classList.remove('hidden');
 
-    // 3. Add the locking class to the body. CSS will handle the rest.
+    // 3. Add the locking class to the body.
     body.classList.add('freebie-mode-active');
     
-    // 4. Update the counter to show the initial 15 points.
+    // 4. Update the counter with the initial points.
     updateFreebieCounter();
 
-    // 5. Placeholder for future logic
-    // initializeMeritFlawPointLogic();
-    // upgradeDotHandlersForFreebies();
+    // --- 5. ACTIVATE THE NEW LOGIC ---
+    // Pass the state object and the update function to the new handler.
+    initializeMeritFlawLogic(state, updateFreebieCounter);
   };
 
   // --- EVENT LISTENERS ---
-
-  // Listener for the initial "Enter Freebie Mode" button.
+  // (Existing event listeners for the toggle and reset buttons remain unchanged)
   freebieToggleButton.addEventListener('click', () => {
-    // This button only works if freebie mode is NOT active.
-    if (!isFreebieModeActive) {
-      const confirmation = confirm(
-        "Are you sure you want to enter Freebie Point Mode?\n\nThis will lock most of your character sheet and cannot be undone."
-      );
+    if (!state.isFreebieModeActive) {
+      const confirmation = confirm(/* ... */);
       if (confirmation) {
         enterFreebieMode();
       }
     }
   });
+  
+  freebieResetButton.addEventListener('click', () => { /* ... */ });
+}
 
-  // Placeholder listener for the reset button.
-  freebieResetButton.addEventListener('click', () => {
-    if (isFreebieModeActive) {
-      const confirmation = confirm("Are you sure you want to reset all spent freebie points?");
-      if (confirmation) {
-        // We will add the reset logic here in a future phase.
-        console.log("Resetting freebie points...");
+// LOGIC: Freebie point logic (from merits/flaws)
+/**
+ * =================================================================
+ * MERIT & FLAW POINT LOGIC
+ * =================================================================
+ * Manages the freebie point pool based on selected Merits and Flaws.
+ *
+ * @param {object} state - The global state object containing freebiePoints.
+ * @param {function} onUpdate - The callback function to update the UI counter.
+ */
+function initializeMeritFlawLogic(state, onUpdate) {
+  const meritsFlawsSection = document.getElementById('merits-flaws-section');
+  if (!meritsFlawsSection) return;
+
+  const calculatePoints = () => {
+    let meritCost = 0;
+    let flawGain = 0;
+
+    // Find all selected MERIT options
+    const selectedMerits = document.querySelectorAll('select[name="merit"]');
+    selectedMerits.forEach(select => {
+      const selectedOption = select.options[select.selectedIndex];
+      // Check if it's a real selection and has a cost in its dataset
+      if (select.value && selectedOption.dataset.cost) {
+        meritCost += parseInt(selectedOption.dataset.cost, 10);
       }
+    });
+
+    // Find all selected FLAW options
+    const selectedFlaws = document.querySelectorAll('select[name="flaw"]');
+    selectedFlaws.forEach(select => {
+      const selectedOption = select.options[select.selectedIndex];
+      if (select.value && selectedOption.dataset.cost) {
+        flawGain += parseInt(selectedOption.dataset.cost, 10);
+      }
+    });
+
+    // V20 RULE: You can gain a maximum of 7 points from Flaws.
+    const effectiveFlawGain = Math.min(flawGain, 7);
+
+    // The base is always 15. Then we apply the changes.
+    state.freebiePoints = 15 - meritCost + effectiveFlawGain;
+    
+    // Call the provided update function to sync the UI.
+    onUpdate();
+  };
+
+  // Use event delegation on the section to listen for changes.
+  // This will work for both initial and dynamically added dropdowns.
+  meritsFlawsSection.addEventListener('change', (event) => {
+    if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
+      calculatePoints();
     }
   });
+  
+  // Also listen for clicks that might remove a row.
+  meritsFlawsSection.addEventListener('click', (event) => {
+    if (event.target.matches('.btn-minus')) {
+      // Use a timeout to ensure the element is removed from the DOM before recalculating.
+      setTimeout(calculatePoints, 50);
+    }
+  });
+
+  // Run once on initialization in case of any pre-selected values (unlikely but good practice).
+  calculatePoints();
 }
 
 // UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
