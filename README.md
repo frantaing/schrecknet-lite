@@ -132,10 +132,10 @@ Currently in **early development**: building out the UI and laying the groundwor
 -   [x] Implement click handling for the attribute dots.
 -   [x] Implement click handling for the ability dots.
 -   [x] Enable dropdown selections for disciplines and backgrounds.
--   [ ] Create basic V20 freebie point calculation logic.
-    -   [ ] Attributes
-    -   [ ] Abilities
-    -   [ ] Merits/Flaws
+-   [x] Create basic V20 freebie point calculation logic.
+    -   [x] Attributes
+    -   [x] Abilities
+    -   [x] Merits/Flaws
 
 #### **V5 Character Sheet**
 
