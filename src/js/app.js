@@ -1,180 +1,138 @@
 /**
  * =================================================================
- * SchreckNet Lite - V20 Character Sheet Logic
+ * SchreckNet Lite - V20 Character Sheet Logic (Enhanced with Freebie Dots)
  * =================================================================
  */
 
-// STATE: Freebie mode state and logic
 // =================================================================
-//  GLOBAL STATE & FREEBIE MODE LOGIC
+//  CENTRAL FREEBIE MODE CONTROLLER & LOGIC
 // =================================================================
-// This function will be called once the DOM is ready.
 function initializeFreebieMode() {
-  // --- STATE VARIABLES ---
-  // Wrap these in an object to make them easier to pass around.
-  const state = {
-    isFreebieModeActive: false,
-    freebiePoints: 15
-  };
+  const state = { isFreebieModeActive: false, freebiePoints: 15 };
 
-  // --- DOM ELEMENT REFERENCES ---
   const freebieToggleButton = document.getElementById('freebiePointsButton');
   const freebieCounterDisplay = document.getElementById('freebiePointCounter');
   const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
   const freebieResetButton = document.getElementById('freebiePointReset');
   const body = document.body;
 
-  // --- CORE FUNCTIONS ---
+  // This is the single "brain" function.
+  const updateAllCalculations = () => {
+    if (!state.isFreebieModeActive) return;
 
-  const updateFreebieCounter = () => {
-    if (freebiePointsSpan) {
-      // Read the value from our state object now
-      freebiePointsSpan.textContent = state.freebiePoints;
-    }
+    // 1. Calculate points from Merits & Flaws
+    let meritCost = 0, flawGain = 0;
+    document.querySelectorAll('select[name="merit"]').forEach(s => {
+      const opt = s.options[s.selectedIndex];
+      if (s.value && opt.dataset.cost) meritCost += parseInt(opt.dataset.cost);
+    });
+    document.querySelectorAll('select[name="flaw"]').forEach(s => {
+      const opt = s.options[s.selectedIndex];
+      if (s.value && opt.dataset.cost) flawGain += parseInt(opt.dataset.cost);
+    });
+    const effectiveFlawGain = Math.min(flawGain, 7);
+
+    // 2. Calculate points from Dots
+    let dotCost = 0;
+    const costs = { 'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 'backgrounds-section': 1, 'virtues-section': 2, 'humanity-section': 1, 'willpower-section': 1 };
+    Object.keys(costs).forEach(id => {
+      const section = document.getElementById(id);
+      if (section) dotCost += section.querySelectorAll('.dot.filled-freebie').length * costs[id];
+    });
+
+    // 3. Update state, UI, and Merit dropdowns
+    state.freebiePoints = 15 - meritCost - dotCost + effectiveFlawGain;
+    if (freebiePointsSpan) freebiePointsSpan.textContent = state.freebiePoints;
+    updateMeritOptions(state.freebiePoints);
   };
 
-  const enterFreebieMode = () => {
-    // 1. Flip the switch in the state object.
-    state.isFreebieModeActive = true;
-    console.log("Freebie Mode Activated. Sheet is now locked.");
-
-    // 2. Swap button visibility.
-    freebieToggleButton.classList.add('hidden');
-    freebieCounterDisplay.classList.remove('hidden');
-
-    // 3. Add the locking class to the body.
-    body.classList.add('freebie-mode-active');
-    
-    // 4. Update the counter with the initial points.
-    updateFreebieCounter();
-
-    // --- 5. ACTIVATE THE NEW LOGIC ---
-    // Pass the state object and the update function to the new handler.
-    initializeMeritFlawLogic(state, updateFreebieCounter);
-  };
-
-  // --- EVENT LISTENERS ---
-  // (Existing event listeners for the toggle and reset buttons remain unchanged)
-  freebieToggleButton.addEventListener('click', () => {
-    if (!state.isFreebieModeActive) {
-      const confirmation = confirm(
-        "Are you sure you want to enter Freebie Point Mode?\n\nThis will lock most of your character sheet and cannot be undone."
-      );
-      if (confirmation) {
-        enterFreebieMode();
-      }
-    }
-  });
-  
-  freebieResetButton.addEventListener('click', () => {
-    // --- THE FIX: Check the 'state' object here! ---
-    if (state.isFreebieModeActive) {
-      const confirmation = confirm("Are you sure you want to reset all spent freebie points?");
-      if (confirmation) {
-        // We will add the reset logic here in a future phase.
-        console.log("Resetting freebie points...");
-      }
-    }
-  });
-}
-
-// LOGIC: Freebie point logic (from merits/flaws)
-/**
- * =================================================================
- * UPGRADED: MERIT & FLAW POINT LOGIC
- * =================================================================
- * Manages the freebie point pool based on selected Merits and Flaws.
- * NOW dynamically enables/disables Merit options based on available points.
- *
- * @param {object} state - The global state object containing freebiePoints.
- * @param {function} onUpdate - The callback function to update the UI counter.
- */
-function initializeMeritFlawLogic(state, onUpdate) {
-  const meritsFlawsSection = document.getElementById('merits-flaws-section');
-  if (!meritsFlawsSection) return;
-
-  /**
-   * This is the new "brain" of the function. It's responsible for
-   * enabling/disabling merit options based on the current point total.
-   */
-  const updateMeritOptions = () => {
-    const allMeritSelects = document.querySelectorAll('select[name="merit"]');
-    const remainingPoints = state.freebiePoints;
-
-    allMeritSelects.forEach(select => {
-      const currentlySelectedOption = select.options[select.selectedIndex];
-      
+  const updateMeritOptions = (remainingPoints) => {
+    document.querySelectorAll('select[name="merit"]').forEach(select => {
       Array.from(select.options).forEach(option => {
-        // Always enable the placeholder and the currently selected option.
         if (!option.value || option.value === select.value) {
-          option.disabled = false;
-          return; // Skip to the next option
+          option.disabled = false; return;
         }
-        
-        const cost = parseInt(option.dataset.cost, 10);
-        
-        // If the cost of this option is greater than our remaining points, disable it.
-        if (cost > remainingPoints) {
-          option.disabled = true;
-        } else {
-          option.disabled = false;
-        }
+        option.disabled = parseInt(option.dataset.cost) > remainingPoints;
       });
     });
   };
 
-  /**
-   * Calculates the total point change from all Merits and Flaws
-   * and updates the global state.
-   */
-  const calculatePointsAndUpdate = () => {
-    let meritCost = 0;
-    let flawGain = 0;
-
-    const selectedMerits = document.querySelectorAll('select[name="merit"]');
-    selectedMerits.forEach(select => {
-      const selectedOption = select.options[select.selectedIndex];
-      if (select.value && selectedOption.dataset.cost) {
-        meritCost += parseInt(selectedOption.dataset.cost, 10);
-      }
-    });
-
-    const selectedFlaws = document.querySelectorAll('select[name="flaw"]');
-    selectedFlaws.forEach(select => {
-      const selectedOption = select.options[select.selectedIndex];
-      if (select.value && selectedOption.dataset.cost) {
-        flawGain += parseInt(selectedOption.dataset.cost, 10);
-      }
-    });
+  const enterFreebieMode = () => {
+    state.isFreebieModeActive = true;
+    console.log("Freebie Mode Activated.");
+    freebieToggleButton.classList.add('hidden');
+    freebieCounterDisplay.classList.remove('hidden');
+    body.classList.add('freebie-mode-active');
     
-    const effectiveFlawGain = Math.min(flawGain, 7);
-    state.freebiePoints = 15 - meritCost + effectiveFlawGain;
-    
-    // After updating the points, tell the UI to sync.
-    onUpdate();
-    
-    // AND THEN, update the enabled/disabled state of the merit options.
-    updateMeritOptions();
+    initializeFreebieListeners(state, updateAllCalculations);
+    updateAllCalculations();
   };
-
-  // --- EVENT LISTENERS ---
   
-  // Use event delegation on the section to listen for any change.
-  meritsFlawsSection.addEventListener('change', (event) => {
-    if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
-      calculatePointsAndUpdate();
-    }
-  });
-  
-  // Also listen for clicks that might add or remove a row.
-  meritsFlawsSection.addEventListener('click', (event) => {
-    if (event.target.matches('.btn-minus, [id^="add-"]')) {
-      setTimeout(calculatePointsAndUpdate, 50);
+  freebieToggleButton.addEventListener('click', () => {
+    if (!state.isFreebieModeActive && confirm("Are you sure? This will lock your sheet.")) {
+      enterFreebieMode();
     }
   });
 
-  // Run once on initialization to set the initial state.
-  calculatePointsAndUpdate();
+  freebieResetButton.addEventListener('click', () => { /* ... reset logic ... */ });
+}
+function initializeFreebieListeners(state, onUpdateCallback) {
+  const costs = { 'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 'backgrounds-section': 1, 'virtues-section': 2, 'humanity-section': 1, 'willpower-section': 1 };
+
+  // --- DOT CLICK LISTENER ---
+  document.body.addEventListener('click', (event) => {
+    if (!state.isFreebieModeActive || !event.target.matches('.dot')) return;
+
+    const dot = event.target;
+    const section = dot.closest('section[id], div[id]'); // Works for both <section> and <div> IDs
+    if (!section || !costs[section.id]) return;
+
+    const cost = costs[section.id];
+    const dotGroup = dot.closest('.dot-group');
+    const allDots = Array.from(dotGroup.children);
+    const clickIndex = allDots.indexOf(dot);
+    
+    const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
+    const isTryingToSpend = clickIndex >= currentScore;
+
+    if (isTryingToSpend) {
+      const dotsToAdd = (clickIndex + 1) - currentScore;
+      const totalCost = dotsToAdd * cost;
+      if (totalCost > state.freebiePoints) {
+        console.warn(`Action denied: Costs ${totalCost}, but you only have ${state.freebiePoints} left.`);
+        return;
+      }
+      for (let i = currentScore; i <= clickIndex; i++) {
+        allDots[i].classList.add('filled', 'filled-freebie');
+      }
+    } else { // Refunding points
+      const isLastFilled = !allDots[clickIndex + 1]?.classList.contains('filled');
+      const refundIndex = isLastFilled ? clickIndex : clickIndex + 1;
+      
+      for (let i = currentScore - 1; i >= refundIndex; i--) {
+        if (allDots[i].classList.contains('filled-freebie')) {
+          allDots[i].classList.remove('filled', 'filled-freebie');
+        }
+      }
+    }
+    
+    onUpdateCallback(); // Tell the brain to recalculate everything
+  });
+
+  // --- MERIT/FLAW CHANGE LISTENER ---
+  const meritsFlawsSection = document.getElementById('merits-flaws-section');
+  if (meritsFlawsSection) {
+    meritsFlawsSection.addEventListener('change', (event) => {
+      if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
+        onUpdateCallback();
+      }
+    });
+    meritsFlawsSection.addEventListener('click', (event) => {
+      if (event.target.matches('.btn-minus, [id^="add-"]')) {
+        setTimeout(onUpdateCallback, 50);
+      }
+    });
+  }
 }
 
 // UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
@@ -420,7 +378,7 @@ function initializeClanDisciplineLogic() {
       disciplinesContainer.querySelectorAll('.dots-wrapper').forEach(row => {
         if (row.querySelector('.btn-minus')) row.remove();
       });
-      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled'));
+      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled', 'filled-freebie'));
       const disciplineCounter = document.querySelector('#disciplines-section h3 span');
       if (disciplineCounter) {
         disciplineCounter.textContent = '3';
@@ -527,7 +485,9 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 
   // --- DOT CLICK HANDLER (No changes needed here) ---
   const handleDotClick = (event) => {
-    // ... (this function remains the same as the previous version)
+    // Skip if in freebie mode - freebie logic will handle it
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return;
 
@@ -579,7 +539,9 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
 
   // --- DROPDOWN CHANGE HANDLER (No changes needed here) ---
   const handleDropdownChange = (event) => {
-    // ... (this function remains the same as the previous version)
+    // Skip if in freebie mode
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const changedSelect = event.target;
     if (changedSelect.matches(`select[name="${selectName}"]`)) {
       const wrapper = changedSelect.closest('.dots-wrapper');
@@ -599,7 +561,6 @@ function initializeSimpleDotLogic(sectionId, selectName, pointPool, baseDotsPerI
   mainSection.addEventListener('click', handleDotClick);
   mainSection.addEventListener('change', handleDropdownChange);
   
-  // ... (MutationObserver code remains the same) ...
   if (rowContainer) {
     const observer = new MutationObserver((mutationsList) => {
       for (const mutation of mutationsList) {
@@ -705,6 +666,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   };
   
   const handlePriorityChange = (event) => {
+    // Skip if in freebie mode
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const changedSelect = event.target;
     const newValue = changedSelect.value;
     const currentCategorySection = changedSelect.closest('.grid > div');
@@ -733,6 +697,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   };
 
   const handleDotClick = (event) => {
+    // Skip if in freebie mode - freebie logic will handle it
+    if (document.body.classList.contains('freebie-mode-active')) return;
+    
     const clickedDot = event.target;
     if (!clickedDot.matches('.dot')) return; // Exit if not a dot
 
@@ -929,7 +896,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize dot trackers
     initializeTrackerDots('humanity-section');
     initializeTrackerDots('willpower-section');
-
 
     // Initialize all the dynamic and interactive logic.
     initializeSelectElementStyling();

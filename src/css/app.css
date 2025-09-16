@@ -197,29 +197,32 @@ main h4 {
   opacity: 1; /* Make it fully visible */
 }
 
-/* 2. Lock everything else that should not be interactive (UPGRADED) */
+/* 2. Lock ONLY the elements that should be disabled. */
 .freebie-mode-active #basics-section,
-.freebie-mode-active #attributes-section select,
-.freebie-mode-active #abilities-section select,
+.freebie-mode-active #attributes-section select, /* Priority dropdowns */
+.freebie-mode-active #abilities-section select,  /* Priority dropdowns */
 .freebie-mode-active select[name="clan"],
 .freebie-mode-active select[name="generation"],
-.freebie-mode-active #virtues-section,
-.freebie-mode-active [id^="add-"],
-
-/* --- NEW RULES TO FIX THE ISSUES --- */
-
-/* Lock ALL dropdowns within the Disciplines and Backgrounds sections */
-.freebie-mode-active #disciplines-section select,
-.freebie-mode-active #backgrounds-section select,
-
-/* Lock the Humanity/Path dropdown specifically */
 .freebie-mode-active #humanity-section select[name="paths"],
 
-/* Lock the custom textfields in the Abilities section */
-.freebie-mode-active .textfield-custom {
+/* --- NEW RULES BASED ON FEEDBACK --- */
+
+/* LOCK the entire Disciplines section: dropdowns, buttons, everything. */
+.freebie-mode-active #disciplines-section {
   pointer-events: none;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* UNLOCK the Backgrounds 'add' button, but keep its dropdowns locked. */
+/* This is a special case override. */
+.freebie-mode-active #add-background-btn {
+  pointer-events: auto;
+  opacity: 1;
+}
+.freebie-mode-active #backgrounds-section select {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* 3. Style for dots filled with freebie points */
