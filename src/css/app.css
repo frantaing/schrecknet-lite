@@ -27,8 +27,14 @@
  */
 
 /* Body */
-.body {
+body {
   @apply overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary;
+}
+
+/* Main */
+main {
+  @apply
+  flex flex-col gap-20 py-32 pb-48 text-center sm:mx-4;
 }
 
 /* Red links */

@@ -51,7 +51,7 @@ V20 Character sheet
   <link rel="stylesheet" href="./src/css/app.css">
 </head>
 
-<body class="body">
+<body>
 
   <!-- Header -->
   <header class="header">
@@ -69,7 +69,7 @@ V20 Character sheet
   </header>
 
   <!-- Main container -->
-  <main class="flex flex-col gap-20 text-center py-32 sm:mx-4">
+  <main>
 
     <!-- [Basics + Clan] -->
     <section class="flex flex-col gap-9">
@@ -1032,24 +1032,27 @@ V20 Character sheet
 
     </section>
 
+  <!-- Freebie Mode Toggle -->
+  <div id="freebie" class="mt-10">
+    <button id="freebiePointsButton" class="group bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+      enter <span class="span">freebie</span> mode 
+    </button>
+  </div>
+
+  <div id="freebiePointCounter" class="hidden flex justify-center items-center gap-3 fixed bottom-16 left-0 right-0">
+    <div id="freebiePointsCounter" class="group w-fit bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+      <p>freebie points left: <span class="span">15</span></p>
     </div>
+    <!-- Button to reset freebie points. TRIGGER CONFIRM DALOG -->
+    <button id="freebiePointReset" class="group bg-textPrimary transition hover:bg-accent p-2.5 rounded-full">
+      <img class="w-5 transition group-hover:hidden" src="src/reload-black.png" alt="reset freebie points">
+      <img class="w-5 hidden transition group-hover:block"  src="src/reload-white.png" alt="reset freebie points">
+    </button>
+  </div>    
 
   </main>
 
-  <!-- Freebie Points and Panel -->
-  <div id="freebie" class="fixed bottom-5 right-5 z-50 flex flex-col items-end">
-    <button id="freebiePointsButton" class="bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
-      <span class="hidden sm:inline">Freebies:</span> 
-      <span id="freebiePointsCount">7</span>
-    </button>
 
-    <!-- Freebie Panel on click -->
-    <div id="freebiePointsPanel" class="hidden">
-      <h4 class="">Freebie Points</h4>
-      <ul id="freebiePointsList"></ul>
-      <p class="">Remaining: <span id="freebiePointsRemaining">7</span></p>
-    </div>
-  </div>
 
   <!-- Javascript -->
   <script type="module" src="./src/js/app.js"></script>
