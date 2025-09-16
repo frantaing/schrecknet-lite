@@ -4,6 +4,84 @@
  * =================================================================
  */
 
+// =================================================================
+//  GLOBAL STATE & FREEBIE MODE LOGIC
+// =================================================================
+// This function will be called once the DOM is ready.
+function initializeFreebieMode() {
+  // --- STATE VARIABLES ---
+  let isFreebieModeActive = false;
+  let freebiePoints = 15;
+
+  // --- DOM ELEMENT REFERENCES ---
+  const freebieToggleButton = document.getElementById('freebiePointsButton');
+  const freebieCounterDisplay = document.getElementById('freebiePointCounter'); // The whole div
+  const freebiePointsSpan = freebieCounterDisplay.querySelector('.span'); // The number '15'
+  const freebieResetButton = document.getElementById('freebiePointReset');
+  const body = document.body;
+
+  // --- CORE FUNCTIONS ---
+
+  /**
+   * Updates the freebie points counter display.
+   */
+  const updateFreebieCounter = () => {
+    if (freebiePointsSpan) {
+      freebiePointsSpan.textContent = freebiePoints;
+    }
+  };
+
+  /**
+   * This is the master function that runs ONCE to permanently
+   * lock the sheet and activate freebie point spending.
+   */
+  const enterFreebieMode = () => {
+    // 1. Flip the master switch.
+    isFreebieModeActive = true;
+    console.log("Freebie Mode Activated. Sheet is now locked.");
+
+    // 2. Swap the visibility of the buttons.
+    freebieToggleButton.classList.add('hidden');
+    freebieCounterDisplay.classList.remove('hidden');
+
+    // 3. Add the locking class to the body. CSS will handle the rest.
+    body.classList.add('freebie-mode-active');
+    
+    // 4. Update the counter to show the initial 15 points.
+    updateFreebieCounter();
+
+    // 5. Placeholder for future logic
+    // initializeMeritFlawPointLogic();
+    // upgradeDotHandlersForFreebies();
+  };
+
+  // --- EVENT LISTENERS ---
+
+  // Listener for the initial "Enter Freebie Mode" button.
+  freebieToggleButton.addEventListener('click', () => {
+    // This button only works if freebie mode is NOT active.
+    if (!isFreebieModeActive) {
+      const confirmation = confirm(
+        "Are you sure you want to enter Freebie Point Mode?\n\nThis will lock most of your character sheet and cannot be undone."
+      );
+      if (confirmation) {
+        enterFreebieMode();
+      }
+    }
+  });
+
+  // Placeholder listener for the reset button.
+  freebieResetButton.addEventListener('click', () => {
+    if (isFreebieModeActive) {
+      const confirmation = confirm("Are you sure you want to reset all spent freebie points?");
+      if (confirmation) {
+        // We will add the reset logic here in a future phase.
+        console.log("Resetting freebie points...");
+      }
+    }
+  });
+}
+
 // UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
 function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
   const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
@@ -631,6 +709,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 // --- Main Application Setup ---
 // This single event listener is the entry point for all initialization code.
 document.addEventListener('DOMContentLoaded', () => {
+
+  // --- FREEBIE MODE SETUP ---
+  initializeFreebieMode();
 
   // --- MERIT/FLAW FORMATTER ---
   const meritFlawFormatter = (optionElement, itemData) => {

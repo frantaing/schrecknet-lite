@@ -155,7 +155,6 @@ main h4 {
   @apply grid gap-5 sm:grid-cols-1;
 }
 
-
 /* ===============================================================
  # DYNAMIC ROW STYLES (Add/Remove Buttons)
  ================================================================= */
@@ -170,4 +169,43 @@ main h4 {
          group-hover:opacity-100 group-hover:scale-100 /* Only animate opacity and scale */
          hover:!bg-accent hover:!text-textPrimary 
          transition-all duration-300 ease-in-out;
+}
+
+/* ===============================================================
+ # FREEBIE MODE STYLES
+ ================================================================= */
+
+/* By default, the Merits/Flaws section is disabled. */
+#merits-flaws-section {
+  pointer-events: none; /* Disables all mouse events */
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* When freebie mode is active, the LOCKS ARE INVERTED. */
+
+/* 1. Re-enable the Merits/Flaws section */
+.freebie-mode-active #merits-flaws-section {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* 2. Lock everything else that should not be interactive */
+.freebie-mode-active #basics-section,
+.freebie-mode-active #attributes-section select,
+.freebie-mode-active #abilities-section select,
+.freebie-mode-active select[name="clan"],
+.freebie-mode-active select[name="generation"],
+.freeeie-mode-active #disciplines-section .dots-wrapper > .dots-custom > div > select,
+.freeeie-mode-active #backgrounds-section .dots-wrapper > .dots-custom > div > select,
+.freebie-mode-active #virtues-section,
+.freebie-mode-active [id^="add-"] /* Disables all 'add new' buttons */ {
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 3. Style for dots filled with freebie points */
+.dot.filled-freebie {
+  @apply border-accent bg-accent;
 }
