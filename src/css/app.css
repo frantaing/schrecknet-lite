@@ -177,7 +177,7 @@ main h4 {
 
 /* By default, the Merits/Flaws section is disabled. */
 #merits-flaws-section {
-  pointer-events: none; /* Disables all mouse events */
+  pointer-events: none;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
 }
@@ -190,16 +190,26 @@ main h4 {
   opacity: 1;
 }
 
-/* 2. Lock everything else that should not be interactive */
+/* 2. Lock everything else that should not be interactive (UPGRADED) */
 .freebie-mode-active #basics-section,
 .freebie-mode-active #attributes-section select,
 .freebie-mode-active #abilities-section select,
 .freebie-mode-active select[name="clan"],
 .freebie-mode-active select[name="generation"],
-.freeeie-mode-active #disciplines-section .dots-wrapper > .dots-custom > div > select,
-.freeeie-mode-active #backgrounds-section .dots-wrapper > .dots-custom > div > select,
 .freebie-mode-active #virtues-section,
-.freebie-mode-active [id^="add-"] /* Disables all 'add new' buttons */ {
+.freebie-mode-active [id^="add-"],
+
+/* --- NEW RULES TO FIX THE ISSUES --- */
+
+/* Lock ALL dropdowns within the Disciplines and Backgrounds sections */
+.freebie-mode-active #disciplines-section select,
+.freebie-mode-active #backgrounds-section select,
+
+/* Lock the Humanity/Path dropdown specifically */
+.freebie-mode-active #humanity-section select[name="paths"],
+
+/* Lock the custom textfields in the Abilities section */
+.freebie-mode-active .textfield-custom {
   pointer-events: none;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
