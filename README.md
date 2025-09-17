@@ -3,8 +3,10 @@
 Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.  
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
+> [!NOTE]
+> WIP! Deployment is paused! This live site is probably outdated! You can still visit though, so here's a pancake 🥞
+
 👉 [Github Pages link](https://overuseofrem.github.io/schrecknet-lite/)
-> 🥞 *WIP! Deployment is paused! This live site is outdated!*
 
 <br>
 
