@@ -122,59 +122,22 @@ function initializeFreebieMode() {
 }
 function initializeFreebieListeners(state, onUpdateCallback) {
   const costs = { 
-    'attributes-section': 5, 
-    'abilities-section': 2, 
-    'disciplines-section': 7, 
-    'backgrounds-section': 1, 
-    'virtues-section': 2, 
-    'humanity-section': 1, 
-    'willpower-section': 1 
+    'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 
+    'backgrounds-section': 1, 'virtues-section': 2, 'humanity-section': 1, 'willpower-section': 1 
   };
 
-  // --- DOT CLICK LISTENER ---
+  // --- DOT CLICK LISTENER (FINAL, ROBUST VERSION) ---
   document.body.addEventListener('click', (event) => {
     if (!state.isFreebieModeActive || !event.target.matches('.dot')) return;
 
     const dot = event.target;
-    let sectionId = null;
     
-    // Special handling for disciplines and backgrounds which are divs inside a section
-    if (dot.closest('#disciplines-section')) {
-      sectionId = 'disciplines-section';
-    } else if (dot.closest('#backgrounds-section')) {
-      sectionId = 'backgrounds-section';  
-    } else {
-      // For other sections, find the section[id] or div[id]
-      const section = dot.closest('section[id]') || dot.closest('div[id]');
-      if (section) {
-        sectionId = section.id;
-      }
-    }
-    
-    if (!sectionId || !costs[sectionId]) {
-      console.log('No valid section found for dot click:', sectionId);
-      return;
-    }
+    // THE FIX: Use the explicit data attribute to find the section ID. No more guessing!
+    const sectionElement = dot.closest('[data-section-id]');
+    if (!sectionElement) return; // Click was not inside a valid freebie zone
 
-    // VALIDATION: Check if dropdown/textfield is filled for disciplines, backgrounds, and abilities
-    if (sectionId === 'disciplines-section' || sectionId === 'backgrounds-section' || sectionId === 'abilities-section') {
-      const wrapper = dot.closest('.dots-wrapper');
-      if (wrapper) {
-        // Check for dropdown selection
-        const select = wrapper.querySelector('select');
-        if (select && !select.value) {
-          console.warn("Action denied: Please select an option before assigning dots.");
-          return;
-        }
-        
-        // Check for custom textfield (abilities section)
-        const customInput = wrapper.querySelector('input[type="text"]');
-        if (customInput && !customInput.value.trim()) {
-          console.warn("Action denied: Please enter a custom ability before assigning dots.");
-          return;
-        }
-      }
-    }
+    const sectionId = sectionElement.dataset.sectionId;
+    if (!costs[sectionId]) return; // Not a section that costs freebie points
 
     const cost = costs[sectionId];
     const dotGroup = dot.closest('.dot-group');
@@ -205,10 +168,10 @@ function initializeFreebieListeners(state, onUpdateCallback) {
       }
     }
     
-    onUpdateCallback();
+    onUpdateCallback(); // Tell the brain to recalculate everything
   });
 
-  // --- MERIT/FLAW CHANGE LISTENER ---
+  // --- MERIT/FLAW CHANGE LISTENER (This part is already correct) ---
   const meritsFlawsSection = document.getElementById('merits-flaws-section');
   if (meritsFlawsSection) {
     meritsFlawsSection.addEventListener('change', (event) => {
