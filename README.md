@@ -4,9 +4,10 @@ Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 > [!NOTE]
-> WIP! Deployment is paused! This live site is probably outdated! You can still visit though, so here's a pancake 🥞
+> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode! I do plan on expanding the Nature/Demeanor list, since I was trawling through the wiki, and adding tooltips. I am currently working on styling the V5 sheet, though I don't know when I'll finish it.
+> Have a pancake! 🥞
 
-👉 [Github Pages link](https://overuseofrem.github.io/schrecknet-lite/)
+👉 [**Try it here!**](https://overuseofrem.github.io/schrecknet-lite/)
 
 <br>
 
@@ -70,14 +71,18 @@ This project uses Vite for a fast and modern development experience.
 
 ## 🍮 Features (current and planned)
 
--   Minimalist, responsive design
--   Three-page structure:
-    -   Home/welcome page
-    -   V20 character sheet
-    -   V5 character sheet (placeholder for now)
--   Interactive dots for attributes/skills
--   Dropdowns for disciplines, backgrounds, etc.
--   Basic freebie point allocation for V20
+- Minimalist, responsive design
+- Three-page structure:
+  - Home/welcome page
+  - V20 character sheet
+  - V5 character sheet (placeholder for now)
+
+### ✨ Features in V20 Sheet
+- Interactive dots for Attributes, Abilities, Advantages
+- Dropdowns for Clans, Disciplines, Natures, Backgrounds
+- Priority allocation for Attributes & Abilities
+- Freebie Points mode with live calculation + enforcement
+- Responsive layout (mobile + desktop)
 
 <br>
 
