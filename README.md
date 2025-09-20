@@ -4,7 +4,7 @@ Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 > [!NOTE]
-> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode! I do plan on expanding the Nature/Demeanor list, since I was trawling through the wiki, and adding tooltips. I am currently working on styling the V5 sheet, though I don't know when I'll finish it.
+> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode! I do plan on adding tooltips and replacing the generic dropdowns with custom ones. I am currently working on styling the V5 sheet, though I don't know when I'll finish it.
 > Have a pancake! 🥞
 
 👉 [**Try it here!**](https://overuseofrem.github.io/schrecknet-lite/)
