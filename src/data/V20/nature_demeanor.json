@@ -1,85 +1,387 @@
 [
-  { "value": "addict", "label": "addict" },
-  { "value": "adherent", "label": "adherent" },
-  { "value": "adjudicator", "label": "adjudicator" },
-  { "value": "advisor", "label": "advisor" },
-  { "value": "alpha", "label": "alpha" },
-  { "value": "analyst", "label": "analyst" },
-  { "value": "architect", "label": "architect" },
-  { "value": "artist", "label": "artist" },
-  { "value": "autocrat", "label": "autocrat" },
-  { "value": "autist", "label": "autist" },
-  { "value": "avant-garde", "label": "avant-garde" },
-  { "value": "barbarian", "label": "barbarian" },
-  { "value": "believer", "label": "believer" },
-  { "value": "beta", "label": "beta" },
-  { "value": "bon vivant", "label": "bon vivant" },
-  { "value": "bravo", "label": "bravo" },
-  { "value": "builder/maker", "label": "builder/maker" },
-  { "value": "bureaucrat", "label": "bureaucrat" },
-  { "value": "caregiver", "label": "caregiver" },
-  { "value": "cavalier", "label": "cavalier" },
-  { "value": "celebrant", "label": "celebrant" },
-  { "value": "child", "label": "child" },
-  { "value": "competitor", "label": "competitor" },
-  { "value": "confidant", "label": "confidant" },
-  { "value": "conformist", "label": "conformist" },
-  { "value": "conniver", "label": "conniver" },
-  { "value": "critic", "label": "critic" },
-  { "value": "crusader", "label": "crusader" },
-  { "value": "cub", "label": "cub" },
-  { "value": "curmudgeon", "label": "curmudgeon" },
-  { "value": "defender", "label": "defender" },
-  { "value": "demagogue", "label": "demagogue" },
-  { "value": "deviant", "label": "deviant" },
-  { "value": "director", "label": "director" },
-  { "value": "dreamer", "label": "dreamer" },
-  { "value": "eccentric", "label": "eccentric" },
-  { "value": "engine", "label": "engine" },
-  { "value": "evangelist", "label": "evangelist" },
-  { "value": "explorer", "label": "explorer" },
-  { "value": "fanatic", "label": "fanatic" },
-  { "value": "gallant", "label": "gallant" },
-  { "value": "healer", "label": "healer" },
-  { "value": "hedonist/reveler", "label": "hedonist/reveler" },
-  { "value": "honest-abe", "label": "honest-abe" },
-  { "value": "jester", "label": "jester" },
-  { "value": "jobsworth", "label": "jobsworth" },
-  { "value": "judge", "label": "judge" },
-  { "value": "loner/lone wolf", "label": "loner/lone wolf" },
-  { "value": "manipulator", "label": "manipulator" },
-  { "value": "martyr", "label": "martyr" },
-  { "value": "masochist", "label": "masochist" },
-  { "value": "meddler", "label": "meddler" },
-  { "value": "mediator", "label": "mediator" },
-  { "value": "monger", "label": "monger" },
-  { "value": "monster", "label": "monster" },
-  { "value": "negotiator", "label": "negotiator" },
-  { "value": "non-partisan", "label": "non-partisan" },
-  { "value": "omega", "label": "omega" },
-  { "value": "optimist", "label": "optimist" },
-  { "value": "paragon", "label": "paragon" },
-  { "value": "pedagogue", "label": "pedagogue" },
-  { "value": "penitent", "label": "penitent" },
-  { "value": "perfectionist", "label": "perfectionist" },
-  { "value": "plotter", "label": "plotter" },
-  { "value": "poltroon", "label": "poltroon" },
-  { "value": "praise-seeker", "label": "praise-seeker" },
-  { "value": "predator", "label": "predator" },
-  { "value": "provider", "label": "provider" },
-  { "value": "rebel", "label": "rebel" },
-  { "value": "reluctant garou", "label": "reluctant garou" },
-  { "value": "rogue", "label": "rogue" },
-  { "value": "show-off", "label": "show-off" },
-  { "value": "skeptic", "label": "skeptic" },
-  { "value": "soldier", "label": "soldier" },
-  { "value": "stoic", "label": "stoic" },
-  { "value": "survivor", "label": "survivor" },
-  { "value": "sycophant", "label": "sycophant" },
-  { "value": "teacher", "label": "teacher" },
-  { "value": "traditionalist", "label": "traditionalist" },
-  { "value": "thrill-seeker", "label": "thrill-seeker" },
-  { "value": "trickster", "label": "trickster" },
-  { "value": "vigilante", "label": "vigilante" },
-  { "value": "visionary", "label": "visionary" }
+  {
+    "value": "addict",
+    "label": "Addict",
+    "description": "Become utterly fixated on one passion. Regain Willpower when you gorge yourself on a chosen passion."
+  },
+  {
+    "value": "adherent",
+    "label": "Adherent",
+    "description": "Pledge yourself to one cause above everything else. Regain Willpower when you remain loyal to your cause despite hardships."
+  },
+  {
+    "value": "adjudicator",
+    "label": "Adjudicator",
+    "description": "Work to solve problems that affect your surroundings. Regain Willpower whenever your attempts of providing solutions yield immediate results."
+  },
+  {
+    "value": "alpha",
+    "label": "Alpha",
+    "description": "Lead other by example. Regain Willpower whenever your leadership is proven to be the most beneficial."
+  },
+  {
+    "value": "architect",
+    "label": "Architect",
+    "description": "Strive to create something out of a sense of greater purpose. Your strength is Purpose, while your weakness is Obsession. Regain Willpower when you establish something of lasting value."
+  },
+  {
+    "value": "artiste",
+    "label": "Artiste",
+    "description": "Try to reach others through your creations. Regain Willpower whenever you reach an audience through your works."
+  },
+  {
+    "value": "autocrat",
+    "label": "Autocrat",
+    "description": "Seek power and prominence for its own sake. Your strength is Leadership and your weakness is Dictatorship. Regain Willpower when you gain control over a group or organization of other individuals."
+  },
+  {
+    "value": "barbarian",
+    "label": "Barbarian",
+    "description": "Keep your distance from civilization, instead trusting the old ways. Regain Willpower when you prove the values of your “barbaric” ways over civilization."
+  },
+  {
+    "value": "benefactor",
+    "label": "Benefactor",
+    "description": "Work to protect the people around you. Your strength is Altruism, while your weakness is Obligation. Regain Willpower when you do something someone else desperately needs."
+  },
+  {
+    "value": "beta",
+    "label": "Beta",
+    "description": "Act as supporter for your group’s superior. Regain Willpower whenever your counsel proves beneficial for the group. Lose Willpower when the leader is proven inefficient."
+  },
+  {
+    "value": "bon_vivant",
+    "label": "Bon Vivant",
+    "description": "Try to enjoy life as long as it lasts. Your strength is your Love of Life, while your weakness is Hedonism. Regain Willpower when you truly enjoy yourself."
+  },
+  {
+    "value": "bravo",
+    "label": "Bravo",
+    "description": "Use your power to bully others into submission. Your strength is Strength, while your weakness is Anger. Regain Willpower when you achieve your agenda through brutishness or intimidation."
+  },
+  {
+    "value": "capitalist",
+    "label": "Capitalist",
+    "description": "Strive to make profit by selling your commodities. Regain Willpower when you make a successful sale."
+  },
+  {
+    "value": "caregiver",
+    "label": "Caregiver",
+    "description": "Take comfort in consoling others. Your strength is Compassion, while your weakness comes from Smothering. Regain Willpower when you nurture someone else."
+  },
+  {
+    "value": "caretaker",
+    "label": "Caretaker",
+    "description": "Shepherd the flock around you to safety. Your strength is a Sense of Duty, while your weakness is Impatience. Regain Willpower when you avert a disaster from your flock."
+  },
+  {
+    "value": "celebrant",
+    "label": "Celebrant",
+    "description": "Take great joy out of your passion. Your strength is Passion, while your weakness is Intemperance. Regain Willpower whenever you pursue or manage to convert another character to your passion. Lose Willpower when denied or suffering a disastrous failure."
+  },
+  {
+    "value": "chameleon",
+    "label": "Chameleon",
+    "description": "Constantly alter your mannerisms and appearance. Regain Willpower whenever you fool someone into thinking you’re someone else for your benefit."
+  },
+  {
+    "value": "child",
+    "label": "Child",
+    "description": "Be ignorant about the larger world around you. Your strength is Innocence, while your weakness is Immaturity. Regain Willpower when you convince someone else to take care about you and your problems without benefit for themselves."
+  },
+  {
+    "value": "competitor",
+    "label": "Competitor",
+    "description": "Put yourself against the world’s odds. Your strength is Striving, while your weakness is Competitiveness. Regain Willpower when you succeed at a challenge."
+  },
+  {
+    "value": "conformist",
+    "label": "Conformist",
+    "description": "Play your strengths in groups. Your strength is cooperation, while your weakness is Low Self-Esteem. Regain Willpower when your group achieves a goal thanks to your support."
+  },
+  {
+    "value": "conniver",
+    "label": "Conniver",
+    "description": "Seek ways to let others work for you. Your strength is Cleverness, while your weakness is Envy. Regain Willpower when you trick someone to serve your interests."
+  },
+  {
+    "value": "coward",
+    "label": "Coward",
+    "description": "Hide your true self from all others. Regain Willpower whenever your reveal something about yourself without being rejected."
+  },
+  {
+    "value": "creep_show",
+    "label": "Creep Show",
+    "description": "Strive to inspire shock and disgust for show. Regain Willpower whenever someone is appalled by your actions."
+  },
+  {
+    "value": "crusader",
+    "label": "Crusader",
+    "description": "Fight for an ideal of yours. Your strength is Zeal, while your weakness is Fanaticism. Regain Willpower when you do something great in the name of a higher cause."
+  },
+  {
+    "value": "curmudgeon",
+    "label": "Curmudgeon",
+    "description": "Constantly expect the worst to happen. Your strength is your Critical Eye, while your weakness is your Lack of Imagination. Regain Willpower whenever someone does something specific and negative, just like you said they would."
+  },
+  {
+    "value": "dabbler",
+    "label": "Dabbler",
+    "description": "Seek to find new interests. Regain Willpower whenever you devote yourself to a new interest on the cost of an old one."
+  },
+  {
+    "value": "defender",
+    "label": "Defender",
+    "description": "Protect something over yourself. Regain Willpower when you successfully defend your charge."
+  },
+  {
+    "value": "deviant",
+    "label": "Deviant",
+    "description": "Reject traditional social mores for your own. Your strength is your ability to Shatter Boundaries, while your weakness is Perversion. Regain Willpower whenever you manage to flout social customs."
+  },
+  {
+    "value": "devils_advocate",
+    "label": "Devil's Advocate",
+    "description": "Question the commands from your superiors. Your strength is Skepticism, while your weakness is Contrariness. Regain Willpower when your questions reveal flaws in a plan or structure."
+  },
+  {
+    "value": "director",
+    "label": "Director",
+    "description": "Work to bring order into strife. Your strength is Organization, while your weakness is a Lack of Tolerance. Regain Willpower when you influence a group to fulfill a difficult task."
+  },
+  {
+    "value": "enigma",
+    "label": "Enigma",
+    "description": "Work to keep your true intentions hidden. Regain Willpower whenever someone is perplexed by your actions."
+  },
+  {
+    "value": "eye_of_the_storm",
+    "label": "Eye of the Storm",
+    "description": "Find yourself constantly in the centre of unrest. Regain Willpower whenever a ruckus, riot, or less violent but equally chaotic phenomenon occurs around you."
+  },
+  {
+    "value": "explorer",
+    "label": "Explorer",
+    "description": "Strive to discover new places and experiences. Regain Willpower whenever you sample something new."
+  },
+  {
+    "value": "fanatic",
+    "label": "Fanatic",
+    "description": "Pledge yourself to one goal over all else. Your strength is Dedication, while your weakness is Stubbornness. Regain Willpower whenever you accomplish a goal directly related to your cause."
+  },
+  {
+    "value": "fatalist",
+    "label": "Fatalist",
+    "description": "Follow the inescapable course of destiny. Regain Willpower whenever someone receives your personal interpretation of destiny."
+  },
+  {
+    "value": "futurist",
+    "label": "Futurist",
+    "description": "Pledge yourself to new concepts and ideals. Regain Willpower whenever you first come upon a progressive idea or object."
+  },
+  {
+    "value": "gambler",
+    "label": "Gambler",
+    "description": "Trust in luck to take care of you. Regain Willpower when you succeed against difficult odds."
+  },
+  {
+    "value": "gallant",
+    "label": "Gallant",
+    "description": "Seek attention and adulation from others. Your strength is Artistry, while your weakness is Flamboyance. Regain Willpower whenever you impress another person."
+  },
+  {
+    "value": "guru",
+    "label": "Guru",
+    "description": "Lead others to spiritual fulfillment. Regain Willpower whenever someone seeks out your help in spiritual matters and your guidance moves that individual to an enlightened action that she normally would not have taken or you gain a personal epiphany."
+  },
+  {
+    "value": "heretic",
+    "label": "Heretic",
+    "description": "Refuse to accept a commonly held creed. Your strength is Integrity, while your weakness is Iconoclasm. Regain Willpower whenever your challenge commonly held convictions and convince other people of your belief."
+  },
+  {
+    "value": "hunter",
+    "label": "Hunter",
+    "description": "Always prepare yourself for the hunt. Regain Willpower whenever you manage to outperform a rival or defeat your prey through cunning and patience."
+  },
+  {
+    "value": "idealist",
+    "label": "Idealist",
+    "description": "Believe into a higher ideal than yourself. Regain Willpower when your ideal furthers your goals and brings your ideal closer to fruition."
+  },
+  {
+    "value": "judge",
+    "label": "Judge",
+    "description": "Seek to improve the system by using rational conclusions. Your strength is Justice, your weakness your Lack of Vision. Regain Willpower whenever you correctly solve a problem by considering the evidence presented, or when one of your arguments unites dissenting parties."
+  },
+  {
+    "value": "loner",
+    "label": "Loner",
+    "description": "Keep your own company. Your strength is Self-Reliance, while your weakness is a Lack of Empathy. Regain Willpower when you achieve something alone that will still benefit your group."
+  },
+  {
+    "value": "machine",
+    "label": "Machine",
+    "description": "Push yourself to your limits to transcend mortal weakness. Your strength is Work Ethic, your weakness is Burn-Out. Regain Willpower when you manage to press on and transcend the limits of flesh."
+  },
+  {
+    "value": "maniac",
+    "label": "Maniac",
+    "description": "Be compelled by internal voices to strange actions. Regain Willpower whenever you fulfill a goal of the voices that goes against your immediate self-interests."
+  },
+  {
+    "value": "martyr",
+    "label": "Martyr",
+    "description": "Sacrifice yourself for your cause. Your strength is Sacrifice, your weakness is Self-Deprecation. Regain Willpower when you suffer some amount of damage or loss of a definable resource for your ideals or another’s immediate gain."
+  },
+  {
+    "value": "masochist",
+    "label": "Masochist",
+    "description": "Draw pleasure from suffering and testing your boundaries. Your strength is Devotion, while your weakness is Self-Destructiveness. Regain Willpower when your own suffering leads to some tangible gain for you, and two points of Willpower whenever you experience pain in a truly unique way."
+  },
+  {
+    "value": "masquerader",
+    "label": "Masquerader",
+    "description": "Leave no footprints to mortals. Regain Willpower whenever you resolve a situation without anyone finding out, or even suspecting, that you are more than just an ordinary mortal. Extraordinary circumstances may merit extra points."
+  },
+  {
+    "value": "meddler",
+    "label": "Meddler",
+    "description": "Constantly try to interfere into other’s affairs to aid them. Regain Willpower when your interference proves beneficial despite protests."
+  },
+  {
+    "value": "melancholic",
+    "label": "Melancholic",
+    "description": "Feel ennui at all that you have lost. Regain Willpower whenever you cause other to question their cursed natures."
+  },
+  {
+    "value": "monster",
+    "label": "Monster",
+    "description": "Seek to understand your own depravity by acting on it. Your strength is your Mirror of Villainy, while your weakness is Depravity. Regain Willpower whenever your further vices associated with your monstrousness."
+  },
+  {
+    "value": "omega",
+    "label": "Omega",
+    "description": "Accept your place at the bottom rung of your group. Regain Willpower whenever you achieve a deed that should be worthy of recognition."
+  },
+  {
+    "value": "outsider",
+    "label": "Outsider",
+    "description": "Define yourself by things you do not participate in. Regain Willpower whenever you learn something about yourself through decisions that are made by others."
+  },
+  {
+    "value": "paragon",
+    "label": "Paragon",
+    "description": "Embody straightforwardness and simplicity in your actions. Regain Willpower whenever your straight dealings prove most successful over deception."
+  },
+  {
+    "value": "pedagogue",
+    "label": "Pedagogue",
+    "description": "Share your knowledge with those around you. Your strength is Knowledge, your weakness is Logorrhea. Regain Willpower whenever you see or learn of someone who has benefited from the wisdom you shared with them."
+  },
+  {
+    "value": "penitent",
+    "label": "Penitent",
+    "description": "Strive to do penance for your sins. Your strength is Responsibility, while your weakness is Contrition. Regain Willpower whenever you feel that you have achieved absolution for a given grievance."
+  },
+  {
+    "value": "perfectionist",
+    "label": "Perfectionist",
+    "description": "Work to achieve the best result possible. Your strength is Exactitude, while your weakness is Incompleteness. Regain Willpower whenever your work has no discernible flaws."
+  },
+  {
+    "value": "questor",
+    "label": "Questor",
+    "description": "Yearn to answer life’s questions. Regain Willpower whenever you reach a concise life lesson that could become a rule of thumb."
+  },
+  {
+    "value": "rebel",
+    "label": "Rebel",
+    "description": "Fight against established authorities. Your strength is Individuality, while your weakness is your Lack of Direction. Regain Willpower whenever your actions adversely affect your opposition."
+  },
+  {
+    "value": "recognition_seeker",
+    "label": "Recognition Seeker",
+    "description": "You want to be recognized. Regain one Willpower point whenever anyone realizes for the first time that you are more than just another mortal."
+  },
+  {
+    "value": "reluctant_reborn",
+    "label": "Reluctant Reborn",
+    "description": "You have a hard time accepting your new life. Your moods often swing between denial and depression. Gain one permanent point of Willpower when you realize and accept the truth about what you have become. After this, choose another Nature."
+  },
+  {
+    "value": "rogue",
+    "label": "Rogue",
+    "description": "Focus on your own gain over that of others. Your strength is Valor, while your weakness is Selfishness. Regain Willpower whenever your self-focus leads to profit."
+  },
+  {
+    "value": "sadist",
+    "label": "Sadist",
+    "description": "Inflict pain and misery on others. Regain Willpower whenever you inflict pain on another person for your own amusement."
+  },
+  {
+    "value": "scientist",
+    "label": "Scientist",
+    "description": "Work to achieve understanding of your surroundings via a critical method. Regain Willpower whenever a logical, systematic approach to a problem helps you solve it, or information gathered logically is of use in another, similar situation."
+  },
+  {
+    "value": "seer",
+    "label": "Seer",
+    "description": "Glimpses of the future haunt you. Regain Willpower whenever your visions shed light on an enigma or allow someone greater insights."
+  },
+  {
+    "value": "sociopath",
+    "label": "Sociopath",
+    "description": "Strive to eradicate weakness. Regain Willpower whenever you are the greatest contributor to a body count after everything has settled down."
+  },
+  {
+    "value": "soldier",
+    "label": "Soldier",
+    "description": "Work within the chain of command to fulfill your duties. Regain Willpower whenever you fulfill your mission by following orders or when following orders turned out to be the best course of a mission."
+  },
+  {
+    "value": "stoic",
+    "label": "Stoic",
+    "description": "Maintain your composure under all circumstances. Regain Willpower when you overcome serious setbacks and losses without giving into strong emotions."
+  },
+  {
+    "value": "survivor",
+    "label": "Survivor",
+    "description": "Strive to survive all odds. Your strength is Perseverance, while your weakness is a Lack of Trust. Regain Willpower whenever you survive a dangerous situation or others do thanks to your counsel."
+  },
+  {
+    "value": "thrill_seeker",
+    "label": "Thrill-Seeker",
+    "description": "Actively seek the rush of danger. Your strength is Daring, while your weakness is Recklessness. Regain Willpower whenever you succeed at a dangerous task that you have deliberately undertaken."
+  },
+  {
+    "value": "traditionalist",
+    "label": "Traditionalist",
+    "description": "Keep on established routines. Your strength is Consistency, while your weakness is Complacency. Regain Willpower whenever the proven way turns out to be the best."
+  },
+  {
+    "value": "trickster",
+    "label": "Trickster",
+    "description": "Find humour and the absurd in all situations. Your strength is Empathy, your weakness is Hypocrisy. Regain Willpower whenever you manage to lift others’ spirits, especially if you are able to assuage your own pain in the process."
+  },
+  {
+    "value": "tycoon",
+    "label": "Tycoon",
+    "description": "Constantly plot to expand your resources. Your strength is Savviness, while your weakness is Greed. Regain Willpower whenever your plans yield maximum of influence and profit."
+  },
+  {
+    "value": "vigilante",
+    "label": "Vigilante",
+    "description": "Succeed in your vengeance against a chosen target. Your strength is Single-Mindedness, your weakness is Blood-Blindness. Regain Willpower when you significantly hurt your target."
+  },
+  {
+    "value": "visionary",
+    "label": "Visionary",
+    "description": "See beyond the mundane to focus on what things should be. Your strength is Imagination, your weakness is Pride. Regain Willpower whenever you are able to convince others to have faith in your dreams and follow the course of action dictated by your vision."
+  },
+  {
+    "value": "wanderer",
+    "label": "Wanderer",
+    "description": "Never stay in one place and never form attachments. Regain one Willpower point whenever you are able to complete your purpose in one place and then move on, leaving no loose ends and no attachments behind."
+  }
 ]
