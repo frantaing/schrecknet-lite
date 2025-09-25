@@ -30,38 +30,31 @@
 body {
   @apply overflow-x-hidden bg-background min-h-screen flex flex-col justify-center items-center font-body text-textPrimary;
 }
-
 /* Main */
 main {
   @apply
   flex flex-col gap-20 py-32 pb-48 text-center sm:mx-4;
 }
-
 /* Red links */
 .link {
   @apply text-accent hover:underline hover:underline-offset-4;
 }
-
 /* Buttons (general) */
 .btn {
   @apply bg-foreground px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
 }
-
 /* Span text */
 .span {
   @apply text-accent group-hover:text-textPrimary transition;
 }
-
 /* Form heading for major sections (e.g. Basic, Attributes) */
 main h2 {
   @apply font-heading text-4xl mb-7;
 }
-
 /* Form heading for subsections (e.g. Disciplines, Backgrounds) */
 main h3 {
   @apply font-heading text-3xl mb-7;
 }
-
 /* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
 main h4 {
   @apply font-heading text-2xl mb-5;
@@ -77,7 +70,6 @@ main h4 {
 .header {
   @apply bg-foreground absolute top-0 w-full h-14 flex justify-between items-center px-5 sm:h-16 lg:px-10;
 }
-
 /* Header text */
 .header p {
   @apply text-xs text-textSecondary mt-1 sm:text-base sm:mt-2;
@@ -87,10 +79,6 @@ main h4 {
  #
  # FORM CLASSES
  #
- */
-
-/**
- # FORM LABELS
  */
 
 /* Form labels */
@@ -106,41 +94,33 @@ main h4 {
 .textfield {
   @apply bg-foreground text-base text-textPrimary placeholder:text-textSecondary mt-1 py-3 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
-
 /* Custom attribute for [Abilities] */
 .textfield-custom {
   @apply max-w-40 bg-foreground text-sm text-center text-textPrimary placeholder:text-textSecondary py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
-
 /* Form dropdowns */
 .dropdown {
   @apply bg-foreground text-base mt-1 py-[0.95rem] px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
-
 /* Custom dropdown for [Disciplines]/[Backgrounds]/[Path] */
 .dropdown-custom {
   @apply bg-foreground text-sm text-center py-1 px-4 rounded-round transition border border-transparent hover:scale-[1.02] focus:border-accent focus:outline-none focus:ring-0 focus:scale-[1.02];
 }
-
 /* wrapper for dot + label (elements including dots) */
 .dots {
   @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
 }
-
 .dots-custom {
   @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary hover:text-textSecondary;
 }
-
 /* Wrapper for dots */
 .dot-group {
   @apply flex justify-center gap-3;
 }
-
 /* Un-filled dot */
 .dot {
   @apply w-5 h-5 rounded-full border border-textSecondary bg-transparent transition duration-200 hover:border-accent hover:scale-[1.12];
 }
-
 /* FIlled-in dot */
 .dot.filled {
   @apply border-textPrimary bg-textPrimary;
