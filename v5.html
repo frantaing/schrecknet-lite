@@ -631,6 +631,42 @@ V5 Character sheet
 
     </section>
 
+    <!-- [Touchstones & Convictions] -->
+    <section>
+
+      <h3>touchstones & convictions</h3>
+
+      <!-- This container will hold all the paired entries -->
+      <div id="touchstone-conviction-container" class="flex flex-col justify-center items-center gap-4">
+
+        <!-- This is a single, complete entry. -->
+        <div class="touchstone-entry gap-3 w-full max-w-sm sm:flex-row sm:items-center">
+          
+          <!-- Input fields for the pair -->
+          <div class="group flex justify-center items-center gap-3 ml-10">
+            <div class="flex flex-grow flex-col gap-2">
+              <input type="text" name="touchstone_1" placeholder="touchstone (the person)..." class="textfield">
+              <input type="text" name="conviction_1" placeholder="conviction (the rule)..." class="textfield">               
+            </div>
+            <!-- Remove button for the pair -->
+            <button class="btn-minus sm:self-center">-</button> 
+          </div>
+              
+        </div>
+
+        <!-- New entries will be added here! -->
+
+        <!-- A single button to add a new PAIR -->
+        <div class="mt-2">
+          <button id="add-touchstone-btn" class="btn group text-xs">
+            add new <span class="span">touchstone & conviction</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
   <!-- Javascript -->
