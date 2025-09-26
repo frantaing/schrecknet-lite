@@ -311,46 +311,16 @@ V5 Character sheet
 
     </section>
 
-    <!-- [Abilities] -->
+    <!-- [Skills] -->
     <section>
 
-      <h2>abilities</h2>
+      <h2>skills</h2>
       <div class="grid gap-16 sm:grid-cols-3">
         <div>
-          <!-- Talents -->
-          <div class="mb-7">
-            <h4 class="mb-3">talents <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
-          </div>
-          <!-- Alertness, Athletics, etc. -->
+          <!-- Col 1 (Physical) -->
           <div class="dots-wrapper">
             <div class="dots">
-              <span>alertness</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
               <span>athletics</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>awareness</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -370,103 +340,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>empathy</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>expression</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>intimidation</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>leadership</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>streetwise</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>subterfuge</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <input type="text" name="custom_talent" placeholder="custom talent" class="textfield-custom">
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div>
-          <!-- Skills -->
-          <div class="mb-7">
-            <h4 class="mb-3">skills <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
-          </div>
-          <!-- Animal Ken, Crafts, etc. -->
-          <div class="dots-wrapper">
-            <div class="dots">
-              <span>animal ken</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>crafts</span>
+              <span>craft</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -477,16 +351,6 @@ V5 Character sheet
             </div>
             <div class="dots">
               <span>drive</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <span>etiquette</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -526,16 +390,6 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>performance</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
               <span>stealth</span>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -556,7 +410,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <input type="text" name="custom_skill" placeholder="custom skill" class="textfield-custom">
+              <input type="text" name="custom_physical_skill" placeholder="custom physical" class="textfield-custom">
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -568,20 +422,10 @@ V5 Character sheet
           </div>
         </div>
         <div>
-          <!-- Knowledges -->
-          <div class="mb-7">
-            <h4 class="mb-3">knowledges <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
-          </div>
-          <!-- Academics, Computer, etc. -->
-           <div class="dots-wrapper">
+          <!-- Col 2 (Social) -->
+          <div class="dots-wrapper">
             <div class="dots">
-              <span>academics</span>
+              <span>animal ken</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -591,7 +435,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>computer</span>
+              <span>etiquette</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -601,7 +445,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>finance</span>
+              <span>insight</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -611,7 +455,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>investigation</span>
+              <span>intimidation</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -621,7 +465,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>law</span>
+              <span>leadership</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -631,7 +475,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>medicine</span>
+              <span>performance</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -641,7 +485,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>occult</span>
+              <span>persuasion</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -651,7 +495,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>politics</span>
+              <span>streetwise</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -661,7 +505,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>science</span>
+              <span>subterfuge</span>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -671,17 +515,7 @@ V5 Character sheet
               </div>
             </div>
             <div class="dots">
-              <span>technology</span>
-              <div class="dot-group">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </div>
-            <div class="dots">
-              <input type="text" name="custom_knowledge" placeholder="custom knowledge" class="textfield-custom">
+              <input type="text" name="custom_social_skill" placeholder="custom social" class="textfield-custom">
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -692,9 +526,114 @@ V5 Character sheet
             </div>
           </div>
         </div>
+        <div>
+          <!-- Col 3 (Mental)-->
+          <div class="dots-wrapper">
+          <div class="dots">
+            <span>academics</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>awareness</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>finance</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>investigation</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>medicine</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>occult</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>politics</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>science</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <span>technology</span>
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          <div class="dots">
+            <input type="text" name="custom_mental_skill" placeholder="custom mental" class="textfield-custom">
+            <div class="dot-group">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
 
-    </section>
+    </section>```
 
   </main>
 
