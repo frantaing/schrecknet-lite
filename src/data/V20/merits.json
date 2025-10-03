@@ -515,762 +515,757 @@
     ]
   },
   {
-    "groupLabel": "Clan-Specific Merits",
+    "groupLabel": "Assamite",
     "options": [
       {
-        "groupLabel": "Assamite",
-        "options": [
-          {
-            "value": "assamite_sectarian_ally",
-            "label": "Sectarian Ally",
-            "cost": 1
-          },
-          {
-            "value": "assamite_thousand_meter_killer",
-            "label": "Thousand Meter Killer",
-            "cost": 1
-          }
-        ]
+        "value": "assamite_sectarian_ally",
+        "label": "Sectarian Ally",
+        "cost": 1
       },
       {
-        "groupLabel": "Brujah",
-        "options": [
-          {
-            "value": "brujah_furys_focus",
-            "label": "Fury's Focus",
-            "cost": 3
-          },
-          {
-            "value": "brujah_dynamic_personality",
-            "label": "Dynamic Personality",
-            "cost": 5
-          }
-        ]
+        "value": "assamite_thousand_meter_killer",
+        "label": "Thousand Meter Killer",
+        "cost": 1
+      }
+    ]
+  },
+  {
+    "groupLabel": "Brujah",
+    "options": [
+      {
+        "value": "brujah_furys_focus",
+        "label": "Fury's Focus",
+        "cost": 3
       },
       {
-        "groupLabel": "Followers of Set",
-        "options": [
-          {
-            "value": "setite_drug_resistance",
-            "label": "Drug Resistance",
-            "cost": 2
-          },
-          {
-            "value": "setite_addictive_blood",
-            "label": "Addictive Blood",
-            "cost": 3
-          },
-          {
-            "value": "setite_initiate",
-            "label": "Setite Initiate",
-            "cost": 5
-          }
-        ]
+        "value": "brujah_dynamic_personality",
+        "label": "Dynamic Personality",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Followers of Set",
+    "options": [
+      {
+        "value": "setite_drug_resistance",
+        "label": "Drug Resistance",
+        "cost": 2
       },
       {
-        "groupLabel": "Gangrel",
-        "options": [
-          {
-            "value": "gangrel_hive_minded_1",
-            "label": "Hive-Minded (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "gangrel_hive_minded_2",
-            "label": "Hive-Minded (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "gangrel_skald",
-            "label": "Skald",
-            "cost": 2
-          },
-          {
-            "value": "gangrel_lesser_mark_of_the_beast",
-            "label": "Lesser Mark of the Beast",
-            "cost": 4
-          },
-          {
-            "value": "gangrel_totemic_change",
-            "label": "Totemic Change",
-            "cost": 5
-          }
-        ]
+        "value": "setite_addictive_blood",
+        "label": "Addictive Blood",
+        "cost": 3
       },
       {
-        "groupLabel": "Giovanni",
-        "options": [
-          {
-            "value": "giovanni_cannibal",
-            "label": "Cannibal",
-            "cost": 1
-          },
-          {
-            "value": "giovanni_consanguineous_resistance",
-            "label": "Consanguineous Resistance",
-            "cost": 1
-          },
-          {
-            "value": "giovanni_mortuario_2",
-            "label": "Mortuario (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "giovanni_mortuario_4",
-            "label": "Mortuario (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "giovanni_proxy_kissed",
-            "label": "Proxy Kissed",
-            "cost": 4
-          },
-          {
-            "value": "giovanni_sanguine_incongruity",
-            "label": "Sanguine Incongruity",
-            "cost": 5
-          }
-        ]
+        "value": "setite_initiate",
+        "label": "Setite Initiate",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Gangrel",
+    "options": [
+      {
+        "value": "gangrel_hive_minded_1",
+        "label": "Hive-Minded (1pt)",
+        "cost": 1
       },
       {
-        "groupLabel": "Lasombra",
-        "options": [
-          {
-            "value": "lasombra_court_favorite_1",
-            "label": "Court Favorite (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "lasombra_court_favorite_2",
-            "label": "Court Favorite (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_court_favorite_3",
-            "label": "Court Favorite (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "lasombra_court_favorite_4",
-            "label": "Court Favorite (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "lasombra_court_favorite_5",
-            "label": "Court Favorite (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "lasombra_eyes_of_shadow_1",
-            "label": "Eyes of Shadow (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "lasombra_eyes_of_shadow_2",
-            "label": "Eyes of Shadow (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_eyes_of_shadow_3",
-            "label": "Eyes of Shadow (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "lasombra_eyes_of_shadow_4",
-            "label": "Eyes of Shadow (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "lasombra_bigger_boys_came",
-            "label": "Bigger Boys Came",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_call_of_the_sea",
-            "label": "Call of the Sea",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_controllable_night_sight",
-            "label": "Controllable Night Sight",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_secret_stash_2",
-            "label": "Secret Stash (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "lasombra_secret_stash_3",
-            "label": "Secret Stash (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "lasombra_secret_stash_4",
-            "label": "Secret Stash (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "lasombra_secret_stash_5",
-            "label": "Secret Stash (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "lasombra_aura_of_command",
-            "label": "Aura of Command",
-            "cost": 3
-          },
-          {
-            "value": "lasombra_king_or_queen_of_shadow",
-            "label": "King or Queen of Shadow",
-            "cost": 4
-          },
-          {
-            "value": "lasombra_long_term_planning",
-            "label": "Long-Term Planning",
-            "cost": 4
-          },
-          {
-            "value": "lasombra_instrument_of_god",
-            "label": "Instrument of God",
-            "cost": 5
-          }
-        ]
+        "value": "gangrel_hive_minded_2",
+        "label": "Hive-Minded (2pt)",
+        "cost": 2
       },
       {
-        "groupLabel": "Malkavian",
-        "options": [
-          {
-            "value": "malkavian_distracting_aura",
-            "label": "Distracting Aura",
-            "cost": 2
-          },
-          {
-            "value": "malkavian_prophetic_dreams",
-            "label": "Prophetic Dreams",
-            "cost": 2
-          },
-          {
-            "value": "malkavian_cold_read",
-            "label": "Cold Read",
-            "cost": 3
-          }
-        ]
+        "value": "gangrel_skald",
+        "label": "Skald",
+        "cost": 2
       },
       {
-        "groupLabel": "Nosferatu",
-        "options": [
-          {
-            "value": "nosferatu_foul_blood",
-            "label": "Foul Blood",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_lizard_limbs",
-            "label": "Lizard Limbs",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_long_fingers",
-            "label": "Long Fingers",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_monstrous_maw",
-            "label": "Monstrous Maw",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_piscine",
-            "label": "Piscine",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_slimy",
-            "label": "Slimy",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_spawning_pool_1",
-            "label": "Spawning Pool (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_spawning_pool_2",
-            "label": "Spawning Pool (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "nosferatu_spawning_pool_3",
-            "label": "Spawning Pool (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "nosferatu_tunnel_rat_1",
-            "label": "Tunnel Rat (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "nosferatu_tunnel_rat_2",
-            "label": "Tunnel Rat (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "nosferatu_tunnel_rat_3",
-            "label": "Tunnel Rat (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "nosferatu_tunnel_rat_4",
-            "label": "Tunnel Rat (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "nosferatu_tunnel_rat_5",
-            "label": "Tunnel Rat (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "nosferatu_sleep_unseen",
-            "label": "Sleep Unseen",
-            "cost": 2
-          },
-          {
-            "value": "nosferatu_tough_hide",
-            "label": "Tough Hide",
-            "cost": 2
-          },
-          {
-            "value": "nosferatu_false_reflection",
-            "label": "False Reflection",
-            "cost": 3
-          },
-          {
-            "value": "nosferatu_patagia",
-            "label": "Patagia",
-            "cost": 4
-          },
-          {
-            "value": "nosferatu_rugged_bad_looks",
-            "label": "Rugged Bad Looks",
-            "cost": 5
-          }
-        ]
+        "value": "gangrel_lesser_mark_of_the_beast",
+        "label": "Lesser Mark of the Beast",
+        "cost": 4
       },
       {
-        "groupLabel": "Ravnos",
-        "options": [
-          {
-            "value": "ravnos_antitoxin_blood",
-            "label": "Antitoxin Blood",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_brahmin",
-            "label": "Brahmin",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_kshatriya",
-            "label": "Kshatriya",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_legerdemain",
-            "label": "Legerdemain",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_mute_devotion",
-            "label": "Mute Devotion",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_vaishya",
-            "label": "Vaishya",
-            "cost": 1
-          },
-          {
-            "value": "ravnos_critters",
-            "label": "Critters",
-            "cost": 2
-          },
-          {
-            "value": "ravnos_ravnos_jati",
-            "label": "Ravnos Jati",
-            "cost": 2
-          },
-          {
-            "value": "ravnos_heart_of_needles",
-            "label": "Heart of Needles",
-            "cost": 3
-          }
-        ]
+        "value": "gangrel_totemic_change",
+        "label": "Totemic Change",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Giovanni",
+    "options": [
+      {
+        "value": "giovanni_cannibal",
+        "label": "Cannibal",
+        "cost": 1
       },
       {
-        "groupLabel": "Toreador",
-        "options": [
-          {
-            "value": "toreador_indelible_1",
-            "label": "Indelible (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "toreador_indelible_2",
-            "label": "Indelible (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "toreador_impressive_restraint",
-            "label": "Impressive Restraint",
-            "cost": 2
-          },
-          {
-            "value": "toreador_master_of_the_masquerade",
-            "label": "Master of the Masquerade",
-            "cost": 2
-          },
-          {
-            "value": "toreador_slowed_degeneration",
-            "label": "Slowed Degeneration",
-            "cost": 5
-          }
-        ]
+        "value": "giovanni_consanguineous_resistance",
+        "label": "Consanguineous Resistance",
+        "cost": 1
       },
       {
-        "groupLabel": "Tremere",
-        "options": [
-          {
-            "value": "tremere_embraced_without_the_cup",
-            "label": "Embraced without the Cup",
-            "cost": 1
-          },
-          {
-            "value": "tremere_secret_society_member",
-            "label": "Secret Society Member",
-            "cost": 1
-          },
-          {
-            "value": "tremere_keys_to_the_library_1",
-            "label": "Keys to the Library (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "tremere_keys_to_the_library_2",
-            "label": "Keys to the Library (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "tremere_keys_to_the_library_3",
-            "label": "Keys to the Library (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "tremere_keys_to_the_library_4",
-            "label": "Keys to the Library (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "tremere_keys_to_the_library_5",
-            "label": "Keys to the Library (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "tremere_outside_haven",
-            "label": "Outside Haven",
-            "cost": 2
-          },
-          {
-            "value": "tremere_unmarked_antitribu_2",
-            "label": "Unmarked Antitribu (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "tremere_unmarked_antitribu_5",
-            "label": "Unmarked Antitribu (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "tremere_quartermaster",
-            "label": "Quartermaster",
-            "cost": 3
-          }
-        ]
+        "value": "giovanni_mortuario_2",
+        "label": "Mortuario (2pt)",
+        "cost": 2
       },
       {
-        "groupLabel": "Tzimisce",
-        "options": [
-          {
-            "value": "tzimisce_bioluminescence",
-            "label": "Bioluminescence",
-            "cost": 1
-          },
-          {
-            "value": "tzimisce_pain_tolerance",
-            "label": "Pain Tolerance",
-            "cost": 2
-          },
-          {
-            "value": "tzimisce_dracons_temperament",
-            "label": "Dracon's Temperament",
-            "cost": 3
-          },
-          {
-            "value": "tzimisce_haven_affinity",
-            "label": "Haven Affinity",
-            "cost": 3
-          },
-          {
-            "value": "tzimisce_revenant_disciplines",
-            "label": "Revenant Disciplines",
-            "cost": 3
-          },
-          {
-            "value": "tzimisce_promethean_clay",
-            "label": "Promethean Clay",
-            "cost": 5
-          }
-        ]
+        "value": "giovanni_mortuario_4",
+        "label": "Mortuario (4pt)",
+        "cost": 4
       },
       {
-        "groupLabel": "Ventrue",
-        "options": [
-          {
-            "value": "ventrue_connoisseur",
-            "label": "Connoisseur",
-            "cost": 2
-          },
-          {
-            "value": "ventrue_blessed_by_st_gustav",
-            "label": "Blessed by St. Gustav",
-            "cost": 4
-          }
-        ]
+        "value": "giovanni_proxy_kissed",
+        "label": "Proxy Kissed",
+        "cost": 4
       },
       {
-        "groupLabel": "Caitiff",
-        "options": [
-          {
-            "value": "caitiff_personal_masquerade",
-            "label": "Personal Masquerade",
-            "cost": 3
-          }
-        ]
+        "value": "giovanni_sanguine_incongruity",
+        "label": "Sanguine Incongruity",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Lasombra",
+    "options": [
+      {
+        "value": "lasombra_court_favorite_1",
+        "label": "Court Favorite (1pt)",
+        "cost": 1
       },
       {
-        "groupLabel": "Baali",
-        "options": [
-          {
-            "value": "baali_the_high_price",
-            "label": "The High Price",
-            "cost": 3
-          },
-          {
-            "value": "baali_simply_waiting",
-            "label": "Simply Waiting",
-            "cost": 4
-          }
-        ]
+        "value": "lasombra_court_favorite_2",
+        "label": "Court Favorite (2pt)",
+        "cost": 2
       },
       {
-        "groupLabel": "Daughters of Cacophony",
-        "options": [
-          {
-            "value": "daughters_chorus_trained_3",
-            "label": "Chorus Trained (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "daughters_chorus_trained_5",
-            "label": "Chorus Trained (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "daughters_fugue_instinct",
-            "label": "Fugue Instinct",
-            "cost": 3
-          }
-        ]
+        "value": "lasombra_court_favorite_3",
+        "label": "Court Favorite (3pt)",
+        "cost": 3
       },
       {
-        "groupLabel": "Gargoyle",
-        "options": [
-          {
-            "value": "gargoyle_stillness_of_death",
-            "label": "Stillness of Death",
-            "cost": 2
-          },
-          {
-            "value": "gargoyle_heavy_hands",
-            "label": "Heavy Hands",
-            "cost": 3
-          }
-        ]
+        "value": "lasombra_court_favorite_4",
+        "label": "Court Favorite (4pt)",
+        "cost": 4
       },
       {
-        "groupLabel": "Harbingers of Skulls",
-        "options": [
-          {
-            "value": "harbingers_disciple_of_lazarus_japheth",
-            "label": "Disciple of Lazarus/Japheth",
-            "cost": 2
-          },
-          {
-            "value": "harbingers_styx_baptism",
-            "label": "Styx Baptism",
-            "cost": 3
-          },
-          {
-            "value": "harbingers_half_life",
-            "label": "Half-Life",
-            "cost": 6
-          }
-        ]
+        "value": "lasombra_court_favorite_5",
+        "label": "Court Favorite (5pt)",
+        "cost": 5
       },
       {
-        "groupLabel": "Kiasyd",
-        "options": [
-          {
-            "value": "kiasyd_prized_collection_1",
-            "label": "Prized Collection (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "kiasyd_prized_collection_2",
-            "label": "Prized Collection (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "kiasyd_alien_perfection",
-            "label": "Alien Perfection",
-            "cost": 2
-          },
-          {
-            "value": "kiasyd_paranormal_link",
-            "label": "Paranormal Link",
-            "cost": 2
-          },
-          {
-            "value": "kiasyd_skin_of_porcelain",
-            "label": "Skin of Porcelain",
-            "cost": 4
-          },
-          {
-            "value": "kiasyd_vitae_mutation",
-            "label": "Vitae Mutation",
-            "cost": 5
-          }
-        ]
+        "value": "lasombra_eyes_of_shadow_1",
+        "label": "Eyes of Shadow (1pt)",
+        "cost": 1
       },
       {
-        "groupLabel": "Nagaraja",
-        "options": [
-          {
-            "value": "nagaraja_extra_sharp",
-            "label": "Extra Sharp",
-            "cost": 2
-          },
-          {
-            "value": "nagaraja_speed_eater_2",
-            "label": "Speed Eater (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "nagaraja_speed_eater_4",
-            "label": "Speed Eater (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "nagaraja_wolverines_palate",
-            "label": "Wolverine's Palate",
-            "cost": 3
-          }
-        ]
+        "value": "lasombra_eyes_of_shadow_2",
+        "label": "Eyes of Shadow (2pt)",
+        "cost": 2
       },
       {
-        "groupLabel": "Salubri",
-        "options": [
-          {
-            "value": "salubri_scent_of_the_other",
-            "label": "Scent of the Other",
-            "cost": 1
-          },
-          {
-            "value": "salubri_trackers_mark",
-            "label": "Tracker's Mark",
-            "cost": 2
-          },
-          {
-            "value": "salubri_sight_beyond_sight",
-            "label": "Sight Beyond Sight",
-            "cost": 3
-          },
-          {
-            "value": "salubri_warriors_heart",
-            "label": "Warrior's Heart",
-            "cost": 3
-          },
-          {
-            "value": "salubri_blooded_by_the_code",
-            "label": "Blooded by the Code",
-            "cost": 5
-          }
-        ]
+        "value": "lasombra_eyes_of_shadow_3",
+        "label": "Eyes of Shadow (3pt)",
+        "cost": 3
       },
       {
-        "groupLabel": "Samedi",
-        "options": [
-          {
-            "value": "samedi_death_grip",
-            "label": "Death Grip",
-            "cost": 3
-          },
-          {
-            "value": "samedi_stitcher",
-            "label": "Stitcher",
-            "cost": 3
-          }
-        ]
+        "value": "lasombra_eyes_of_shadow_4",
+        "label": "Eyes of Shadow (4pt)",
+        "cost": 4
       },
       {
-        "groupLabel": "True Brujah",
-        "options": [
-          {
-            "value": "true_brujah_advanced_tech_1",
-            "label": "Advanced Tech (1pt)",
-            "cost": 1
-          },
-          {
-            "value": "true_brujah_advanced_tech_2",
-            "label": "Advanced Tech (2pt)",
-            "cost": 2
-          },
-          {
-            "value": "true_brujah_advanced_tech_3",
-            "label": "Advanced Tech (3pt)",
-            "cost": 3
-          },
-          {
-            "value": "true_brujah_advanced_tech_4",
-            "label": "Advanced Tech (4pt)",
-            "cost": 4
-          },
-          {
-            "value": "true_brujah_advanced_tech_5",
-            "label": "Advanced Tech (5pt)",
-            "cost": 5
-          },
-          {
-            "value": "true_brujah_fatalist",
-            "label": "Fatalist",
-            "cost": 3
-          },
-          {
-            "value": "true_brujah_true_celerity",
-            "label": "True Celerity",
-            "cost": 5
-          }
-        ]
+        "value": "lasombra_bigger_boys_came",
+        "label": "Bigger Boys Came",
+        "cost": 2
+      },
+      {
+        "value": "lasombra_call_of_the_sea",
+        "label": "Call of the Sea",
+        "cost": 2
+      },
+      {
+        "value": "lasombra_controllable_night_sight",
+        "label": "Controllable Night Sight",
+        "cost": 2
+      },
+      {
+        "value": "lasombra_secret_stash_2",
+        "label": "Secret Stash (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "lasombra_secret_stash_3",
+        "label": "Secret Stash (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "lasombra_secret_stash_4",
+        "label": "Secret Stash (4pt)",
+        "cost": 4
+      },
+      {
+        "value": "lasombra_secret_stash_5",
+        "label": "Secret Stash (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "lasombra_aura_of_command",
+        "label": "Aura of Command",
+        "cost": 3
+      },
+      {
+        "value": "lasombra_king_or_queen_of_shadow",
+        "label": "King or Queen of Shadow",
+        "cost": 4
+      },
+      {
+        "value": "lasombra_long_term_planning",
+        "label": "Long-Term Planning",
+        "cost": 4
+      },
+      {
+        "value": "lasombra_instrument_of_god",
+        "label": "Instrument of God",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Malkavian",
+    "options": [
+      {
+        "value": "malkavian_distracting_aura",
+        "label": "Distracting Aura",
+        "cost": 2
+      },
+      {
+        "value": "malkavian_prophetic_dreams",
+        "label": "Prophetic Dreams",
+        "cost": 2
+      },
+      {
+        "value": "malkavian_cold_read",
+        "label": "Cold Read",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Nosferatu",
+    "options": [
+      {
+        "value": "nosferatu_foul_blood",
+        "label": "Foul Blood",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_lizard_limbs",
+        "label": "Lizard Limbs",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_long_fingers",
+        "label": "Long Fingers",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_monstrous_maw",
+        "label": "Monstrous Maw",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_piscine",
+        "label": "Piscine",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_slimy",
+        "label": "Slimy",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_spawning_pool_1",
+        "label": "Spawning Pool (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_spawning_pool_2",
+        "label": "Spawning Pool (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "nosferatu_spawning_pool_3",
+        "label": "Spawning Pool (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "nosferatu_tunnel_rat_1",
+        "label": "Tunnel Rat (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "nosferatu_tunnel_rat_2",
+        "label": "Tunnel Rat (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "nosferatu_tunnel_rat_3",
+        "label": "Tunnel Rat (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "nosferatu_tunnel_rat_4",
+        "label": "Tunnel Rat (4pt)",
+        "cost": 4
+      },
+      {
+        "value": "nosferatu_tunnel_rat_5",
+        "label": "Tunnel Rat (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "nosferatu_sleep_unseen",
+        "label": "Sleep Unseen",
+        "cost": 2
+      },
+      {
+        "value": "nosferatu_tough_hide",
+        "label": "Tough Hide",
+        "cost": 2
+      },
+      {
+        "value": "nosferatu_false_reflection",
+        "label": "False Reflection",
+        "cost": 3
+      },
+      {
+        "value": "nosferatu_patagia",
+        "label": "Patagia",
+        "cost": 4
+      },
+      {
+        "value": "nosferatu_rugged_bad_looks",
+        "label": "Rugged Bad Looks",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Ravnos",
+    "options": [
+      {
+        "value": "ravnos_antitoxin_blood",
+        "label": "Antitoxin Blood",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_brahmin",
+        "label": "Brahmin",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_kshatriya",
+        "label": "Kshatriya",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_legerdemain",
+        "label": "Legerdemain",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_mute_devotion",
+        "label": "Mute Devotion",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_vaishya",
+        "label": "Vaishya",
+        "cost": 1
+      },
+      {
+        "value": "ravnos_critters",
+        "label": "Critters",
+        "cost": 2
+      },
+      {
+        "value": "ravnos_ravnos_jati",
+        "label": "Ravnos Jati",
+        "cost": 2
+      },
+      {
+        "value": "ravnos_heart_of_needles",
+        "label": "Heart of Needles",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Toreador",
+    "options": [
+      {
+        "value": "toreador_indelible_1",
+        "label": "Indelible (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "toreador_indelible_2",
+        "label": "Indelible (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "toreador_impressive_restraint",
+        "label": "Impressive Restraint",
+        "cost": 2
+      },
+      {
+        "value": "toreador_master_of_the_masquerade",
+        "label": "Master of the Masquerade",
+        "cost": 2
+      },
+      {
+        "value": "toreador_slowed_degeneration",
+        "label": "Slowed Degeneration",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Tremere",
+    "options": [
+      {
+        "value": "tremere_embraced_without_the_cup",
+        "label": "Embraced without the Cup",
+        "cost": 1
+      },
+      {
+        "value": "tremere_secret_society_member",
+        "label": "Secret Society Member",
+        "cost": 1
+      },
+      {
+        "value": "tremere_keys_to_the_library_1",
+        "label": "Keys to the Library (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "tremere_keys_to_the_library_2",
+        "label": "Keys to the Library (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "tremere_keys_to_the_library_3",
+        "label": "Keys to the Library (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "tremere_keys_to_the_library_4",
+        "label": "Keys to the Library (4pt)",
+        "cost": 4
+      },
+      {
+        "value": "tremere_keys_to_the_library_5",
+        "label": "Keys to the Library (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "tremere_outside_haven",
+        "label": "Outside Haven",
+        "cost": 2
+      },
+      {
+        "value": "tremere_unmarked_antitribu_2",
+        "label": "Unmarked Antitribu (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "tremere_unmarked_antitribu_5",
+        "label": "Unmarked Antitribu (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "tremere_quartermaster",
+        "label": "Quartermaster",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Tzimisce",
+    "options": [
+      {
+        "value": "tzimisce_bioluminescence",
+        "label": "Bioluminescence",
+        "cost": 1
+      },
+      {
+        "value": "tzimisce_pain_tolerance",
+        "label": "Pain Tolerance",
+        "cost": 2
+      },
+      {
+        "value": "tzimisce_dracons_temperament",
+        "label": "Dracon's Temperament",
+        "cost": 3
+      },
+      {
+        "value": "tzimisce_haven_affinity",
+        "label": "Haven Affinity",
+        "cost": 3
+      },
+      {
+        "value": "tzimisce_revenant_disciplines",
+        "label": "Revenant Disciplines",
+        "cost": 3
+      },
+      {
+        "value": "tzimisce_promethean_clay",
+        "label": "Promethean Clay",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Ventrue",
+    "options": [
+      {
+        "value": "ventrue_connoisseur",
+        "label": "Connoisseur",
+        "cost": 2
+      },
+      {
+        "value": "ventrue_blessed_by_st_gustav",
+        "label": "Blessed by St. Gustav",
+        "cost": 4
+      }
+    ]
+  },
+  {
+    "groupLabel": "Caitiff",
+    "options": [
+      {
+        "value": "caitiff_personal_masquerade",
+        "label": "Personal Masquerade",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Baali",
+    "options": [
+      {
+        "value": "baali_the_high_price",
+        "label": "The High Price",
+        "cost": 3
+      },
+      {
+        "value": "baali_simply_waiting",
+        "label": "Simply Waiting",
+        "cost": 4
+      }
+    ]
+  },
+  {
+    "groupLabel": "Daughters of Cacophony",
+    "options": [
+      {
+        "value": "daughters_chorus_trained_3",
+        "label": "Chorus Trained (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "daughters_chorus_trained_5",
+        "label": "Chorus Trained (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "daughters_fugue_instinct",
+        "label": "Fugue Instinct",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Gargoyle",
+    "options": [
+      {
+        "value": "gargoyle_stillness_of_death",
+        "label": "Stillness of Death",
+        "cost": 2
+      },
+      {
+        "value": "gargoyle_heavy_hands",
+        "label": "Heavy Hands",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Harbingers of Skulls",
+    "options": [
+      {
+        "value": "harbingers_disciple_of_lazarus_japheth",
+        "label": "Disciple of Lazarus/Japheth",
+        "cost": 2
+      },
+      {
+        "value": "harbingers_styx_baptism",
+        "label": "Styx Baptism",
+        "cost": 3
+      },
+      {
+        "value": "harbingers_half_life",
+        "label": "Half-Life",
+        "cost": 6
+      }
+    ]
+  },
+  {
+    "groupLabel": "Kiasyd",
+    "options": [
+      {
+        "value": "kiasyd_prized_collection_1",
+        "label": "Prized Collection (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "kiasyd_prized_collection_2",
+        "label": "Prized Collection (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "kiasyd_alien_perfection",
+        "label": "Alien Perfection",
+        "cost": 2
+      },
+      {
+        "value": "kiasyd_paranormal_link",
+        "label": "Paranormal Link",
+        "cost": 2
+      },
+      {
+        "value": "kiasyd_skin_of_porcelain",
+        "label": "Skin of Porcelain",
+        "cost": 4
+      },
+      {
+        "value": "kiasyd_vitae_mutation",
+        "label": "Vitae Mutation",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Nagaraja",
+    "options": [
+      {
+        "value": "nagaraja_extra_sharp",
+        "label": "Extra Sharp",
+        "cost": 2
+      },
+      {
+        "value": "nagaraja_speed_eater_2",
+        "label": "Speed Eater (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "nagaraja_speed_eater_4",
+        "label": "Speed Eater (4pt)",
+        "cost": 4
+      },
+      {
+        "value": "nagaraja_wolverines_palate",
+        "label": "Wolverine's Palate",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "Salubri",
+    "options": [
+      {
+        "value": "salubri_scent_of_the_other",
+        "label": "Scent of the Other",
+        "cost": 1
+      },
+      {
+        "value": "salubri_trackers_mark",
+        "label": "Tracker's Mark",
+        "cost": 2
+      },
+      {
+        "value": "salubri_sight_beyond_sight",
+        "label": "Sight Beyond Sight",
+        "cost": 3
+      },
+      {
+        "value": "salubri_warriors_heart",
+        "label": "Warrior's Heart",
+        "cost": 3
+      },
+      {
+        "value": "salubri_blooded_by_the_code",
+        "label": "Blooded by the Code",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "groupLabel": "Samedi",
+    "options": [
+      {
+        "value": "samedi_death_grip",
+        "label": "Death Grip",
+        "cost": 3
+      },
+      {
+        "value": "samedi_stitcher",
+        "label": "Stitcher",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "groupLabel": "True Brujah",
+    "options": [
+      {
+        "value": "true_brujah_advanced_tech_1",
+        "label": "Advanced Tech (1pt)",
+        "cost": 1
+      },
+      {
+        "value": "true_brujah_advanced_tech_2",
+        "label": "Advanced Tech (2pt)",
+        "cost": 2
+      },
+      {
+        "value": "true_brujah_advanced_tech_3",
+        "label": "Advanced Tech (3pt)",
+        "cost": 3
+      },
+      {
+        "value": "true_brujah_advanced_tech_4",
+        "label": "Advanced Tech (4pt)",
+        "cost": 4
+      },
+      {
+        "value": "true_brujah_advanced_tech_5",
+        "label": "Advanced Tech (5pt)",
+        "cost": 5
+      },
+      {
+        "value": "true_brujah_fatalist",
+        "label": "Fatalist",
+        "cost": 3
+      },
+      {
+        "value": "true_brujah_true_celerity",
+        "label": "True Celerity",
+        "cost": 5
       }
     ]
   }
