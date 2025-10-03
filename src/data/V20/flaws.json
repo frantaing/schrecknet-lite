@@ -439,27 +439,27 @@
       },
       {
         "value": "enemy_1",
-        "label": "Enemy (1 pt)",
+        "label": "Enemy",
         "cost": 1
       },
       {
         "value": "enemy_2",
-        "label": "Enemy (2 pt)",
+        "label": "Enemy",
         "cost": 2
       },
       {
         "value": "enemy_3",
-        "label": "Enemy (3 pt)",
+        "label": "Enemy",
         "cost": 3
       },
       {
         "value": "enemy_4",
-        "label": "Enemy (4 pt)",
+        "label": "Enemy",
         "cost": 4
       },
       {
         "value": "enemy_5",
-        "label": "Enemy (5 pt)",
+        "label": "Enemy",
         "cost": 5
       },
       {
@@ -539,27 +539,27 @@
       },
       {
         "value": "cursed_1",
-        "label": "Cursed (1 pt)",
+        "label": "Cursed",
         "cost": 1
       },
       {
         "value": "cursed_2",
-        "label": "Cursed (2 pt)",
+        "label": "Cursed",
         "cost": 2
       },
       {
         "value": "cursed_3",
-        "label": "Cursed (3 pt)",
+        "label": "Cursed",
         "cost": 3
       },
       {
         "value": "cursed_4",
-        "label": "Cursed (4 pt)",
+        "label": "Cursed",
         "cost": 4
       },
       {
         "value": "cursed_5",
-        "label": "Cursed (5 pt)",
+        "label": "Cursed",
         "cost": 5
       },
       {
