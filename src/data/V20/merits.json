@@ -179,22 +179,22 @@
       },
       {
         "value": "grand_library_2",
-        "label": "Grand Library (2pt)",
+        "label": "Grand Library",
         "cost": 2
       },
       {
         "value": "grand_library_4",
-        "label": "Grand Library (4pt)",
+        "label": "Grand Library",
         "cost": 4
       },
       {
         "value": "grand_library_6",
-        "label": "Grand Library (6pt)",
+        "label": "Grand Library",
         "cost": 6
       },
       {
         "value": "grand_library_7",
-        "label": "Grand Library (7pt)",
+        "label": "Grand Library",
         "cost": 7
       }
     ]
@@ -244,32 +244,32 @@
       },
       {
         "value": "boon_1",
-        "label": "Boon (1pt)",
+        "label": "Boon",
         "cost": 1
       },
       {
         "value": "boon_2",
-        "label": "Boon (2pt)",
+        "label": "Boon",
         "cost": 2
       },
       {
         "value": "boon_3",
-        "label": "Boon (3pt)",
+        "label": "Boon",
         "cost": 3
       },
       {
         "value": "boon_4",
-        "label": "Boon (4pt)",
+        "label": "Boon",
         "cost": 4
       },
       {
         "value": "boon_5",
-        "label": "Boon (5pt)",
+        "label": "Boon",
         "cost": 5
       },
       {
         "value": "boon_6",
-        "label": "Boon (6pt)",
+        "label": "Boon",
         "cost": 6
       },
       {
@@ -369,27 +369,27 @@
       },
       {
         "value": "arcane_1",
-        "label": "Arcane (1pt)",
+        "label": "Arcane",
         "cost": 1
       },
       {
         "value": "arcane_2",
-        "label": "Arcane (2pt)",
+        "label": "Arcane",
         "cost": 2
       },
       {
         "value": "arcane_3",
-        "label": "Arcane (3pt)",
+        "label": "Arcane",
         "cost": 3
       },
       {
         "value": "arcane_4",
-        "label": "Arcane (4pt)",
+        "label": "Arcane",
         "cost": 4
       },
       {
         "value": "arcane_5",
-        "label": "Arcane (5pt)",
+        "label": "Arcane",
         "cost": 5
       },
       {
@@ -569,12 +569,12 @@
     "options": [
       {
         "value": "gangrel_hive_minded_1",
-        "label": "Hive-Minded (1pt)",
+        "label": "Hive-Minded",
         "cost": 1
       },
       {
         "value": "gangrel_hive_minded_2",
-        "label": "Hive-Minded (2pt)",
+        "label": "Hive-Minded",
         "cost": 2
       },
       {
@@ -609,12 +609,12 @@
       },
       {
         "value": "giovanni_mortuario_2",
-        "label": "Mortuario (2pt)",
+        "label": "Mortuario",
         "cost": 2
       },
       {
         "value": "giovanni_mortuario_4",
-        "label": "Mortuario (4pt)",
+        "label": "Mortuario",
         "cost": 4
       },
       {
@@ -634,47 +634,47 @@
     "options": [
       {
         "value": "lasombra_court_favorite_1",
-        "label": "Court Favorite (1pt)",
+        "label": "Court Favorite",
         "cost": 1
       },
       {
         "value": "lasombra_court_favorite_2",
-        "label": "Court Favorite (2pt)",
+        "label": "Court Favorite",
         "cost": 2
       },
       {
         "value": "lasombra_court_favorite_3",
-        "label": "Court Favorite (3pt)",
+        "label": "Court Favorite",
         "cost": 3
       },
       {
         "value": "lasombra_court_favorite_4",
-        "label": "Court Favorite (4pt)",
+        "label": "Court Favorite",
         "cost": 4
       },
       {
         "value": "lasombra_court_favorite_5",
-        "label": "Court Favorite (5pt)",
+        "label": "Court Favorite",
         "cost": 5
       },
       {
         "value": "lasombra_eyes_of_shadow_1",
-        "label": "Eyes of Shadow (1pt)",
+        "label": "Eyes of Shadow",
         "cost": 1
       },
       {
         "value": "lasombra_eyes_of_shadow_2",
-        "label": "Eyes of Shadow (2pt)",
+        "label": "Eyes of Shadow",
         "cost": 2
       },
       {
         "value": "lasombra_eyes_of_shadow_3",
-        "label": "Eyes of Shadow (3pt)",
+        "label": "Eyes of Shadow",
         "cost": 3
       },
       {
         "value": "lasombra_eyes_of_shadow_4",
-        "label": "Eyes of Shadow (4pt)",
+        "label": "Eyes of Shadow",
         "cost": 4
       },
       {
@@ -694,22 +694,22 @@
       },
       {
         "value": "lasombra_secret_stash_2",
-        "label": "Secret Stash (2pt)",
+        "label": "Secret Stash",
         "cost": 2
       },
       {
         "value": "lasombra_secret_stash_3",
-        "label": "Secret Stash (3pt)",
+        "label": "Secret Stash",
         "cost": 3
       },
       {
         "value": "lasombra_secret_stash_4",
-        "label": "Secret Stash (4pt)",
+        "label": "Secret Stash",
         "cost": 4
       },
       {
         "value": "lasombra_secret_stash_5",
-        "label": "Secret Stash (5pt)",
+        "label": "Secret Stash",
         "cost": 5
       },
       {
@@ -789,42 +789,42 @@
       },
       {
         "value": "nosferatu_spawning_pool_1",
-        "label": "Spawning Pool (1pt)",
+        "label": "Spawning Pool",
         "cost": 1
       },
       {
         "value": "nosferatu_spawning_pool_2",
-        "label": "Spawning Pool (2pt)",
+        "label": "Spawning Pool",
         "cost": 2
       },
       {
         "value": "nosferatu_spawning_pool_3",
-        "label": "Spawning Pool (3pt)",
+        "label": "Spawning Pool",
         "cost": 3
       },
       {
         "value": "nosferatu_tunnel_rat_1",
-        "label": "Tunnel Rat (1pt)",
+        "label": "Tunnel Rat",
         "cost": 1
       },
       {
         "value": "nosferatu_tunnel_rat_2",
-        "label": "Tunnel Rat (2pt)",
+        "label": "Tunnel Rat",
         "cost": 2
       },
       {
         "value": "nosferatu_tunnel_rat_3",
-        "label": "Tunnel Rat (3pt)",
+        "label": "Tunnel Rat",
         "cost": 3
       },
       {
         "value": "nosferatu_tunnel_rat_4",
-        "label": "Tunnel Rat (4pt)",
+        "label": "Tunnel Rat",
         "cost": 4
       },
       {
         "value": "nosferatu_tunnel_rat_5",
-        "label": "Tunnel Rat (5pt)",
+        "label": "Tunnel Rat",
         "cost": 5
       },
       {
@@ -909,12 +909,12 @@
     "options": [
       {
         "value": "toreador_indelible_1",
-        "label": "Indelible (1pt)",
+        "label": "Indelible",
         "cost": 1
       },
       {
         "value": "toreador_indelible_2",
-        "label": "Indelible (2pt)",
+        "label": "Indelible",
         "cost": 2
       },
       {
@@ -949,27 +949,27 @@
       },
       {
         "value": "tremere_keys_to_the_library_1",
-        "label": "Keys to the Library (1pt)",
+        "label": "Keys to the Library",
         "cost": 1
       },
       {
         "value": "tremere_keys_to_the_library_2",
-        "label": "Keys to the Library (2pt)",
+        "label": "Keys to the Library",
         "cost": 2
       },
       {
         "value": "tremere_keys_to_the_library_3",
-        "label": "Keys to the Library (3pt)",
+        "label": "Keys to the Library",
         "cost": 3
       },
       {
         "value": "tremere_keys_to_the_library_4",
-        "label": "Keys to the Library (4pt)",
+        "label": "Keys to the Library",
         "cost": 4
       },
       {
         "value": "tremere_keys_to_the_library_5",
-        "label": "Keys to the Library (5pt)",
+        "label": "Keys to the Library",
         "cost": 5
       },
       {
@@ -979,12 +979,12 @@
       },
       {
         "value": "tremere_unmarked_antitribu_2",
-        "label": "Unmarked Antitribu (2pt)",
+        "label": "Unmarked Antitribu",
         "cost": 2
       },
       {
         "value": "tremere_unmarked_antitribu_5",
-        "label": "Unmarked Antitribu (5pt)",
+        "label": "Unmarked Antitribu",
         "cost": 5
       },
       {
@@ -1074,12 +1074,12 @@
     "options": [
       {
         "value": "daughters_chorus_trained_3",
-        "label": "Chorus Trained (3pt)",
+        "label": "Chorus Trained",
         "cost": 3
       },
       {
         "value": "daughters_chorus_trained_5",
-        "label": "Chorus Trained (5pt)",
+        "label": "Chorus Trained",
         "cost": 5
       },
       {
@@ -1129,12 +1129,12 @@
     "options": [
       {
         "value": "kiasyd_prized_collection_1",
-        "label": "Prized Collection (1pt)",
+        "label": "Prized Collection",
         "cost": 1
       },
       {
         "value": "kiasyd_prized_collection_2",
-        "label": "Prized Collection (2pt)",
+        "label": "Prized Collection",
         "cost": 2
       },
       {
@@ -1169,12 +1169,12 @@
       },
       {
         "value": "nagaraja_speed_eater_2",
-        "label": "Speed Eater (2pt)",
+        "label": "Speed Eater",
         "cost": 2
       },
       {
         "value": "nagaraja_speed_eater_4",
-        "label": "Speed Eater (4pt)",
+        "label": "Speed Eater",
         "cost": 4
       },
       {
@@ -1234,27 +1234,27 @@
     "options": [
       {
         "value": "true_brujah_advanced_tech_1",
-        "label": "Advanced Tech (1pt)",
+        "label": "Advanced Tech",
         "cost": 1
       },
       {
         "value": "true_brujah_advanced_tech_2",
-        "label": "Advanced Tech (2pt)",
+        "label": "Advanced Tech",
         "cost": 2
       },
       {
         "value": "true_brujah_advanced_tech_3",
-        "label": "Advanced Tech (3pt)",
+        "label": "Advanced Tech",
         "cost": 3
       },
       {
         "value": "true_brujah_advanced_tech_4",
-        "label": "Advanced Tech (4pt)",
+        "label": "Advanced Tech",
         "cost": 4
       },
       {
         "value": "true_brujah_advanced_tech_5",
-        "label": "Advanced Tech (5pt)",
+        "label": "Advanced Tech",
         "cost": 5
       },
       {
