@@ -3,12 +3,12 @@
     "groupLabel": "Physical Merits",
     "options": [
       {
-        "value": "acute_senses",
+        "value": "acute_sense",
         "label": "Acute Sense",
         "cost": 1
       },
       {
-        "value": "ambidexterity",
+        "value": "ambidextrous",
         "label": "Ambidextrous",
         "cost": 1
       },
@@ -18,7 +18,7 @@
         "cost": 1
       },
       {
-        "value": "cat_like_balance",
+        "value": "catlike_balance",
         "label": "Catlike Balance",
         "cost": 1
       },
@@ -278,7 +278,7 @@
         "cost": 4
       },
       {
-        "value": "primogen_friendship",
+        "value": "primogen_bishop_friendship",
         "label": "Primogen/Bishop Friendship",
         "cost": 4
       }
@@ -308,7 +308,7 @@
         "cost": 2
       },
       {
-        "value": "magic_resistant",
+        "value": "magic_resistance",
         "label": "Magic Resistance",
         "cost": 2
       },
