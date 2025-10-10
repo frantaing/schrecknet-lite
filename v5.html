@@ -631,6 +631,148 @@ V5 Character sheet
 
     </section>
 
+        <!-- [Disciplines] -->
+    <section id="disciplines-backgrounds-section">
+      <!--
+      
+      2 columns: Disciplines (right), Backgrounds (left)
+      
+      -->
+
+      <!-- === BACKGROUNDS === -->
+
+      <div id="disciplines-section" data-section-id="disciplines-section">
+        <h3>disciplines</h3>
+        <!-- 
+        
+        Powers / dots 
+        = filled in forms; dropdown for Caitiff
+
+        -->
+        <div id="disciplines-container" class="flex flex-col items-center gap-9">
+
+          <!-- All disciplines and powers -->
+          <div class="flex flex-col gap-8 sm:flex-row sm:gap-14 lg:gap-28">
+
+            <!-- Three starting... -->
+            
+            <!-- Single discipline wrapper-->
+            <div class="flex flex-col gap-5">
+
+              <div class="dots-wrapper">
+                <div class="dots-custom">
+                  <div class="relative flex items-center justify-center group gap-2">
+                    <select name="discipline" class="dropdown-custom">
+                    <!-- Do not include [text-textPrimary in shared class!] -->
+                    <option value="" disabled selected hidden>discipline</option>
+                      <!-- Discipline options will be added here -->
+                    </select>
+                  </div>
+                  <div class="dot-group">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Powers -->
+              <div class="flex flex-col items-center gap-3">
+                <input type="text" name="discipline_power" placeholder="power" class="textfield-custom">
+
+                <!-- Add new power button -->
+                <button id="add-power-btn" class="btn group w-fit text-xs">
+                  add new <span class="span">power</span>
+                </button>
+
+              </div>
+
+            </div>
+            <!-- Single discipline wrapper-->
+            <div class="flex flex-col gap-5">
+
+              <div class="dots-wrapper">
+                <div class="dots-custom">
+                  <div class="relative flex items-center justify-center group gap-2">
+                    <select name="discipline" class="dropdown-custom">
+                    <!-- Do not include [text-textPrimary in shared class!] -->
+                    <option value="" disabled selected hidden>discipline</option>
+                      <!-- Discipline options will be added here -->
+                    </select>
+                  </div>
+                  <div class="dot-group">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Powers -->
+              <div class="flex flex-col items-center gap-3">
+                <input type="text" name="discipline_power" placeholder="power" class="textfield-custom">
+
+                <!-- Add new power button -->
+                <button id="add-power-btn" class="btn group w-fit text-xs">
+                  add new <span class="span">power</span>
+                </button>
+
+              </div>
+
+            </div>
+            <!-- Single discipline wrapper-->
+            <div class="flex flex-col gap-5">
+
+              <div class="dots-wrapper">
+                <div class="dots-custom">
+                  <div class="relative flex items-center justify-center group gap-2">
+                    <select name="discipline" class="dropdown-custom">
+                    <!-- Do not include [text-textPrimary in shared class!] -->
+                    <option value="" disabled selected hidden>discipline</option>
+                      <!-- Discipline options will be added here -->
+                    </select>
+                  </div>
+                  <div class="dot-group">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Powers -->
+              <div class="flex flex-col items-center gap-3">
+                <input type="text" name="discipline_power" placeholder="power" class="textfield-custom">
+
+                <!-- Add new power button -->
+                <button id="add-power-btn" class="btn group w-fit text-xs">
+                  add new <span class="span">power</span>
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- New, dynamically added disciplines will appear here -->
+
+          <!-- Button to add discipline -->
+          <button id="add-discipline-btn" class="btn group text-xs">
+            add new <span class="span">discipline</span>
+          </button>
+
+        </div>
+      </div>
+
+    </section>
+
     <!-- [Touchstones & Convictions] -->
     <section>
 
