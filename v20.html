@@ -151,7 +151,7 @@ V20 Character sheet
         </label>
 
         <!-- Generation -->
-        <label class="label">generation
+        <label class="label sm:col-span-2 sm:mx-[25%] lg:col-auto lg:mx-0">generation
           <select name="generation" class="dropdown">
             <option value="" disabled selected hidden>generation</option>
             <option value="4th">4th</option>
@@ -1032,27 +1032,26 @@ V20 Character sheet
 
     </section>
 
-  <!-- Freebie Mode Toggle -->
-  <div id="freebie" class="mt-10">
-    <button id="freebiePointsButton" class="group bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
-      enter <span class="span">freebie</span> mode 
-    </button>
-  </div>
-
-  <div id="freebiePointCounter" class="hidden flex justify-center items-center gap-3 fixed bottom-16 left-0 right-0">
-    <div id="freebiePointsCounter" class="group w-fit bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
-      <p>freebie points left: <span class="span">15</span></p>
+    <!-- Freebie Mode Toggle -->
+    <div id="freebie" class="mt-10">
+      <button id="freebiePointsButton" class="group bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+        enter <span class="span">freebie</span> mode 
+      </button>
     </div>
-    <!-- Button to reset freebie points. TRIGGER CONFIRM DALOG -->
-    <button id="freebiePointReset" class="group bg-textPrimary transition hover:bg-accent p-2.5 rounded-full">
-      <img class="w-5 transition group-hover:hidden" src="src/reload-black.png" alt="reset freebie points">
-      <img class="w-5 hidden transition group-hover:block"  src="src/reload-white.png" alt="reset freebie points">
-    </button>
-  </div>    
+
+    <!-- Freebie point counter & reset button -->
+    <div id="freebiePointCounter" class="hidden flex justify-center items-center gap-3 fixed bottom-16 left-0 right-0">
+      <div id="freebiePointsCounter" class="group w-fit bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+        <p>freebie points left: <span class="span">15</span></p>
+      </div>
+      <!-- Button to reset freebie points. TRIGGER CONFIRM DALOG -->
+      <button id="freebiePointReset" class="group bg-textPrimary transition hover:bg-accent p-2.5 rounded-full">
+        <img class="w-5 transition group-hover:hidden" src="src/reload-black.png" alt="reset freebie points">
+        <img class="w-5 hidden transition group-hover:block"  src="src/reload-white.png" alt="reset freebie points">
+      </button>
+    </div>    
 
   </main>
-
-
 
   <!-- Javascript -->
   <script type="module" src="./src/js/app.js"></script>

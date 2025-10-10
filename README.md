@@ -88,10 +88,11 @@ This project uses Vite for a fast and modern development experience.
 
 ## 📷 Inspirations and Sources
 
--   [SchreckNet](https://www.schrecknet.live/)
--   [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky
--   Official V20 and V5 rulebooks (for structure and reference)
--   Vite & Tailwind CSS documentation
+- [SchreckNet](https://www.schrecknet.live/)
+- [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky
+- Official V20 and V5 rulebooks (for structure and reference)
+- VtM wikis like the [White Wolf wiki](https://whitewolf.fandom.com/wiki/Main_Page) and the [Paradox wiki](https://vtm.paradoxwikis.com/VTM_Wiki)  
+- Vite & Tailwind CSS documentation
 
 <br>
 
