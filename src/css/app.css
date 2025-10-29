@@ -217,3 +217,74 @@ main h4 {
 .dot.filled-freebie {
   @apply border-accent bg-accent;
 }
+
+/* ===============================================================
+ # PRINT STYLES
+ ================================================================= 
+ * These styles only apply when the user prints or saves as PDF.
+*/
+@media print {
+
+  /* --- HIDE ALL UNNECESSARY UI ELEMENTS --- */
+  header,                       /* The top header bar */
+  #freebie,                      /* The "Enter Freebie Mode" button */
+  #freebiePointCounter,          /* The entire freebie counter/reset/save bar */
+  [id^="add-"],                 /* All "add new" buttons */
+  .btn-minus {                   /* All "remove" buttons */
+    display: none !important;    /* Force them to be hidden */
+  }
+
+  /* --- PAGE & TEXT STYLING --- */
+  @page {
+    size: A4; /* Or 'letter' */
+    margin: 1.5cm;
+  }
+
+  body {
+    background-color: #ffffff !important; /* Force a white background */
+    color: #000000 !important;          /* Force black text */
+    -webkit-print-color-adjust: exact;  /* Ensure colors print correctly in Chrome/Safari */
+    print-color-adjust: exact;          /* Standard property */
+  }
+  
+  /* Make main headings black */
+  main h2, main h3, main h4 {
+    color: #000000 !important;
+  }
+
+  /* --- LAYOUT ADJUSTMENTS --- */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Optional: Force sections to not break across pages if possible */
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* --- DOT STYLING FOR PRINT --- */
+  .dot {
+    border-color: #888888 !important; /* Lighter grey border for unfilled dots */
+    background-color: #ffffff !important;
+  }
+
+  .dot.filled {
+    border-color: #000000 !important; /* Solid black border */
+    background-color: #000000 !important; /* Solid black fill */
+  }
+
+  /* Freebie dots can be styled differently if you want, or just black */
+  .dot.filled-freebie {
+    border-color: #333333 !important;
+    background-color: #333333 !important; /* Dark grey for freebie dots */
+  }
+  
+  /* --- FORM ELEMENT STYLING FOR PRINT --- */
+  .textfield, .dropdown, .dropdown-custom, .textfield-custom {
+    background-color: #f0f0f0 !important; /* Light grey background for fields */
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+  }
+
+}
