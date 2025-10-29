@@ -4,7 +4,10 @@ Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 > [!NOTE]
-> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode! I do plan on adding tooltips and replacing the generic dropdowns with custom ones. I am currently working on styling the V5 sheet, though I don't know when I'll finish it.
+> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode!
+
+> I am currently working on styling the V5 sheet, though I don't know when I'll finish it. I'll still work on the V20 sheet, if I am struck by sudden inspiration and determination.
+
 > Have a pancake! 🥞
 
 👉 [**Try it here!**](https://overuseofrem.github.io/schrecknet-lite/)
@@ -14,75 +17,66 @@ Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript
 ## 📌 About the project
 
 The goal is to recreate a simple, interactive character sheet for **Vampire: The Masquerade**, starting with **V20** and later adding **V5** support.  
-It is inspired by the [SchreckNet](https://www.schrecknet.live/) character sheet site and by existing fan projects, especially [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky. ❤️
+It is heavily inspired by the [SchreckNet](https://www.schrecknet.live/) character sheet site and by existing fan projects, especially [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky. ❤️
 
-For now, the scope is **just** the sheet UI — dots, dropdowns, form inputs, and basic V20 freebie point calculations.  
-No saving, exporting, or login features yet.  
-
-This is a **pure front-end project** built with a modern toolchain for a fast development experience. Future plans include moving to React, adding backend functionality, and expanding the toolset.
+This is a **pure front-end application** that runs entirely in your browser. No data is saved, and no login is required.
 
 > ❗ This is a personal fan project! All game rules, terminology, and setting elements are owned by their respective copyright holders (White Wolf Publishing / Paradox Interactive). This project is for educational, recreational, and non-commercial purposes only.
 
 <br>
 
-## 🔧 Tech Stack
 
--   **Vite:** Serves as the build tool and development server.
--   **HTML5:** For the core structure of the character sheets.
--   **Tailwind CSS:** For all styling and the utility-first CSS framework.
--   **Vanilla JavaScript:** For all client-side interactivity.
+## ✨ Features (V20 Sheet)
+
+The V20 sheet now fully implements the character creation process from the core rulebook:
+
+-   **Interactive Dot System:** Click to assign points to Attributes, Abilities, Disciplines, Backgrounds, and Virtues.
+-   **Rule-Aware Point Allocation:**
+    -   Separate, managed point pools for each character creation stage.
+    -   Point counters that update in real-time.
+    -   Prevents spending more points than are available.
+-   **Dynamic & Intelligent Dropdowns:**
+    -   Clan selection automatically populates in-clan Disciplines.
+    -   Dynamically add or remove rows for Disciplines, Backgrounds, Merits, and Flaws.
+    -   Prevents duplicate selections for a valid character sheet.
+-   **Complete Freebie Point System:**
+    -   Enter a final, dedicated "Freebie Mode" to spend your initial 15 points.
+    -   Strict enforcement of Freebie Point costs for all traits.
+    -   Gain up to 7 additional points by selecting Flaws, with Merit options dynamically updating based on available points.
+-   **Derived Stat Calculation:** Humanity/Path and Willpower are automatically calculated and updated based on Virtue scores.
 
 <br>
 
 ## 🚀 Running Locally
 
-This project uses Vite for a fast and modern development experience.
-
 **Prerequisites:**
--   [Node.js](https://nodejs.org/) (version 20.x or higher is recommended)
--   npm (which comes included with Node.js)
+-   [Node.js](https://nodejs.org/) (v20.x or higher)
+-   npm (included with Node.js)
 
-**Steps:**
+**Instructions:**
 
 1.  **Clone the repository:**
     ```sh
     git clone https://github.com/overuseofrem/schrecknet-lite.git
     cd schrecknet-lite
     ```
-
 2.  **Install dependencies:**
     ```sh
     npm install
     ```
-
-3.  **Run the development server:**
+3.  **Run the dev server:**
     ```sh
     npm run dev
     ```
-    This will start a local server (usually at `http://localhost:5173`). The site will automatically reload as you make changes to the source files.
-
-4.  **Build for production:**
-    ```sh
-    npm run build
-    ```
-    This command bundles the entire project into a `/dist` directory. This is the exact process used by the GitHub Actions workflow to deploy the site.
+    This will start a local server, usually at `http://localhost:5173`.
 
 <br>
 
-## 🍮 Features (current and planned)
+## ⏳ Project Status & Future Plans
 
-- Minimalist, responsive design
-- Three-page structure:
-  - Home/welcome page
-  - V20 character sheet
-  - V5 character sheet (placeholder for now)
-
-### ✨ Features in V20 Sheet
-- Interactive dots for Attributes, Abilities, Advantages
-- Dropdowns for Clans, Disciplines, Natures, Backgrounds
-- Priority allocation for Attributes & Abilities
-- Freebie Points mode with live calculation + enforcement
-- Responsive layout (mobile + desktop)
+-   ✅ **V20 Sheet:** The character creation workflow is **complete and stable**. Future V20 work will focus on minor enhancements like tooltips and UI polish.
+-   🚧 **V5 Sheet:** Currently in the **early styling phase**. The core structure is in place, but interactivity has not yet been implemented.
+-   **Overall:** The project is moving towards an official `1.0.0` release, marking the completion of the V20 sheet.
 
 <br>
 
@@ -93,71 +87,6 @@ This project uses Vite for a fast and modern development experience.
 - Official V20 and V5 rulebooks (for structure and reference)
 - VtM wikis like the [White Wolf wiki](https://whitewolf.fandom.com/wiki/Main_Page) and the [Paradox wiki](https://vtm.paradoxwikis.com/VTM_Wiki)  
 - Vite & Tailwind CSS documentation
-
-<br>
-
-## ⏳ Status
-
-Currently in **early development**: building out the UI and laying the groundwork for interactivity.
-
-### 📝 **To-Do List**
-
-##### **Home Page**
-
--   [x] Set up the base HTML structure for the home page.
--   [x] Configure Tailwind with custom fonts, colors, and spacing.
--   [x] Style the home page layout using Tailwind CSS.
--   [x] Add navigation links to the V20 and V5 sheets.
-
-#### **V20 Character Sheet**
-
-##### **Structure & Layout**
-
--   [x] Build the header with the page name and website title.
--   [x] Build the main HTML structure for the V20 sheet.
--   [x] Implement mobile and desktop responsiveness for the entire V20 sheet layout.
-
-##### **Basic Sections**
-
--   [x] Create the **basics** section with fields for character name, concept, chronicle, etc.
--   [x] Build the **attributes** section (Physical, Social, Mental) with interactive dots.
--   [x] Lay out the **abilities** section (Talents, Skills, Knowledges) with interactive dots.
--   [x] Design the **advantages** section, including:
-    -   [x] Disciplines
-    -   [x] Backgrounds
-    -   [x] Virtues
--   [x] Create sections for **merits & flaws**.
--   [x] Set up the **humanity/path** and **willpower** tracks.
-
-##### **Styling (Tailwind)**
-
--   [x] Style the overall V20 sheet layout.
--   [x] Style the interactive dots to reflect different states (e.g., filled, empty).
--   [x] Apply styling to all form inputs and dropdowns.
-
-##### **Interactivity (JavaScript)**
-
--   [x] Implement click handling for the attribute dots.
--   [x] Implement click handling for the ability dots.
--   [x] Enable dropdown selections for disciplines and backgrounds.
--   [x] Create basic V20 freebie point calculation logic.
-    -   [x] Attributes
-    -   [x] Abilities
-    -   [x] Merits/Flaws
-
-#### **V5 Character Sheet**
-
--   [x] Create a placeholder page for the V5 sheet.
--   [ ] Build the main HTML structure for the V5 sheet.
--   [ ] Style the V5 sheet layout.
-
-#### **General & Deployment**
-
--   [x] Set up Vite as the build tool for the project.
--   [x] Configure a GitHub Actions workflow for automated deployment.
--   [x] Deploy the site to GitHub Pages.
--   [x] Update the README with the live site link and setup instructions.
--   [ ] Perform a final code cleanup and add comments for clarity.
 
 <br>
 
