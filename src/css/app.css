@@ -44,7 +44,11 @@ main {
 
 /* Buttons (general) */
 .btn {
-  @apply bg-foreground px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
+  @apply bg-foreground w-fit px-5 py-2 rounded-round hover:bg-accent transition transform hover:scale-[1.02];
+}
+
+.btn-float {
+  @apply bg-textPrimary text-black w-fit px-5 py-2 rounded-round hover:bg-accent hover:text-textPrimary transition transform hover:scale-[1.02];
 }
 
 /* Span text */

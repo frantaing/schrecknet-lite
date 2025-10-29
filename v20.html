@@ -1034,20 +1034,24 @@ V20 Character sheet
 
     <!-- Freebie Mode Toggle -->
     <div id="freebie" class="mt-10">
-      <button id="freebiePointsButton" class="group bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+      <button id="freebiePointsButton" class="btn-float group">
         enter <span class="span">freebie</span> mode 
       </button>
     </div>
 
     <!-- Freebie point counter & reset button -->
     <div id="freebiePointCounter" class="hidden flex justify-center items-center gap-3 fixed bottom-16 left-0 right-0">
-      <div id="freebiePointsCounter" class="group w-fit bg-textPrimary text-black py-2 px-4 rounded-full transition hover:bg-accent hover:text-textPrimary">
+      <div id="freebiePointsCounter" class="btn-float group">
         <p>freebie points left: <span class="span">15</span></p>
       </div>
       <!-- Button to reset freebie points. TRIGGER CONFIRM DALOG -->
-      <button id="freebiePointReset" class="group bg-textPrimary transition hover:bg-accent p-2.5 rounded-full">
+      <button id="freebiePointReset" class="btn-float group !p-2.5 !pl-3">
         <img class="w-5 transition group-hover:hidden" src="src/reload-black.png" alt="reset freebie points">
         <img class="w-5 hidden transition group-hover:block"  src="src/reload-white.png" alt="reset freebie points">
+      </button>
+      <!-- Button to print as PDF -->
+      <button id="save-pdf-btn" class="btn-float group">
+        save as <span class="span">PDF</span>
       </button>
     </div>    
 
