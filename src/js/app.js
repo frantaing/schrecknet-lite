@@ -15,9 +15,12 @@ function initializeFreebieMode() {
   const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
   const freebieResetButton = document.getElementById('freebiePointReset');
   const saveSheetButton = document.getElementById('save-sheet-btn');
+  const saveModalOverlay = document.getElementById('save-modal-overlay');
+  const closeModalButton = document.getElementById('close-modal-btn');
+  const saveAsPdfButton = document.getElementById('save-as-pdf-btn');
+  const saveAsTxtButton = document.getElementById('save-as-txt-btn');
   const body = document.body;
 
-  // This is the single "brain" function.
   const updateAllCalculations = () => {
     if (!state.isFreebieModeActive) return;
 
@@ -120,8 +123,30 @@ function initializeFreebieMode() {
     }
   });
 
-  saveSheetButton.addEventListener('click', () => {
-    // remove
+  // TEXT DOWNLOAD/GENERATE STUFF
+  const showModal = () => saveModalOverlay.classList.remove('hidden');
+  const hideModal = () => saveModalOverlay.classList.add('hidden');
+
+  saveSheetButton.addEventListener('click', showModal);
+  closeModalButton.addEventListener('click', hideModal);
+  saveModalOverlay.addEventListener('click', (event) => {
+    // Only close if the click is on the overlay itself, not the modal content
+    if (event.target === saveModalOverlay) {
+      hideModal();
+    }
+  });
+
+  saveAsPdfButton.addEventListener('click', () => {
+    hideModal();
+    // Use a small timeout to let the modal disappear before the print dialog appears
+    setTimeout(() => {
+      window.print();
+    }, 100);
+  });
+
+  saveAsTxtButton.addEventListener('click', () => {
+    generateAndDownloadTxt();
+    hideModal();
   });
 }
 
@@ -398,6 +423,106 @@ function initializeDynamicRows(config) {
       config.postAddCallback(newRow);
     }
   });
+}
+
+// UTILITY: TEXT FILE EXPORT
+function generateAndDownloadTxt() {
+  let content = [];
+  
+  const getInputValue = (name) => document.querySelector(`[name="${name}"]`)?.value || 'N/A';
+  const getSelectedText = (name) => {
+    const select = document.querySelector(`[name="${name}"]`);
+    return select?.options[select.selectedIndex]?.text || 'N/A';
+  };
+  const getDots = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return [];
+    
+    let results = [];
+    section.querySelectorAll('.dots').forEach(dotRow => {
+      const nameElem = dotRow.querySelector('span') || dotRow.querySelector('input');
+      const name = nameElem.tagName === 'INPUT' ? nameElem.value || `(${nameElem.placeholder})` : nameElem.textContent;
+      const score = dotRow.querySelectorAll('.dot.filled').length;
+      results.push(`${name}: ${score}`);
+    });
+    return results;
+  };
+  const getSelectAndDots = (sectionId, selectName) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return [];
+    
+    let results = [];
+    section.querySelectorAll('.dots-wrapper').forEach(row => {
+      const select = row.querySelector(`select[name="${selectName}"]`);
+      if (select && select.value) {
+        const name = select.options[select.selectedIndex].text;
+        const score = row.querySelectorAll('.dot.filled').length;
+        results.push(`${name}: ${score}`);
+      }
+    });
+    return results;
+  };
+  const getNamedItems = (selectName) => {
+    let results = [];
+    document.querySelectorAll(`select[name="${selectName}"]`).forEach(select => {
+      if (select.value) {
+        results.push(select.options[select.selectedIndex].text);
+      }
+    });
+    return results;
+  };
+
+  // --- BUILD THE CONTENT ---
+  content.push('SCHRECKNET LITE - V20 CHARACTER SHEET');
+  content.push('='.repeat(40));
+
+  content.push('\n[BASICS]');
+  content.push(`Name: ${getInputValue('characterName')}`);
+  content.push(`Player: ${getInputValue('playerName')}`);
+  content.push(`Chronicle: ${getInputValue('chronicle')}`);
+  content.push(`Nature: ${getSelectedText('nature')}`);
+  content.push(`Demeanor: ${getSelectedText('demeanor')}`);
+  content.push(`Concept: ${getInputValue('concept')}`);
+  content.push(`Clan: ${getSelectedText('clan')}`);
+  content.push(`Generation: ${getSelectedText('generation')}`);
+  content.push(`Sire: ${getInputValue('sire')}`);
+  
+  content.push('\n[ATTRIBUTES]');
+  content.push(...getDots('attributes-section'));
+
+  content.push('\n[ABILITIES]');
+  content.push(...getDots('abilities-section'));
+
+  content.push('\n[DISCIPLINES]');
+  content.push(...getSelectAndDots('disciplines-section', 'discipline'));
+
+  content.push('\n[BACKGROUNDS]');
+  content.push(...getSelectAndDots('backgrounds-section', 'background'));
+  
+  content.push('\n[VIRTUES]');
+  content.push(...getDots('virtues-section'));
+
+  content.push('\n[OTHER TRAITS]');
+  content.push(`Humanity/Path: ${document.querySelectorAll('#humanity-section .dot.filled').length}`);
+  content.push(`Willpower: ${document.querySelectorAll('#willpower-section .dot.filled').length}`);
+  
+  content.push('\n[MERITS]');
+  content.push(...getNamedItems('merit'));
+
+  content.push('\n[FLAWS]');
+  content.push(...getNamedItems('flaw'));
+
+  // --- TRIGGER THE DOWNLOAD ---
+  const textContent = content.join('\n');
+  const characterName = getInputValue('characterName').replace(/ /g, '_') || 'character';
+  const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${characterName}_v20.txt`;
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // LOGIC: Clan/Discipline Linking
