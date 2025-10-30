@@ -14,6 +14,7 @@ function initializeFreebieMode() {
   const freebieCounterDisplay = document.getElementById('freebiePointCounter');
   const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
   const freebieResetButton = document.getElementById('freebiePointReset');
+  const savePdfButton = document.getElementById('save-pdf-btn');
   const body = document.body;
 
   // This is the single "brain" function.
@@ -96,6 +97,7 @@ function initializeFreebieMode() {
     console.log("Freebie Mode Activated.");
     freebieToggleButton.classList.add('hidden');
     freebieCounterDisplay.classList.remove('hidden');
+    savePdfButton.classList.remove('hidden');
     body.classList.add('freebie-mode-active');
     
     initializeFreebieListeners(state, updateAllCalculations);
@@ -112,14 +114,18 @@ function initializeFreebieMode() {
     if (state.isFreebieModeActive) {
       const confirmation = confirm("Are you sure you want to reset all spent freebie points? This cannot be undone.");
       if (confirmation) {
-        // 1. Call our new reset function to clean the DOM.
         resetFreebieState();
-        // 2. Call the master update function to recalculate the state and update the UI.
         updateAllCalculations();
       }
     }
   });
+
+  savePdfButton.addEventListener('click', () => {
+    console.log("Preparing to save as PDF...");
+    window.print();
+  });
 }
+
 function initializeFreebieListeners(state, onUpdateCallback) {
   const costs = { 
     'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 
