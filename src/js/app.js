@@ -14,7 +14,7 @@ function initializeFreebieMode() {
   const freebieCounterDisplay = document.getElementById('freebiePointCounter');
   const freebiePointsSpan = freebieCounterDisplay.querySelector('.span');
   const freebieResetButton = document.getElementById('freebiePointReset');
-  const savePdfButton = document.getElementById('save-pdf-btn');
+  const saveSheetButton = document.getElementById('save-sheet-btn');
   const body = document.body;
 
   // This is the single "brain" function.
@@ -97,7 +97,7 @@ function initializeFreebieMode() {
     console.log("Freebie Mode Activated.");
     freebieToggleButton.classList.add('hidden');
     freebieCounterDisplay.classList.remove('hidden');
-    savePdfButton.classList.remove('hidden');
+    saveSheetButton.classList.remove('hidden');
     body.classList.add('freebie-mode-active');
     
     initializeFreebieListeners(state, updateAllCalculations);
@@ -120,9 +120,8 @@ function initializeFreebieMode() {
     }
   });
 
-  savePdfButton.addEventListener('click', () => {
-    console.log("Preparing to save as PDF...");
-    window.print();
+  saveSheetButton.addEventListener('click', () => {
+    // remove
   });
 }
 
