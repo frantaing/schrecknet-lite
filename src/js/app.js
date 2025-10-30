@@ -434,19 +434,52 @@ function generateAndDownloadTxt() {
     const select = document.querySelector(`[name="${name}"]`);
     return select?.options[select.selectedIndex]?.text || 'N/A';
   };
-  const getDots = (sectionId) => {
+  
+   const getStructuredDots = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (!section) return [];
     
     let results = [];
-    section.querySelectorAll('.dots').forEach(dotRow => {
-      const nameElem = dotRow.querySelector('span') || dotRow.querySelector('input');
-      const name = nameElem.tagName === 'INPUT' ? nameElem.value || `(${nameElem.placeholder})` : nameElem.textContent;
-      const score = dotRow.querySelectorAll('.dot.filled').length;
-      results.push(`${name}: ${score}`);
+    section.querySelectorAll('.grid > div').forEach(column => {
+      const titleElement = column.querySelector('h4');
+      const title = titleElement ? titleElement.textContent.trim().split(' ')[0] : 'Unknown';
+      
+      let pointsText = titleElement?.querySelector('span')?.textContent.trim() || '';
+      if (pointsText) {
+        const totalPoints = pointsText.split('/')[1]?.replace(')', '');
+        if (totalPoints) pointsText = `(${totalPoints})`;
+        else pointsText = '';
+      }
+      
+      const formattedTitle = `[${title.charAt(0).toUpperCase() + title.slice(1)}] ${pointsText}`.trim();
+      results.push(`\n${formattedTitle}`);
+      
+      column.querySelectorAll('.dots').forEach(dotRow => {
+        let name = '';
+        let score = dotRow.querySelectorAll('.dot.filled').length;
+        
+        const inputElem = dotRow.querySelector('input');
+        if (inputElem) {
+          name = inputElem.value.trim();
+          if (name || score > 0) {
+            const displayName = name || `(${inputElem.placeholder})`;
+            results.push(`${displayName}: ${score}`);
+          }
+          return;
+        }
+        
+        const spanElem = dotRow.querySelector('span');
+        if (spanElem) {
+          name = spanElem.textContent.trim();
+          if (name) { // Ensure the span isn't empty
+            results.push(`${name}: ${score}`);
+          }
+        }
+      });
     });
     return results;
   };
+
   const getSelectAndDots = (sectionId, selectName) => {
     const section = document.getElementById(sectionId);
     if (!section) return [];
@@ -462,6 +495,7 @@ function generateAndDownloadTxt() {
     });
     return results;
   };
+  
   const getNamedItems = (selectName) => {
     let results = [];
     document.querySelectorAll(`select[name="${selectName}"]`).forEach(select => {
@@ -488,10 +522,10 @@ function generateAndDownloadTxt() {
   content.push(`Sire: ${getInputValue('sire')}`);
   
   content.push('\n[ATTRIBUTES]');
-  content.push(...getDots('attributes-section'));
+  content.push(...getStructuredDots('attributes-section'));
 
   content.push('\n[ABILITIES]');
-  content.push(...getDots('abilities-section'));
+  content.push(...getStructuredDots('abilities-section'));
 
   content.push('\n[DISCIPLINES]');
   content.push(...getSelectAndDots('disciplines-section', 'discipline'));
@@ -500,7 +534,11 @@ function generateAndDownloadTxt() {
   content.push(...getSelectAndDots('backgrounds-section', 'background'));
   
   content.push('\n[VIRTUES]');
-  content.push(...getDots('virtues-section'));
+  document.querySelectorAll('#virtues-section .dots').forEach(dotRow => {
+    const name = dotRow.querySelector('span').textContent;
+    const score = dotRow.querySelectorAll('.dot.filled').length;
+    content.push(`${name}: ${score}`);
+  });
 
   content.push('\n[OTHER TRAITS]');
   content.push(`Humanity/Path: ${document.querySelectorAll('#humanity-section .dot.filled').length}`);
@@ -514,11 +552,15 @@ function generateAndDownloadTxt() {
 
   // --- TRIGGER THE DOWNLOAD ---
   const textContent = content.join('\n');
-  const characterName = getInputValue('characterName').replace(/ /g, '_') || 'character';
+  
+  const characterName = getInputValue('characterName').trim().replace(/ /g, '_') || 'character';
+  const clanName = getSelectedText('clan').trim().replace(/ /g, '_') || 'clanless';
+  const filename = `${characterName}_${clanName}_v20.txt`;
+
   const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `${characterName}_v20.txt`;
+  link.download = filename;
   link.style.display = 'none';
   document.body.appendChild(link);
   link.click();
