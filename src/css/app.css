@@ -57,17 +57,17 @@ main {
 }
 
 /* Form heading for major sections (e.g. Basic, Attributes) */
-main h2 {
+h2 {
   @apply font-heading text-4xl mb-7;
 }
 
 /* Form heading for subsections (e.g. Disciplines, Backgrounds) */
-main h3 {
+h3 {
   @apply font-heading text-3xl mb-7;
 }
 
 /* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
-main h4 {
+h4 {
   @apply font-heading text-2xl mb-5;
 }
 
