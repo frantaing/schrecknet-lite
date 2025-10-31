@@ -10,7 +10,7 @@ Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript
 
 > Have a pancake! 🥞
 
-👉 [**Try it here!**](https://overuseofrem.github.io/schrecknet-lite/)
+👉 [**Try it here!**](https://frantaing.github.io/schrecknet-lite/)
 
 <br>
 
