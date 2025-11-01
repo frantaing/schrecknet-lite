@@ -44,6 +44,7 @@ The V20 sheet now fully implements the character creation process from the core 
     -   Strict enforcement of Freebie Point costs for all traits.
     -   Gain up to 7 additional points by selecting Flaws, with Merit options dynamically updating based on available points.
 -   **Derived Stat Calculation:** Humanity/Path and Willpower are automatically calculated and updated based on Virtue scores.
+-   **Export Your Sheet:** When finished, save your character sheet as a formatted `.txt` file or a print-ready PDF.
 
 <br>
 
