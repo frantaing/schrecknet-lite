@@ -48,7 +48,7 @@ main {
 }
 
 .btn-float {
-  @apply bg-textPrimary text-black w-fit px-5 py-2 rounded-round hover:bg-accent hover:text-textPrimary transition transform hover:scale-[1.02];
+  @apply bg-textPrimary text-black w-fit px-5 py-2 rounded-round hover:bg-accent hover:text-textPrimary transition transform hover:scale-[1.04];
 }
 
 /* Span text */
