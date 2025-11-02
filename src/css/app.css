@@ -33,10 +33,15 @@
   --btn-bg: var(--color-foreground);
   --btn-text: var(--color-text-primary);
   --btn-span-text: var(--color-accent);
-  
   --btn-hover-bg: var(--color-accent);
   --btn-hover-text: var(--color-text-contrast);
   --btn-hover-span-text: var(--color-text-contrast);
+
+  /* Dark mode [float] buttons */
+  --btn-float-bg: var(--color-text-primary);
+  --btn-float-text: #000000;
+  --btn-float-hover-bg: var(--color-accent);
+  --btn-float-hover-text: var(--color-text-primary);
 }
 /* [LIGHT MODE] */
 html.light-mode {
@@ -50,6 +55,13 @@ html.light-mode {
   --btn-bg: var(--color-foreground);
   --btn-text: var(--color-text-primary);
   --btn-span-text: var(--color-accent);
+
+  /* Light mode [float] buttons */
+  --btn-float-bg: var(--btn-bg);
+  --btn-float-text: var(--btn-text);
+  
+  --btn-float-hover-bg: var(--btn-hover-bg);
+  --btn-float-hover-text: var(--btn-hover-text);
 }
 
 /* ===============================================================
@@ -89,15 +101,23 @@ main {
 }
 
 /* Span text for emphasis */
-.btn .span {
+.btn .span, .btn-float .span {
   @apply text-[var(--btn-span-text)] transition;
 }
-.btn:hover .span {
+.btn:hover .span, .btn-float:hover .span {
   @apply text-[var(--btn-hover-span-text)];
 }
 
 .btn-float {
-  @apply bg-textPrimary text-black w-fit px-5 py-2 rounded-round hover:bg-accent hover:text-textPrimary transition transform hover:scale-[1.04];
+  /* Apply the base float button variables */
+  @apply bg-[var(--btn-float-bg)] text-[var(--btn-float-text)]
+         w-fit px-5 py-2 rounded-round 
+         transition transform hover:scale-[1.04];
+}
+
+/* Apply the hover float button variables on hover */
+.btn-float:hover {
+  @apply bg-[var(--btn-float-hover-bg)] text-[var(--btn-float-hover-text)];
 }
 
 /* Form heading for major sections (e.g. Basic, Attributes) */
