@@ -4,13 +4,14 @@ Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.
 Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
 
 > [!NOTE]
-> V20 Sheet is...fully complete! Fully functional sheet, complete with the freebie mode!
-
-> I am currently working on styling the V5 sheet, though I don't know when I'll finish it. I'll still work on the V20 sheet, if I am struck by sudden inspiration and determination.
-
+> **The V20 character sheet is feature-complete for character creation!** This includes the full point-allocation process, a dedicated Freebie Point mode, and exporting. <br>
 > Have a pancake! 🥞
 
 👉 [**Try it here!**](https://frantaing.github.io/schrecknet-lite/)
+
+> [!TIP]
+> **New: Light Mode!** ☀️ <br>
+> You can now switch between the classic dark theme and a new, printer-friendly light theme. Your preference is saved automatically!
 
 <br>
 
@@ -44,6 +45,7 @@ The V20 sheet now fully implements the character creation process from the core 
     -   Strict enforcement of Freebie Point costs for all traits.
     -   Gain up to 7 additional points by selecting Flaws, with Merit options dynamically updating based on available points.
 -   **Derived Stat Calculation:** Humanity/Path and Willpower are automatically calculated and updated based on Virtue scores.
+- **Light mode:** Toggle between classic dark mode and now, you can burn your eyes off with light mode!
 -   **Export Your Sheet:** When finished, save your character sheet as a formatted `.txt` file or a print-ready PDF.
 
 <br>
