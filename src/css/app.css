@@ -17,6 +17,27 @@
 @tailwind utilities;
 
 /* ===============================================================
+ # THEME DEFINITIONS & BASE STYLES
+ ================================================================= */
+
+/* [DARK MODE (default)] */
+:root {
+  --color-background: #0D0D0D;
+  --color-foreground: #161616;
+  --color-accent: #951313;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #4E4E4E;
+}
+/* [LIGHT MODE] */
+.light-mode {
+  --color-background: #ffffff;
+  --color-foreground: #f0f0f0;
+  --color-accent: #951313;
+  --color-text-primary: #000000;
+  --color-text-secondary: #555555;
+}
+
+/* ===============================================================
  # SHARED CLASSES
  ================================================================= */
 
