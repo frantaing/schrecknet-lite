@@ -39,6 +39,16 @@ Homepage
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./src/css/app.css">
+
+  <!-- Remember the theme! Prevnt "flash" of the wrong theme -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light') {
+        document.documentElement.classList.add('light-mode');
+      }
+    })();
+  </script>
 </head>
 
 <body class="body">
