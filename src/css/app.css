@@ -29,7 +29,7 @@
   --color-text-secondary: #4E4E4E;
 }
 /* [LIGHT MODE] */
-.light-mode {
+html.light-mode {
   --color-background: #ffffff;
   --color-foreground: #f0f0f0;
   --color-accent: #951313;

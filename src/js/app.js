@@ -4,6 +4,38 @@
  * =================================================================
  */
 
+// LOGIC: THEME SWITCHER
+function initializeThemeSwitcher() {
+  const toggleButton = document.getElementById('theme-toggle-btn');
+  const darkIcon = document.querySelector('.dark-mode-icon');
+  const lightIcon = document.querySelector('.light-mode-icon');
+
+  if (!toggleButton || !darkIcon || !lightIcon) return;
+
+  const applyTheme = (theme) => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-mode');
+      darkIcon.classList.add('hidden');
+      lightIcon.classList.remove('hidden');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('light-mode');
+      darkIcon.classList.remove('hidden');
+      lightIcon.classList.add('hidden');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light-mode');
+    applyTheme(isLight ? 'dark' : 'light');
+  });
+
+  // On initial load, apply the saved theme.
+  const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+  applyTheme(savedTheme);
+}
+
 // LOGIC: FREEBIE MODE CONTROLLER
 function initializeFreebieMode() {
   const state = { isFreebieModeActive: false, freebiePoints: 15 };
@@ -994,38 +1026,6 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
   });
   priorityDropdowns.forEach(select => select.addEventListener('change', handlePriorityChange));
   updateCounters();
-}
-
-// LOGIC: THEME SWITCHER
-function initializeThemeSwitcher() {
-  const toggleButton = document.getElementById('theme-toggle-btn');
-  const darkIcon = document.querySelector('.dark-mode-icon');
-  const lightIcon = document.querySelector('.light-mode-icon');
-
-  if (!toggleButton || !darkIcon || !lightIcon) return;
-
-  const applyTheme = (theme) => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light-mode');
-      darkIcon.classList.add('hidden');
-      lightIcon.classList.remove('hidden');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.remove('light-mode');
-      darkIcon.classList.remove('hidden');
-      lightIcon.classList.add('hidden');
-      localStorage.setItem('theme', 'dark');
-    }
-  };
-
-  toggleButton.addEventListener('click', () => {
-    const isLight = documentElement.classList.contains('light-mode');
-    applyTheme(isLight ? 'dark' : 'light');
-  });
-
-  // On initial load, apply the saved theme
-  const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark mode
-  applyTheme(savedTheme);
 }
 
 // --- Main Application Setup ---
