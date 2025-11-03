@@ -4,9 +4,39 @@
  * =================================================================
  */
 
-// =================================================================
-//  CENTRAL FREEBIE MODE CONTROLLER & LOGIC
-// =================================================================
+// LOGIC: THEME SWITCHER
+function initializeThemeSwitcher() {
+  const toggleButton = document.getElementById('theme-toggle-btn');
+  const darkIcon = document.querySelector('.dark-mode-icon');
+  const lightIcon = document.querySelector('.light-mode-icon');
+
+  if (!toggleButton || !darkIcon || !lightIcon) return;
+
+  const applyTheme = (theme) => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-mode');
+      darkIcon.classList.add('hidden');
+      lightIcon.classList.remove('hidden');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('light-mode');
+      darkIcon.classList.remove('hidden');
+      lightIcon.classList.add('hidden');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  toggleButton.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light-mode');
+    applyTheme(isLight ? 'dark' : 'light');
+  });
+
+  // On initial load, apply the saved theme.
+  const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+  applyTheme(savedTheme);
+}
+
+// LOGIC: FREEBIE MODE CONTROLLER
 function initializeFreebieMode() {
   const state = { isFreebieModeActive: false, freebiePoints: 15 };
 
@@ -150,6 +180,7 @@ function initializeFreebieMode() {
   });
 }
 
+// UTILITY: FREEBIE LISTENERS
 function initializeFreebieListeners(state, onUpdateCallback) {
   const costs = { 
     'attributes-section': 5, 'abilities-section': 2, 'disciplines-section': 7, 
@@ -1000,6 +1031,9 @@ function initializeDotCategoryLogic(sectionId, prioritySelectName, priorityPoint
 // --- Main Application Setup ---
 // This single event listener is the entry point for all initialization code.
 document.addEventListener('DOMContentLoaded', () => {
+
+  // --- THEME SWITCHER ---
+  initializeThemeSwitcher();
 
   // --- FREEBIE MODE SETUP ---
   initializeFreebieMode();

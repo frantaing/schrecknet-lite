@@ -49,6 +49,16 @@ V20 Character sheet
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./src/css/app.css">
+
+  <!-- Remember the theme! Prevnt "flash" of the wrong theme -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light') {
+        document.documentElement.classList.add('light-mode');
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -62,9 +72,23 @@ V20 Character sheet
           href="index.html">schrecknet-lite</a></h4>
       <p>/ <span class="text-accent">v20</span> character sheet</p>
     </div>
-    <p>\ by
-      <a href="https://github.com/overuseofrem/schrecknet-lite" class="link">frantan</a>
-    </p>
+    <!-- Right header group -->
+    <div class="flex gap-3">
+      <p>\ by <a href="https://github.com/overuseofrem/schrecknet-lite" class="link">frantan</a></p>
+      <button id="theme-toggle-btn" class="p-1 rounded-full transition hover:bg-textPrimary group">
+        <!-- Dark mode icon -->
+        <div class="dark-mode-icon relative w-6">
+          <!-- 2. Make the images 'absolute' to stack them -->
+          <img src="/sun-black.png" alt="Switch to Light Mode" class="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+          <img src="/sun-white.png" alt="Switch to Light Mode" class="transition group-hover:opacity-0">
+        </div>
+        <!-- Light mode icon (hidden by default) -->
+        <div class="light-mode-icon relative w-6 hidden">
+          <img src="/moon-white.png" alt="Switch to Dark Mode" class="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+          <img src="/moon-black.png" alt="Switch to Dark Mode" class="transition group-hover:opacity-0">
+        </div>
+      </button>
+    </div>
 
   </header>
 
@@ -1046,8 +1070,8 @@ V20 Character sheet
       </div>
       <!-- Button to reset freebie points. TRIGGER CONFIRM DALOG -->
       <button id="freebiePointReset" class="btn-float group !p-2.5 !pl-3">
-        <img class="w-5 transition group-hover:hidden" src="src/reload-black.png" alt="reset freebie points">
-        <img class="w-5 hidden transition group-hover:block"  src="src/reload-white.png" alt="reset freebie points">
+        <img class="w-5 transition group-hover:hidden" src="/reload-black.png" alt="reset freebie points">
+        <img class="w-5 hidden transition group-hover:block"  src="/reload-white.png" alt="reset freebie points">
       </button>
       <!-- Button to print as PDF -->
       <button id="save-sheet-btn" class="btn-float group hidden">
@@ -1059,15 +1083,15 @@ V20 Character sheet
 
   <!-- "Save as..." modal -->
   <div id="save-modal-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 justify-center items-center">
-    <div id="save-modal" class="flex flex-col gap-8 bg-foreground pt-10 pb-5 px-10 rounded-round text-center">
+    <div id="save-modal" class="flex flex-col gap-8 bg-background pt-10 pb-5 px-10 rounded-round text-center">
       <div class="flex flex-col gap-10">
         <div>
           <h2>save your character sheet</h2>
           <p class="text-textSecondary">choose the export format</p>        
         </div>
         <div class="flex gap-5 justify-center items-center">
-          <button id="save-as-pdf-btn" class="btn-float group">save as <span class="span">PDF</span></button>
-          <button id="save-as-txt-btn" class="btn-float group">save as <span class="span">TXT</span></button>
+          <button id="save-as-pdf-btn" class="btn group">save as <span class="span">PDF</span></button>
+          <button id="save-as-txt-btn" class="btn group">save as <span class="span">TXT</span></button>
         </div>        
       </div>
 
