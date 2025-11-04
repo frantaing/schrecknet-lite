@@ -96,7 +96,7 @@ main {
          w-fit px-5 py-2 rounded-round 
          transition transform hover:scale-[1.02];
 }
-.btn:hover, .dropdown-menu ul:hover {
+.btn:hover, .dropdown-menu li:hover {
   @apply bg-[var(--btn-hover-bg)] text-[var(--btn-hover-text)];
 }
 
@@ -133,6 +133,10 @@ h3 {
 /* Form heading for parts of subsections (e.g.Physcial/Mental/Social) */
 h4 {
   @apply font-heading text-2xl mb-5;
+}
+
+li {
+  @apply transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent cursor-pointer;
 }
 
 /**
@@ -191,7 +195,7 @@ h4 {
 }
 
 .dropdown-menu {
-  @apply w-full mt-2 bg-foreground rounded-round transition;
+  @apply absolute top-full left-0 right-0 z-10 w-full mt-2 bg-foreground rounded-round transition overflow-hidden ;
 }
 
 /* wrapper for dot + label (elements including dots) */
