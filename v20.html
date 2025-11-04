@@ -133,11 +133,32 @@ V20 Character sheet
           </label>
 
           <!-- Nature -->
-          <label class="label">nature
-            <select name="nature" class="dropdown text-textPrimary">
-              <option value="" disabled selected hidden>nature</option>
-              <!-- Options will be added here by JavaScript -->
-            </select>
+          <label for="nature" class="label relative">nature
+            <div class="w-full">
+              <!-- Dropdown selector -->
+              <button class="dropdown">
+                <div class="flex justify-between items-center text-textSecondary">
+                  <div>
+                    <div>nature</div>
+                  </div>
+                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </button>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu">
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    this will be populated by JS
+                  </ul>
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    this will be populated by JS
+                  </ul>
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    this will be populated by JS
+                  </ul>
+              </div>
+            </div>
           </label>
 
           <!-- Demeanor -->
@@ -201,16 +222,35 @@ V20 Character sheet
 
       <h2>attributes</h2>
       <div class="grid gap-16 sm:grid-cols-3">
-        <div>
+        <div class="flex flex-col items-center">
           <!-- Physical -->
           <div class="mb-7">
             <h4 class="mb-3">physical <span></span></h4>
-              <select name="attribute-priority" class="dropdown-custom">
-                <option value="" disabled selected hidden></option>
-                <option value="primary">primary</option>
-                <option value="secondary">secondary</option>
-                <option value="tertiary">tertiary</option>
-            </select> 
+
+            <div class="flex flex-col items-center w-full">
+              <!-- Dropdown selector -->
+              <button class="dropdown-custom">
+                <div class="flex justify-between items-center text-textSecondary">
+                  <div></div>
+                  <div class="mr-2">priority</div>
+                  <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>                
+                </div>
+              </button>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu">
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    primary
+                  </ul>
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    secondary
+                  </ul>
+                  <ul class="transition px-4 py-3 text-textPrimary text-xs rounded-round hover:bg-accent">
+                    tertiary
+                  </ul>
+              </div>
+            </div>
           </div>
 
           <!-- Strength, Dexterity, Stamina -->
