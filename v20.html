@@ -137,9 +137,9 @@ V20 Character sheet
             <div class="custom-dropdown relative" data-name="nature" data-placeholder="nature">
               <button class="dropdown w-full" aria-haspopup="listbox" aria-expanded="false">
                 <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
-                  <!-- 4. The Value Span: Its text content will change -->
+                  <!-- Placeholder/Selected item text -->
                   <span class="selected-value">nature</span>
-                  <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
@@ -154,10 +154,22 @@ V20 Character sheet
 
           <!-- Demeanor -->
           <label class="label">demeanor
-            <select name="demeanor" class="dropdown text-textPrimary">
-              <!-- Do not include [text-textPrimary in shared class!] -->
-              <option value="" disabled selected hidden>demeanor</option>
-            </select>
+            <div class="custom-dropdown relative" data-name="demeanor" data-placeholder="demeanor">
+              <button class="dropdown w-full" aria-haspopup="listbox" aria-expanded="false">
+                <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                  <!-- Placeholder/Selected item text -->
+                  <span class="selected-value">demeanor</span>
+                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </button>
+              <div class="dropdown-menu hidden">
+                <ul role="listbox">
+                  <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                </ul>
+              </div>
+            </div>
           </label>
 
         </div>
@@ -180,29 +192,53 @@ V20 Character sheet
 
         <!-- Clans/Bloodlines -->
         <label class="label">clan
-          <select name="clan" class="dropdown text-textPrimary">
-            <option value="" disabled selected hidden>clan</option>
-            <!-- Clans and Bloodlines will be added here by the new script -->
-          </select>
+          <div class="custom-dropdown relative" data-name="clan" data-placeholder="clan">
+            <button class="dropdown w-full" aria-haspopup="listbox" aria-expanded="false">
+              <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                <!-- Placeholder/Selected item text -->
+                <span class="selected-value">clan</span>
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            <div class="dropdown-menu hidden">
+              <ul role="listbox">
+                <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+              </ul>
+            </div>
+          </div>
         </label>
 
         <!-- Generation -->
-        <label class="label sm:col-span-2 sm:mx-[25%] lg:col-auto lg:mx-0">generation
-          <select name="generation" class="dropdown">
-            <option value="" disabled selected hidden>generation</option>
-            <option value="4th">4th</option>
-            <option value="5th">5th</option>
-            <option value="6th">6th</option>
-            <option value="7th">7th</option>
-            <option value="8th">8th</option>
-            <option value="9th">9th</option>
-            <option value="10th">10th</option>
-            <option value="11th">11th</option>
-            <option value="12th">12th</option>
-            <option value="13th">13th</option>
-            <option value="14th">14th</option>
-            <option value="15th">15th</option>
-          </select>
+        <label class="label">generation
+          <div class="custom-dropdown relative" data-name="generation" data-placeholder="generation">
+            <button class="dropdown w-full" aria-haspopup="listbox" aria-expanded="false">
+              <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                <!-- Placeholder/Selected item text -->
+                <span class="selected-value">generation</span>
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            <div class="dropdown-menu hidden">
+              <ul role="listbox">
+                <li class="option" role="option" data-value="4th">4th</li>
+                <li class="option" role="option" data-value="5th">5th</li>
+                <li class="option" role="option" data-value="6th">6th</li>
+                <li class="option" role="option" data-value="7th">7th</li>
+                <li class="option" role="option" data-value="8th">8th</li>
+                <li class="option" role="option" data-value="9th">9th</li>
+                <li class="option" role="option" data-value="10th">10th</li>
+                <li class="option" role="option" data-value="11th">11th</li>
+                <li class="option" role="option" data-value="12th">12th</li>
+                <li class="option" role="option" data-value="13th">13th</li>
+                <li class="option" role="option" data-value="14th">14th</li>
+                <li class="option" role="option" data-value="15th">15th</li>
+              </ul>
+            </div>
+          </div>
         </label>
       </div>
 
@@ -219,9 +255,7 @@ V20 Character sheet
             <h4 class="mb-3">physical <span></span></h4>
 
             <div class="flex flex-col items-center w-full">
-
               <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
-
                 <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
                   <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
                     <div></div> <!-- Spacer -->
@@ -232,8 +266,7 @@ V20 Character sheet
                     </svg>
                   </div>
                 </button>
-                
-                <div class="dropdown-menu">
+                <div class="dropdown-menu hidden">
                   <ul role="listbox">
                     <li class="option" role="option" data-value="primary">primary</li>
                     <li class="option" role="option" data-value="secondary">secondary</li>
@@ -282,12 +315,27 @@ V20 Character sheet
           <!-- Social -->
           <div class="mb-7">
             <h4 class="mb-3">social <span></span></h4>
-            <select name="attribute-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">priority</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <li class="option" role="option" data-value="primary">primary</li>
+                    <li class="option" role="option" data-value="secondary">secondary</li>
+                    <li class="option" role="option" data-value="tertiary">tertiary</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Charisma, Manipulation, Appearance -->
           <div class="dots-wrapper">
@@ -327,12 +375,27 @@ V20 Character sheet
           <!-- Mental -->
           <div class="mb-7">
             <h4 class="mb-3">mental <span></span></h4>
-            <select name="attribute-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">priority</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <li class="option" role="option" data-value="primary">primary</li>
+                    <li class="option" role="option" data-value="secondary">secondary</li>
+                    <li class="option" role="option" data-value="tertiary">tertiary</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Perception, Intelligence, Wits -->
           <div class="dots-wrapper">
@@ -381,12 +444,27 @@ V20 Character sheet
           <!-- Talents -->
           <div class="mb-7">
             <h4 class="mb-3">talents <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">priority</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <li class="option" role="option" data-value="primary">primary</li>
+                    <li class="option" role="option" data-value="secondary">secondary</li>
+                    <li class="option" role="option" data-value="tertiary">tertiary</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Alertness, Athletics, etc. -->
           <div class="dots-wrapper">
@@ -507,12 +585,27 @@ V20 Character sheet
           <!-- Skills -->
           <div class="mb-7">
             <h4 class="mb-3">skills <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">priority</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <li class="option" role="option" data-value="primary">primary</li>
+                    <li class="option" role="option" data-value="secondary">secondary</li>
+                    <li class="option" role="option" data-value="tertiary">tertiary</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Animal Ken, Crafts, etc. -->
           <div class="dots-wrapper">
@@ -632,12 +725,27 @@ V20 Character sheet
           <!-- Knowledges -->
           <div class="mb-7">
             <h4 class="mb-3">knowledges <span></span></h4>
-            <select name="ability-priority" class="dropdown-custom">
-              <option value="" disabled selected hidden></option>
-              <option value="primary">primary</option>
-              <option value="secondary">secondary</option>
-              <option value="tertiary">tertiary</option>
-            </select> 
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-priority" data-placeholder="priority">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">priority</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <li class="option" role="option" data-value="primary">primary</li>
+                    <li class="option" role="option" data-value="secondary">secondary</li>
+                    <li class="option" role="option" data-value="tertiary">tertiary</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- Academics, Computer, etc. -->
            <div class="dots-wrapper">
@@ -781,11 +889,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="discipline" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>discipline</option>
-                  <!-- Discipline options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-discipline" data-placeholder="discipline">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">discipline</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -799,11 +921,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="discipline" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>discipline</option>
-                  <!-- Discipline options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-discipline" data-placeholder="discipline">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">discipline</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -817,11 +953,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="discipline" class="dropdown-custom">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>discipline</option>
-                  <!-- Discipline options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-discipline" data-placeholder="discipline">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">discipline</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -861,11 +1011,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="background" class="dropdown-custom">
-                  <!-- Do not include [text-textPrimary in shared class!] -->
-                  <option value="" disabled selected hidden>background</option>
-                  <!-- Backgrounds options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-background" data-placeholder="background">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">background</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -879,11 +1043,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="background" class="dropdown-custom">
-                  <!-- Do not include [text-textPrimary in shared class!] -->
-                  <option value="" disabled selected hidden>background</option>
-                  <!-- Backgrounds options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-background" data-placeholder="background">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">background</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -897,11 +1075,25 @@ V20 Character sheet
           <div class="dots-wrapper">
             <div class="dots-custom">
               <div class="relative flex items-center justify-center group gap-2">
-                <select name="background" class="dropdown-custom">
-                  <!-- Do not include [text-textPrimary in shared class!] -->
-                  <option value="" disabled selected hidden>background</option>
-                  <!-- Backgrounds options will be added here -->
-                </select>
+                <div class="flex flex-col items-center w-full">
+                  <div class="custom-dropdown relative" data-name="attribute-background" data-placeholder="background">
+                    <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                        <div></div> <!-- Spacer -->
+                        <!-- 4. The Value Span -->
+                        <span class="selected-value mr-2">background</span>
+                        <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="dropdown-menu hidden">
+                      <ul role="listbox">
+                        <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="dot-group">
                 <span class="dot"></span>
@@ -982,12 +1174,25 @@ V20 Character sheet
           <!-- Path dropdown -->
           <div class="dots-wrapper">
             <div class="dots">
-              <select name="paths" class="dropdown-custom mb-2">
-                <!-- Do not include [text-textPrimary in shared class!] -->
-                <option value="" disabled selected hidden>path</option>
-                <option value="humanity">humanity</option>
-                <!-- Path options will be added here -->
-              </select>
+              <div class="flex flex-col items-center w-full">
+                <div class="custom-dropdown relative" data-name="attribute-path" data-placeholder="path">
+                  <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                    <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                      <div></div> <!-- Spacer -->
+                      <!-- 4. The Value Span -->
+                      <span class="selected-value mr-2">humanity/path</span>
+                      <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
+                  <div class="dropdown-menu hidden">
+                    <ul role="listbox">
+                      <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <div class="dot-group">
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -1042,9 +1247,25 @@ V20 Character sheet
 
           <!-- CHANGE "id" to "class" HERE -->
           <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
-            <select name="merit" class="dropdown-custom">
-              <option value="" disabled selected hidden>merit</option>
-            </select>
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-merit" data-placeholder="merit">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">merit</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
             <button class="btn-minus">-</button>
           </div>
 
@@ -1066,9 +1287,25 @@ V20 Character sheet
 
           <!-- Flaw dropdown(s) -->
           <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
-            <select name="flaw" class="dropdown-custom">
-                <option value="" disabled selected hidden>flaw</option>
-            </select>
+            <div class="flex flex-col items-center w-full">
+              <div class="custom-dropdown relative" data-name="attribute-flaw" data-placeholder="flaw">
+                <button class="dropdown-custom w-full" aria-haspopup="listbox" aria-expanded="false">
+                  <div class="selected-value-wrapper flex justify-between items-center text-textSecondary">
+                    <div></div> <!-- Spacer -->
+                    <!-- 4. The Value Span -->
+                    <span class="selected-value mr-2">flaw</span>
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="dropdown-menu hidden">
+                  <ul role="listbox">
+                    <!-- e.g., <li class="option ..." data-value="architect">Architect</li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
             <button class="btn-minus">-</button>         
           </div>
 
