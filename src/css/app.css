@@ -1,20 +1,5 @@
-/**
- * FILE: app.css
- * DESCRIPTION:
- * - Defines optional styles
- */
-
-/* =================================================================
- # IMPORTS
- ================================================================= */
-
-/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Gloock&display=swap');
-
-/* Tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* ===============================================================
  # THEME DEFINITIONS & BASE STYLES
@@ -69,9 +54,7 @@ html.light-mode {
  ================================================================= */
 
 /**
- #
  # GENERAL CLASSES
- #
  */
 
 /* Body */
@@ -250,9 +233,8 @@ h4 {
   transition: opacity 0.3s ease-in-out;
 }
 
-/* When freebie mode is active, the LOCKS ARE INVERTED. */
-
-/* 1. Re-enable the Merits/Flaws section */
+/* === When freebie mode is active, the LOCKS ARE INVERTED === */
+/* Re-enable the Merits/Flaws section */
 .freebie-mode-active #merits-flaws-section {
   pointer-events: auto;
   opacity: 1;
@@ -265,7 +247,7 @@ h4 {
   opacity: 1; /* Make it fully visible */
 }
 
-/* 2. Lock ONLY the truly immutable elements during Freebie Mode. */
+/* Lock ONLY the truly immutable elements during Freebie Mode. */
 .freebie-mode-active #basics-section,
 .freebie-mode-active #attributes-section select, /* Priority dropdowns */
 .freebie-mode-active #abilities-section select,  /* Priority dropdowns */
@@ -277,7 +259,7 @@ h4 {
   transition: opacity 0.3s ease-in-out;
 }
 
-/* 3. Style for dots filled with freebie points */
+/* Style for dots filled with freebie points */
 .dot.filled-freebie {
   @apply border-accent bg-accent;
 }
@@ -338,7 +320,6 @@ h4 {
     background-color: #000000 !important; /* Solid black fill */
   }
 
-  /* Freebie dots can be styled differently if you want, or just black */
   .dot.filled-freebie {
     border-color: #333333 !important;
     background-color: #333333 !important; /* Dark grey for freebie dots */
