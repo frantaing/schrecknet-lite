@@ -5,6 +5,22 @@
  # THEME DEFINITIONS & BASE STYLES
  ================================================================= */
 
+@theme {
+  /* Colors */
+  --color-background: var(--color-background, #0D0D0D);
+  --color-foreground: var(--color-foreground, #161616);
+  --color-accent: var(--color-accent, #951313);
+  --color-textPrimary: var(--color-text-primary, #FFFFFF);
+  --color-textSecondary: var(--color-text-secondary, #4E4E4E);
+
+  /* Font families */
+  --font-heading: 'Gloock', serif;
+  --font-body: 'Geist Mono', monospace;
+
+  /* Border radius */
+  --radius-round: 5px;
+}
+
 /* [DARK MODE (default)] */
 :root {
   --color-background: #0D0D0D;
