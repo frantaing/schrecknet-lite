@@ -91,32 +91,32 @@ main {
 
 /* Buttons (general) */
 .btn {
-  @apply bg-[var(--btn-bg)] text-[var(--btn-text)] 
+  @apply bg-(--btn-bg) text-(--btn-text)
          w-fit px-5 py-2 rounded-round 
          transition transform hover:scale-[1.02];
 }
 .btn:hover {
-  @apply bg-[var(--btn-hover-bg)] text-[var(--btn-hover-text)];
+  @apply bg-(--btn-hover-bg) text-(--btn-hover-text);
 }
 
 /* Span text for emphasis */
 .btn .span, .btn-float .span {
-  @apply text-[var(--btn-span-text)] transition;
+  @apply text-(--btn-span-text) transition;
 }
 .btn:hover .span, .btn-float:hover .span {
-  @apply text-[var(--btn-hover-span-text)];
+  @apply text-(--btn-hover-span-text);
 }
 
 .btn-float {
   /* Apply the base float button variables */
-  @apply bg-[var(--btn-float-bg)] text-[var(--btn-float-text)]
+  @apply bg-(--btn-float-bg) text-(--btn-float-text)
          w-fit px-5 py-2 rounded-round 
          transition transform hover:scale-[1.04];
 }
 
 /* Apply the hover float button variables on hover */
 .btn-float:hover {
-  @apply bg-[var(--btn-float-hover-bg)] text-[var(--btn-float-hover-text)];
+  @apply bg-(--btn-float-hover-bg) text-(--btn-float-hover-text);
 }
 
 /* Form heading for major sections (e.g. Basic, Attributes) */
@@ -195,7 +195,7 @@ h4 {
 }
 
 .dots-custom {
-  @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary hover:text-textSecondary;
+  @apply flex flex-col items-center gap-2 text-sm text-textSecondary transition hover:text-textPrimary;
 }
 
 /* Wrapper for dots */
@@ -228,13 +228,13 @@ h4 {
 
 /* The remove button ('-') for all dynamic rows.*/
 .btn-minus {
-  @apply flex-shrink-0 
+  @apply shrink-0 
          bg-foreground text-textSecondary text-lg font-bold rounded-round
          cursor-pointer
          w-8 opacity-0 scale-50 px-2.5 /* Always reserve the width and padding */
          overflow-hidden 
          group-hover:opacity-100 group-hover:scale-100 /* Only animate opacity and scale */
-         hover:!bg-accent hover:!text-textPrimary 
+         hover:bg-accent! hover:text-textPrimary!
          transition-all duration-300 ease-in-out;
 }
 
