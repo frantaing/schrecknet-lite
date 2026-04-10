@@ -1,31 +1,21 @@
 # SchreckNet Lite
 
-Unofficial Vampire: The Masquerade V20/V5 interactive character sheet.  
-Fan-made project built with **Vite**, **Tailwind CSS**, and **vanilla JavaScript**.
+Unofficial Vampire: The Masquerade V20 interactive character sheet.  
+
+👉 [**Try it here!**](https://frantaing.github.io/schrecknet-lite/) <br>
+👉 [*Vercel link*](https://schrecknet-lite.vercel.app/)
 
 > [!NOTE]
-> **The V20 character sheet is feature-complete for character creation!** This includes the full point-allocation process, a dedicated Freebie Point mode, and exporting. <br>
-> Have a pancake! 🥞
-
-👉 [**Try it here!**](https://frantaing.github.io/schrecknet-lite/)
-
-> [!TIP]
-> **New: Light Mode!** ☀️ <br>
-> You can now switch between the classic dark theme and a new, printer-friendly light theme. Your preference is saved automatically!
-
-<br>
+> The project will be moved to the Vercel link above in the future for the Alpine.js migration. For now, the Github Pages version is the main site.
 
 ## 📌 About the project
 
 The goal is to recreate a simple, interactive character sheet for **Vampire: The Masquerade**, starting with **V20** and later adding **V5** support.  
-It is heavily inspired by the [SchreckNet](https://www.schrecknet.live/) character sheet site and by existing fan projects, especially [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky. ❤️
+It is inspired by the [SchreckNet](https://www.schrecknet.live/) character sheet site and by [VTMsite](https://github.com/DrSharky/VTMsite) by DrSharky. ❤️
 
 This is a **pure front-end application** that runs entirely in your browser. No data is saved, and no login is required.
 
 > ❗ This is a personal fan project! All game rules, terminology, and setting elements are owned by their respective copyright holders (White Wolf Publishing / Paradox Interactive). This project is for educational, recreational, and non-commercial purposes only.
-
-<br>
-
 
 ## ✨ Features (V20 Sheet)
 
@@ -47,8 +37,6 @@ The V20 sheet now fully implements the character creation process from the core 
 -   **Derived Stat Calculation:** Humanity/Path and Willpower are automatically calculated and updated based on Virtue scores.
 - **Light mode:** Toggle between classic dark mode and now, you can burn your eyes off with light mode!
 -   **Export Your Sheet:** When finished, save your character sheet as a formatted `.txt` file or a print-ready PDF.
-
-<br>
 
 ## 🚀 Running Locally
 
@@ -73,15 +61,10 @@ The V20 sheet now fully implements the character creation process from the core 
     ```
     This will start a local server, usually at `http://localhost:5173`.
 
-<br>
-
 ## ⏳ Project Status & Future Plans
 
 -   ✅ **V20 Sheet:** The character creation workflow is **complete and stable**. Future V20 work will focus on minor enhancements like tooltips and UI polish.
--   🚧 **V5 Sheet:** Currently in the **early styling phase**. The core structure is in place, but interactivity has not yet been implemented.
--   **Overall:** The project is moving towards an official `1.0.0` release, marking the completion of the V20 sheet.
-
-<br>
+-   🚧 **V5 Sheet:** Currently in the **works**.
 
 ## 📷 Inspirations and Sources
 
@@ -90,8 +73,6 @@ The V20 sheet now fully implements the character creation process from the core 
 - Official V20 and V5 rulebooks (for structure and reference)
 - VtM wikis like the [White Wolf wiki](https://whitewolf.fandom.com/wiki/Main_Page) and the [Paradox wiki](https://vtm.paradoxwikis.com/VTM_Wiki)  
 - Vite & Tailwind CSS documentation
-
-<br>
 
 ## 📝 Disclaimer
 
