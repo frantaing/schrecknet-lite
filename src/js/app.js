@@ -1,8 +1,9 @@
 import Alpine from 'alpinejs'
+import dataStore from './store/data.js'
 import themeSwitcher from './components/themeSwticher'
 
-// Stores will be registered here (issue #38)
-// Alpine.store('data', dataStore)
+// Stores
+Alpine.store('data', dataStore)
 
 // Components
 Alpine.data('themeSwitcher', themeSwitcher)
