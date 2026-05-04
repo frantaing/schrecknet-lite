@@ -3,10 +3,13 @@
 Unofficial Vampire: The Masquerade V20 interactive character sheet.  
 
 👉 [**Try it here!**](https://frantaing.github.io/schrecknet-lite/) <br>
+
+<!--
 👉 [*Vercel link*](https://schrecknet-lite.vercel.app/)
 
 > [!NOTE]
 > The project will be moved to the Vercel link above in the future for the Alpine.js migration. For now, the Github Pages version is the main site.
+-->
 
 ## 📌 About the project
 
