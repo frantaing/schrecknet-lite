@@ -75,15 +75,15 @@ V20 Character sheet
     <!-- Right header group -->
     <div class="flex gap-3">
       <p class="hidden sm:block">\ by <a href="https://github.com/overuseofrem/schrecknet-lite" class="link">frantan</a></p>
-      <button x-data="themeSwitcher" @click="toggleTheme()"
-        class="p-1 rounded-full transition hover:bg-textPrimary group">
-        <!-- Dark mode icon (shown when in dark mode) -->
-        <div class="relative w-6" x-show="!isLight">
+      <button id="theme-toggle-btn" class="p-1 rounded-full transition hover:bg-textPrimary group">
+        <!-- Dark mode icon -->
+        <div class="dark-mode-icon relative w-6">
+          <!-- 2. Make the images 'absolute' to stack them -->
           <img src="/sun-black.png" alt="Switch to Light Mode" class="absolute inset-0 opacity-0 transition group-hover:opacity-100">
           <img src="/sun-white.png" alt="Switch to Light Mode" class="transition group-hover:opacity-0">
         </div>
-        <!-- Light mode icon (shown when in light mode) -->
-        <div class="relative w-6" x-show="isLight">
+        <!-- Light mode icon (hidden by default) -->
+        <div class="light-mode-icon relative w-6 hidden">
           <img src="/moon-white.png" alt="Switch to Dark Mode" class="absolute inset-0 opacity-0 transition group-hover:opacity-100">
           <img src="/moon-black.png" alt="Switch to Dark Mode" class="transition group-hover:opacity-0">
         </div>
