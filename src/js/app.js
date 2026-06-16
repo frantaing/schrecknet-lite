@@ -1,5 +1,6 @@
 /* IMPORTS */
 import { initializeThemeSwitcher } from "./theme";
+import { updateSelectColor, populateFlatDropdown, populateGroupedDropdown, initializeSelectElementStyling } from './dropdowns.js';
 
 /**
  * =================================================================
@@ -219,58 +220,6 @@ function initializeFreebieListeners(state, onUpdateCallback) {
   }
 }
 
-// UTILITY: Can populate ALL dropdowns of a name, OR a single specific one.
-function populateFlatDropdown(selectName, jsonPath, targetSelect = null) {
-  const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
-  if (!selects.length) return;
-
-  return fetch(jsonPath)
-    .then(response => response.json())
-    .then(data => {
-      const optionsHTML = data.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
-      selects.forEach(select => {
-        // --- FIX: Only remove old data options, not the placeholder ---
-        Array.from(select.options).forEach(option => {
-          if (!option.disabled) option.remove(); // Only remove non-disabled options
-        });
-        
-        select.insertAdjacentHTML('beforeend', optionsHTML);
-        if (!targetSelect) select.value = "";
-      });
-    })
-    .catch(error => console.error(`Error populating [${selectName}]:`, error));
-}
-
-// UTILITY: Can populate ALL grouped dropdowns of a name, OR a single specific one.
-function populateGroupedDropdown(selectName, jsonPath, optionFormatter, targetSelect = null) {
-  const selects = targetSelect ? [targetSelect] : document.querySelectorAll(`select[name="${selectName}"]`);
-  if (!selects.length) return;
-
-  return fetch(jsonPath)
-    .then(response => response.json())
-    .then(data => {
-      const groupsHTML = data.map(group => {
-        const optionsHTML = group.options.map(item => {
-          const tempOption = document.createElement('option');
-          tempOption.value = item.value;
-          if (optionFormatter) optionFormatter(tempOption, item);
-          else tempOption.textContent = item.label;
-          return tempOption.outerHTML;
-        }).join('');
-        return `<optgroup label="${group.groupLabel}">${optionsHTML}</optgroup>`;
-      }).join('');
-
-      selects.forEach(select => {
-        // --- FIX: Only remove old data, not the placeholder ---
-        select.querySelectorAll('optgroup').forEach(group => group.remove());
-
-        select.insertAdjacentHTML('beforeend', groupsHTML);
-        if (!targetSelect) select.value = "";
-      });
-    })
-    .catch(error => console.error(`Error populating [${selectName}]:`, error));
-}
-
 // UTILITY: Disable Duplicate option selection
 /**
  * =================================================================
@@ -355,26 +304,6 @@ function manageDuplicateSelections(selectName) {
   
   // Return the update function so it can be called manually if needed
   return updateDisabledOptions;
-}
-
-// UTILITY: Can style ALL selects, OR a single specific one.
-function initializeSelectElementStyling(targetElement = null) {
-  const allSelects = targetElement ? [targetElement] : document.querySelectorAll('select');
-  
-  const updateSelectColor = (selectElement) => {
-    if (selectElement.value === '') {
-      selectElement.classList.add('text-textSecondary');
-      selectElement.classList.remove('text-textPrimary');
-    } else {
-      selectElement.classList.add('text-textPrimary');
-      selectElement.classList.remove('text-textSecondary');
-    }
-  };
-
-  allSelects.forEach(select => {
-    updateSelectColor(select);
-    select.addEventListener('change', (event) => updateSelectColor(event.currentTarget));
-  });
 }
 
 // UTILITY: DYNAMIC DROPDOWN ROWS
