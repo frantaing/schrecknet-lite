@@ -1,6 +1,7 @@
 /* IMPORTS */
 import { initializeThemeSwitcher } from "./theme";
 import { updateSelectColor, populateFlatDropdown, populateGroupedDropdown, initializeSelectElementStyling } from './dropdowns.js';
+import { manageDuplicateSelections } from './duplicates.js';
 
 /**
  * =================================================================
@@ -218,92 +219,6 @@ function initializeFreebieListeners(state, onUpdateCallback) {
       }
     });
   }
-}
-
-// UTILITY: Disable Duplicate option selection
-/**
- * =================================================================
- * DYNAMIC DUPLICATE OPTION MANAGEMENT UTILITY
- * =================================================================
- * For a given group of dropdowns (by name), this function prevents the user
- * from selecting the same option in multiple dropdowns. NOW WORKS WITH DYNAMIC ROWS.
- *
- * @param {string} selectName - The 'name' attribute of the dropdowns to manage.
- */
-function manageDuplicateSelections(selectName) {
-  // This function is now the single source of truth for updating the dropdowns.
-  const updateDisabledOptions = () => {
-    // 1. ALWAYS get the most up-to-date list of dropdowns from the DOM.
-    const allSelectsInGroup = document.querySelectorAll(`select[name="${selectName}"]`);
-    if (!allSelectsInGroup.length) return;
-
-    // 2. Find all values that are currently selected.
-    const selectedValues = Array.from(allSelectsInGroup)
-                                .map(s => s.value)
-                                .filter(v => v !== "");
-
-    // 3. Loop through each dropdown in the (current) group.
-    allSelectsInGroup.forEach(select => {
-      Array.from(select.options).forEach(option => {
-        if (option.value === "" || option.value === select.value) {
-          option.disabled = false;
-          option.style.color = '';
-          return;
-        }
-        option.disabled = selectedValues.includes(option.value);
-        option.style.color = option.disabled ? '#666' : '';
-      });
-    });
-  };
-
-  // Listen for changes on any dropdown within the document
-  document.body.addEventListener('change', (event) => {
-    if (event.target.matches(`select[name="${selectName}"]`)) {
-      // A relevant dropdown was changed, so update the whole group.
-      updateDisabledOptions();
-    }
-  });
-
-  // Listen for DOM mutations (additions/removals)
-  const observer = new MutationObserver((mutations) => {
-    let shouldUpdate = false;
-    mutations.forEach(mutation => {
-      if (mutation.type === 'childList') {
-        // Check if any added or removed nodes contain our select elements
-        const checkNodes = (nodes) => {
-          for (let node of nodes) {
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              if (node.querySelector && node.querySelector(`select[name="${selectName}"]`)) {
-                return true;
-              }
-            }
-          }
-          return false;
-        };
-        
-        if (checkNodes(mutation.addedNodes) || checkNodes(mutation.removedNodes)) {
-          shouldUpdate = true;
-        }
-      }
-    });
-    
-    if (shouldUpdate) {
-      // Small delay to ensure DOM is fully updated
-      setTimeout(updateDisabledOptions, 10);
-    }
-  });
-
-  // Watch the entire document for changes
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  // Run it once on page load to set the initial state.
-  updateDisabledOptions();
-  
-  // Return the update function so it can be called manually if needed
-  return updateDisabledOptions;
 }
 
 // UTILITY: DYNAMIC DROPDOWN ROWS
