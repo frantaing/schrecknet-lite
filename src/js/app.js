@@ -2,6 +2,7 @@
 import { initializeThemeSwitcher } from "./theme";
 import { updateSelectColor, populateFlatDropdown, populateGroupedDropdown, initializeSelectElementStyling } from './dropdowns.js';
 import { manageDuplicateSelections } from './duplicates.js';
+import { initializeDynamicRows, getDynamicRowConfigs } from './dynamic-rows.js';
 
 /**
  * =================================================================
@@ -219,56 +220,6 @@ function initializeFreebieListeners(state, onUpdateCallback) {
       }
     });
   }
-}
-
-// UTILITY: DYNAMIC DROPDOWN ROWS
-/**
- * =================================================================
- * DYNAMIC ROW MANAGEMENT UTILITY
- * =================================================================
- * Initializes a section to allow adding and removing of templated rows.
- *
- * @param {object} config - The configuration object for the section.
- * @param {string} config.sectionId - The ID of the parent section.
- * @param {string} config.addButtonSelector - The selector for the "add new" button.
- * @param {string} config.rowContainerSelector - The selector for the container to add rows to.
- * @param {string} config.templateHTML - The inner HTML of a single row to be added.
- * @param {function} [config.postAddCallback] - An optional function to run after a row is added.
- */
-function initializeDynamicRows(config) {
-  const section = document.getElementById(config.sectionId);
-  if (!section) return;
-
-  const addButton = section.querySelector(config.addButtonSelector);
-  const rowContainer = section.querySelector(config.rowContainerSelector);
-  if (!addButton || !rowContainer) return;
-
-  rowContainer.addEventListener('click', (event) => {
-    if (event.target.matches('.btn-minus')) {
-      // The selector for what to remove is passed in the config.
-      event.target.closest(config.rowWrapperSelector).remove();
-    }
-  });
-
-  addButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    
-    // 1. Create the main wrapper element using the class from the config.
-    //    This ensures there is ALWAYS have a .dots-wrapper or .merit-flaw-wrapper.
-    const newRow = document.createElement('div');
-    newRow.className = config.rowWrapperClass;
-
-    // 2. Set the inner HTML of this wrapper to be the template.
-    newRow.innerHTML = config.templateHTML;
-    
-    // 3. Insert the fully-formed, correctly wrapped row into the DOM.
-    rowContainer.insertBefore(newRow, addButton.parentElement);
-
-    // 4. Run the callback if it exists.
-    if (config.postAddCallback) {
-      config.postAddCallback(newRow);
-    }
-  });
 }
 
 // UTILITY: TEXT FILE EXPORT
@@ -859,101 +810,6 @@ document.addEventListener('DOMContentLoaded', () => {
     optionElement.dataset.cost = itemData.cost;
   };
 
-  // --- TEMPLATES FOR DYNAMIC ROWS ---
-  const disciplineTemplate = `
-    <div class="dots-custom">
-      <div class="relative flex items-center justify-center group ml-10 gap-2">
-        <select name="discipline" class="dropdown-custom"><option value="" disabled selected hidden>discipline</option></select>
-        <button class="btn-minus">-</button>
-      </div>
-      <div class="dot-group"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-    </div>
-  `;
-  const backgroundTemplate = `
-    <div class="dots-custom">
-      <div class="relative flex items-center justify-center group ml-10 gap-2">
-        <select name="background" class="dropdown-custom"><option value="" disabled selected hidden>background</option></select>
-        <button class="btn-minus">-</button>
-      </div>
-      <div class="dot-group"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-    </div>
-  `;
-  const meritTemplate = `
-    <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
-      <select name="merit" class="dropdown-custom">
-        <option value="" disabled selected hidden>merit</option>
-      </select>
-      <button class="btn-minus">-</button>
-    </div>
-  `;
-  const flawTemplate = `
-    <div class="merit-flaw-wrapper relative flex items-center justify-center group ml-10 gap-2">
-      <select name="flaw" class="dropdown-custom">
-          <option value="" disabled selected hidden>flaw</option>
-      </select>
-      <button class="btn-minus">-</button>         
-    </div>
-  `;
-
-  // --- CALLBACK FOR NEWLY ADDED DROPDOWNS ---
-  const setupNewDropdown = (newRow, selectName, jsonPath, isGrouped, formatter) => {
-    const newSelect = newRow.querySelector(`select[name="${selectName}"]`);
-    if (newSelect) {
-      const populationPromise = isGrouped 
-        ? populateGroupedDropdown(selectName, jsonPath, formatter, newSelect)
-        : populateFlatDropdown(selectName, jsonPath, newSelect);
-      
-      // Wait for population to complete, then initialize styling
-      if (populationPromise) {
-        populationPromise.then(() => {
-          initializeSelectElementStyling(newSelect);
-        });
-      } else {
-        initializeSelectElementStyling(newSelect);
-      }
-    }
-  };
-
-  // --- CONFIGURATIONS FOR DYNAMIC ROWS ---
-  const dynamicRowConfigs = [
-    {
-      sectionId: 'disciplines-backgrounds-section',  // Back to original
-      addButtonSelector: '#add-discipline-btn',
-      rowContainerSelector: '#disciplines-container',
-      rowWrapperClass: 'dots-wrapper',
-      rowWrapperSelector: '.dots-wrapper',
-      templateHTML: disciplineTemplate,
-      postAddCallback: (newRow) => setupNewDropdown(newRow, 'discipline', 'data/V20/disciplines.json', false, null)
-    },
-    {
-      sectionId: 'disciplines-backgrounds-section',  // Back to original
-      addButtonSelector: '#add-background-btn',
-      rowContainerSelector: '#backgrounds-container',
-      rowWrapperClass: 'dots-wrapper',
-      rowWrapperSelector: '.dots-wrapper',
-      templateHTML: backgroundTemplate,
-      postAddCallback: (newRow) => setupNewDropdown(newRow, 'background', 'data/V20/backgrounds.json', false, null)
-    },
-    {
-      sectionId: 'merits-flaws-section',
-      addButtonSelector: '#add-merit-btn',
-      rowContainerSelector: '#merits-container',
-      rowWrapperClass: 'merit-flaw-wrapper',
-      rowWrapperSelector: '.merit-flaw-wrapper',
-      templateHTML: meritTemplate,
-      postAddCallback: (newRow) => setupNewDropdown(newRow, 'merit', 'data/V20/merits.json', true, meritFlawFormatter)
-    },
-    {
-      sectionId: 'merits-flaws-section',
-      addButtonSelector: '#add-flaw-btn',
-      rowContainerSelector: '#flaws-container',
-      rowWrapperClass: 'merit-flaw-wrapper',
-      rowWrapperSelector: '.merit-flaw-wrapper',
-      templateHTML: flawTemplate,
-      postAddCallback: (newRow) => setupNewDropdown(newRow, 'flaw', 'data/V20/flaws.json', true, meritFlawFormatter)
-    }
-  ];
-
   // --- INITIALIZE ALL PAGE FEATURES (The Correct Order) ---
 
   // 1. Populate all the dropdowns that exist when the page first loads.
@@ -978,7 +834,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all the dynamic and interactive logic.
     initializeSelectElementStyling();
     initializeClanDisciplineLogic();
-    dynamicRowConfigs.forEach(config => initializeDynamicRows(config));
+    getDynamicRowConfigs(meritFlawFormatter).forEach(config => initializeDynamicRows(config));
     
     // Initialize dynamic dot logic
     initializeDotCategoryLogic('attributes-section', 'attribute-priority', { primary: 7, secondary: 5, tertiary: 3 }, 1, 5);
