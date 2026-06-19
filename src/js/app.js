@@ -4,6 +4,7 @@ import { updateSelectColor, populateFlatDropdown, populateGroupedDropdown, initi
 import { manageDuplicateSelections } from './duplicates.js';
 import { initializeDynamicRows, getDynamicRowConfigs } from './dynamic-rows.js';
 import { initializeDotCategoryLogic, initializeSimpleDotLogic, initializeTrackerDots } from './dots.js';
+import { initializeClanDisciplineLogic } from './clan-discipline.js';
 
 /**
  * =================================================================
@@ -365,87 +366,6 @@ function generateAndDownloadTxt() {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-}
-
-// LOGIC: Clan/Discipline Linking
-/**
- * =================================================================
- * CLAN AND DISCIPLINE LOGIC
- * =================================================================
- * Links the Clan dropdown to the three Discipline dropdowns, automatically
- * populating them with the selected clan's in-clan disciplines.
- */
-function initializeClanDisciplineLogic() {
-  const clanSelect = document.querySelector('select[name="clan"]');
-  
-  if (!clanSelect) return;
-
-  let clanDisciplinesMap = {};
-  let allDisciplinesList = [];
-
-  Promise.all([
-    fetch('data/V20/clan_bloodline_disciplines.json').then(res => res.json()),
-    fetch('data/V20/disciplines.json').then(res => res.json())
-  ])
-  .then(([clanDisciplineData, allDisciplinesData]) => {
-    clanDisciplinesMap = clanDisciplineData[0];
-    allDisciplinesList = allDisciplinesData;
-    clanSelect.addEventListener('change', handleClanChange);
-    console.log("Clan and Discipline data loaded and ready.");
-  })
-  .catch(error => console.error("Failed to load clan/discipline data:", error));
-
-  function handleClanChange() {
-    // --- DOT & ROW CLEANUP STEP (This part is good, we keep it) ---
-    const disciplinesContainer = document.getElementById('disciplines-container');
-    if (disciplinesContainer) {
-      disciplinesContainer.querySelectorAll('.dots-wrapper').forEach(row => {
-        if (row.querySelector('.btn-minus')) row.remove();
-      });
-      disciplinesContainer.querySelectorAll('.dot').forEach(dot => dot.classList.remove('filled', 'filled-freebie'));
-      const disciplineCounter = document.querySelector('#disciplines-section h3 span');
-      if (disciplineCounter) {
-        disciplineCounter.textContent = '3';
-        disciplineCounter.classList.remove('text-accent');
-      }
-    }
-
-    // --- NEW, NON-DESTRUCTIVE LOGIC ---
-    const disciplineSelects = document.querySelectorAll('select[name="discipline"]');
-    const selectedClan = clanSelect.value;
-    const disciplinesForClan = clanDisciplinesMap[selectedClan] || [];
-
-    // 1. Simply set the values of the initial dropdowns. Do NOT rebuild them.
-    disciplineSelects.forEach((select, index) => {
-      // We only want to auto-set the initial, permanent dropdowns.
-      // A simple way to check is if they DON'T have a remove button next to them.
-      const parentWrapper = select.closest('.dots-wrapper');
-      if (parentWrapper && !parentWrapper.querySelector('.btn-minus')) {
-        select.value = disciplinesForClan[index] || "";
-        
-        // Manually trigger a color update since we changed the value programmatically.
-        updateSelectColor(select);
-      }
-    });
-
-    // 2. CRITICAL: After changing values, manually trigger our duplicate manager to re-evaluate the page.
-    // We dispatch a 'change' event on one of the discipline selects to trigger the duplicate manager
-    const firstDisciplineSelect = document.querySelector('select[name="discipline"]');
-    if (firstDisciplineSelect) {
-      firstDisciplineSelect.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  }
-  
-  // updateSelectColor helper
-  function updateSelectColor(selectElement) {
-    if (selectElement.value === '') {
-      selectElement.classList.add('text-textSecondary');
-      selectElement.classList.remove('text-textPrimary');
-    } else {
-      selectElement.classList.add('text-textPrimary');
-      selectElement.classList.remove('text-textSecondary');
-    }
-  }
 }
 
 // --- Main Application Setup ---
