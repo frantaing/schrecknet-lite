@@ -119,7 +119,7 @@ export function initializeFreebieMode() {
 }
 
 // --- FREEBIE LISTENERS ---
-function initializeFreebieListeners(state, onUpdateCallback) {
+export function initializeFreebieListeners(state, onUpdateCallback) {
     const costs = {
         'attributes-section': 5,
         'abilities-section': 2,
@@ -130,7 +130,15 @@ function initializeFreebieListeners(state, onUpdateCallback) {
         'willpower-section': 1
     };
 
-    document.body.addEventListener('click', (event) => {
+    // --- VITE HMR FIX ---
+    // Because Vite wipes module-scoped variables on save, use the global 'window' 
+    // object to remember the listener across hot reloads and destroy it properly.
+    if (window._activeFreebieListener) {
+        document.body.removeEventListener('click', window._activeFreebieListener, true);
+    }
+
+    // Define the new listener and save it to the window
+    window._activeFreebieListener = (event) => {
         if (!state.isFreebieModeActive || !event.target.matches('.dot')) return;
 
         const dot = event.target;
@@ -140,47 +148,61 @@ function initializeFreebieListeners(state, onUpdateCallback) {
         const sectionId = sectionElement.dataset.sectionId;
         if (!costs[sectionId]) return;
 
+        event.stopPropagation();
+
         const cost = costs[sectionId];
         const dotGroup = dot.closest('.dot-group');
         const allDots = Array.from(dotGroup.children);
         const clickIndex = allDots.indexOf(dot);
         const currentScore = dotGroup.querySelectorAll('.dot.filled').length;
-        const isTryingToSpend = clickIndex >= currentScore;
+        
+        const isLastFilledDot = dot.classList.contains('filled') && !allDots[clickIndex + 1]?.classList.contains('filled');
+        const newScore = isLastFilledDot ? clickIndex : clickIndex + 1;
 
-        if (isTryingToSpend) {
-            const dotsToAdd = (clickIndex + 1) - currentScore;
-            const totalCost = dotsToAdd * cost;
-            if (totalCost > state.freebiePoints) {
-                console.warn(`Action denied: Costs ${totalCost}, but you only have ${state.freebiePoints} left.`);
-                return;
+        if (newScore > currentScore) {
+        const dotsToAdd = newScore - currentScore;
+        const totalCost = dotsToAdd * cost;
+        
+        if (totalCost > state.freebiePoints) {
+            console.warn(`Action denied: Costs ${totalCost}, but you only have ${state.freebiePoints} left.`);
+            return;
+        }
+        
+        allDots.forEach((d, i) => {
+            if (i < newScore && !d.classList.contains('filled')) {
+            d.classList.add('filled', 'filled-freebie');
             }
-            for (let i = currentScore; i <= clickIndex; i++) {
-                allDots[i].classList.add('filled', 'filled-freebie');
+        });
+        } else if (newScore < currentScore) {
+        for (let i = currentScore - 1; i >= newScore; i--) {
+            if (allDots[i].classList.contains('filled-freebie')) {
+            allDots[i].classList.remove('filled', 'filled-freebie');
             }
-        } else {
-            const isLastFilled = !allDots[clickIndex + 1]?.classList.contains('filled');
-            const refundIndex = isLastFilled ? clickIndex : clickIndex + 1;
-            for (let i = currentScore - 1; i >= refundIndex; i--) {
-                if (allDots[i].classList.contains('filled-freebie')) {
-                allDots[i].classList.remove('filled', 'filled-freebie');
-                }
-            }
+        }
         }
 
         onUpdateCallback();
-    });
+    };
 
+    // Attach the fresh listener
+    document.body.addEventListener('click', window._activeFreebieListener, true);
+
+    // --- MERITS/FLAWS LISTENERS ---
     const meritsFlawsSection = document.getElementById('merits-flaws-section');
     if (meritsFlawsSection) {
-        meritsFlawsSection.addEventListener('change', (event) => {
-            if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
-                onUpdateCallback();
-            }
-        });
+        // Also ensuring these don't stack by checking if they're already bound
+        if (!window._meritFlawListenerBound) {
+            meritsFlawsSection.addEventListener('change', (event) => {
+                if (event.target.matches('select[name="merit"], select[name="flaw"]')) {
+                    onUpdateCallback();
+                }
+            });
         meritsFlawsSection.addEventListener('click', (event) => {
             if (event.target.matches('.btn-minus, [id^="add-"]')) {
-                setTimeout(onUpdateCallback, 50);
+            setTimeout(onUpdateCallback, 50);
             }
         });
+        window._meritFlawListenerBound = true;
+        }
     }
 }
